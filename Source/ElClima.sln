@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Domain", "1 - Domain", "{C1BED74B-E1E3-445B-BD3D-1F869606ECE9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - User Interface", "4 - User Interface", "{5C575D5B-E9A1-448A-AE8E-264732F0CDEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElClima.FrontEnd", "4 - User Interface\ElClima.FrontEnd\ElClima.FrontEnd.csproj", "{967A7E98-5F5C-4978-91AE-0A96A898A7E6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application Services", "2 - Application Services", "{E2011526-4D92-4BA3-A83F-D64975AEBDEC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infrastructure", "3 - Infrastructure", "{DA6BB958-283E-4158-A4F5-99CAC2128F39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Tests", "5 - Tests", "{8D699821-99FA-473E-BA9B-71B0F380CE65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElClima.Domain.Core", "1 - Domain\ElClima.Domain.Core\ElClima.Domain.Core.csproj", "{2BBD4277-9143-489E-8FBF-938DDADB1BA0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{967A7E98-5F5C-4978-91AE-0A96A898A7E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{967A7E98-5F5C-4978-91AE-0A96A898A7E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{967A7E98-5F5C-4978-91AE-0A96A898A7E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{967A7E98-5F5C-4978-91AE-0A96A898A7E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BBD4277-9143-489E-8FBF-938DDADB1BA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BBD4277-9143-489E-8FBF-938DDADB1BA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BBD4277-9143-489E-8FBF-938DDADB1BA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BBD4277-9143-489E-8FBF-938DDADB1BA0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{967A7E98-5F5C-4978-91AE-0A96A898A7E6} = {5C575D5B-E9A1-448A-AE8E-264732F0CDEB}
+		{2BBD4277-9143-489E-8FBF-938DDADB1BA0} = {C1BED74B-E1E3-445B-BD3D-1F869606ECE9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DE5E78A6-BD37-4E10-8021-F5F2395EA0EF}
+	EndGlobalSection
+EndGlobal
