@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@using ElClima.FrontEnd.Helpers  
+
+<!doctype html>
+<html lang="es-AR">
+<head>
+    <link rel="shortcut icon" type="image/ico" href="~/favicon.ico">
+    <meta charset="UTF-8/ISO-8859-1" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+
+    <meta name="description" content="" />
+    <meta name="Author" content="MarioPedernera" />
+
+ 
+ 
+
+    @RenderSection("HtmlHead", false)
+
+</head>
+<body>
+    <!-- WRAPPER -->
+
+    <div id="wrapper">
+
+        @*@await Html.PartialAsync("_HeaderAndPanelPartial")*@
+
+        <!--     MIDDLE     -->
+        <section id="middle">
+            @RenderBody()
+        </section>
+        <!-- /MIDDLE -->
+
+    </div>
+
+    <!-- JAVASCRIPT FILES -->
+    <environment include="Development">
+        <script src="/scripts/Vue.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="/scripts/Vue-Deploy.js"></script>
+    </environment>
+    @*<script type="text/javascript">var plugin_path = '/assets/plugins/';</script>*@
+    <script type="text/javascript" src="/assets/plugins/jquery/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="/assets/js/app_2.js"></script>
+    <script src="/scripts/utils_2.js"></script>
+    <script type="text/javascript" src="~/assets/js/custom.js"></script>
+    @RenderSection("DelayedScripts", false)
+    @Html.Raw(MasterLayoutHelper.GetDelayedJavaScriptFiles(Context))
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            @Html.Raw(MasterLayoutHelper.GetLinesForDocumentReadyFunction(Context))
+        });
+    </script>
+</body>
+</html>
