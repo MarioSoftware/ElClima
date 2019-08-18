@@ -42,9 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\Common\RubroEntidadEnum.cs" />
+    <Compile Include="Enums\Social\Reporte\TipoVehiculoEnum.cs" />
+    <Compile Include="Enums\Social\Reporte\MedioAsaltanteEnum.cs" />
     <Compile Include="Models\Social\Sujetos\Persona.cs" />
     <Compile Include="Models\Social\Sujetos\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Social\Reporte\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
