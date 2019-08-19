@@ -14,7 +14,6 @@
   <ItemGroup>
     <Folder Include="Areas\Social\Controllers\" />
     <Folder Include="Areas\Social\Views\" />
-    <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\plugins\" />
     <Folder Include="wwwroot\scripts\" />
   </ItemGroup>

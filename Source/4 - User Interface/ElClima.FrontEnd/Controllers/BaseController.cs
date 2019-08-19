@@ -10,7 +10,7 @@ namespace ElClima.FrontEnd.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return View("Base");
         }
     }
 }
