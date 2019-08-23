@@ -24,6 +24,7 @@ namespace ElClima.FrontEnd
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseStaticFiles();
             }
 
 
