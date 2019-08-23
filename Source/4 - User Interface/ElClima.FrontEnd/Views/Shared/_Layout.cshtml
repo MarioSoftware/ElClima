@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
 
     <!-- CORE CSS -->
-    <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
     <!-- THEME CSS -->
 
@@ -27,8 +27,8 @@
     <div id="wrapper">
         @*@await Html.PartialAsync("_HeaderAndPanelPartial")*@
         <!--     MIDDLE     -->
-        <section id="middle">  
-            @RenderBody() 
+        <section id="middle">
+            @RenderBody()
         </section>
         <!-- /MIDDLE -->
     </div>
@@ -36,6 +36,8 @@
     <!--JAVASCRIPT FILES-->
     <script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/assets/plugins/jquery/development/jquery-3.4.1.js"></script>
+
+    <script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     @RenderSection("DelayedScripts", false)
     @Html.Raw(MasterLayoutHelper.GetDelayedJavaScriptFiles(Context))

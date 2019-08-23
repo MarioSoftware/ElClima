@@ -1,4 +1,7 @@
-﻿header {
+﻿#mainNav {
+    color: white;
+}
+header {
     position: relative;
     background-color: black;
     height: 75vh;
