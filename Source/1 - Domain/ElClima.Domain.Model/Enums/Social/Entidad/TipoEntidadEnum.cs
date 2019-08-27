@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace ElClima.Domain.Model.Enums.Common
+namespace ElClima.Domain.Model.Enums.Social.Entidad
 {
-    public enum RubroEntidadEnum
+    public enum TipoEntidadEnum
     {
         [Description("Carniceria")]
-        Carniceria=1,
+        Carniceria = 1,
 
         [Description("Panaderia")]
         Panaderia = 2,
@@ -23,7 +21,7 @@ namespace ElClima.Domain.Model.Enums.Common
 
         [Description("BarCafe")]
         BarCafe = 5,
-            
+
         [Description("MaxiKiosco")]
         MaxiKiosco = 6,
 
@@ -40,13 +38,12 @@ namespace ElClima.Domain.Model.Enums.Common
         Laboratorio = 9,
 
         [Description("EscuelaPublica")]
-        EscuelaPublica = 9 
-
+        EscuelaPublica = 9
     }
 
     public static partial class Extensions
     {
-        public static string GetDescription(this RubroEntidadEnum value)
+        public static string GetDescription(this TipoEntidadEnum value)
         {
             var field = value.GetType().GetField(value.ToString());
 
@@ -55,5 +52,4 @@ namespace ElClima.Domain.Model.Enums.Common
                 : value.ToString();
         }
     }
-
 }

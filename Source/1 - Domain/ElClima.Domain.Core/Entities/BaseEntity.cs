@@ -6,7 +6,7 @@ namespace ElClima.Domain.Core.Entities
 {
     public abstract class BaseEntity
     {
-        public int Id { get; set; }
+        public int id { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -22,7 +22,7 @@ namespace ElClima.Domain.Core.Entities
                 return false;
             }
 
-            return Id.Equals(compareTo.Id);
+            return id.Equals(compareTo.id);
         }
 
         public static bool operator ==(BaseEntity a, BaseEntity b)
@@ -47,12 +47,12 @@ namespace ElClima.Domain.Core.Entities
 
         public override int GetHashCode()
         {
-            return (GetType().GetHashCode() * 33) + Id.GetHashCode();
+            return (GetType().GetHashCode() * 33) + id.GetHashCode();
         }
 
         public override string ToString()
         {
-            return GetType().Name + " [Id=" + Id + "]";
+            return GetType().Name + " [Id=" + id + "]";
         }
     }
 }
