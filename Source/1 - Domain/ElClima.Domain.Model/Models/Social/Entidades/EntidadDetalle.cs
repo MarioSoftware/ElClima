@@ -15,6 +15,8 @@ namespace ElClima.Domain.Model.Models.Social.Entidades
 
         public Persona propietario { get; set; }
 
+        public Persona creadaPor { get; set; }
+
         public Ubicacion ubicacion { get; set; } 
     }
 }
