@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElClima.ExternalWebServices
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElClima.Domain.Model", "1 - Domain\ElClima.Domain.Model\ElClima.Domain.Model.csproj", "{8E2D2967-E575-42A9-8371-DCDB38319AAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCore.BulkExtensions", "3 - Infrastructure\EFCore.BulkExtensions\EFCore.BulkExtensions.csproj", "{8AE3F491-97C7-4263-81B3-FE4EA1059E13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore.BulkExtensions", "3 - Infrastructure\EFCore.BulkExtensions\EFCore.BulkExtensions.csproj", "{8AE3F491-97C7-4263-81B3-FE4EA1059E13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
