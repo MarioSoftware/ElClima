@@ -1,9 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection; 
+﻿using ElClima.Domain.Core.Repository;
+using Microsoft.Extensions.DependencyInjection; 
 
 namespace ElClima.Domain.Core.DependencyInjection
 {
     public interface IUnitOfWorkFactory
     {
-        IUnitOfWorkFactory GetNewUnitOfWork(ServiceProvider provider);
+        IUnitOfWork GetNewUnitOfWork(ServiceProvider provider);
     }
 }
