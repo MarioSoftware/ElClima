@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ElClima.Domain.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ElClima.Domain.Model.Models.Social.Entidades
 {
-    class ProductoImagen
+    public class ProductoImagen : BaseEntity
     {
         public Producto producto { get; set; }
 
