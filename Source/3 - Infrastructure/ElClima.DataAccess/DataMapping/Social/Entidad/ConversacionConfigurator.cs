@@ -27,13 +27,13 @@ namespace ElClima.DataAccess.DataMapping.Social.Entidades
             });
             // ForeingKey Conversacion-Comentario
             modelBuilder.Entity<Conversacion>()
-                .Property<int>("ComentarioId");
+                .Property<int>("comentarioId");
             modelBuilder.Entity<Conversacion>()
                 .HasOne(c => c.comentario);
 
             // ForeingKey Conversacion-Persona
             modelBuilder.Entity<Conversacion>()
-                .Property<int>("PersonaId");
+                .Property<int>("personaId");
             modelBuilder.Entity<Conversacion>()
                 .HasOne(c => c.persona); 
 

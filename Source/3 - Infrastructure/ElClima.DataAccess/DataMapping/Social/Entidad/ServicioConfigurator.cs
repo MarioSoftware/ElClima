@@ -24,13 +24,13 @@ namespace ElClima.DataAccess.DataMapping.Social.Entidades
 
             // ForeingKey Servicio-Entidad
             modelBuilder.Entity<Servicio>()
-                .Property<int>("EntidadId");
+                .Property<int>("entidadId");
             modelBuilder.Entity<Servicio>()
                 .HasOne(c => c.entidad);
 
             // ForeingKey Servicio-TipoServicio
             modelBuilder.Entity<Servicio>()
-                .Property<int>("TipoServicioId");
+                .Property<int>("tipoServicioId");
             modelBuilder.Entity<Servicio>()
                 .HasOne(c => c.servicio);
 

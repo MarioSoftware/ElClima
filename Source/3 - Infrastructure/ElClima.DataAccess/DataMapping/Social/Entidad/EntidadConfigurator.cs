@@ -1,5 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ElClima.Domain.Model.Models.Social.Entidades;
+﻿using ElClima.Domain.Model.Models.Social.Entidades;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace ElClima.DataAccess.DataMapping.Social.Entidades
 {
@@ -7,25 +10,53 @@ namespace ElClima.DataAccess.DataMapping.Social.Entidades
     {
         public static void Configure(ModelBuilder modelBuilder)
         {
-            //Entity Table
-            modelBuilder.Entity<Entidad>(e =>
+            modelBuilder.Entity<Entidad>(c =>
             {
-                e.ToTable("Entidad", "Entidades");
+                c.ToTable("DetalleEntidad", "Entidades");
 
-                e.Property<int>("id")
+                c.Property<int>("id")
                 .IsRequired()
                 .UseSqlServerIdentityColumn()
                 .ValueGeneratedOnAdd();
 
-                e.Property<string>("descripcion")
+                c.Property<string>("descripcion")
                    .IsRequired()
-                   .HasColumnType("varchar(50)");
+                   .HasColumnType("varchar(70)");
+
+                c.Property<DateTime>("fechaHoraCreacion")
+                   .IsRequired()
+                   .HasColumnType("Date");
             });
-            // Creamos la ForeingKey Cliente-Calificacion
+
+
+            // ForeingKey Entidad-TipoEntidad
             modelBuilder.Entity<Entidad>()
-                .Property<int>("TipoEntidadId");
+                       .Property<int>("tipoEntidadId")
+                       .IsRequired();
             modelBuilder.Entity<Entidad>()
-                .HasOne(c => c.tipoEntidad);
+                .HasOne(o => o.tipoEntidad);
+
+            // ForeingKey Entidad-Persona propietaria
+            modelBuilder.Entity<Entidad>()
+                       .Property<int>("personaPropietariaId")
+                       .IsRequired();
+            modelBuilder.Entity<Entidad>()
+                .HasOne(o => o.propietario);
+
+            // ForeingKey Entidad-Persona creadora
+            modelBuilder.Entity<Entidad>()
+                       .Property<int>("personaCreadoraId")
+                       .IsRequired();
+            modelBuilder.Entity<Entidad>()
+                .HasOne(o => o.creadaPor);
+
+            // ForeingKey Entidad-Ubicacion
+            modelBuilder.Entity<Entidad>()
+                       .Property<int>("ubicacionId")
+                       .IsRequired();
+            modelBuilder.Entity<Entidad>()
+                .HasOne(o => o.ubicacion);
+
         }
     }
 }

@@ -27,19 +27,19 @@ namespace ElClima.DataAccess.DataMapping.Social.Entidades
             });
             // ForeingKey Comentario-Servicio
             modelBuilder.Entity<Comentario>()
-                .Property<int>("ServicioId");
+                .Property<int>("servicioId");
             modelBuilder.Entity<Comentario>()
                 .HasOne(c => c.servicio);
 
             // ForeingKey Comentario-TipoComentario
             modelBuilder.Entity<Comentario>()
-                .Property<int>("TipoComentarioId");
+                .Property<int>("tipoComentarioId");
             modelBuilder.Entity<Comentario>()
                 .HasOne(c => c.tipoComentario);
 
                   // ForeingKey Comentario-Persona
             modelBuilder.Entity<Comentario>()
-                .Property<int>("PersonaId");
+                .Property<int>("personaId");
             modelBuilder.Entity<Comentario>()
                 .HasOne(c => c.persona);
 
