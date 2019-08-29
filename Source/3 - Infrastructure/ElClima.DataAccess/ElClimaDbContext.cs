@@ -1,4 +1,5 @@
 ﻿using ElClima.DataAccess.ConcreteRepository;
+using ElClima.DataAccess.DataMapping.Social.Entidades;
 using ElClima.Domain.Core.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -15,79 +16,45 @@ namespace ElClima.DataAccess
 {
     public sealed class ElClimaDbContext : IdentityDbContext<ApplicationUser>, IEntitiesContext
     {
-        private DbConnection _connection;
-        private DbTransaction _transaction;
         private static readonly object Lock = new object();
         private static bool _databaseInitialized;
-
-        public ElClimaDbContext(DbContextOptions options)
-            : base(options)
-        {
-
-            //Database.Log = logger.Log;
-            if (_databaseInitialized)
-            {
-                return;
-            }
-            lock (Lock)
-            {
-                if (!_databaseInitialized)
-                {
-                    //Database.EnsureCreated();
-                    _databaseInitialized = true;
-                }
-            }
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            lock (ModelCreationLockObject)
-            {
-                if (_currentModel != null)
-                {
-                    optionsBuilder.UseModel(_currentModel);
-                }
-            }
-
-            base.OnConfiguring(optionsBuilder);
-        }
 
         private static IModel _currentModel;
 
         private static readonly object ModelCreationLockObject = new object();
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        private DbConnection _connection;
+        private DbTransaction _transaction;
+
+        public ElClimaDbContext(DbContextOptions options)
+            : base(options)
         {
-
-            lock (ModelCreationLockObject)
+            //Database.Log = logger.Log;
+            if (_databaseInitialized) return;
+            lock (Lock)
             {
-
-                base.OnModelCreating(modelBuilder);
-
-                // Configuramos el mapping de las tablas
-                
-                DataMapping.Social.Entidades.EntidadConfigurator.Configure(modelBuilder);
-
-
-
-
-
-
-                foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
-                {
-                    relationship.DeleteBehavior = relationship.Properties.Any(prop => prop.IsNullable)
-                        ? DeleteBehavior.ClientSetNull
-                        : DeleteBehavior.Restrict;
-                }
-
-                _currentModel = modelBuilder.Model;
+                if (!_databaseInitialized) _databaseInitialized = true;
             }
         }
-
-
 
         public new DbSet<TEntity> Set<TEntity>() where TEntity : BaseEntity
         {
             return base.Set<TEntity>();
+        }
+
+        public void SetAsAdded(object entity) //where TEntity : BaseEntity
+        {
+            UpdateEntityState(entity, EntityState.Added);
+        }
+
+        public void SetAsModified(object entity) //where TEntity : BaseEntity
+        {
+            UpdateEntityState(entity, EntityState.Modified);
+        }
+
+        public void SetAsDeleted(object entity) //where TEntity : BaseEntity
+        {
+            UpdateEntityState(entity, EntityState.Deleted);
         }
 
         public void SetRangeAsAdded(IEnumerable<object> entities)
@@ -106,21 +73,6 @@ namespace ElClima.DataAccess
         }
 
 
-        public void SetAsAdded(object entity) //where TEntity : BaseEntity
-        {
-            UpdateEntityState(entity, EntityState.Added);
-        }
-
-        public void SetAsModified(object entity) //where TEntity : BaseEntity
-        {
-            UpdateEntityState(entity, EntityState.Modified);
-        }
-
-        public void SetAsDeleted(object entity) //where TEntity : BaseEntity
-        {
-            UpdateEntityState(entity, EntityState.Deleted);
-        }
-
         public Task<int> SaveChangesAsync()
         {
             return base.SaveChangesAsync();
@@ -128,16 +80,10 @@ namespace ElClima.DataAccess
 
         public void BeginTransaction()
         {
-            if (Database.CurrentTransaction != null)
-            {
-                return;
-            }
+            if (Database.CurrentTransaction != null) return;
 
             _connection = Database.GetDbConnection();
-            if (_connection.State == ConnectionState.Closed)
-            {
-                _connection.Open();
-            }
+            if (_connection.State == ConnectionState.Closed) _connection.Open();
 
             _transaction = _connection.BeginTransaction();
         }
@@ -161,28 +107,61 @@ namespace ElClima.DataAccess
             return saveChangesAsync;
         }
 
-        private void UpdateEntityState(object entity, EntityState entityState) //where TEntity : BaseEntity
-        {
-            var entry = Entry(entity);
-            if (entry.State == EntityState.Detached)
-            {
-                Attach(entity);
-            }
-
-            entry.State = entityState;
-        }
-
+        //private DbEntityEntry GetDbEntityEntrySafely<TEntity>(TEntity entity) where TEntity : BaseEntity
+        //{
+        //    var dbEntityEntry = Entry<TEntity>(entity);
+        //    if (dbEntityEntry.State == EntityState.Detached)
+        //    {
+        //        Set<TEntity>().Attach(entity);
+        //    }
+        //    return dbEntityEntry;
+        //}
 
         public override void Dispose()
         {
-            if (_connection != null && _connection.State == ConnectionState.Open)
-            {
-                _connection.Close();
-            }
+            if (_connection != null && _connection.State == ConnectionState.Open) _connection.Close();
             _transaction?.Dispose();
             _connection?.Dispose();
 
             base.Dispose();
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            lock (ModelCreationLockObject)
+            {
+                if (_currentModel != null) optionsBuilder.UseModel(_currentModel);
+            }
+
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            lock (ModelCreationLockObject)
+            {
+                base.OnModelCreating(modelBuilder);
+
+                // Configuramos el mapping de las tablas
+                 
+                EntidadConfigurator.Configure(modelBuilder);
+                
+                foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+                    relationship.DeleteBehavior = DeleteBehavior.Restrict;
+
+                _currentModel = modelBuilder.Model;
+            }
+        }
+
+        private void UpdateEntityState(object entity, EntityState entityState) //where TEntity : BaseEntity
+        {
+            //var dbEntityEntry = GetDbEntityEntrySafely(entity);
+            //dbEntityEntry.State = entityState;
+
+            var entry = Entry(entity);
+            if (entry.State == EntityState.Detached) Attach(entity);
+
+            entry.State = entityState;
         }
 
     }
