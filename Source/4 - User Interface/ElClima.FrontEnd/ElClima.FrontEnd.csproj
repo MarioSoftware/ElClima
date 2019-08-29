@@ -19,4 +19,8 @@
     <Folder Include="wwwroot\scripts\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\3 - Infrastructure\ElClima.DataAccess\ElClima.DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>

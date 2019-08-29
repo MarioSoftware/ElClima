@@ -12,14 +12,15 @@ namespace ElClima.DataAccess
     {
         public ElClimaDbContext CreateDbContext(string[] args)
         {
-            var connectionStringFile = Environment.GetEnvironmentVariable("SINIE_CONN_STRING_FILE");
-            if (string.IsNullOrWhiteSpace(connectionStringFile))
-                connectionStringFile = "connectionstrings.json";
-            var connStringConfig = new ConfigurationBuilder()
-                .AddJsonFile(connectionStringFile)
-                .Build();
+            //var connectionStringFile = Environment.GetEnvironmentVariable("SINIE_CONN_STRING_FILE");
+            //if (string.IsNullOrWhiteSpace(connectionStringFile))
+            //    connectionStringFile = "connectionstrings.json";
+            //var connStringConfig = new ConfigurationBuilder()
+            //    .AddJsonFile(connectionStringFile)
+            //    .Build();
 
-            var connectionString = connStringConfig.GetConnectionString("DefaultConnection");
+            var connectionString = "Data Source=HYAMPEDERNERANB\\SQLEXPRESS; Initial Catalog=example; Integrated Security=True; Application Name=Sinie;MultipleActiveResultSets=true;";
+            //var connectionString = connStringConfig.GetConnectionString("DefaultConnection");
 
             var builder = new DbContextOptionsBuilder<ElClimaDbContext>();
             builder.UseSqlServer(

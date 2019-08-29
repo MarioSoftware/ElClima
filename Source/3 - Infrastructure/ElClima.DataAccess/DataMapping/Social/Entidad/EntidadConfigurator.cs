@@ -1,13 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ElClima.Domain.Model.Models.Social.Entidades;
 
-namespace ElClima.DataAccess.DataMapping.Social.Entidad
+namespace ElClima.DataAccess.DataMapping.Social.Entidades
 {
     internal static class EntidadConfigurator
     {
         public static void Configure(ModelBuilder modelBuilder)
         {
             //Entity Table
-            modelBuilder.Entity<ElClima.Domain.Model.Models.Social.Entidades.Entidad>(e =>
+            modelBuilder.Entity<Entidad>(e =>
             {
                 e.ToTable("Entidad", "Entidades");
 
@@ -21,9 +22,9 @@ namespace ElClima.DataAccess.DataMapping.Social.Entidad
                    .HasColumnType("varchar(50)");
             });
             // Creamos la ForeingKey Cliente-Calificacion
-            modelBuilder.Entity<ElClima.Domain.Model.Models.Social.Entidades.Entidad>()
+            modelBuilder.Entity<Entidad>()
                 .Property<int>("TipoEntidadId");
-            modelBuilder.Entity<ElClima.Domain.Model.Models.Social.Entidades.Entidad>()
+            modelBuilder.Entity<Entidad>()
                 .HasOne(c => c.tipoEntidad);
         }
     }

@@ -64,12 +64,13 @@ namespace ElClima.DataAccess
                 base.OnModelCreating(modelBuilder);
 
                 // Configuramos el mapping de las tablas
-                //DataMapping.Comun.CompaniaSeguroConfigurator.Configure(modelBuilder);
-                //DataMapping.Comun.CompaniaSeguroDatoContactoConfigurator.Configure(modelBuilder); 
-
-                //DataMapping.Choferes.TipoDeudaConfigurator.Configure(modelBuilder);
-                //DataMapping.Choferes.TipoChoferConfigurator.Configure(modelBuilder);
                 
+                DataMapping.Social.Entidades.EntidadConfigurator.Configure(modelBuilder);
+
+
+
+
+
 
                 foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
                 {
