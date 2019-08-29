@@ -19,7 +19,7 @@ namespace ElClima.DataAccess
             //    .AddJsonFile(connectionStringFile)
             //    .Build();
 
-            var connectionString = "Data Source=HYAMPEDERNERANB\\SQLEXPRESS; Initial Catalog=example; Integrated Security=True; Application Name=Sinie;MultipleActiveResultSets=true;";
+            var connectionString = "Data Source=HYAMPEDERNERANB\\SQLEXPRESS; Initial Catalog=OperationalData; Integrated Security=True; Application Name=Sinie;MultipleActiveResultSets=true;";
             //var connectionString = connStringConfig.GetConnectionString("DefaultConnection");
 
             var builder = new DbContextOptionsBuilder<ElClimaDbContext>();

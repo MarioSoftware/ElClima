@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElClima.DataAccess.Migrations
 {
     [DbContext(typeof(ElClimaDbContext))]
-    [Migration("20190829015513_InitialMigration")]
+    [Migration("20190829155547_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,6 +72,62 @@ namespace ElClima.DataAccess.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Entidades.Comentario", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("PersonaId");
+
+                    b.Property<int>("ServicioId");
+
+                    b.Property<int>("TipoComentarioId");
+
+                    b.Property<string>("descripcion")
+                        .IsRequired()
+                        .HasColumnType("varchar(800)");
+
+                    b.Property<DateTime>("fechaHoraCreacion")
+                        .HasColumnType("Date");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("PersonaId");
+
+                    b.HasIndex("ServicioId");
+
+                    b.HasIndex("TipoComentarioId");
+
+                    b.ToTable("Comentario","Entidades");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Entidades.Conversacion", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ComentarioId");
+
+                    b.Property<int>("PersonaId");
+
+                    b.Property<string>("descripcion")
+                        .IsRequired()
+                        .HasColumnType("varchar(800)");
+
+                    b.Property<DateTime>("fechaHoraCreacion")
+                        .HasColumnType("Date");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("ComentarioId");
+
+                    b.HasIndex("PersonaId");
+
+                    b.ToTable("Conversacion","Entidades");
+                });
+
             modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Entidades.Entidad", b =>
                 {
                     b.Property<int>("id")
@@ -91,6 +147,42 @@ namespace ElClima.DataAccess.Migrations
                     b.ToTable("Entidad","Entidades");
                 });
 
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Entidades.Servicio", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("EntidadId");
+
+                    b.Property<int>("TipoServicioId");
+
+                    b.Property<string>("descripcion")
+                        .IsRequired()
+                        .HasColumnType("varchar(80)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("EntidadId");
+
+                    b.HasIndex("TipoServicioId");
+
+                    b.ToTable("Servicio","Entidades");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Entidades.TipoComentario", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("detalle");
+
+                    b.HasKey("id");
+
+                    b.ToTable("TipoComentario");
+                });
+
             modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Entidades.TipoEntidad", b =>
                 {
                     b.Property<int>("id")
@@ -102,6 +194,42 @@ namespace ElClima.DataAccess.Migrations
                     b.HasKey("id");
 
                     b.ToTable("TipoEntidad");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Entidades.TipoServicio", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("detalle");
+
+                    b.HasKey("id");
+
+                    b.ToTable("TipoServicio");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Sujetos.Persona", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("apellido");
+
+                    b.Property<string>("dni");
+
+                    b.Property<DateTime>("fechaNacimiento");
+
+                    b.Property<int>("idDireccionActual");
+
+                    b.Property<int>("idDireccionNacimiento");
+
+                    b.Property<string>("nombre");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Persona");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -214,11 +342,55 @@ namespace ElClima.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Entidades.Comentario", b =>
+                {
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Sujetos.Persona", "persona")
+                        .WithMany()
+                        .HasForeignKey("PersonaId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Entidades.Servicio", "servicio")
+                        .WithMany()
+                        .HasForeignKey("ServicioId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Entidades.TipoComentario", "tipoComentario")
+                        .WithMany()
+                        .HasForeignKey("TipoComentarioId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Entidades.Conversacion", b =>
+                {
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Entidades.Comentario", "comentario")
+                        .WithMany()
+                        .HasForeignKey("ComentarioId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Sujetos.Persona", "persona")
+                        .WithMany()
+                        .HasForeignKey("PersonaId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
             modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Entidades.Entidad", b =>
                 {
                     b.HasOne("ElClima.Domain.Model.Models.Social.Entidades.TipoEntidad", "tipoEntidad")
                         .WithMany()
                         .HasForeignKey("TipoEntidadId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Entidades.Servicio", b =>
+                {
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Entidades.Entidad", "entidad")
+                        .WithMany()
+                        .HasForeignKey("EntidadId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Entidades.TipoServicio", "servicio")
+                        .WithMany()
+                        .HasForeignKey("TipoServicioId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

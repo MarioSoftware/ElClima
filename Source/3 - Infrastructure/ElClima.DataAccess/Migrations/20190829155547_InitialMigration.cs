@@ -51,6 +51,37 @@ namespace ElClima.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Persona",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    apellido = table.Column<string>(nullable: true),
+                    nombre = table.Column<string>(nullable: true),
+                    dni = table.Column<string>(nullable: true),
+                    fechaNacimiento = table.Column<DateTime>(nullable: false),
+                    idDireccionNacimiento = table.Column<int>(nullable: false),
+                    idDireccionActual = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Persona", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TipoComentario",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    detalle = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TipoComentario", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TipoEntidad",
                 columns: table => new
                 {
@@ -61,6 +92,19 @@ namespace ElClima.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TipoEntidad", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TipoServicio",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    detalle = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TipoServicio", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -190,6 +234,102 @@ namespace ElClima.DataAccess.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Servicio",
+                schema: "Entidades",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    EntidadId = table.Column<int>(nullable: false),
+                    TipoServicioId = table.Column<int>(nullable: false),
+                    descripcion = table.Column<string>(type: "varchar(80)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Servicio", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Servicio_Entidad_EntidadId",
+                        column: x => x.EntidadId,
+                        principalSchema: "Entidades",
+                        principalTable: "Entidad",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Servicio_TipoServicio_TipoServicioId",
+                        column: x => x.TipoServicioId,
+                        principalTable: "TipoServicio",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Comentario",
+                schema: "Entidades",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ServicioId = table.Column<int>(nullable: false),
+                    PersonaId = table.Column<int>(nullable: false),
+                    TipoComentarioId = table.Column<int>(nullable: false),
+                    fechaHoraCreacion = table.Column<DateTime>(type: "Date", nullable: false),
+                    descripcion = table.Column<string>(type: "varchar(800)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comentario", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Comentario_Persona_PersonaId",
+                        column: x => x.PersonaId,
+                        principalTable: "Persona",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Comentario_Servicio_ServicioId",
+                        column: x => x.ServicioId,
+                        principalSchema: "Entidades",
+                        principalTable: "Servicio",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Comentario_TipoComentario_TipoComentarioId",
+                        column: x => x.TipoComentarioId,
+                        principalTable: "TipoComentario",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Conversacion",
+                schema: "Entidades",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ComentarioId = table.Column<int>(nullable: false),
+                    PersonaId = table.Column<int>(nullable: false),
+                    fechaHoraCreacion = table.Column<DateTime>(type: "Date", nullable: false),
+                    descripcion = table.Column<string>(type: "varchar(800)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Conversacion", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Conversacion_Comentario_ComentarioId",
+                        column: x => x.ComentarioId,
+                        principalSchema: "Entidades",
+                        principalTable: "Comentario",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Conversacion_Persona_PersonaId",
+                        column: x => x.PersonaId,
+                        principalTable: "Persona",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -230,10 +370,52 @@ namespace ElClima.DataAccess.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Comentario_PersonaId",
+                schema: "Entidades",
+                table: "Comentario",
+                column: "PersonaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comentario_ServicioId",
+                schema: "Entidades",
+                table: "Comentario",
+                column: "ServicioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comentario_TipoComentarioId",
+                schema: "Entidades",
+                table: "Comentario",
+                column: "TipoComentarioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Conversacion_ComentarioId",
+                schema: "Entidades",
+                table: "Conversacion",
+                column: "ComentarioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Conversacion_PersonaId",
+                schema: "Entidades",
+                table: "Conversacion",
+                column: "PersonaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Entidad_TipoEntidadId",
                 schema: "Entidades",
                 table: "Entidad",
                 column: "TipoEntidadId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Servicio_EntidadId",
+                schema: "Entidades",
+                table: "Servicio",
+                column: "EntidadId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Servicio_TipoServicioId",
+                schema: "Entidades",
+                table: "Servicio",
+                column: "TipoServicioId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -254,7 +436,7 @@ namespace ElClima.DataAccess.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Entidad",
+                name: "Conversacion",
                 schema: "Entidades");
 
             migrationBuilder.DropTable(
@@ -262,6 +444,27 @@ namespace ElClima.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Comentario",
+                schema: "Entidades");
+
+            migrationBuilder.DropTable(
+                name: "Persona");
+
+            migrationBuilder.DropTable(
+                name: "Servicio",
+                schema: "Entidades");
+
+            migrationBuilder.DropTable(
+                name: "TipoComentario");
+
+            migrationBuilder.DropTable(
+                name: "Entidad",
+                schema: "Entidades");
+
+            migrationBuilder.DropTable(
+                name: "TipoServicio");
 
             migrationBuilder.DropTable(
                 name: "TipoEntidad");

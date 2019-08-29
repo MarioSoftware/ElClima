@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ElClima.Domain.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ElClima.Domain.Model.Models.Social.Sujetos
 {
-    public class Persona
+    public class Persona : BaseEntity
     {
         public string apellido { get; set; }
 

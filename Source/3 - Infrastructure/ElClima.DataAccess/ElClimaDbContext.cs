@@ -143,9 +143,13 @@ namespace ElClima.DataAccess
                 base.OnModelCreating(modelBuilder);
 
                 // Configuramos el mapping de las tablas
-                 
-                EntidadConfigurator.Configure(modelBuilder);
                 
+                //Entidad
+                EntidadConfigurator.Configure(modelBuilder);
+                ComentarioConfigurator.Configure(modelBuilder);
+                ConversacionConfigurator.Configure(modelBuilder);
+                ServicioConfigurator.Configure(modelBuilder);
+
                 foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
                     relationship.DeleteBehavior = DeleteBehavior.Restrict;
 
