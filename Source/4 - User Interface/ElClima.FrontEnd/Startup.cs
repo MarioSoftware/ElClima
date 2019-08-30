@@ -33,7 +33,7 @@ namespace ElClima.FrontEnd
                 // Base page
                 routes.MapRoute("default", "{controller=Base}/{action=Index}");
                 
-                routes.MapRoute("areas", "{area:exists}/{controller=Home}/{action=List}/{id?}");
+                routes.MapRoute("areas", "{area:exists}/{controller=Base}/{action=Index}/{id?}");
             });
 
         }
