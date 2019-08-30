@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Enums\Common\" />
+    <Folder Include="Models\Social\Reporte\" />
   </ItemGroup>
 
 </Project>

@@ -5,29 +5,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElClima.Domain.Model.Enums.Social.Reporte
+namespace ElClima.Domain.Model.Enums.Social.Reporte.Historia
 {
-    public enum TipoVehiculoEnum
+    public enum TipoHistoriaEnum
     {
-        [Description("Motocicleta")]
-        Motocicleta = 1,
+        
+        [Description("Historia")]
+        Historia = 1,
 
-        [Description("Automovil")]
-        Automovil = 2,
+        [Description("Pegunta")]
+        Pegunta = 2,
 
-        [Description("Colectivo")]
-        Colectivo = 3,
+        [Description("Perdida")]
+        Perdida = 3
 
-        [Description("Bicicleta")]
-        Bicicleta = 4,
-
-        [Description("Carro a caballo")]
-        CarroACaballo = 5
     }
 
     public static partial class Extensions
     {
-        public static string GetDescription(this TipoVehiculoEnum value)
+        public static string GetDescription(this TipoHistoriaEnum value)
         {
             var field = value.GetType().GetField(value.ToString());
 

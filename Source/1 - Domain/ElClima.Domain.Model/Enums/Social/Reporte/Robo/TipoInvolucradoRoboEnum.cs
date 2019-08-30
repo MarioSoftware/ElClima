@@ -5,20 +5,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElClima.Domain.Model.Enums.Social.Reporte
+namespace ElClima.Domain.Model.Enums.Social.Reporte.Robo
 {
-    public enum TipoReporteEnum
+    public enum TipoInvolucradoRoboEnum
     {
-        [Description("Robo")]
-        Robo = 1,
+        [Description("Persona")]
+        Persona = 1,
 
-        [Description("Accidente")]
-        Automovil = 2 
+        [Description("Moto")]
+        Moto = 2,
+
+        [Description("Auto")]
+        Auto = 3,
+
+        [Description("Otro")]
+        Otro = 4 
     }
 
     public static partial class Extensions
     {
-        public static string GetDescription(this TipoReporteEnum value)
+        public static string GetDescription(this TipoInvolucradoRoboEnum value)
         {
             var field = value.GetType().GetField(value.ToString());
 

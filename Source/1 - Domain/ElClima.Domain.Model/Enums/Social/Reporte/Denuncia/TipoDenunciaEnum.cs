@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElClima.Domain.Model.Enums.Social.Reporte
+namespace ElClima.Domain.Model.Enums.Social.Reporte.Denuncia
 {
     public enum TipoDenunciaEnum
     {
