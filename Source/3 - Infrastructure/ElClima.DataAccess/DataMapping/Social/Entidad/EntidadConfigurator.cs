@@ -12,7 +12,7 @@ namespace ElClima.DataAccess.DataMapping.Social.Entidades
         {
             modelBuilder.Entity<Entidad>(c =>
             {
-                c.ToTable("DetalleEntidad", "Entidades");
+                c.ToTable("Entidad", "Entidades");
 
                 c.Property<int>("id")
                 .IsRequired()
@@ -38,17 +38,17 @@ namespace ElClima.DataAccess.DataMapping.Social.Entidades
 
             // ForeingKey Entidad-Persona propietaria
             modelBuilder.Entity<Entidad>()
-                       .Property<int>("personaPropietariaId")
+                       .Property<int>("propietarioId")
                        .IsRequired();
             modelBuilder.Entity<Entidad>()
                 .HasOne(o => o.propietario);
 
             // ForeingKey Entidad-Persona creadora
             modelBuilder.Entity<Entidad>()
-                       .Property<int>("personaCreadoraId")
+                       .Property<int>("creadorId")
                        .IsRequired();
             modelBuilder.Entity<Entidad>()
-                .HasOne(o => o.creadaPor);
+                .HasOne(o => o.creador);
 
             // ForeingKey Entidad-Ubicacion
             modelBuilder.Entity<Entidad>()

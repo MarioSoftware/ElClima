@@ -151,6 +151,9 @@ namespace ElClima.DataAccess
                 ServicioConfigurator.Configure(modelBuilder);
                 ProductoConfigurator.Configure(modelBuilder);
                 ProductoImagenConfigurator.Configure(modelBuilder);
+                TipoServicioConfigurator.Configure(modelBuilder);
+                TipoComentarioConfigurator.Configure(modelBuilder);
+                TipoEntidadConfigurator.Configure(modelBuilder);
 
                 foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
                     relationship.DeleteBehavior = DeleteBehavior.Restrict;
