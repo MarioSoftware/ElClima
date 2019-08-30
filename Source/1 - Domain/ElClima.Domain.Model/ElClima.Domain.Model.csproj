@@ -8,8 +8,4 @@
     <ProjectReference Include="..\ElClima.Domain.Core\ElClima.Domain.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Social\Reporte\" />
-  </ItemGroup>
-
 </Project>
