@@ -16,7 +16,6 @@ namespace ElClima.Domain.Model.Models.Social.Reporte.Historia
         public DateTime fechHoraCreada { get; set; }
 
         public Persona persona { get; set; }
-
-        public TipoHistoria tipoHistoria { get; set; }
+         
     }
 }

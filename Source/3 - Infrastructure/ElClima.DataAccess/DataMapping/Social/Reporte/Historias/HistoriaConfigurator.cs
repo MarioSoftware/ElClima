@@ -33,11 +33,7 @@ namespace ElClima.DataAccess.DataMapping.Social.Reporte.Historias
             modelBuilder.Entity<Historia>()
                 .HasOne(h => h.persona);
 
-            // ForeingKey Historia-TipoHistoria
-            modelBuilder.Entity<Historia>()
-                .Property<int>("tipoHistoriaId");
-            modelBuilder.Entity<Historia>()
-                .HasOne(h => h.tipoHistoria);
+       
         }
     }
 }
