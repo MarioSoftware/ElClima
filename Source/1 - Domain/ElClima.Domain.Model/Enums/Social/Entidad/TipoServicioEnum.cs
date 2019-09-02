@@ -16,11 +16,14 @@ namespace ElClima.Domain.Model.Enums.Social.Entidad
         [Description("Venta")]
         Venta = 3,
 
-        [Description("Compra y venta")]
-        CompraVenta = 4,
+        [Description("Compra")]
+        Compra = 4,
 
-       [Description("Software")]
-        Software = 5,
+        [Description("Compra y venta")]
+        CompraVenta = 5,
+
+       [Description("Software a medida ")]
+        SoftwarePersonalizado = 6
     }
 
     public static partial class Extensions

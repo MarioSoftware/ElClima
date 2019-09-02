@@ -10,20 +10,20 @@ namespace ElClima.DataAccess.DataMapping.Social.Entidades
     {
         public static void Configure(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Entidad>(c =>
+            modelBuilder.Entity<Entidad>(e =>
             {
-                c.ToTable("Entidad", "Entidades");
+                e.ToTable("Entidad", "Entidad");
 
-                c.Property<int>("id")
+                e.Property<int>("id")
                 .IsRequired()
                 .UseSqlServerIdentityColumn()
                 .ValueGeneratedOnAdd();
 
-                c.Property<string>("descripcion")
+                e.Property<string>("descripcion")
                    .IsRequired()
                    .HasColumnType("varchar(70)");
 
-                c.Property<DateTime>("fechaHoraCreacion")
+                e.Property<DateTime>("fechaHoraCreacion")
                    .IsRequired()
                    .HasColumnType("Date");
             });

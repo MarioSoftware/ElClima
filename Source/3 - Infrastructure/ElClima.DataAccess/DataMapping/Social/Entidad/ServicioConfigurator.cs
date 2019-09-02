@@ -10,7 +10,7 @@ namespace ElClima.DataAccess.DataMapping.Social.Entidades
         { 
             modelBuilder.Entity<Servicio>(c =>
             {
-                c.ToTable("Servicio", "Entidades");
+                c.ToTable("Servicio", "Entidad");
 
                 c.Property<int>("id")
                 .IsRequired()
@@ -24,13 +24,15 @@ namespace ElClima.DataAccess.DataMapping.Social.Entidades
 
             // ForeingKey Servicio-Entidad
             modelBuilder.Entity<Servicio>()
-                .Property<int>("entidadId");
+                .Property<int>("entidadId")
+                .IsRequired();
             modelBuilder.Entity<Servicio>()
                 .HasOne(c => c.entidad);
 
             // ForeingKey Servicio-TipoServicio
             modelBuilder.Entity<Servicio>()
-                .Property<int>("tipoServicioId");
+                .Property<int>("tipoServicioId")
+            .IsRequired();
             modelBuilder.Entity<Servicio>()
                 .HasOne(c => c.servicio);
 

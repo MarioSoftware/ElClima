@@ -8,14 +8,19 @@ namespace ElClima.DataAccess.DataMapping.Social.Reporte.Historias
     {
         public static void Configure(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Comentario>(h => {
-                h.ToTable("Comentario", "Historias");
+            modelBuilder.Entity<Comentario>(c => {
+                c.ToTable("Comentario", "Historia");
 
-                h.Property<string>("descripcion")
+                c.Property<int>("id")
+                   .IsRequired()
+                   .UseSqlServerIdentityColumn()
+                   .ValueGeneratedOnAdd();
+
+                c.Property<string>("descripcion")
                     .IsRequired()
                     .HasColumnType("varchar(300)"); 
 
-                h.Property<DateTime>("fechaHoraCreado")
+                c.Property<DateTime>("fechaHoraCreado")
                    .IsRequired()
                    .HasColumnType("Date");
 
@@ -23,13 +28,15 @@ namespace ElClima.DataAccess.DataMapping.Social.Reporte.Historias
 
             // ForeingKey Comentario-Historia
             modelBuilder.Entity<Comentario>()
-                .Property<int>("historiaId");
+                .Property<int>("historiaId")
+            .IsRequired();
             modelBuilder.Entity<Comentario>()
                 .HasOne(h => h.historia);
 
             // ForeingKey Comentario-Persona
             modelBuilder.Entity<Comentario>()
-                .Property<int>("personaId");
+                .Property<int>("personaId")
+            .IsRequired();
             modelBuilder.Entity<Comentario>()
                 .HasOne(h => h.persona);
              

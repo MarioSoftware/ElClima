@@ -6,19 +6,17 @@ using System.Text;
 
 namespace ElClima.Domain.Model.Models.Social.Reporte.Historia
 {
-   public class ImagenHistoria : BaseEntity
+   public class Imagen : BaseEntity
     {
         public string descripcion { get; set; }
 
         public Historia historia { get; set; }
 
-        public DateTime fechaHoraSubida { get; set; }
-
-        public string observacion { get; set; }
+        public DateTime fechaHoraSubida { get; set; } 
 
         public Persona persona { get; set; }
 
-        public bool contribucionExterna { get; set; }
+        public bool aportada { get; set; }
 
         public string imagen { get; set; }
     }

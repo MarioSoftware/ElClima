@@ -8,22 +8,24 @@ namespace ElClima.DataAccess.DataMapping.Social.Reporte.Historias
     {
         public static void Configure(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ImagenHistoria>(i =>
+            modelBuilder.Entity<Imagen>(i =>
             {
-                i.ToTable("ImagenHistoria", "Historias");
+                i.ToTable("Imagen", "Historia"); 
+
+                i.Property<int>("id")
+                .IsRequired()
+                .UseSqlServerIdentityColumn()
+                .ValueGeneratedOnAdd();
 
                 i.Property<string>("descripcion")
                     .IsRequired()
-                    .HasColumnType("varchar(50)");
-
-                i.Property<string>("observacion")
-                   .HasColumnType("varchar(200)");
+                    .HasColumnType("varchar(200)"); 
 
                 i.Property<DateTime>("fechaHoraSubida")
                    .IsRequired()
                   .HasColumnType("Date"); 
 
-                i.Property<bool>("contribucionExterna")
+                i.Property<bool>("aportada")
                    .IsRequired();
 
                 i.Property<string>("imagen")
@@ -32,16 +34,18 @@ namespace ElClima.DataAccess.DataMapping.Social.Reporte.Historias
 
             });
 
-            // ForeingKey ImagenHistoria-Historia
-            modelBuilder.Entity<ImagenHistoria>()
-                .Property<int>("historiaId");
-            modelBuilder.Entity<ImagenHistoria>()
+            // ForeingKey Imagen-Historia
+            modelBuilder.Entity<Imagen>()
+                .Property<int>("historiaId")
+                .IsRequired();
+            modelBuilder.Entity<Imagen>()
                 .HasOne(h => h.historia);
 
-            // ForeingKey ImagenHistoria-Persona
-            modelBuilder.Entity<ImagenHistoria>()
-                .Property<int>("personaId");
-            modelBuilder.Entity<ImagenHistoria>()
+            // ForeingKey Imagen-Persona
+            modelBuilder.Entity<Imagen>()
+                .Property<int>("personaId")
+                .IsRequired();
+            modelBuilder.Entity<Imagen>()
                 .HasOne(h => h.persona);
         }
     }

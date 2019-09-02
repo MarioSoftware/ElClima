@@ -9,7 +9,12 @@ namespace ElClima.DataAccess.DataMapping.Social.Reporte.Historias
         public static void Configure(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Historia>(h => {
-                h.ToTable("Historia", "Historias");
+                h.ToTable("Historia", "Historia");
+
+                h.Property<int>("id")
+                    .IsRequired() 
+                    .UseSqlServerIdentityColumn()
+                    .ValueGeneratedOnAdd();
 
                 h.Property<string>("descripcion")
                     .IsRequired()
@@ -17,19 +22,24 @@ namespace ElClima.DataAccess.DataMapping.Social.Reporte.Historias
 
                 h.Property<DateTime>("fechHoraCreada")
                    .IsRequired()
-                   .HasColumnType("Date");
+                   .HasColumnType("Date"); 
+
+                h.Property<bool>("aportarImagen")
+                   .IsRequired();
 
             });
 
             // ForeingKey Historia-Ubicacion
             modelBuilder.Entity<Historia>()
-                .Property<int>("ubicacionId");
+                .Property<int>("ubicacionId")
+                .IsRequired();
             modelBuilder.Entity<Historia>()
                 .HasOne(h => h.ubicacion);
 
             // ForeingKey Historia-Persona
             modelBuilder.Entity<Historia>()
-                .Property<int>("personaId");
+                .Property<int>("personaId")
+                .IsRequired();
             modelBuilder.Entity<Historia>()
                 .HasOne(h => h.persona);
 
