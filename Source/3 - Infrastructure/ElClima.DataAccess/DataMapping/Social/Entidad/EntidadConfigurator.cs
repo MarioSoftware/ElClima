@@ -48,7 +48,7 @@ namespace ElClima.DataAccess.DataMapping.Social.Entidades
                        .Property<int>("creadorId")
                        .IsRequired();
             modelBuilder.Entity<Entidad>()
-                .HasOne(o => o.creador);
+                .HasOne(o => o.personaCreadora);
 
             // ForeingKey Entidad-Ubicacion
             modelBuilder.Entity<Entidad>()

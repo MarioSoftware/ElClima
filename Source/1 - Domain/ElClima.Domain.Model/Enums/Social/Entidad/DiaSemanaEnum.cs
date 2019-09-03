@@ -5,30 +5,33 @@ using System.Text;
 
 namespace ElClima.Domain.Model.Enums.Social.Entidad
 {
-    public enum TipoServicioEnum
+    public enum DiaSemanaEnum
     {
-        [Description("Seguro")]
-        Seguro = 1,
+        [Description("Lunes")]
+        Lunes = 1,
 
-        [Description("Servicio Tecnico")]
-        Reparacion = 2,
+        [Description("Martes")]
+        Martes = 2,
 
-        [Description("Venta")]
-        Venta = 3,
+        [Description("Miercoles")]
+        Miercoles = 3,
 
-        [Description("Compra")]
-        Compra = 4,
+        [Description("Jueves")]
+        Jueves = 4,
 
-        [Description("Compra y venta")]
-        CompraVenta = 5,
+        [Description("Viernes")]
+        Viernes = 5,
 
-       [Description("Software a medida ")]
-        SoftwarePersonalizado = 6
+        [Description("Sabado")]
+        Sabado = 6,
+
+        [Description("Domingo")]
+        Domingo = 7
     }
 
     public static partial class Extensions
     {
-        public static string GetDescription(this TipoServicioEnum value)
+        public static string GetDescription(this DiaSemanaEnum value)
         {
             var field = value.GetType().GetField(value.ToString());
 

@@ -8,13 +8,18 @@ using System.Text;
 namespace ElClima.Domain.Model.Models.Social.Entidades
 {
     public class Producto : BaseEntity
-    {
-        public Servicio servicio { get; set; }
+    { 
+
+        public LineaProducto lineaProducto { get; set; }
 
         public string descripcion { get; set; }
 
+        public DateTime fechaHoraCreado { get; set; }
+
         public decimal precio { get; set; }
 
-        public bool disponible { get; set; } 
+        public bool disponible { get; set; }
+
+        public DateTime fechaHoraUltimaActualizacion { get; set; }
     }
 }

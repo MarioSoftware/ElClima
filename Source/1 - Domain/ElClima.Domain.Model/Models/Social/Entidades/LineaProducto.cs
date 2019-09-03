@@ -5,16 +5,16 @@ using System.Text;
 
 namespace ElClima.Domain.Model.Models.Social.Entidades
 {
-    public class Servicio : BaseEntity
+    public class LineaProducto : BaseEntity
     {
-        public Entidad entidad { get; set; }
-
-        public TipoServicio servicio { get; set; }
+        public Servicio servicio { get; set; }
 
         public string descripcion { get; set; }
 
+        public DateTime fechaHoraCreado { get; set; }
+
         public string observacion { get; set; }
 
-        public string imagenPrincipal { get; set; }
+        public DateTime fechaHoraUltimaActualizacion { get; set; }
     }
 }

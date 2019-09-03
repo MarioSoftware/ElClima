@@ -6,14 +6,20 @@ using System.Text;
 
 namespace ElClima.Domain.Model.Models.Social.Entidades
 {
-    public class Conversacion : BaseEntity
+    public class ConversacionComentarioProducto : BaseEntity
     {
-        public Comentario comentario { get; set; }
+        public ComentarioProducto comentario { get; set; }
 
         public Persona persona { get; set; } 
 
         public DateTime fechaHoraCreacion { get; set; }
 
         public string descripcion { get; set; }
+
+        public string imagen1 { get; set; }
+
+        public string imagen2 { get; set; }
+
+        public string imagen3 { get; set; }
     }
 }
