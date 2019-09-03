@@ -14,7 +14,7 @@ namespace ElClima.Domain.Model.Models.Social.Entidades
 
         public string descripcion { get; set; }
 
-        public DateTime fechaHoraCreado { get; set; }
+        public DateTime fechaHoraCrecion { get; set; }
 
         public decimal precio { get; set; }
 

@@ -9,12 +9,12 @@ namespace ElClima.Domain.Model.Models.Social.Entidades
     {
         public Entidad entidad { get; set; }
 
-        public TipoServicio servicio { get; set; }
+        public TipoServicio tipoServicio { get; set; }
 
         public string descripcion { get; set; }
 
         public string observacion { get; set; }
 
-        public string imagenPrincipal { get; set; }
+        public string foto { get; set; }
     }
 }

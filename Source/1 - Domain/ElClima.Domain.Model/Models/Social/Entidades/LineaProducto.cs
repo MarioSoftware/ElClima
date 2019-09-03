@@ -11,7 +11,7 @@ namespace ElClima.Domain.Model.Models.Social.Entidades
 
         public string descripcion { get; set; }
 
-        public DateTime fechaHoraCreado { get; set; }
+        public DateTime fechaHoraCreacion { get; set; }
 
         public string observacion { get; set; }
 

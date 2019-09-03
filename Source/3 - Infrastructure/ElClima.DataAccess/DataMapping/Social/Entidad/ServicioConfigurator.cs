@@ -8,34 +8,38 @@ namespace ElClima.DataAccess.DataMapping.Social.Entidades
     {
         public static void Configure(ModelBuilder modelBuilder)
         { 
-            modelBuilder.Entity<Servicio>(c =>
+            modelBuilder.Entity<Servicio>(s =>
             {
-                c.ToTable("Servicio", "Entidad");
+                s.ToTable("Servicio", "Entidad");
 
-                c.Property<int>("id")
+                s.Property<int>("id")
                 .IsRequired()
                 .UseSqlServerIdentityColumn()
                 .ValueGeneratedOnAdd();
 
-                c.Property<string>("descripcion")
+                s.Property<string>("descripcion")
                    .IsRequired()
-                   .HasColumnType("varchar(80)"); 
-            });
+                   .HasColumnType("varchar(80)");
 
-            // ForeingKey Servicio-Entidad
+                s.Property<string>("observacion") 
+                  .HasColumnType("varchar(400)");
+
+                s.Property<string>("foto")
+                  .HasColumnType("varchar(max)");
+            });
+             
             modelBuilder.Entity<Servicio>()
                 .Property<int>("entidadId")
                 .IsRequired();
             modelBuilder.Entity<Servicio>()
                 .HasOne(c => c.entidad);
 
-            // ForeingKey Servicio-TipoServicio
+         
             modelBuilder.Entity<Servicio>()
                 .Property<int>("tipoServicioId")
             .IsRequired();
             modelBuilder.Entity<Servicio>()
-                .HasOne(c => c.servicio);
-
+                .HasOne(c => c.tipoServicio); 
 
         }
     }

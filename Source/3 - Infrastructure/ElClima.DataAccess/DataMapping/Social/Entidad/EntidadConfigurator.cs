@@ -19,38 +19,41 @@ namespace ElClima.DataAccess.DataMapping.Social.Entidades
                 .UseSqlServerIdentityColumn()
                 .ValueGeneratedOnAdd();
 
-                e.Property<string>("descripcion")
+                e.Property<string>("nombre")
                    .IsRequired()
                    .HasColumnType("varchar(70)");
+
+                e.Property<string>("descripcion")
+                   .IsRequired()
+                   .HasColumnType("varchar(200)");
+
+                e.Property<string>("observacion")
+                   .IsRequired()
+                   .HasColumnType("varchar(2000)");
 
                 e.Property<DateTime>("fechaHoraCreacion")
                    .IsRequired()
                    .HasColumnType("Date");
             });
 
-
-            // ForeingKey Entidad-TipoEntidad
+             
             modelBuilder.Entity<Entidad>()
                        .Property<int>("tipoEntidadId")
                        .IsRequired();
             modelBuilder.Entity<Entidad>()
                 .HasOne(o => o.tipoEntidad);
-
-            // ForeingKey Entidad-Persona propietaria
+             
             modelBuilder.Entity<Entidad>()
-                       .Property<int>("propietarioId")
-                       .IsRequired();
+                       .Property<int>("responsableId");
             modelBuilder.Entity<Entidad>()
-                .HasOne(o => o.propietario);
-
-            // ForeingKey Entidad-Persona creadora
+                .HasOne(o => o.responsable);
+             
             modelBuilder.Entity<Entidad>()
                        .Property<int>("creadorId")
                        .IsRequired();
             modelBuilder.Entity<Entidad>()
-                .HasOne(o => o.personaCreadora);
-
-            // ForeingKey Entidad-Ubicacion
+                .HasOne(o => o.creador);
+             
             modelBuilder.Entity<Entidad>()
                        .Property<int>("ubicacionId")
                        .IsRequired();

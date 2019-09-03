@@ -12,5 +12,7 @@ namespace ElClima.Domain.Model.Models.Social.Entidades
         public string descripcion { get; set; }
 
         public DateTime fechaHoraSubida { get; set; }
+
+        public string imagen { get; set; }
     }
 }
