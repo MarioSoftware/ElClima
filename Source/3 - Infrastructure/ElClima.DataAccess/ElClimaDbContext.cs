@@ -147,9 +147,23 @@ namespace ElClima.DataAccess
                 
                 //Entidad
                 EntidadConfigurator.Configure(modelBuilder);
-               
                 ServicioConfigurator.Configure(modelBuilder);
-            
+                ComentarioProductoConfigurator.Configure(modelBuilder);
+                ComentarioServicioConfigurator.Configure(modelBuilder);
+                ConversacionComentarioProductoConfigurator.Configure(modelBuilder);
+                ConversacionComentarioServicioConfigurator.Configure(modelBuilder);
+                DiaHorarioDisponibleConfigurator.Configure(modelBuilder);
+                DiaSemanaConfigurator.Configure(modelBuilder); 
+                LineaProductoConfigurator.Configure(modelBuilder);
+                ProductoConfigurator.Configure(modelBuilder);
+                ProductoImagenConfigurator.Configure(modelBuilder);
+                ServicioImagenConfigurator.Configure(modelBuilder);
+                TipoComentorioConfigurator.Configure(modelBuilder);
+                TipoEntidadConfigurator.Configure(modelBuilder);
+                TipoServicioConfigurator.Configure(modelBuilder);
+
+
+
 
                 //REPORTE 
                 //Historia
