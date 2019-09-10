@@ -1,19 +1,32 @@
-﻿ 
- 
+﻿@using ElClima.FrontEnd.Helpers
+
 
 @section DelayedScripts
     {
-    
-}
 
+}
+@{
+    MasterLayoutHelper.AddForDelayedJavaScriptFile("/assets/plugins/slick/slick.js", Context);
+    MasterLayoutHelper.AddForDelayedJavaScriptFile("/scripts/Base/baseBinding.js", Context);
+    MasterLayoutHelper.AddLineToDocumentReadyFunction("Carousel();", Context);
+}
 <header>
     @*CSS Style sheet*@
     <link rel="stylesheet" type="text/css" href="~/assets/css/Base/Base.css" />
 
     <div class="overlay"></div>
-    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-        <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
-    </video>
+
+    <div class="row">
+        <div id="carouselConteiner" class="container">
+            <section class="customer-logos slider">
+                <div class="slide"><img src="~/assets/images/1200px-Rueda_Eiffel_3.jpg"></div>
+                <div class="slide"><img src="~/assets/images/bg-masthead.jpg"></div>
+                <div class="slide"><img src="~/assets/images/bg-signup.jpg"></div>
+                <div class="slide"><img src="~/assets/images/demo-image-01.jpg"></div>
+                <div class="slide"><img src="~/assets/images/maxresdefault.jpg"></div>
+            </section>
+        </div>
+    </div>
     <div class="container h-100">
         <div class="d-flex h-100 text-center align-items-center">
             <div class="w-100 text-white">
