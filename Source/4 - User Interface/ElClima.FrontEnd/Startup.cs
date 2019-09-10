@@ -2,31 +2,57 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.Configuration;
+using ElClima.FrontEnd.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Serialization;
 
 namespace ElClima.FrontEnd
 {
     public class Startup
     {
+        public Startup(IConfiguration configuration, IHostingEnvironment environmnet)
+        {
+            _configuration = configuration;
+            _environment = environmnet;
+        }
+
+        private readonly IHostingEnvironment _environment;
+        private readonly IConfiguration _configuration;
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-        }
 
+            //services.AddAutoMapper();
+
+            services.AddMvc(options =>
+            {
+                // Permite texplo plano en WebApi
+                options.InputFormatters.Add(new TextPlainInputFormatter());
+            })
+               .AddJsonOptions(options
+                   => options.SerializerSettings.ContractResolver
+                       = new DefaultContractResolver());
+        }
+         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseStaticFiles();
+                
             }
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
             app.UseMvc(routes =>
             {
