@@ -1,5 +1,5 @@
 ﻿
-header {
+#carousel {
     position: relative;
     background-color: black;
     height: 75vh;
@@ -8,7 +8,7 @@ header {
     overflow: hidden;
 }
 
-    header #carouselConteiner {
+    #carousel #carouselConteiner {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -23,12 +23,12 @@ header {
         transform: translateX(-50%) translateY(-50%);
     }
 
-    header .container {
+    #carousel .container {
         position: relative;
         z-index: 2;
     }
 
-    header .overlay {
+    #carousel .overlay {
         position: absolute;
         top: 0;
         left: 0;
@@ -58,7 +58,7 @@ header {
     -ms-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
-    -khtml-user-select: none;
+    -html-user-select: none;
     -ms-touch-action: pan-y;
     touch-action: pan-y;
     -webkit-tap-highlight-color: transparent;
