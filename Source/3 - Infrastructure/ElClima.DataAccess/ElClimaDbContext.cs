@@ -1,4 +1,5 @@
 ﻿using ElClima.DataAccess.ConcreteRepository;
+using ElClima.DataAccess.DataMapping.Comun;
 using ElClima.DataAccess.DataMapping.Social.Entidades;
 using ElClima.DataAccess.DataMapping.Social.Reporte.Historias;
 using ElClima.Domain.Core.Entities;
@@ -162,8 +163,11 @@ namespace ElClima.DataAccess
                 TipoEntidadConfigurator.Configure(modelBuilder);
                 TipoServicioConfigurator.Configure(modelBuilder);
 
-
-
+                //Comun 
+                ProvinciaConfigurator.Configure(modelBuilder);
+                DepartamentoConfigurator.Configure(modelBuilder);
+                BarrioConfigurator.Configure(modelBuilder);
+                SexoConfigurator.Configure(modelBuilder);
 
                 //REPORTE 
                 //Historia

@@ -1,4 +1,6 @@
 ﻿using ElClima.Domain.Core.Entities;
+using ElClima.Domain.Model.Models.Comun;
+using ElClima.Domain.Model.Models.Posicionamiento;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +19,8 @@ namespace ElClima.Domain.Model.Models.Social.Sujetos
 
         public DateTime fechaNacimiento { get; set; }
 
-        public int idDireccionNacimiento { get; set; }
+        public Ubicacion ubicacionActual{ get; set; }
 
-        public int idDireccionActual { get; set; }
-
+        public Sexo sexo { get; set; } 
     }
 }
