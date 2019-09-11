@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ElClima.Domain.Core.Services
 {
-    interface IService<TEntity> : IService where TEntity : BaseEntity 
+    public interface IService<TEntity> : IService where TEntity : BaseEntity 
     {
         DbSet<TEntity> GetEntitySet();
 
