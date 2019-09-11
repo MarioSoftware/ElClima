@@ -2,6 +2,7 @@
 using ElClima.DataAccess.DataMapping.Comun;
 using ElClima.DataAccess.DataMapping.Social.Entidades;
 using ElClima.DataAccess.DataMapping.Social.Reporte.Historias;
+using ElClima.DataAccess.DataMapping.Social.Sujetos;
 using ElClima.Domain.Core.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -168,6 +169,7 @@ namespace ElClima.DataAccess
                 DepartamentoConfigurator.Configure(modelBuilder);
                 BarrioConfigurator.Configure(modelBuilder);
                 SexoConfigurator.Configure(modelBuilder);
+                TipoVehiculoConfigurator.Configure(modelBuilder);
 
                 //REPORTE 
                 //Historia
@@ -176,6 +178,11 @@ namespace ElClima.DataAccess
                 ConversacionHistoriaConfigurator.Configure(modelBuilder);
                 ImagenHistoriaConfigurator.Configure(modelBuilder);
                 ComentarioImagenConfigurator.Configure(modelBuilder);
+
+                //Sujeto 
+                PersonaConfigurator.Configure(modelBuilder);
+                DomicilioConfigurator.Configure(modelBuilder);
+
 
                 foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
                     relationship.DeleteBehavior = DeleteBehavior.Restrict;
