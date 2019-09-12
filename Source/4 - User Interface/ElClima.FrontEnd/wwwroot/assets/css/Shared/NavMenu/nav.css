@@ -5,5 +5,17 @@
     height: 200px;
     width: 200px;
 }
+.modal-content{
+    background:transparent;
+}
+.modal-body{
+    display: flex;
+    padding: 0;
+}
+.form-control {
+    background: rgba(0,0,0,0.5);
+    border: 0;
+    color: #fff;
+}
  
  
