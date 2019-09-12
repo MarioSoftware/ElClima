@@ -5,8 +5,11 @@
     height: 200px;
     width: 200px;
 }
-.modal-content{
-    background:transparent;
+.modal-content {
+    -webkit-border-radius: 10px !important;
+    -moz-border-radius: 10px !important;
+    border-radius: 10px !important;
+    background: transparent;
 }
 .modal-body {
     display: flex;
@@ -14,8 +17,7 @@
     flex: 1;
     padding: 10px;
 }
-.form-control {
- 
+.form-control { 
     border: 0;
     color: #fff;
 }
@@ -31,11 +33,7 @@
 }
 .modal-title{
     color:white;
-}
-.container-fluid {
-    background-position: center;
-    background-size: cover;
-}
+} 
 .grow {
     transition: all .2s ease-in-out;
 }
@@ -43,3 +41,4 @@
 .grow:hover {
     transform: scale(1.1);
 }
+ 
