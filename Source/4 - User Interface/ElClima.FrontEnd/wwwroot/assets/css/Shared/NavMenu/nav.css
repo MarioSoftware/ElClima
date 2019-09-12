@@ -8,14 +8,38 @@
 .modal-content{
     background:transparent;
 }
-.modal-body{
+.modal-body {
     display: flex;
     padding: 0;
+    flex: 1;
+    padding: 10px;
 }
 .form-control {
-    background: rgba(0,0,0,0.5);
+ 
     border: 0;
     color: #fff;
 }
- 
- 
+.Signup {
+    background: linear-gradient(#fb5760,#f655a1);
+    border-radius: 4px;
+    transition: all 0.6s linear;
+}
+.signup:hover {
+        color: #fff;
+        text-decoration: none;
+        background: rgba(0,0,0,0.9);
+}
+.modal-title{
+    color:white;
+}
+.container-fluid {
+    background-position: center;
+    background-size: cover;
+}
+.grow {
+    transition: all .2s ease-in-out;
+}
+
+.grow:hover {
+    transform: scale(1.1);
+}
