@@ -1,0 +1,10 @@
+﻿#mainNav {
+    color: white;
+}
+#buttonHistory ,#buttonThief ,#buttonQuestion ,#buttonLost {
+    height: 200px;
+    width: 200px;
+}
+#reportModal{
+    background-color:transparent;
+}
