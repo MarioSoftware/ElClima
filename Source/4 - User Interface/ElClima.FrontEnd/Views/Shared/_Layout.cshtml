@@ -18,9 +18,11 @@
 
     <!-- THEME CSS -->
 
-     
+
 
     @RenderSection("HtmlHead", false)
+    <!-- Navigation -->
+    @await Html.PartialAsync("NavMenu/_NavMenu")
 </head>
 <body>
     <!-- WRAPPER -->
