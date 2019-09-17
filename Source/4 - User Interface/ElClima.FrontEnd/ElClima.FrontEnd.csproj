@@ -20,4 +20,10 @@
     <ProjectReference Include="..\..\3 - Infrastructure\ElClima.DataAccess\ElClima.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="ConnectionStrings.Mario.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
