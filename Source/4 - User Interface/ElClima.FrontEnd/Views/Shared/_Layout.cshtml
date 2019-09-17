@@ -38,17 +38,18 @@
     </div>
 
     <!--JAVASCRIPT FILES-->
-    
-    <script src="~/assets/plugins/vuejs/dev/vue.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    @*<script src="~/assets/plugins/vuejs/dev/vue.js"></script>*@
     <script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/assets/plugins/jquery/development/jquery-3.4.1.js"></script>
 
-    <script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> 
+    <script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     @RenderSection("DelayedScripts", false)
     @Html.Raw(MasterLayoutHelper.GetDelayedJavaScriptFiles(Context))
     <script type="text/javascript">
-        jQuery(document).ready(function () {
+        jQuery(document).ready(function () { 
             @Html.Raw(MasterLayoutHelper.GetLinesForDocumentReadyFunction(Context))
         });
     </script>
