@@ -1,19 +1,18 @@
 ﻿@using ElClima.FrontEnd.Helpers
 
  
-@{
-    MasterLayoutHelper.AddForDelayedJavaScriptFile("/assets/plugins/slick/slick.js", Context);
-    MasterLayoutHelper.AddForDelayedJavaScriptFile("/scripts/Base/baseBinding.js", Context);
-    MasterLayoutHelper.AddLineToDocumentReadyFunction("Carousel();", Context);
+@{ 
+  
 }
 <header>
     @*CSS Style sheet*@
     @*<link rel="stylesheet" type="text/css" href="~/assets/css/Base/Base.css" />*@
 </header>
 
-
-<!-- Carousel -->
-@await Html.PartialAsync("_Carousel")
+<section id="base">
+    <!-- Carousel -->
+    @await Html.PartialAsync("_Carousel")
+</section>
  
 
 

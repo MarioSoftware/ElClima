@@ -14,11 +14,4 @@ var vm = new Vue({
     }
 
 });
-
-
-//function HydrateFields(data) {
-//    vm.$data.Id = data.Id; 
-
-//}
-
-
+ 
