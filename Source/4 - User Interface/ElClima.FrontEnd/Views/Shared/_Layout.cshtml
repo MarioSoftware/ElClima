@@ -14,9 +14,8 @@
     <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1.0, user-scalable=0" />
     <title>El Clima - Córdoba</title>
     <!-- CORE CSS -->
-    <link href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-
-    <!-- THEME CSS --> 
+    <link href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> 
+    @*<link rel="stylesheet" type="text/css" href="~/assets/plugins/bootstrap/css/boostrap-toggle.min.css" />*@
 
     @RenderSection("HtmlHead", false)
     <!-- Navigation -->
@@ -38,6 +37,7 @@
     <script type="text/javascript" src="/assets/plugins/jquery/development/jquery-3.4.1.js"></script>
 
     <script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    @*<script src="~/assets/plugins/bootstrap/js/boostrap4-toggle.min.js"></script>*@
 
     @RenderSection("DelayedScripts", false)
     @Html.Raw(MasterLayoutHelper.GetDelayedJavaScriptFiles(Context))
