@@ -1,15 +1,15 @@
 ﻿using ElClima.Domain.Model.Models.Social.Reporte.Historia;
 using Microsoft.EntityFrameworkCore;
-using System;
+using System; 
 
 namespace ElClima.DataAccess.DataMapping.Social.Reporte.Historias
 {
-    internal static class ComentarioImagenConfigurator
+    internal static class ConversacionConfigurator
     {
         public static void Configure(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ComentarioImagen>(c => {
-                c.ToTable("ComentarioImagen", "Reporte.Historia");
+            modelBuilder.Entity<Conversacion>(c => {
+                c.ToTable("Conversacion", "Reporte.Historia");
 
                 c.Property<int>("id")
                    .IsRequired()
@@ -26,16 +26,16 @@ namespace ElClima.DataAccess.DataMapping.Social.Reporte.Historias
 
             });
              
-            modelBuilder.Entity<ComentarioImagen>()
-                .Property<int>("imagenId")
+            modelBuilder.Entity<Conversacion>()
+                .Property<int>("comentarioId")
                 .IsRequired();
-            modelBuilder.Entity<ComentarioImagen>()
-                .HasOne(h => h.imagen);
+            modelBuilder.Entity<Conversacion>()
+                .HasOne(h => h.comentario);
              
-            modelBuilder.Entity<ComentarioImagen>()
+            modelBuilder.Entity<Conversacion>()
                 .Property<int>("personaId")
                 .IsRequired();
-            modelBuilder.Entity<ComentarioImagen>()
+            modelBuilder.Entity<Conversacion>()
                 .HasOne(h => h.persona);
              
         }

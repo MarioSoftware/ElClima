@@ -9,7 +9,7 @@ namespace ElClima.DataAccess.DataMapping.Social.Reporte.Historias
         public static void Configure(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Historia>(h => {
-                h.ToTable("Historia", "Historia");
+                h.ToTable("Historia", "Reporte.Historia");
 
                 h.Property<int>("id")
                     .IsRequired() 
@@ -28,15 +28,13 @@ namespace ElClima.DataAccess.DataMapping.Social.Reporte.Historias
                    .IsRequired();
 
             });
-
-            // ForeingKey Historia-Ubicacion
+             
             modelBuilder.Entity<Historia>()
                 .Property<int>("ubicacionId")
                 .IsRequired();
             modelBuilder.Entity<Historia>()
                 .HasOne(h => h.ubicacion);
-
-            // ForeingKey Historia-Persona
+             
             modelBuilder.Entity<Historia>()
                 .Property<int>("personaId")
                 .IsRequired();

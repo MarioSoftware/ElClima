@@ -8,9 +8,9 @@ namespace ElClima.DataAccess.DataMapping.Social.Reporte.Historias
     {
         public static void Configure(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Imagen>(i =>
+            modelBuilder.Entity<ImagenHistoria>(i =>
             {
-                i.ToTable("Imagen", "Historia"); 
+                i.ToTable("ImagenHistoria", "Reporte.Historia"); 
 
                 i.Property<int>("id")
                 .IsRequired()
@@ -33,19 +33,17 @@ namespace ElClima.DataAccess.DataMapping.Social.Reporte.Historias
                    .HasColumnType("varchar(max)");
 
             });
-
-            // ForeingKey Imagen-Historia
-            modelBuilder.Entity<Imagen>()
+             
+            modelBuilder.Entity<ImagenHistoria>()
                 .Property<int>("historiaId")
                 .IsRequired();
-            modelBuilder.Entity<Imagen>()
+            modelBuilder.Entity<ImagenHistoria>()
                 .HasOne(h => h.historia);
-
-            // ForeingKey Imagen-Persona
-            modelBuilder.Entity<Imagen>()
+             
+            modelBuilder.Entity<ImagenHistoria>()
                 .Property<int>("personaId")
                 .IsRequired();
-            modelBuilder.Entity<Imagen>()
+            modelBuilder.Entity<ImagenHistoria>()
                 .HasOne(h => h.persona);
         }
     }

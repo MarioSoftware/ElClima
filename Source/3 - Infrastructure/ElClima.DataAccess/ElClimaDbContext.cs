@@ -174,8 +174,8 @@ namespace ElClima.DataAccess
                 //REPORTE 
                 //Historia
                 HistoriaConfigurator.Configure(modelBuilder);
-                ComentarioHistoriaConfigurator.Configure(modelBuilder);
-                ConversacionHistoriaConfigurator.Configure(modelBuilder);
+                ComentarioConfigurator.Configure(modelBuilder);
+                ConversacionConfigurator.Configure(modelBuilder);
                 ImagenHistoriaConfigurator.Configure(modelBuilder);
                 ComentarioImagenConfigurator.Configure(modelBuilder);
 

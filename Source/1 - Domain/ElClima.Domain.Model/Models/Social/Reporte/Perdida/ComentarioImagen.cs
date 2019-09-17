@@ -11,6 +11,6 @@ namespace ElClima.Domain.Model.Models.Social.Reporte.Perdida
 
         public DateTime fechaHoraSubida { get; set; }
 
-        public string observacion { get; set; }
+        public string descripcion { get; set; }
     }
 }

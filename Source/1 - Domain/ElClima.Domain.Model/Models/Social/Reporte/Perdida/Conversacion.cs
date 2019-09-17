@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ElClima.Domain.Model.Models.Social.Reporte.Perdida
 {
-    public class ComentarioConversacion : BaseEntity
+    public class Conversacion : BaseEntity
     {
         public Comentario comentario { get; set; }
 
@@ -14,6 +14,6 @@ namespace ElClima.Domain.Model.Models.Social.Reporte.Perdida
 
         public Persona persona { get; set; }
 
-        public DateTime fechaHoraCreado { get; set; }
+        public DateTime fechaHoraCreacion { get; set; }
     }
 }

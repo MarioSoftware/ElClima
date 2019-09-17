@@ -1,15 +1,15 @@
-﻿using ElClima.Domain.Model.Models.Social.Reporte.Historia;
+﻿using ElClima.Domain.Model.Models.Social.Reporte.Perdida;
 using Microsoft.EntityFrameworkCore;
-using System;
+using System; 
 
-namespace ElClima.DataAccess.DataMapping.Social.Reporte.Historias
+namespace ElClima.DataAccess.DataMapping.Social.Reporte.Perdidas
 {
-    internal static class ComentarioImagenConfigurator
+    internal static class ImagenComentarioConfigurator
     {
         public static void Configure(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ComentarioImagen>(c => {
-                c.ToTable("ComentarioImagen", "Reporte.Historia");
+                c.ToTable("ImagenComentario", "Reporte.Perdida");
 
                 c.Property<int>("id")
                    .IsRequired()
@@ -20,23 +20,17 @@ namespace ElClima.DataAccess.DataMapping.Social.Reporte.Historias
                     .IsRequired()
                     .HasColumnType("varchar(300)"); 
 
-                c.Property<DateTime>("fechaHoraCreado")
+                c.Property<DateTime>("fechaHoraSubida")
                    .IsRequired()
                    .HasColumnType("Date");
 
             });
              
             modelBuilder.Entity<ComentarioImagen>()
-                .Property<int>("imagenId")
+                .Property<int>("comentarioId")
                 .IsRequired();
             modelBuilder.Entity<ComentarioImagen>()
-                .HasOne(h => h.imagen);
-             
-            modelBuilder.Entity<ComentarioImagen>()
-                .Property<int>("personaId")
-                .IsRequired();
-            modelBuilder.Entity<ComentarioImagen>()
-                .HasOne(h => h.persona);
+                .HasOne(h => h.comentario);              
              
         }
     }

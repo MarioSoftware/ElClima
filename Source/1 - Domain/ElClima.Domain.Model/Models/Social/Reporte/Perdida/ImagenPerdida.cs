@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ElClima.Domain.Model.Models.Social.Reporte.Perdida
 {
-    public class PerdidaImagen : BaseEntity
+    public class ImagenPerdida : BaseEntity
     {
         public string descripcion { get; set; }
 

@@ -8,7 +8,7 @@ namespace ElClima.Domain.Model.Models.Social.Reporte.Historia
 {
     public class ComentarioImagen : BaseEntity
     {
-        public Imagen imagen { get; set; }
+        public ImagenHistoria imagen { get; set; }
 
         public string descripcion { get; set; }
 

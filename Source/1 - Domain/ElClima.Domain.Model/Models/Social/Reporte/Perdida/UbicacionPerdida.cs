@@ -14,6 +14,8 @@ namespace ElClima.Domain.Model.Models.Social.Reporte.Perdida
 
         public string imagen { get; set; }
 
-        public Ubicacion ubicacion { get; set; }
+        public DateTime fechaHoraCreacion { get; set; }
+
+        public Ubicacion ubicacionPerdida { get; set; }
     }
 }
