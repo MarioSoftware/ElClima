@@ -5,6 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
 using Newtonsoft.Json.Serialization;
 using ElClima.FrontEnd.Helpers;
+using System;
+using ElClima.FrontEnd.Config;
+using ElClima.DataAccess;
+using Microsoft.EntityFrameworkCore;
 
 namespace ElClima.FrontEnd
 {
@@ -34,6 +38,32 @@ namespace ElClima.FrontEnd
                .AddJsonOptions(options
                    => options.SerializerSettings.ContractResolver
                        = new DefaultContractResolver());
+
+
+            var connectionStringFile = Environment.GetEnvironmentVariable("ELCLIMA_CONN_STRING_FILE");
+            if (string.IsNullOrWhiteSpace(connectionStringFile))
+                connectionStringFile = "connectionstrings.json";
+
+            var connStringConfig = new ConfigurationBuilder()
+                .AddJsonFile(connectionStringFile)
+                .Build();
+
+
+            // Agregamos la configuracion de Mips 
+            services.AddSingleton<ElClimaConfiguration, ElClimaConfiguration>();
+            services.Configure<ElClimaConfigurationOptions>(_configuration.GetSection("ElClima"));/*TODO: Search where 'ElClima' it shold be seted as Key*/
+
+            // Agregamos dbContext para usar en el dominio
+            var connectionString = connStringConfig.GetConnectionString("DefaultConnection");
+
+            services.AddDbContext<ElClimaDbContext>(options =>
+            {
+                options
+                .UseSqlServer(connectionString)
+                .EnableSensitiveDataLogging();
+            }
+            );
+
         }
          
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

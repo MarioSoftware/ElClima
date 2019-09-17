@@ -1,0 +1,6 @@
+﻿{
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source=.\\INSTANCIA; Initial Catalog=Sinie; Integrated Security=True; Application Name=Sinie;MultipleActiveResultSets=true;",
+    "IdentityConnection": "Data Source=.\\INSTANCIA; Initial Catalog=SinieIdentity; Integrated Security=True; Application Name=Sinie;MultipleActiveResultSets=true;"
+  }
+}

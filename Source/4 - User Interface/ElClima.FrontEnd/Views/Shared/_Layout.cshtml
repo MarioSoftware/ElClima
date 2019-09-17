@@ -1,5 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Rendering
-@using ElClima.FrontEnd.Helpers  
+@using ElClima.FrontEnd.Helpers
+@using ElClima.FrontEnd.Config
+
+@inject ElClimaConfiguration Config;
+
 
 <!doctype html>
 <html lang="es-AR">
@@ -14,7 +18,7 @@
     <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1.0, user-scalable=0" />
     <title>El Clima - Córdoba</title>
     <!-- CORE CSS -->
-    <link href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> 
+    <link href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     @*<link rel="stylesheet" type="text/css" href="~/assets/plugins/bootstrap/css/boostrap-toggle.min.css" />*@
 
     @RenderSection("HtmlHead", false)

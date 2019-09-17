@@ -12,15 +12,17 @@ namespace ElClima.DataAccess
     {
         public ElClimaDbContext CreateDbContext(string[] args)
         {
-            //var connectionStringFile = Environment.GetEnvironmentVariable("SINIE_CONN_STRING_FILE");
-            //if (string.IsNullOrWhiteSpace(connectionStringFile))
-            //    connectionStringFile = "connectionstrings.json";
-            //var connStringConfig = new ConfigurationBuilder()
-            //    .AddJsonFile(connectionStringFile)
-            //    .Build();
+            var connectionStringFile = Environment.GetEnvironmentVariable("ELCLIMA_CONN_STRING_FILE");
+            if (string.IsNullOrWhiteSpace(connectionStringFile))
+                connectionStringFile = "connectionstrings.json";
+            var connStringConfig = new ConfigurationBuilder()
+                .AddJsonFile(connectionStringFile)
+                .Build();
 
-            var connectionString = "Data Source=HYAMPEDERNERANB\\SQLEXPRESS; Initial Catalog=OperationalData; Integrated Security=True; Application Name=Sinie;MultipleActiveResultSets=true;";
-            //var connectionString = connStringConfig.GetConnectionString("DefaultConnection");
+            //this is enduro connection string  
+            //var connectionString = "Data Source=HYAMPEDERNERANB\\SQLEXPRESS; Initial Catalog=OperationalData; Integrated Security=True; Application Name=Sinie;MultipleActiveResultSets=true;";
+
+            var connectionString = connStringConfig.GetConnectionString("DefaultConnection");
 
             var builder = new DbContextOptionsBuilder<ElClimaDbContext>();
             builder.UseSqlServer(

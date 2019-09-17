@@ -1,0 +1,6 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source=TomasTuMotorSql\\TuInstanciaSql; Initial Catalog=OperationalData; Integrated Security=True; Application Name=Sinie;MultipleActiveResultSets=true;",
+    "IdentityConnection": "Data Source=TomasTuMotorSql\\TuInstanciaSql; Initial Catalog=OperationalDataIdentity; Integrated Security=True; Application Name=Sinie;MultipleActiveResultSets=true;"
+  }
+}
