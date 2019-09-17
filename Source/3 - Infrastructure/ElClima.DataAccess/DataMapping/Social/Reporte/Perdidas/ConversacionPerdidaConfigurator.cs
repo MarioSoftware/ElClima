@@ -4,12 +4,12 @@ using System;
 
 namespace ElClima.DataAccess.DataMapping.Social.Reporte.Perdidas
 {
-    internal static class ImagenComentarioConfigurator
+    internal static class ConversacionPerdidaConfigurator
     {
         public static void Configure(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ComentarioImagen>(c => {
-                c.ToTable("ImagenComentario", "Reporte.Perdida");
+            modelBuilder.Entity<Conversacion>(c => {
+                c.ToTable("Conversacion", "Reporte.Perdida");
 
                 c.Property<int>("id")
                    .IsRequired()
@@ -20,17 +20,23 @@ namespace ElClima.DataAccess.DataMapping.Social.Reporte.Perdidas
                     .IsRequired()
                     .HasColumnType("varchar(300)"); 
 
-                c.Property<DateTime>("fechaHoraSubida")
+                c.Property<DateTime>("fechaHoraCreacion")
                    .IsRequired()
                    .HasColumnType("Date");
 
             });
              
-            modelBuilder.Entity<ComentarioImagen>()
+            modelBuilder.Entity<Conversacion>()
+                .Property<int>("personaId")
+                .IsRequired();
+            modelBuilder.Entity<Conversacion>()
+                .HasOne(h => h.persona);
+             
+            modelBuilder.Entity<Conversacion>()
                 .Property<int>("comentarioId")
                 .IsRequired();
-            modelBuilder.Entity<ComentarioImagen>()
-                .HasOne(h => h.comentario);              
+            modelBuilder.Entity<Conversacion>()
+                .HasOne(h => h.comentario);
              
         }
     }

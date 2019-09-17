@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElClima.DataAccess.Migrations
 {
     [DbContext(typeof(ElClimaDbContext))]
-    [Migration("20190905224315_InitialMigration")]
+    [Migration("20190917124818_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,6 +70,85 @@ namespace ElClima.DataAccess.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Comun.Barrio", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("departamentoId");
+
+                    b.Property<string>("nombre")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("departamentoId");
+
+                    b.ToTable("Barrio","Comun");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Comun.Departamento", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("nombre")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<int>("provinciaId");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("provinciaId");
+
+                    b.ToTable("Departamento","Comun");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Comun.Provincia", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("nombre")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Provincia","Comun");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Comun.Sexo", b =>
+                {
+                    b.Property<int>("id");
+
+                    b.Property<string>("nombre")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Sexo","Comun");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Comun.TipoVehiculo", b =>
+                {
+                    b.Property<int>("id");
+
+                    b.Property<string>("nombre")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("TipoVehiculo","Comun");
                 });
 
             modelBuilder.Entity("ElClima.Domain.Model.Models.Posicionamiento.Ubicacion", b =>
@@ -525,7 +604,7 @@ namespace ElClima.DataAccess.Migrations
 
                     b.HasIndex("personaId");
 
-                    b.ToTable("Comentario","Historia");
+                    b.ToTable("Comentario","Reporte.Historia");
                 });
 
             modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Historia.ComentarioImagen", b =>
@@ -553,7 +632,7 @@ namespace ElClima.DataAccess.Migrations
 
                     b.HasIndex("personaId");
 
-                    b.ToTable("ComentarioImagen","Historia");
+                    b.ToTable("ComentarioImagen","Reporte.Historia");
                 });
 
             modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Historia.Conversacion", b =>
@@ -579,7 +658,7 @@ namespace ElClima.DataAccess.Migrations
 
                     b.HasIndex("personaId");
 
-                    b.ToTable("Conversacion","Historia");
+                    b.ToTable("Conversacion","Reporte.Historia");
                 });
 
             modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Historia.Historia", b =>
@@ -607,10 +686,10 @@ namespace ElClima.DataAccess.Migrations
 
                     b.HasIndex("ubicacionId");
 
-                    b.ToTable("Historia","Historia");
+                    b.ToTable("Historia","Reporte.Historia");
                 });
 
-            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Historia.Imagen", b =>
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Historia.ImagenHistoria", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -639,7 +718,243 @@ namespace ElClima.DataAccess.Migrations
 
                     b.HasIndex("personaId");
 
-                    b.ToTable("Imagen","Historia");
+                    b.ToTable("ImagenHistoria","Reporte.Historia");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Perdida.Comentario", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("comentario")
+                        .IsRequired()
+                        .HasColumnType("varchar(300)");
+
+                    b.Property<DateTime>("fechaHoraCreacion")
+                        .HasColumnType("Date");
+
+                    b.Property<int>("perdidaId");
+
+                    b.Property<int>("personaId");
+
+                    b.Property<int>("ubicacionId");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("perdidaId");
+
+                    b.HasIndex("personaId");
+
+                    b.HasIndex("ubicacionId");
+
+                    b.ToTable("Comentario","Reporte.Perdida");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Perdida.ComentarioImagen", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("comentarioId");
+
+                    b.Property<string>("descripcion")
+                        .IsRequired()
+                        .HasColumnType("varchar(300)");
+
+                    b.Property<DateTime>("fechaHoraSubida")
+                        .HasColumnType("Date");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("comentarioId");
+
+                    b.ToTable("ImagenComentario","Reporte.Perdida");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Perdida.Conversacion", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("comentarioId");
+
+                    b.Property<string>("descripcion")
+                        .IsRequired()
+                        .HasColumnType("varchar(300)");
+
+                    b.Property<DateTime>("fechaHoraCreacion")
+                        .HasColumnType("Date");
+
+                    b.Property<int>("personaId");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("comentarioId");
+
+                    b.HasIndex("personaId");
+
+                    b.ToTable("Conversacion","Reporte.Perdida");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Perdida.ConversacionImagen", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("conversacionId");
+
+                    b.Property<string>("descripcion")
+                        .IsRequired()
+                        .HasColumnType("varchar(300)");
+
+                    b.Property<DateTime>("fechaHoraSubida")
+                        .HasColumnType("Date");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("conversacionId");
+
+                    b.ToTable("ImagenConversacion","Reporte.Perdida");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Perdida.ImagenPerdida", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("descripcion")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<DateTime>("fechaHoraSubida")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("imagen")
+                        .IsRequired()
+                        .HasColumnType("varchar(max)");
+
+                    b.Property<int>("perdidaId");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("perdidaId");
+
+                    b.ToTable("ImagenPerdida","Reporte.Perdida");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Perdida.Perdida", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("descripcion")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<bool>("encontrado");
+
+                    b.Property<DateTime>("fechaHoraCreada")
+                        .HasColumnType("Date");
+
+                    b.Property<DateTime>("fechaHoraPerdida")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("informacionUtil")
+                        .HasColumnType("varchar(400)");
+
+                    b.Property<int>("personaId");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("personaId");
+
+                    b.ToTable("Perdida","Reporte.Perdida");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Perdida.UbicacionPerdida", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("fechaHoraCreacion")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("imagen")
+                        .IsRequired()
+                        .HasColumnType("varchar(max)");
+
+                    b.Property<string>("observacion")
+                        .IsRequired()
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<int>("perdidaId");
+
+                    b.Property<int>("ubicacionPerdidaId");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("perdidaId");
+
+                    b.HasIndex("ubicacionPerdidaId");
+
+                    b.ToTable("UbicacionPerdida","Reporte.Perdida");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Sujetos.Domicilio", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("barrioId");
+
+                    b.Property<string>("calle")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<int>("departamentoId");
+
+                    b.Property<DateTime>("fechaHoraCreacion")
+                        .HasColumnType("Date");
+
+                    b.Property<DateTime>("fechaHoraUltimaActualizacion")
+                        .HasColumnType("Date");
+
+                    b.Property<int>("numero")
+                        .HasMaxLength(5);
+
+                    b.Property<string>("numeroDepartamento")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<int>("personaId");
+
+                    b.Property<int>("piso")
+                        .HasMaxLength(3);
+
+                    b.Property<int>("provinciaId");
+
+                    b.Property<int>("ubicacionId");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("barrioId");
+
+                    b.HasIndex("departamentoId");
+
+                    b.HasIndex("personaId");
+
+                    b.HasIndex("provinciaId");
+
+                    b.HasIndex("ubicacionId");
+
+                    b.ToTable("Domicilio","Sujeto");
                 });
 
             modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Sujetos.Persona", b =>
@@ -648,21 +963,32 @@ namespace ElClima.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("apellido");
+                    b.Property<string>("apellido")
+                        .IsRequired()
+                        .HasColumnType("varchar(60)");
 
-                    b.Property<string>("dni");
+                    b.Property<string>("dni")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
-                    b.Property<DateTime>("fechaNacimiento");
+                    b.Property<DateTime>("fechaNacimiento")
+                        .HasColumnType("Date");
 
-                    b.Property<int>("idDireccionActual");
+                    b.Property<string>("nombre")
+                        .IsRequired()
+                        .HasColumnType("varchar(60)");
 
-                    b.Property<int>("idDireccionNacimiento");
+                    b.Property<int>("sexoId");
 
-                    b.Property<string>("nombre");
+                    b.Property<int>("ubicacionId");
 
                     b.HasKey("id");
 
-                    b.ToTable("Persona");
+                    b.HasIndex("sexoId");
+
+                    b.HasIndex("ubicacionId");
+
+                    b.ToTable("Persona","Sujeto");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -773,6 +1099,22 @@ namespace ElClima.DataAccess.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Comun.Barrio", b =>
+                {
+                    b.HasOne("ElClima.Domain.Model.Models.Comun.Departamento", "departamento")
+                        .WithMany()
+                        .HasForeignKey("departamentoId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Comun.Departamento", b =>
+                {
+                    b.HasOne("ElClima.Domain.Model.Models.Comun.Provincia", "provincia")
+                        .WithMany()
+                        .HasForeignKey("provinciaId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Entidades.ComentarioProducto", b =>
@@ -933,7 +1275,7 @@ namespace ElClima.DataAccess.Migrations
 
             modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Historia.ComentarioImagen", b =>
                 {
-                    b.HasOne("ElClima.Domain.Model.Models.Social.Reporte.Historia.Imagen", "imagen")
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Reporte.Historia.ImagenHistoria", "imagen")
                         .WithMany()
                         .HasForeignKey("imagenId")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -970,7 +1312,7 @@ namespace ElClima.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Historia.Imagen", b =>
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Historia.ImagenHistoria", b =>
                 {
                     b.HasOne("ElClima.Domain.Model.Models.Social.Reporte.Historia.Historia", "historia")
                         .WithMany()
@@ -980,6 +1322,123 @@ namespace ElClima.DataAccess.Migrations
                     b.HasOne("ElClima.Domain.Model.Models.Social.Sujetos.Persona", "persona")
                         .WithMany()
                         .HasForeignKey("personaId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Perdida.Comentario", b =>
+                {
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Reporte.Perdida.Perdida", "perdida")
+                        .WithMany()
+                        .HasForeignKey("perdidaId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Sujetos.Persona", "persona")
+                        .WithMany()
+                        .HasForeignKey("personaId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ElClima.Domain.Model.Models.Posicionamiento.Ubicacion", "ubicacion")
+                        .WithMany()
+                        .HasForeignKey("ubicacionId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Perdida.ComentarioImagen", b =>
+                {
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Reporte.Perdida.Comentario", "comentario")
+                        .WithMany()
+                        .HasForeignKey("comentarioId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Perdida.Conversacion", b =>
+                {
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Reporte.Perdida.Comentario", "comentario")
+                        .WithMany()
+                        .HasForeignKey("comentarioId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Sujetos.Persona", "persona")
+                        .WithMany()
+                        .HasForeignKey("personaId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Perdida.ConversacionImagen", b =>
+                {
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Reporte.Perdida.Conversacion", "conversacion")
+                        .WithMany()
+                        .HasForeignKey("conversacionId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Perdida.ImagenPerdida", b =>
+                {
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Reporte.Perdida.Perdida", "perdida")
+                        .WithMany()
+                        .HasForeignKey("perdidaId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Perdida.Perdida", b =>
+                {
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Sujetos.Persona", "persona")
+                        .WithMany()
+                        .HasForeignKey("personaId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Perdida.UbicacionPerdida", b =>
+                {
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Reporte.Perdida.Perdida", "perdida")
+                        .WithMany()
+                        .HasForeignKey("perdidaId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ElClima.Domain.Model.Models.Posicionamiento.Ubicacion", "ubicacionPerdida")
+                        .WithMany()
+                        .HasForeignKey("ubicacionPerdidaId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Sujetos.Domicilio", b =>
+                {
+                    b.HasOne("ElClima.Domain.Model.Models.Comun.Barrio", "barrio")
+                        .WithMany()
+                        .HasForeignKey("barrioId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ElClima.Domain.Model.Models.Comun.Departamento", "departamento")
+                        .WithMany()
+                        .HasForeignKey("departamentoId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Sujetos.Persona", "persona")
+                        .WithMany()
+                        .HasForeignKey("personaId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ElClima.Domain.Model.Models.Comun.Provincia", "provincia")
+                        .WithMany()
+                        .HasForeignKey("provinciaId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ElClima.Domain.Model.Models.Posicionamiento.Ubicacion", "ubicacionActual")
+                        .WithMany()
+                        .HasForeignKey("ubicacionId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Sujetos.Persona", b =>
+                {
+                    b.HasOne("ElClima.Domain.Model.Models.Comun.Sexo", "sexo")
+                        .WithMany()
+                        .HasForeignKey("sexoId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ElClima.Domain.Model.Models.Posicionamiento.Ubicacion", "ubicacionActual")
+                        .WithMany()
+                        .HasForeignKey("ubicacionId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

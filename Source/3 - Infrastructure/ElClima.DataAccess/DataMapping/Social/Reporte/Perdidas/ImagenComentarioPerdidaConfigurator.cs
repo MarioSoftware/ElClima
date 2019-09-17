@@ -4,12 +4,12 @@ using System;
 
 namespace ElClima.DataAccess.DataMapping.Social.Reporte.Perdidas
 {
-    internal static class ImagenConversacionConfigurator
+    internal static class ImagenComentarioPerdida
     {
         public static void Configure(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ConversacionImagen>(c => {
-                c.ToTable("ImagenConversacion", "Reporte.Perdida");
+            modelBuilder.Entity<ComentarioImagen>(c => {
+                c.ToTable("ImagenComentario", "Reporte.Perdida");
 
                 c.Property<int>("id")
                    .IsRequired()
@@ -26,11 +26,11 @@ namespace ElClima.DataAccess.DataMapping.Social.Reporte.Perdidas
 
             });
              
-            modelBuilder.Entity<ConversacionImagen>()
-                .Property<int>("conversacionId")
+            modelBuilder.Entity<ComentarioImagen>()
+                .Property<int>("comentarioId")
                 .IsRequired();
-            modelBuilder.Entity<ConversacionImagen>()
-                .HasOne(h => h.conversacion);              
+            modelBuilder.Entity<ComentarioImagen>()
+                .HasOne(h => h.comentario);              
              
         }
     }

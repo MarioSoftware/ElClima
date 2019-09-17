@@ -4,7 +4,7 @@ using System;
 
 namespace ElClima.DataAccess.DataMapping.Social.Reporte.Perdidas
 {
-    internal static class ComentarioConfigurator
+    internal static class ComentarioPerdidaConfigurator
     {
         public static void Configure(ModelBuilder modelBuilder)
         {
