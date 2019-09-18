@@ -9,6 +9,8 @@ using System;
 using ElClima.FrontEnd.Config;
 using ElClima.DataAccess;
 using Microsoft.EntityFrameworkCore;
+using ElClima.Domain.Core.DependencyInjection;
+using ElClima.DataAccess.DependencyInjection;
 
 namespace ElClima.FrontEnd
 {
@@ -49,7 +51,7 @@ namespace ElClima.FrontEnd
                 .Build();
 
 
-            // Agregamos la configuracion de Mips 
+            // Agregamos la configuracion de ElClima 
             services.AddSingleton<ElClimaConfiguration, ElClimaConfiguration>();
             services.Configure<ElClimaConfigurationOptions>(_configuration.GetSection("ElClima"));/*TODO: Search where 'ElClima' it shold be seted as Key*/
 
@@ -63,6 +65,11 @@ namespace ElClima.FrontEnd
                 .EnableSensitiveDataLogging();
             }
             );
+
+            // Registramos el UoW factory para usar en nuestro dominio
+            services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
+
+            services.ConfigureApplicationServices();
 
         }
          

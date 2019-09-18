@@ -9,6 +9,7 @@ namespace ElClima.FrontEnd.Helpers
 {
     public class MasterLayoutHelper
     {
+
         private const string LineeForDelayedJavaScriptFiles = "LinesForDelayedJavaScript";
         private const string LinesForDocumentReadyKey = "LinesForDocumentReady";
 

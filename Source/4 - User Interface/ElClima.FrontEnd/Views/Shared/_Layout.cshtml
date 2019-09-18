@@ -45,8 +45,10 @@
     <script type="text/javascript" src="/assets/plugins/jquery/development/jquery-3.4.1.js"></script>
 
     <script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/scripts/Shared/menu/navMenuBinding.js"></script>
 
     @RenderSection("DelayedScripts", false)
+
     @Html.Raw(MasterLayoutHelper.GetDelayedJavaScriptFiles(Context))
     <script type="text/javascript">
         jQuery(document).ready(function () { 
