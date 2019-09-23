@@ -5,7 +5,8 @@
                 <div class="modal-header text-center border-0">
                     <h5 class="modal-title w-100">Reportar</h5>
                 </div>
-                <div class="modal-body">
+                @*Common reports*@
+                <div v-show="!emergencyReports" class="modal-body">
                     <div class="col-lg-6 col-md-6 col-sm-6 ">
                         <div class="card p-sm-2 p-md-3 p-lg-5 bg-success grow">
                             <p class="text-center">HISTORIA</p>
@@ -16,18 +17,32 @@
                             <p class="text-center">PREGUNTA</p>
                         </div>
                     </div>
-
                 </div>
+
+                @*Emergency reports*@
+                <div v-show="emergencyReports" class="modal-body">
+                    <div class="col-lg-6 col-md-6 col-sm-6 ">
+                        <div class="card p-sm-2 p-md-3 p-lg-5 bg-warning grow">
+                            <p class="text-center">PERDI ÁLGO</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="card p-sm-2 p-md-3 p-lg-5 bg-danger grow">
+                            <p class="text-center">ROBO</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="modal-footer border-0">
                     <div class="col-md-6 justify-content-start">
                         <label class="switch">
-                            <input type="checkbox">
+                            <input type="checkbox" v-model="emergencyReports" v-bind:true-value="true" v-bind:false-value="false">
                             <span class="slider round"></span>
                         </label>
                     </div>
                     <div class="col-md-6 justify-content-end">
                         <button type="button" class="signup btn btn-secondary grow" data-dismiss="modal">Volver</button>
-                    </div> 
+                    </div>
                 </div>
             </div>
     </div>
