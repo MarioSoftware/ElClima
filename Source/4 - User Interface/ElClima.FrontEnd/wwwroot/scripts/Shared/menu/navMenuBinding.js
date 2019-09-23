@@ -1,10 +1,9 @@
 ﻿  
-var vm = new Vue({
+var vmNavMenu = new Vue({
     el: "#navMenu",
     data: {
         id: 0,
-        emergencyReports:false
-       
+        emergencyReports: false        
     },
     directives: {
 
@@ -16,3 +15,6 @@ var vm = new Vue({
 
 });
  
+$("#reportModal").on("hidden.bs.modal", function () { 
+    vmNavMenu.$data.emergencyReports = false;
+});
