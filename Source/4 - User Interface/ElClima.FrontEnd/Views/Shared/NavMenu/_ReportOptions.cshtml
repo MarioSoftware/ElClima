@@ -4,6 +4,9 @@
             <div class="modal-content shadow-lg p-3 mb-5 rounded">
                 <div class="modal-header text-center border-0">
                     <h5 class="modal-title w-100">Reportar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 @*Common reports*@
                 <div v-show="!emergencyReports" class="modal-body">
@@ -34,15 +37,12 @@
                 </div>
 
                 <div class="modal-footer border-0">
-                    <div class="col-md-6 justify-content-start">
+                    <div class="col-md-12 justify-content-start">
                         <label class="switch">
                             <input type="checkbox" v-model="emergencyReports" v-bind:true-value="true" v-bind:false-value="false">
                             <span class="slider round"></span>
                         </label>
-                    </div>
-                    <div class="col-md-6 justify-content-end">
-                        <button type="button" class="signup btn btn-secondary grow" data-dismiss="modal">Volver</button>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div> 
