@@ -5,19 +5,19 @@
     height: 200px;
     width: 200px;
 }
-.modal-content {
+.modalContentNavMenu {
     -webkit-border-radius: 10px !important;
     -moz-border-radius: 10px !important;
     border-radius: 10px !important;
     background: transparent;
 }
-.modal-body {
+.modalBodyNavMenu {
     display: flex;
     padding: 0;
     flex: 1;
     padding: 10px;
 }
-.form-control {
+.formControlNavMenu {
     background: rgba(17,17,17,0.5);
     border: 0;
     color: #fff;
@@ -32,8 +32,8 @@
         text-decoration: none;
         background: rgba(0,0,0,0.9);
 }
-.modal-title{
-    color:white;
+.modalTitleNavMenu {
+    color: white;
 } 
 .grow {
     transition: all .2s ease-in-out;

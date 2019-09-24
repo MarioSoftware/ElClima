@@ -1,15 +1,15 @@
 ﻿ 
     <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content shadow-lg p-3 mb-5 rounded">
+            <div class="modal-content modalContentNavMenu shadow-lg p-3 mb-5 rounded">
                 <div class="modal-header text-center border-0">
-                    <h5 class="modal-title w-100">Reportar</h5>
+                    <h5 class="modal-title modalTitleNavMenu w-100">Reportar</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 @*Common reports*@
-                <div v-show="!emergencyReports" class="modal-body">
+                <div v-show="!emergencyReports" class="modal-body modalBodyNavMenu">
                     <div class="col-lg-6 col-md-6 col-sm-6 ">
                         <div class="card p-sm-2 p-md-3 p-lg-5 bg-success grow">
                             <p class="text-center">HISTORIA</p>
@@ -23,7 +23,7 @@
                 </div>
 
                 @*Emergency reports*@
-                <div v-show="emergencyReports" class="modal-body">
+                <div v-show="emergencyReports" class="modal-body modalBodyNavMenu">
                     <div class="col-lg-6 col-md-6 col-sm-6 ">
                         <div class="card p-sm-2 p-md-3 p-lg-5 bg-warning grow">
                             <p class="text-center">PERDI ÁLGO</p>
