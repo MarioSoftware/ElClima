@@ -9,11 +9,11 @@ using System.Text;
 
 namespace ElClima.ApplicationServices.Services.Social.Sujeto
 {
-    public class SujetoServicio : Service<Persona>
+    public class PersonaService : Service<Persona>
     {
         private static IMapper _mapper;
 
-        public SujetoServicio() : base()
+        public PersonaService() : base()
         {
             if (_mapper == null)
             {
