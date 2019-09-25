@@ -8,9 +8,11 @@ namespace ElClima.FrontEnd.Controllers
 {
     public class AccountController : Controller
     {
-        public IActionResult CreateAccount()
+         
+        public IActionResult Add()
         {
-            return View();
+            ViewBag.Id = -1;
+            return View("AccountForm");
         }
     }
 }

@@ -1,8 +1,11 @@
-﻿@section DelayedScripts
+﻿@using ElClima.FrontEnd.Helpers
+
+@section DelayedScripts
     {
     <script src="~/assets/plugins/moment/moment.js" asp-append-version="true"></script>
     <script src="~/assets/plugins/bootstrap/js/bootstrap-datetimepicker.min.js" asp-append-version="true"></script>
     <script src="~/scripts/Account/accountBinding.js" asp-append-version="true"></script>
+    <script src="~/scripts/Common/crud_helper.js" asp-append-version="true"></script>
 
     <script type="text/javascript">
         $(function () {
@@ -10,13 +13,16 @@
         });
     </script>
 }
+@{
+    MasterLayoutHelper.AddLineToDocumentReadyFunction(string.Format("FormBinding({0});", ViewBag.Id), Context);
+}
 <header>
     @*CSS Style sheet*@
-    <link rel="stylesheet" type="text/css" href="~/assets/css/Account/CreateAccount.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/Account/AccountForm.css" />
     <link rel="stylesheet" type="text/css" href="~/assets/plugins/bootstrap/css/bootstrap-datetimepicker.css" />
 </header>
 
-<div class="container" id="CreateAccount">
+<div class="container" id="AccountForm">
     <form class="form-horizontal justify-content-center">
         <div class="form-group">
             <label class="control-label col-sm-2" for="apellido">Apellido</label>

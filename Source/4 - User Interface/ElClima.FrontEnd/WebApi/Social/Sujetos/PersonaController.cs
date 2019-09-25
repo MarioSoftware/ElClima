@@ -23,7 +23,7 @@ namespace ElClima.FrontEnd.WebApi.Social.Sujetos
         }
 
         
-        [HttpPost("/api/Persona/Add")]
+        [HttpPost("/api/Persons/Add")]
         public void Post([FromBody] PersonaDto entity)
         { 
             _personaService.InsertDto(entity);
