@@ -15,18 +15,18 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
 
         public PersonaService() : base()
         {
-            if (_mapper == null)
-            {
-                _mapper = new MapperConfiguration(cfg =>
-                {
-                    cfg.CreateMap<Persona, PersonaDto>()
-                     .ForMember(dest => dest.idSexo, opt => opt.ResolveUsing(org => org.sexo == null ? 0 : org.sexo.id))
-                     .ForMember(dest => dest.fechaNacimiento, opt => opt.ResolveUsing(org => org.fechaNacimiento == DateTime.MinValue ? "" : org.fechaNacimiento.ToShortDateString()))
-                     .ReverseMap();
-                    cfg.CreateMap<Ubicacion, UbicacionDto>().ReverseMap();
+            //if (_mapper == null)
+            //{
+            //    _mapper = new MapperConfiguration(cfg =>
+            //    {
+            //        cfg.CreateMap<Persona, PersonaDto>()
+            //         .ForMember(dest => dest.idSexo, opt => opt.ResolveUsing(org => org.sexo == null ? 0 : org.sexo.id))
+            //         .ForMember(dest => dest.fechaNacimiento, opt => opt.ResolveUsing(org => org.fechaNacimiento == DateTime.MinValue ? "" : org.fechaNacimiento.ToShortDateString()))
+            //         .ReverseMap();
+            //        cfg.CreateMap<Ubicacion, UbicacionDto>().ReverseMap();
 
-                }).CreateMapper();
-            }
+            //    }).CreateMapper();
+            //}
         }
 
         public Persona GetEntityFromDto(PersonaDto dto)
@@ -62,7 +62,8 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
             var persona = id == -1 ? new Persona() 
                 : GetOneIncluding(
                 id,
-                i=> i.ubicacionActual);
+                i=> i.ubicacionActual,
+                i=> i.sexo);
 
             if (persona == null) return null;
 

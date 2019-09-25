@@ -8,7 +8,7 @@ var vm = new Vue({
         nombres: "",
         dni: "",
         fechaNacimiento:"",
-        sexo: true,
+        sexo: 1,
 
         p_ErrorMessage: "",
         p_SuccessMessage: ""
@@ -25,7 +25,8 @@ var vm = new Vue({
 
 function HydrateFields(data) {
     vm.$data.apellido = data.apellido;
-    vm.$data.nombres = data.nombres;
+    vm.$data.nombres = data.nombre;
     vm.$data.dni = data.dni;
+    vm.$data.sexo = data.idSexo;
 
 }
