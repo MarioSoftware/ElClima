@@ -56,5 +56,19 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
             UnitOfWork.SetAsAdded(item);
             Insert(item);
         }
+
+        public PersonaDto GetDto(int id)
+        {
+            var persona = id == -1 ? new Persona() 
+                : GetOneIncluding(
+                id,
+                i=> i.ubicacionActual);
+
+            if (persona == null) return null;
+
+            var ret = _mapper.Map<PersonaDto>(persona);
+
+            return ret;
+        }
     }
 }

@@ -22,7 +22,12 @@ namespace ElClima.FrontEnd.WebApi.Social.Sujetos
             _hostingEnvironment = hostingEnvironment;
         }
 
-        
+        [HttpGet("/api/Persons/Edit/{id}")]
+        public PersonaDto Get(int id)
+        {
+            return _personaService.GetDto(id);
+        }
+
         [HttpPost("/api/Persons/Add")]
         public void Post([FromBody] PersonaDto entity)
         { 
