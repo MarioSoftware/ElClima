@@ -2,8 +2,11 @@
     el: "#CreateAccount",
     data: {
         id: 0,
+        apellido: "",
+        nombres: "",
+        dni: "",
+        fechaNacimiento:"",
         sexo: true
-
     },
     directives: {
 
@@ -13,5 +16,5 @@
 
     }
 
-});
-
+}); 
+ 

@@ -1,14 +1,23 @@
 ﻿@section DelayedScripts
     {
+    <script src="~/assets/plugins/moment/moment.js" asp-append-version="true"></script>
+    <script src="~/assets/plugins/bootstrap/js/bootstrap-datetimepicker.min.js" asp-append-version="true"></script>
     <script src="~/scripts/Account/accountBinding.js" asp-append-version="true"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
+        });
+    </script>
 }
 <header>
     @*CSS Style sheet*@
     <link rel="stylesheet" type="text/css" href="~/assets/css/Account/CreateAccount.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/bootstrap/css/bootstrap-datetimepicker.css" />
 </header>
 
 <div class="container" id="CreateAccount">
-    <form class="form-horizontal">
+    <form class="form-horizontal justify-content-center">
         <div class="form-group">
             <label class="control-label col-sm-2" for="apellido">Apellido</label>
             <div class="col-sm-4">
@@ -22,8 +31,26 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="control-label col-sm-2" for="nombre">Dni</label>
+            <div class="col-sm-3">
+                <i class=" glyphicon glyphicon-menu-right"></i>
+                <input type="text" class="form-control" maxlength="15" name="dni" v-model="dni" autocomplete="off">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="nombre">Fecha de nacimiento</label>
+            <div class="col-md-4">
+                <div class="input-group date" id="datetimepicker1">
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="control-label col-sm-2" for="sexo">Sexo</label>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <label class="switch">
                     <input type="checkbox" id="sexo" data-on="F" data-off="M" v-model="sexo" v-bind:true-value="true" v-bind:false-value="false">
                     <span class="slider sliderSexo round"></span>
