@@ -115,21 +115,21 @@ body {
 }
 
 
-/*SWITHC NavMenu Reports*/
-.switchNavMenuReports {
+/*SWITHC */
+.switch {
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
 }
 
-    .switchNavMenuReports input {
+    .switch input {
         opacity: 0;
         width: 0;
         height: 0;
     }
 
-.sliderNavMenuReports {
+.slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -141,7 +141,7 @@ body {
     transition: .4s;
 }
 
-    .sliderNavMenuReports:before {
+    .slider:before {
         position: absolute;
         content: "";
         height: 26px;
@@ -153,37 +153,38 @@ body {
         transition: .4s;
     }
 
-input:checked + .sliderNavMenuReports {
+input:checked + .slider{
     background-color: red;
 }
 
-input:focus + .sliderNavMenuReports {
+input:focus + .slider {
     box-shadow: 0 0 1px red;
 }
 
-input:checked + .sliderNavMenuReports:before {
+input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
 
-/* SWITCH COMMON */
-/*.sliderNavMenuReports.round {
+/* Rounded sliders */
+.slider.round {
     border-radius: 34px;
 }
 
-    .sliderNavMenuReports.round:before {
+    .slider.round:before {
         border-radius: 50%;
     }
- 
-    .switch {
+
+/* SWITCH COMMON */
+/*.switch {
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
 }
 
-    
+   
     .switch input {
         opacity: 0;
         width: 0;

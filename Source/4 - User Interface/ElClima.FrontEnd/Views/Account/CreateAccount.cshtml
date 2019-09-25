@@ -1,8 +1,7 @@
 ﻿@section DelayedScripts
     {
-    <script src="~/scripts/Base/baseBinding.js" asp-append-version="true"></script>
+    <script src="~/scripts/Account/accountBinding.js" asp-append-version="true"></script>
 }
-
 <header>
     @*CSS Style sheet*@
     <link rel="stylesheet" type="text/css" href="~/assets/css/Account/CreateAccount.css" />
@@ -27,9 +26,9 @@
             <div class="col-sm-4">
                 <label class="switch">
                     <input type="checkbox" id="sexo" data-on="F" data-off="M" v-model="sexo" v-bind:true-value="true" v-bind:false-value="false">
-                    <span class="slider round"></span>
+                    <span class="slider sliderSexo round"></span>
                 </label>
-            </div>  
+            </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="clave">Clave</label>

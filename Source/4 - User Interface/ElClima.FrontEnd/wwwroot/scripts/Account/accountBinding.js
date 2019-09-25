@@ -1,7 +1,8 @@
 ﻿var vm = new Vue({
-    el: "#base",
+    el: "#CreateAccount",
     data: {
-        id: 0
+        id: 0,
+        sexo: true
 
     },
     directives: {
