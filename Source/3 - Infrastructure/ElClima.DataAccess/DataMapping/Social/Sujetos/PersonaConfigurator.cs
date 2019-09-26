@@ -27,6 +27,10 @@ namespace ElClima.DataAccess.DataMapping.Social.Sujetos
                            .IsRequired()
                            .HasColumnType("varchar(60)");
 
+                p.Property<string>("alias")
+                     .IsRequired()
+                     .HasColumnType("varchar(45)");
+
                 p.Property<DateTime>("fechaNacimiento")
                        .IsRequired()
                        .HasColumnType("Date");                 

@@ -24,6 +24,8 @@ namespace ElClima.Domain.Model.Models.Social.Sujetos
 
         public string dni { get; set; }
 
+        public string alias{ get; set; }
+
         public DateTime fechaNacimiento { get; set; }
 
         public Ubicacion ubicacionActual{ get; set; }

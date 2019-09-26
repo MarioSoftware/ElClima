@@ -307,6 +307,7 @@ namespace ElClima.DataAccess.Migrations
                     apellido = table.Column<string>(type: "varchar(60)", nullable: false),
                     nombre = table.Column<string>(type: "varchar(60)", nullable: false),
                     dni = table.Column<string>(type: "varchar(15)", nullable: false),
+                    alias = table.Column<string>(type: "varchar(45)", nullable: false),
                     fechaNacimiento = table.Column<DateTime>(type: "Date", nullable: false),
                     ubicacionId = table.Column<int>(nullable: false),
                     sexoId = table.Column<int>(nullable: false)

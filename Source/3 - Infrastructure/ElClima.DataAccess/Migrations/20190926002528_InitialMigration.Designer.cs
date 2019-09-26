@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElClima.DataAccess.Migrations
 {
     [DbContext(typeof(ElClimaDbContext))]
-    [Migration("20190917124818_InitialMigration")]
+    [Migration("20190926002528_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -962,6 +962,10 @@ namespace ElClima.DataAccess.Migrations
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("alias")
+                        .IsRequired()
+                        .HasColumnType("varchar(45)");
 
                     b.Property<string>("apellido")
                         .IsRequired()

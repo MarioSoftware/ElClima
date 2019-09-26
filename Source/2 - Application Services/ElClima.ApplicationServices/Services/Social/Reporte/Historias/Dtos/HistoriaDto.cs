@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ElClima.ApplicationServices.Services.Social.Reporte.Historias.Dtos
 {
-    public class HistoriaDto : BaseDto
+    public class HistoriaDto 
     {
         public int id { get; set; }
 

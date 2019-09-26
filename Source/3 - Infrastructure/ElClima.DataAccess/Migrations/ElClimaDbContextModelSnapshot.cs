@@ -961,6 +961,10 @@ namespace ElClima.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("alias")
+                        .IsRequired()
+                        .HasColumnType("varchar(45)");
+
                     b.Property<string>("apellido")
                         .IsRequired()
                         .HasColumnType("varchar(60)");

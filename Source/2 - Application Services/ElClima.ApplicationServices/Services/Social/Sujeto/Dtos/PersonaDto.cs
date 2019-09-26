@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ElClima.ApplicationServices.Services.Social.Sujeto.Dtos
 {
-    public class PersonaDto : BaseDto
+    public class PersonaDto 
     {
         public int id { get; set; }
 
@@ -14,6 +14,8 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto.Dtos
         public string apellido { get; set; }
 
         public string dni { get; set; }
+
+        public string alias { get; set; }
 
         public string fechaNacimiento { get; set; }
 

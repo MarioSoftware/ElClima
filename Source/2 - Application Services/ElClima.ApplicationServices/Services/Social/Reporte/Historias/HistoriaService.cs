@@ -19,9 +19,9 @@ namespace ElClima.ApplicationServices.Services.Social.Reporte.Historias
                 _mapper = new MapperConfiguration(cfg =>
                 {
                     cfg.CreateMap<Historia, HistoriaDto>()
-                     .ForMember(dest => dest.idPersona, opt => opt.ResolveUsing(org => org.persona == null ? 0 : org.persona.id))
-                     .ForMember(dest => dest.fechHoraCreada,opt => opt.ResolveUsing(org =>org.fechHoraCreada == DateTime.MinValue ? "" : org.fechHoraCreada.ToShortDateString()))
-                     .ForMember(dest => dest.idUbicacion, opt =>opt.ResolveUsing(org => org.ubicacion==null?0:org.ubicacion.id))
+                     .ForMember(dest => dest.idPersona, opt => opt.MapFrom(org => org.persona == null ? 0 : org.persona.id))
+                     .ForMember(dest => dest.fechHoraCreada,opt => opt.MapFrom(org =>org.fechHoraCreada == DateTime.MinValue ? "" : org.fechHoraCreada.ToShortDateString()))
+                     .ForMember(dest => dest.idUbicacion, opt =>opt.MapFrom(org => org.ubicacion==null?0:org.ubicacion.id))
                      .ReverseMap();
 
                 }).CreateMapper();
