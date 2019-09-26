@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ElClima.Domain.Model.Models.Comun;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -25,5 +26,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto.Dtos
         public int IdUbicacionActual { get; set; }
 
         public int Idbarrio { get; set; }
+
+        public List<Provincia> comboProvincia { get; set; }
     }
 }

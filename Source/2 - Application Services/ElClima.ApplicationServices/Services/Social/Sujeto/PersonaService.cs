@@ -24,14 +24,17 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
                      .ForMember(dest => dest.idSexo, opt => opt.MapFrom(org => org.sexo == null ? 0 : org.sexo.id))
                      .ForMember(dest => dest.fechaNacimiento, opt => opt.MapFrom(org => org.fechaNacimiento == DateTime.MinValue ? "" : org.fechaNacimiento.ToShortDateString()))
                      .ForMember(dest => dest.ubicacion, opt => opt.MapFrom(org => org.ubicacionActual == null ? 0 : org.ubicacionActual.id))
+                     .ForMember(dest => dest.domicilio, opt => opt.Ignore())
+                     .ForMember(dest => dest.ubicacion, opt => opt.MapFrom(org=> org.ubicacionActual==null ? null : org.ubicacionActual))
                      .ReverseMap();
-                    cfg.CreateMap<Ubicacion, UbicacionDto>().ReverseMap();
 
-                    cfg.CreateMap<PersonaDto, Persona>()
-                    .ForMember(dest => dest.domicilios, opt => opt.Ignore());
+                    //cfg.CreateMap<Ubicacion, UbicacionDto>().ReverseMap();
 
                     cfg.CreateMap<Domicilio, DomicilioDto>()
                     .ForMember(dest => dest.Idbarrio, opt => opt.MapFrom(org => org.barrio == null ? 0 : org.barrio.id))
+                    .ForMember(dest => dest.IdDepartamento, opt => opt.MapFrom(org => org.departamento == null ? 0 : org.departamento.id))
+                    .ForMember(dest => dest.Idprovincia, opt => opt.MapFrom(org => org.provincia == null ? 0 : org.provincia.id))
+                    .ForMember(dest => dest.IdUbicacionActual, opt => opt.MapFrom(org => org.ubicacionActual == null ? 0 : org.ubicacionActual.id))
                     .ReverseMap();
 
                 }).CreateMapper();
@@ -79,15 +82,12 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
                     f => f.persona.id == persona.id,
                     b => b.barrio,
                     d => d.departamento,
-                    p => p.provincia                   
+                    p => p.provincia,
+                    u => u.ubicacionActual
                     );
 
-                var ret = _mapper.Map<PersonaDto>(persona);
-
-                ret.comboSexo = new Service<Sexo>(UnitOfWork).GetAll();
-
-                ret.idSexo = persona.sexo.id;
-
+                var ret = _mapper.Map<PersonaDto>(persona); 
+                 
                 return ret;
             }   
 

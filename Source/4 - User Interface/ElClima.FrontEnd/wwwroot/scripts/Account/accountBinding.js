@@ -12,6 +12,7 @@ var vm = new Vue({
 
         p_ErrorMessage: "",
         p_SuccessMessage: ""
+        
     },
     directives: {
 

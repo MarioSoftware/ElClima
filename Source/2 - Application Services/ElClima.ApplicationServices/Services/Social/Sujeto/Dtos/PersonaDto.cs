@@ -18,14 +18,12 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto.Dtos
 
         public string alias { get; set; }
 
-        public string fechaNacimiento { get; set; }
-
-        public UbicacionDto ubicacion { get; set; }
+        public string fechaNacimiento { get; set; } 
 
         public int idSexo { get; set; }
 
-        public List<DomicilioDto> domicilios { get; set; }
+        public UbicacionDto ubicacion { get; set; }
 
-        public List<Sexo> comboSexo { get; set; }
+        public DomicilioDto domicilio { get; set; } 
     }
 }
