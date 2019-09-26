@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ElClima.ApplicationServices.Services.Comun;
 using ElClima.ApplicationServices.Services.Social.Sujeto.Dtos;
+using ElClima.Domain.Model.Models.Comun;
 using ElClima.Domain.Model.Models.Posicionamiento;
 using ElClima.Domain.Model.Models.Social.Sujetos;
 using System;
@@ -68,16 +69,29 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
         public PersonaDto GetDto(int id)
         {
             var persona = id == -1 ? new Persona() 
-                : GetOneIncluding(
-                id,
+                : GetOneIncluding(id,
                 i=> i.ubicacionActual,
                 i=> i.sexo);
 
-            if (persona == null) return null;
+            if (persona != null)
+            {
+                persona.domicilios = new Service<Domicilio>(UnitOfWork).GetByFilterIncluding(
+                    f => f.persona.id == persona.id,
+                    b => b.barrio,
+                    d => d.departamento,
+                    p => p.provincia                   
+                    );
 
-            var ret = _mapper.Map<PersonaDto>(persona);
+                var ret = _mapper.Map<PersonaDto>(persona);
 
-            return ret;
+                ret.comboSexo = new Service<Sexo>(UnitOfWork).GetAll();
+
+                ret.idSexo = persona.sexo.id;
+
+                return ret;
+            }   
+
+            return null;
         }
     }
 }

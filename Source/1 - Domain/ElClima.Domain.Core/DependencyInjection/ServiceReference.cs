@@ -18,10 +18,10 @@ namespace ElClima.Domain.Core.DependencyInjection
                 _serviceProvider = ServiceCollection.BuildServiceProvider();
             }
             return _serviceProvider;
-        }
+        } 
 
         public static T GetService<T>()
-        {
+        { 
             return GetServiceProvider().GetService<T>();
         }
     }
