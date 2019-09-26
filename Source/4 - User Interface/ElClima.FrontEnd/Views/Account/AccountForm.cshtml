@@ -2,10 +2,11 @@
 
 @section DelayedScripts
     {
+    <script src="~/scripts/Common/crud_helper.js" asp-append-version="true"></script>
     <script src="~/assets/plugins/moment/moment.js" asp-append-version="true"></script>
     <script src="~/assets/plugins/bootstrap/js/bootstrap-datetimepicker.min.js" asp-append-version="true"></script>
     <script src="~/scripts/Account/accountBinding.js" asp-append-version="true"></script>
-    <script src="~/scripts/Common/crud_helper.js" asp-append-version="true"></script>
+
 
     <script type="text/javascript">
         $(function () {
@@ -27,27 +28,27 @@
         <div class="form-group">
             <label class="control-label col-sm-2" for="apellido">Apellido</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="apellido" placeholder="Apellido">
+                <input type="text" class="form-control" v-model="apellido" id="apellido" placeholder="Apellido">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="nombre">Nombres</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="nombre" placeholder="Nombres">
+                <input type="text" class="form-control" v-model="nombre" id="nombre" placeholder="Nombres">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="nombre">Dni</label>
             <div class="col-sm-3">
                 <i class=" glyphicon glyphicon-menu-right"></i>
-                <input type="text" class="form-control" maxlength="15" name="dni" v-model="dni" autocomplete="off">
+                <input type="text" class="form-control" placeholder="D.N.I" maxlength="15" v-model="dni" name="dni" autocomplete="off">
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-2" for="nombre">Fecha de nacimiento</label>
+            <label class="control-label col-sm-3" for="nombre">FECHA DE NACIMIENTO</label>
             <div class="col-md-4">
                 <div class="input-group date" id="datetimepicker1">
-                    <input type='text' class="form-control" />
+                    <input type='text' v-model="fechaNacimiento" class="form-control" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -55,16 +56,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-2" for="sexo">Sexo</label>
-            <div class="col-sm-3">
-                <label class="switch">
-                    <input type="checkbox" id="sexo" data-on="F" data-off="M" v-model="sexo" v-bind:true-value="1" v-bind:false-value="2">
-                    <span class="slider sliderSexo round"></span>
-                </label>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="clave">Clave</label>
+            <label class="control-label col-sm-2" for="clave">CLAVE</label>
             <div class="col-sm-3">
                 <input type="password" class="form-control" id="clave" placeholder="Clave">
             </div>
@@ -75,9 +67,27 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-success">Listo</button>
+            
+            <div class="col-sm-3">
+                <label class="col-md-3">SEXO</label>
+                <label class="switch">
+                    <input type="checkbox" id="sexo" data-on="F" data-off="M" v-model="idSexo" v-bind:true-value="1" v-bind:false-value="2">
+                    <span class="slider sliderSexo round"></span>
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-2 col-sm-1">
+                    <button type="submit" class="btn btn-info">DOMICILIO</button>
+                </div>
+                <div class="col-md-2 col-sm-1">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
             </div>
         </div>
     </form>
+  
+     
+
 </div>

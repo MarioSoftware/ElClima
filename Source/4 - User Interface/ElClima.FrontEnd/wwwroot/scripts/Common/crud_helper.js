@@ -18,13 +18,10 @@ function FormBinding(id, queryRelatedEntityId) {
                 $("button").attr("disabled", "true");
                 return;
             }
-             
-
-            // Se actualizan los campos del model, en base a los datos del webapi
-            HydrateFields(data);
-
+              
+            HydrateFields(data); 
         })
-        .error(ExceptionCatcher)
+        .error(/*ExceptionCatcher*/)
         .always(/*quitPreloader*/);
 }
 
