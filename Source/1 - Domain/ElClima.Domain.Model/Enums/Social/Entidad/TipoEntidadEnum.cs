@@ -35,10 +35,10 @@ namespace ElClima.Domain.Model.Enums.Social.Entidad
         Clinica = 9,
 
         [Description("Laboratorio")]
-        Laboratorio = 9,
+        Laboratorio = 10,
 
         [Description("EscuelaPublica")]
-        EscuelaPublica = 9
+        EscuelaPublica = 11
     }
 
     public static partial class Extensions
