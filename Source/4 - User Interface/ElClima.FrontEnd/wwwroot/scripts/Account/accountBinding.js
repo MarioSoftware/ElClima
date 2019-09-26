@@ -5,10 +5,11 @@ var vm = new Vue({
     data: {
         id: 0,
         apellido: "",
-        nombres: "",
+        nombre: "",
         dni: "",
         fechaNacimiento:"",
-        sexo: 1,
+        idSexo: 1,
+        domicilio:[],
 
         p_ErrorMessage: "",
         p_SuccessMessage: ""
@@ -26,8 +27,8 @@ var vm = new Vue({
 
 function HydrateFields(data) {
     vm.$data.apellido = data.apellido;
-    vm.$data.nombres = data.nombre;
+    vm.$data.nombre = data.nombre;
     vm.$data.dni = data.dni;
-    vm.$data.sexo = data.idSexo;
-
+    vm.$data.idSexo = data.idSexo;
+    vm.$data.fechaNacimiento = data.fechaNacimiento;
 }
