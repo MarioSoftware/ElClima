@@ -29,6 +29,7 @@ namespace ElClima.ApplicationServices.Setup
             DiaSemanaInitializator.Initialize(_uow);
             TipoComentarioIntializator.Initialize(_uow);
             TipoEntidadIntializator.Initialize(_uow);
+            TipoServicioIntializator.Initialize(_uow);
         }
 
     }
