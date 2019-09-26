@@ -22,5 +22,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto.Dtos
         public UbicacionDto ubicacion { get; set; }
 
         public int idSexo { get; set; }
+
+        public List<DomicilioDto> domicilios { get; set; }
     }
 }

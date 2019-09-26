@@ -17,6 +17,7 @@ namespace ElClima.Domain.Model.Models.Social.Sujetos
             ubicacionActual = new Ubicacion();
             sexo = new Sexo(SexoEnum.Masculino);
             fechaNacimiento = new DateTime();
+            domicilios = new List<Domicilio>();
         }
         public string apellido { get; set; }
 
@@ -30,6 +31,8 @@ namespace ElClima.Domain.Model.Models.Social.Sujetos
 
         public Ubicacion ubicacionActual{ get; set; }
 
-        public Sexo sexo { get; set; } 
+        public Sexo sexo { get; set; }
+
+        public ICollection<Domicilio> domicilios{ get; set; }
     }
 }

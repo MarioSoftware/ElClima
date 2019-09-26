@@ -26,6 +26,13 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
                      .ReverseMap();
                     cfg.CreateMap<Ubicacion, UbicacionDto>().ReverseMap();
 
+                    cfg.CreateMap<PersonaDto, Persona>()
+                    .ForMember(dest => dest.domicilios, opt => opt.Ignore());
+
+                    cfg.CreateMap<Domicilio, DomicilioDto>()
+                    .ForMember(dest => dest.Idbarrio, opt => opt.MapFrom(org => org.barrio == null ? 0 : org.barrio.id))
+                    .ReverseMap();
+
                 }).CreateMapper();
             }
         }
