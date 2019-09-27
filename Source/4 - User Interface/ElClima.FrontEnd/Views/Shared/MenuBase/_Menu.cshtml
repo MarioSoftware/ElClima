@@ -7,30 +7,30 @@
 
 
 </head>
+<div id="Menu">
+    <div class="container" >
+        <div class="row   justify-content-around ">
+            <div class="col-md-2 col-4 wow  fadeInLeft" data-wow-delay="0.3s">
+                <input class="btn btn-success btn-sm" type="button" value="Historias">
+            </div>
+            <div class="col-md-2 col-4 wow  fadeInLeft" data-wow-delay="0.3s">
+                <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#reportModal">Reportar</a>
+            </div>
 
-<div class="container" id="Menu">
-    <div class="row   justify-content-around ">
-        <div class="col-md-2 col-4 wow  fadeInLeft" data-wow-delay="0.3s">
-            <input class="btn btn-success btn-sm" type="button" value="Historias">
-        </div>
-        <div class="col-md-2 col-4 wow  fadeInLeft" data-wow-delay="0.3s">
-            <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#reportModal">Reportar</a>
-        </div>
 
 
-
-        <div class="col-md-2  col-4 wow  fadeInLeft" data-wow-delay="0.3s">
-            <input class="btn btn-success btn-sm" type="button" value="Navegar">
+            <div class="col-md-2  col-4 wow  fadeInLeft" data-wow-delay="0.3s">
+                <input class="btn btn-success btn-sm" type="button" value="Navegar">
+            </div>
         </div>
     </div>
+
+    <!-- ReportOptions -->
+    @await Html.PartialAsync("_MenuReportOptions.cshtml")
+
+    <!-- Log In -->
+    @await Html.PartialAsync("_MenuLogIn.cshtml")
+
 </div>
-
-<!-- ReportOptions -->
-@await Html.PartialAsync("_MenuReportOptions.cshtml")
-
-<!-- Log In -->
-@await Html.PartialAsync("_MenuLogIn.cshtml")
-
-
 
 
