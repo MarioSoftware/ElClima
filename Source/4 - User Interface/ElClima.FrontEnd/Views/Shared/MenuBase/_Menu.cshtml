@@ -1,0 +1,26 @@
+﻿<head>
+    <!-- CSS -->
+    @*<link rel="stylesheet" type="text/css" href="~/assets/css/Shared/NavMenu/nav.css" />*@
+
+</head> 
+        <div class="row">
+            <div class="col-md-3  wow  fadeInLeft" data-wow-delay="0.3s">
+                <input class="btn btn-success" type="button" value="Historias">
+            </div>
+            <div class="col-md-3   wow fadeInLeft" data-wow-delay="0.3s">
+                <input class="btn btn-success" type="submit" value="Reportar">
+            </div>
+            <div class="col-md-3   wow fadeInLeft" data-wow-delay="0.3s">
+                <input class="btn btn-success" type="reset" value="Navegar">
+            </div>
+        </div>  
+
+    <!-- ReportOptions -->
+    @await Html.PartialAsync("NavMenu/_ReportOptions")
+
+    <!-- Log In -->
+    @await Html.PartialAsync("NavMenu/_Login")
+
+ 
+
+

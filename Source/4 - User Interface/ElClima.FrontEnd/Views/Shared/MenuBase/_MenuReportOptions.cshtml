@@ -1,0 +1,49 @@
+﻿ 
+    <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modalContentNavMenu shadow-lg p-3 mb-5 rounded">
+                <div class="modal-header text-center border-0">
+                    <h5 class="modal-title modalTitleNavMenu w-100">Reportar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @*Common reports*@
+                <div v-show="!emergencyReports" class="modal-body modalBodyNavMenu">
+                    <div class="col-lg-6 col-md-6 col-sm-6 ">
+                        <div class="card p-sm-2 p-md-3 p-lg-5 bg-success grow">
+                            <p class="text-center">HISTORIA</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="card p-sm-2 p-md-3 p-lg-5 bg-info grow">
+                            <p class="text-center">PREGUNTA</p>
+                        </div>
+                    </div>
+                </div>
+
+                @*Emergency reports*@
+                <div v-show="emergencyReports" class="modal-body modalBodyNavMenu">
+                    <div class="col-lg-6 col-md-6 col-sm-6 ">
+                        <div class="card p-sm-2 p-md-3 p-lg-5 bg-warning grow">
+                            <p class="text-center">PERDI ÁLGO</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="card p-sm-2 p-md-3 p-lg-5 bg-danger grow">
+                            <p class="text-center">ROBO</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer border-0">
+                    <div class="col-md-12 justify-content-start">
+                        <label class="switch">
+                            <input type="checkbox" v-model="emergencyReports" v-bind:true-value="true" v-bind:false-value="false">
+                            <span class="slider navManReports round"></span>
+                        </label>
+                    </div> 
+                </div>
+            </div>
+        </div> 
+    </div> 

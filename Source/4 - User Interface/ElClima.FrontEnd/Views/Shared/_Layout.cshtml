@@ -28,24 +28,17 @@
 </head>
 <body>
     <!-- WRAPPER -->
+    <!-- Navigation -->
+    @*@await Html.PartialAsync("NavMenu/_NavMenu")*@
 
-    <div id="wrapper">
-        <!-- Navigation -->
-        @*@await Html.PartialAsync("NavMenu/_NavMenu")*@
-
-        <!--     MIDDLE     -->
-        <section id="middle">
-            @RenderBody()
-        </section>
-        <!-- /MIDDLE -->
-    </div>
+    @RenderBody()
 
     <!--JAVASCRIPT FILES-->
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     @*<script src="~/assets/plugins/vuejs/dev/vue.js"></script>*@
     <script type="text/javascript" src="/assets/plugins/jquery/development/jquery-3.4.1.js"></script>
-    <script src="~/assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+    <script src="~/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
     @*<script src="~/scripts/Shared/menu/navMenuBinding.js" asp-append-version="true"></script>*@
 

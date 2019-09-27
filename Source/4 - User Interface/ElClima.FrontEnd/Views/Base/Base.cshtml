@@ -1,54 +1,105 @@
 ﻿
 @section DelayedScripts
-    { 
-    <script src="~/scripts/Base/baseBinding.js" asp-append-version="true"></script> 
-    }
-<header>
+    {
+    @*<script src="~/scripts/Base/baseBinding.js" asp-append-version="true"></script>*@
+    <script type="text/javascript">
+        new WOW().init();
+        </script>
+}
+<head>
     @*CSS Style sheet*@
-    <link rel="stylesheet" type="text/css" href="~/assets/css/Base/Base.css" />
-</header>
- 
+    @*<link rel="stylesheet" type="text/css" href="~/assets/css/Base/Base.css" />*@
+    <link rel="stylesheet" type="text/css" href="~/assets/css/Base/ejemplo.css" />
+</head>
 
-<section id="base">
-     @*Carousel*@ 
-    @await Html.PartialAsync("_Carousel")
+<header>
+    <!--Navbar-->
+    <!-- Full Page Intro -->
+    <div class="view"  >
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-gradient align-items-center">
 
-</section>
+            <div class="container"> 
+                <div class="row">
+                    <div class="col-md-12 justify-content-end">
+                        <div class="col-md-3 white-text   wow fadeInRight" data-wow-delay="0.3s">
+                            <h1 class="h1-responsive font-weight-bold">08:29    29° </h1>
+                            <hr class="hr-light">
+                            <h6>
+                                23 Preguntas en las ultimas dos horas
+                            </h6>
 
-<section class="page-section" id="services">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading text-uppercase">Engañaron a mas de 150 personas</h2>
-                <h2 class="section-subheading text-white">¿Cómo proceden para cometer la estafa?</h2>
+                        </div>
+                    </div>
+                </div> 
             </div>
+            <div class="row">
+                <div class="container">
+                    <!--MENU BASE--->
+                    @await Html.PartialAsync("MenuBase/_Menu")
+                </div> 
+            </div> 
         </div>
-        <div class="row text-center">
-            <div class="col-md-4">
-                <span class="fa-stack fa-4x">
-                    <i class="fas fa-circle fa-stack-2x text-success"></i>
-                    <i class="fas fa-car fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="service-heading">El Auto ideal</h4>
-                <p class="text-white">Te muestran un auto que satisfaga tu necesidad, encontras lo que estas buscando y te interesás en la compra del automotor.</p>
-            </div>
-            <div class="col-md-4">
-                <span class="fa-stack fa-4x">
-                    <i class="fas fa-circle fa-stack-2x text-warning"></i>
-                    <i class="fas fa-dollar-sign fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="service-heading">Un plan de pago a tu alcanze</h4>
-                <p class="text-white">Acontinuacioin te presentan un comodo plan de pago de hasta 60 cuotas en pesos, por Recibo de sueldo o con solo Dni.</p>
-            </div>
-            <div class="col-md-4">
-                <span class="fa-stack fa-4x">
-                    <i class="fas fa-circle fa-stack-2x text-danger"></i>
-                    <i class="fas fa-file-signature fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="service-heading">Firma de contrato</h4>
-                <p class="text-white">Cuando accedes al plan y firmas el contrato, pasas a una lista de espera y durante los proximos meses no se atenderan tus llamadas ni responderan tus mensajes.</p>
-            </div>
-        </div>
+     
+        <!-- Mask & flexbox options-->
     </div>
-</section>
+    <!-- Full Page Intro -->
+</header>
+
+<main >
+    <div class="container">
+        <!--Grid row-->
+        <div class="row py-5">
+            <!--Grid column-->
+            <div class="col-md-12 text-center">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+    </div>
+</main>
+
+@*<section id="base">
+        Carousel
+        @await Html.PartialAsync("_Carousel")
+
+    </section>*@
+
+@*<section class="page-section" id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">Engañaron a mas de 150 personas</h2>
+                    <h2 class="section-subheading text-white">¿Cómo proceden para cometer la estafa?</h2>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x text-success"></i>
+                        <i class="fas fa-car fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">El Auto ideal</h4>
+                    <p class="text-white">Te muestran un auto que satisfaga tu necesidad, encontras lo que estas buscando y te interesás en la compra del automotor.</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x text-warning"></i>
+                        <i class="fas fa-dollar-sign fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Un plan de pago a tu alcanze</h4>
+                    <p class="text-white">Acontinuacioin te presentan un comodo plan de pago de hasta 60 cuotas en pesos, por Recibo de sueldo o con solo Dni.</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x text-danger"></i>
+                        <i class="fas fa-file-signature fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Firma de contrato</h4>
+                    <p class="text-white">Cuando accedes al plan y firmas el contrato, pasas a una lista de espera y durante los proximos meses no se atenderan tus llamadas ni responderan tus mensajes.</p>
+                </div>
+            </div>
+        </div>
+    </section>*@
 

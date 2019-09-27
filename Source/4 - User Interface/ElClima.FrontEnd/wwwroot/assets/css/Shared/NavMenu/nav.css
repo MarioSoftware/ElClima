@@ -1,5 +1,5 @@
 ﻿/*Nav Main*/
-#mainNav .navbar-toggler {
+/*#mainNav .navbar-toggler {
     font-size: 12px;
     right: 0;
     padding: 13px;
@@ -8,8 +8,8 @@
     border: 0;
     background-color: #fed136;
     font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-}
-#mainNav {
+}*/
+/*#mainNav {
     background-color: #212529;
 }
     #mainNav .navbar-brand {
@@ -32,9 +32,9 @@
 
         #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
             color: #fed136;
-        }
+        }*/
 
-@media (min-width: 992px) {
+/*@media (min-width: 992px) {
     #mainNav {
         padding-top: 25px;
         padding-bottom: 25px;
@@ -69,7 +69,7 @@
 body {
     overflow-x: hidden;
     font-family: 'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-}
+}*/
 
 /*Nav Menu MODALS*/
 #buttonHistory ,#buttonThief ,#buttonQuestion ,#buttonLost {
