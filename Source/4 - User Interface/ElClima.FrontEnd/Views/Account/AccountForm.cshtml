@@ -49,26 +49,34 @@
                                     <!--Header-->
                                     <div class="text-center">
                                         <h3 class="white-text">
-                                            <i class="fas fa-user white-text"></i> Tu Cuenta
+                                            <i class="fas fa-user white-text"></i> Mis datos
                                         </h3>
                                         <hr class="hr-light">
                                     </div>
                                     <!--Body-->
                                     <div class="md-form">
                                         <i class="fas fa-user prefix white-text active"></i>
-                                        <input type="text" id="form3" class="white-text form-control">
-                                        <label for="form3" class="active">Apellido</label>
+                                        <input type="text" id="apellido"  v-model="apellido" class="white-text form-control">
+                                        <label for="apellido" class="active">Apellido</label>
                                     </div>
                                     <div class="md-form">
                                         <i class="fas fa-envelope prefix white-text active"></i>
-                                        <input type="text" id="form2" class="white-text form-control">
-                                        <label for="form2" class="active">Nombre</label>
-                                    </div>
+                                        <input type="text" id="nombre" v-model="nombre" class="white-text form-control">
+                                        <label for="nombre" class="active">Nombre</label>
+                                    </div> 
                                     <div class="md-form">
                                         <i class="fas fa-lock prefix white-text active"></i>
-                                        <input type="password" id="form4" class="white-text form-control">
-                                        <label for="form4">Dni</label>
+                                        <input type="text" id="fechaNacimiento" v-model="fechaNacimiento" class="white-text form-control">
+                                        <label for="fechaNacimiento">Fecha de nacimiento</label>
                                     </div>
+                                    <div class="md-form"> 
+                                        <i class="fas fa-lock prefix white-text active"></i>
+                                        <label class="switch"> 
+                                            <input type="checkbox" class="white-text form-control" v-bind:true-value="true" v-bind:false-value="false">
+                                            <span class="slider  round"></span>
+                                        </label>
+                                    </div><br />
+
                                     <div class="text-center mt-4">
                                         <button class="btn btn-indigo">Sign up</button>
                                         <hr class="hr-light mb-3 mt-4">
