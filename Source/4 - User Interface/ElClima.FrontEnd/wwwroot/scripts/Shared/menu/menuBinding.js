@@ -1,6 +1,6 @@
 ﻿  
 var vmNavMenu = new Vue({
-    el: "#navMenu",
+    el: "#Menu",
     data: {
         id: 0,
         emergencyReports: false        

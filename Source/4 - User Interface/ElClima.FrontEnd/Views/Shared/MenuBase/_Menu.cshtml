@@ -1,30 +1,35 @@
-﻿<head>
+﻿
+
+<head>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="~/assets/css/Base/ejemplo.css" />
-     
+    <link rel="stylesheet" type="text/css" href="~/assets/css/Shared/Menu/menu.css" />
 
-</head> 
- 
-<div class="container">
-    <div class="row align-self-end justify-content-around ">
+
+</head>
+
+<div class="container" id="Menu">
+    <div class="row   justify-content-around ">
         <div class="col-md-2 col-4 wow  fadeInLeft" data-wow-delay="0.3s">
-            <input class="btn btn-success" type="button" value="Historias">
+            <input class="btn btn-success btn-sm" type="button" value="Historias">
         </div>
         <div class="col-md-2 col-4 wow  fadeInLeft" data-wow-delay="0.3s">
-            <input class="btn btn-success" type="submit" value="Reportar">
+            <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#reportModal">Reportar</a>
         </div>
+
+
+
         <div class="col-md-2  col-4 wow  fadeInLeft" data-wow-delay="0.3s">
-            <input class="btn btn-success" type="reset" value="Navegar">
+            <input class="btn btn-success btn-sm" type="button" value="Navegar">
         </div>
-        <a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#reportModal">Reportar</a>
     </div>
 </div>
 
 <!-- ReportOptions -->
-@await Html.PartialAsync("NavMenu/_ReportOptions")
+@await Html.PartialAsync("_MenuReportOptions.cshtml")
 
 <!-- Log In -->
-@await Html.PartialAsync("NavMenu/_Login")
+@await Html.PartialAsync("_MenuLogIn.cshtml")
 
 
 
