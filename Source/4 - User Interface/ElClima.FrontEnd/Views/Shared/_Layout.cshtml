@@ -20,6 +20,9 @@
     <!-- CORE CSS -->
     <link href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> 
 
+    <link href="~/assets/plugins/mdb/css/mdb.min.css" rel="stylesheet" type="text/css" /> 
+
+
     @RenderSection("HtmlHead", false)
 
 </head>
@@ -28,7 +31,7 @@
 
     <div id="wrapper">
         <!-- Navigation -->
-        @await Html.PartialAsync("NavMenu/_NavMenu")
+        @*@await Html.PartialAsync("NavMenu/_NavMenu")*@
 
         <!--     MIDDLE     -->
         <section id="middle">
@@ -42,8 +45,13 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     @*<script src="~/assets/plugins/vuejs/dev/vue.js"></script>*@
     <script type="text/javascript" src="/assets/plugins/jquery/development/jquery-3.4.1.js"></script>
-    <script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
-    <script src="~/scripts/Shared/menu/navMenuBinding.js" asp-append-version="true"></script>
+    <script src="~/assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+
+    @*<script src="~/scripts/Shared/menu/navMenuBinding.js" asp-append-version="true"></script>*@
+
+    @*---mdb---*@
+    <script src="~/assets/plugins/mdb/js/mdb.min.js" asp-append-version="true"></script>
+    <script src="~/assets/plugins/mdb/js/popper.min.js" asp-append-version="true"></script>
 
     @RenderSection("DelayedScripts", false)
 
