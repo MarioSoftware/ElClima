@@ -1,7 +1,7 @@
 ﻿var WebApiBaseUrl = "/api/Persons";
 
 var vm = new Vue({
-    el: "#AccountForm",
+    el: "#accountForm",
     data: {
         id: 0,
         apellido: "",

@@ -32,7 +32,7 @@
     <header>
        
         <!-- Full Page Intro -->
-        <div id="account" class="view">
+        <div id="accountForm" class="view">
             <!-- Mask & flexbox options-->
             <div class="mask rgba-gradient align-items-center">
                 <!-- Content -->
@@ -69,10 +69,11 @@
                                         <input type="text" id="fechaNacimiento" v-model="fechaNacimiento" class="white-text form-control">
                                         <label for="fechaNacimiento">Fecha de nacimiento</label>
                                     </div>
-                                    <div class="md-form"> 
-                                        <i class="fas fa-lock prefix white-text active"></i>
-                                        <label class="switch"> 
-                                            <input type="checkbox" class="white-text form-control" v-bind:true-value="true" v-bind:false-value="false">
+                                    <div class="md-form">
+                                        <i v-show="idSexo===2" class="fas fa-lock prefix white-text active">M</i>
+                                        <i v-show="idSexo===1" class="fas fa-lock prefix white-text active">F</i>
+                                        <label class="switch">
+                                            <input type="checkbox" v-model="idSexo" class="white-text form-control" v-bind:true-value="1" v-bind:false-value="2">
                                             <span class="slider  round"></span>
                                         </label>
                                     </div><br />

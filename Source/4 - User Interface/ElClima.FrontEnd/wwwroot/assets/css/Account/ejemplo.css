@@ -5,7 +5,7 @@ header,
     height: 100%;
 }
 
-#account {
+#accountForm {
     background-image: url('../../images/cordoba.jpg');
     background-repeat: no-repeat;
     background-size: cover;
