@@ -9,41 +9,28 @@
 <head>
     @*CSS Style sheet*@
     @*<link rel="stylesheet" type="text/css" href="~/assets/css/Base/Base.css" />*@
-    <link rel="stylesheet" type="text/css" href="~/assets/css/Base/ejemplo.css" />
+  
 </head>
 
 <header>
     <!--Navbar-->
     <!-- Full Page Intro -->
-    <div class="view"  >
-        <!-- Mask & flexbox options-->
-        <div class="mask rgba-gradient align-items-center">
-
-            <div class="container"> 
-                <div class="row">
-                    <div class="col-md-12 justify-content-end">
-                        <div class="col-md-3 white-text   wow fadeInRight" data-wow-delay="0.3s">
-                            <h1 class="h1-responsive font-weight-bold">08:29    29° </h1>
-                            <hr class="hr-light">
-                            <h6>
-                                23 Preguntas en las ultimas dos horas
-                            </h6>
-
-                        </div>
-                    </div>
-                </div> 
-            </div>
+    <div class="view">
+        <div class="container">
             <div class="row">
-                <div class="container">
-                    <!--MENU BASE--->
-                    @await Html.PartialAsync("MenuBase/_Menu")
-                </div> 
-            </div> 
+
+                <div class="col-md-12 justify-content-end  wow fadeInRight" data-wow-delay="0.3s">
+                    <div class="col-md-3">
+                        <h1 class="h1-responsive font-weight-bold">08:29    29° </h1>
+                        <hr class="hr-light">
+                    </div>
+                </div>
+            </div>
         </div>
-     
-        <!-- Mask & flexbox options-->
-    </div>
-    <!-- Full Page Intro -->
+
+        <!--MENU BASE--->
+        @await Html.PartialAsync("MenuBase/_Menu")
+    </div>  
 </header>
 
 <main >
