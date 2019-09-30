@@ -21,6 +21,9 @@ namespace ElClima.DataAccess.Migrations
                 name: "Reporte.Perdida");
 
             migrationBuilder.EnsureSchema(
+                name: "Reporte.Robo");
+
+            migrationBuilder.EnsureSchema(
                 name: "Sujeto");
 
             migrationBuilder.CreateTable(
@@ -167,6 +170,45 @@ namespace ElClima.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TipoServicio", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MedioAsaltante",
+                schema: "Reporte.Robo",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false),
+                    detalle = table.Column<string>(type: "varchar(30)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MedioAsaltante", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ObjetoRobado",
+                schema: "Reporte.Robo",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false),
+                    detalle = table.Column<string>(type: "varchar(30)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ObjetoRobado", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TipoInvolucradoRobo",
+                schema: "Reporte.Robo",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false),
+                    detalle = table.Column<string>(type: "varchar(30)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TipoInvolucradoRobo", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -1543,6 +1585,18 @@ namespace ElClima.DataAccess.Migrations
             migrationBuilder.DropTable(
                 name: "UbicacionPerdida",
                 schema: "Reporte.Perdida");
+
+            migrationBuilder.DropTable(
+                name: "MedioAsaltante",
+                schema: "Reporte.Robo");
+
+            migrationBuilder.DropTable(
+                name: "ObjetoRobado",
+                schema: "Reporte.Robo");
+
+            migrationBuilder.DropTable(
+                name: "TipoInvolucradoRobo",
+                schema: "Reporte.Robo");
 
             migrationBuilder.DropTable(
                 name: "Domicilio",

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElClima.DataAccess.Migrations
 {
     [DbContext(typeof(ElClimaDbContext))]
-    [Migration("20190926002528_InitialMigration")]
+    [Migration("20190930184358_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -907,6 +907,45 @@ namespace ElClima.DataAccess.Migrations
                     b.ToTable("UbicacionPerdida","Reporte.Perdida");
                 });
 
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Robo.MedioAsaltante", b =>
+                {
+                    b.Property<int>("id");
+
+                    b.Property<string>("detalle")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("MedioAsaltante","Reporte.Robo");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Robo.ObjetoRobado", b =>
+                {
+                    b.Property<int>("id");
+
+                    b.Property<string>("detalle")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("ObjetoRobado","Reporte.Robo");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Robo.TipoInvolucradoRobo", b =>
+                {
+                    b.Property<int>("id");
+
+                    b.Property<string>("detalle")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("TipoInvolucradoRobo","Reporte.Robo");
+                });
+
             modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Sujetos.Domicilio", b =>
                 {
                     b.Property<int>("id")
@@ -1418,7 +1457,7 @@ namespace ElClima.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("ElClima.Domain.Model.Models.Social.Sujetos.Persona", "persona")
-                        .WithMany()
+                        .WithMany("domicilios")
                         .HasForeignKey("personaId")
                         .OnDelete(DeleteBehavior.Restrict);
 

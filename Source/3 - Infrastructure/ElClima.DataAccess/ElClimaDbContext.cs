@@ -3,6 +3,7 @@ using ElClima.DataAccess.DataMapping.Comun;
 using ElClima.DataAccess.DataMapping.Social.Entidades;
 using ElClima.DataAccess.DataMapping.Social.Reporte.Historias;
 using ElClima.DataAccess.DataMapping.Social.Reporte.Perdidas;
+using ElClima.DataAccess.DataMapping.Social.Reporte.Robo;
 using ElClima.DataAccess.DataMapping.Social.Sujetos;
 using ElClima.Domain.Core.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -191,6 +192,11 @@ namespace ElClima.DataAccess
                 ImagenPerdidaConfigurator.Configure(modelBuilder);
                 PerdidaConfigurator.Configure(modelBuilder);
                 UbicacionPerdidaConfigurator.Configure(modelBuilder);
+
+                //Robo
+                MedioAsaltanteConfigurator.Configure(modelBuilder);
+                TipoInvolucradoRoboConfigurator.Configure(modelBuilder);
+                ObjetoRobadoConfigurator.Configure(modelBuilder);
 
                 foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
                     relationship.DeleteBehavior = DeleteBehavior.Restrict;
