@@ -3,6 +3,7 @@ using ElClima.Domain.Core.Repository;
 using ElClima.Domain.Core.DependencyInjection;
 using ElClima.ApplicationServices.Setup.Common;
 using ElClima.ApplicationServices.Setup.Social.Entidad;
+using ElClima.ApplicationServices.Setup.Social.Reporte.Robo;
 
 namespace ElClima.ApplicationServices.Setup
 {
@@ -30,6 +31,11 @@ namespace ElClima.ApplicationServices.Setup
             TipoComentarioIntializator.Initialize(_uow);
             TipoEntidadIntializator.Initialize(_uow);
             TipoServicioIntializator.Initialize(_uow);
+
+            //Robo
+            MedioAsaltanteInitializator.Initialize(_uow);
+            TipoInvolucradoRobInitializator.Initialize(_uow);
+            ObjetoRobadoInitializator.Initialize(_uow);
         }
 
     }

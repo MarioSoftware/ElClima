@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ElClima.Domain.Model.Enums.Social.Reporte.Robo
 {
-    public enum TipoObjetoRobadoEnum
+    public enum ObjetoRobadoEnum
     {
         [Description("Auto")]
         Auto = 1,
@@ -22,12 +18,21 @@ namespace ElClima.Domain.Model.Enums.Social.Reporte.Robo
         Cartera = 4,
 
         [Description("Indefinido")]
-        Indefinido = 5 
+        Indefinido = 5,
+
+        [Description("Billetera")]
+        Billetera = 6,
+
+        [Description("Bicicleta")]
+        Bicicleta = 7,
+
+        [Description("Laptop")]
+        Laptop = 8,
     }
 
     public static partial class Extensions
     {
-        public static string GetDescription(this TipoObjetoRobadoEnum value)
+        public static string GetDescription(this ObjetoRobadoEnum value)
         {
             var field = value.GetType().GetField(value.ToString());
 
