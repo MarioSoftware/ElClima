@@ -23,12 +23,11 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
                     cfg.CreateMap<Persona, PersonaDto>()
                      .ForMember(dest => dest.idSexo, opt => opt.MapFrom(org => org.sexo == null ? 0 : org.sexo.id))
                      .ForMember(dest => dest.fechaNacimiento, opt => opt.MapFrom(org => org.fechaNacimiento == DateTime.MinValue ? "" : org.fechaNacimiento.ToShortDateString()))
-                     .ForMember(dest => dest.ubicacion, opt => opt.MapFrom(org => org.ubicacionActual == null ? 0 : org.ubicacionActual.id))
                      .ForMember(dest => dest.domicilio, opt => opt.Ignore())
                      .ForMember(dest => dest.ubicacion, opt => opt.MapFrom(org=> org.ubicacionActual==null ? null : org.ubicacionActual))
                      .ReverseMap();
 
-                    //cfg.CreateMap<Ubicacion, UbicacionDto>().ReverseMap();
+                    cfg.CreateMap<Ubicacion, UbicacionDto>().ReverseMap();
 
                     cfg.CreateMap<Domicilio, DomicilioDto>()
                     .ForMember(dest => dest.Idbarrio, opt => opt.MapFrom(org => org.barrio == null ? 0 : org.barrio.id))
