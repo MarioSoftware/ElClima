@@ -25,7 +25,11 @@ namespace ElClima.DataAccess.DataMapping.Social.Sujetos
 
                 d.Property<int>("numero")
                   .HasMaxLength(5);
-                
+
+                d.Property<string>("barrio")
+                           .IsRequired()
+                           .HasColumnType("varchar(85)");
+
                 d.Property<int>("piso")
                   .HasMaxLength(3);
 
@@ -63,13 +67,7 @@ namespace ElClima.DataAccess.DataMapping.Social.Sujetos
             .Property<int>("provinciaId")
             .IsRequired();
             modelBuilder.Entity<Domicilio>()
-                    .HasOne(c => c.provincia);
-
-            modelBuilder.Entity<Domicilio>()
-            .Property<int>("barrioId")
-            .IsRequired();
-            modelBuilder.Entity<Domicilio>()
-                   .HasOne(c => c.barrio); 
+                    .HasOne(c => c.provincia); 
         }
     }
 }

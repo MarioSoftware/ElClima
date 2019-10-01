@@ -50,7 +50,11 @@ namespace ElClima.DataAccess.DataMapping.Social.Sujetos
                .Property<int>("sexoId")
                .IsRequired();
             modelBuilder.Entity<Persona>()
-                        .HasOne(c => c.sexo);
+                        .HasOne(c => c.sexo); 
+
+            modelBuilder.Entity<Persona>()
+              .HasIndex(c => c.dni)
+              .IsUnique();
 
         }
     }
