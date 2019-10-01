@@ -29,8 +29,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
 
                     cfg.CreateMap<Ubicacion, UbicacionDto>().ReverseMap();
 
-                    cfg.CreateMap<Domicilio, DomicilioDto>()
-                    .ForMember(dest => dest.Idbarrio, opt => opt.MapFrom(org => org.barrio == null ? 0 : org.barrio.id))
+                    cfg.CreateMap<Domicilio, DomicilioDto>() 
                     .ForMember(dest => dest.IdLocalidad, opt => opt.MapFrom(org => org.localidad == null ? 0 : org.localidad.id))
                     .ForMember(dest => dest.Idprovincia, opt => opt.MapFrom(org => org.provincia == null ? 0 : org.provincia.id))
                     .ForMember(dest => dest.IdUbicacionActual, opt => opt.MapFrom(org => org.ubicacionActual == null ? 0 : org.ubicacionActual.id))
@@ -78,8 +77,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
             if (persona != null)
             {
                 persona.domicilios = new Service<Domicilio>(UnitOfWork).GetByFilterIncluding(
-                    f => f.persona.id == persona.id,
-                    b => b.barrio,
+                    f => f.persona.id == persona.id, 
                     d => d.localidad,
                     p => p.provincia,
                     u => u.ubicacionActual

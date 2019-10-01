@@ -21,7 +21,7 @@ namespace ElClima.Domain.Model.Models.Social.Sujetos
 
         public Localidad localidad { get; set; }
 
-        public Barrio barrio{ get; set; }
+        public string barrio{ get; set; }
         
         public DateTime fechaHoraCreacion { get; set; }
 

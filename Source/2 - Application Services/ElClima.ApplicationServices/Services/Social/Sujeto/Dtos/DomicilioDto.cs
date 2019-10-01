@@ -25,12 +25,10 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto.Dtos
 
         public int IdUbicacionActual { get; set; }
 
-        public int Idbarrio { get; set; }
+        public string barrio { get; set; }
 
         public List<Provincia> comboProvincia { get; set; }
 
-        public List<Localidad> comboLocalidad { get; set; }
-
-        public List<Barrio> comboBarrio { get; set; }
+        public List<Localidad> comboLocalidad { get; set; } 
     }
 }

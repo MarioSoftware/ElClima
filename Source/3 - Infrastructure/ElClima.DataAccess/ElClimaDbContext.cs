@@ -167,8 +167,7 @@ namespace ElClima.DataAccess
                 TipoServicioConfigurator.Configure(modelBuilder);
 
                 //Comun 
-                ProvinciaConfigurator.Configure(modelBuilder); 
-                BarrioConfigurator.Configure(modelBuilder);
+                ProvinciaConfigurator.Configure(modelBuilder);  
                 SexoConfigurator.Configure(modelBuilder);
                 TipoVehiculoConfigurator.Configure(modelBuilder);
                 LocalidadConfigurator.Configure(modelBuilder);
