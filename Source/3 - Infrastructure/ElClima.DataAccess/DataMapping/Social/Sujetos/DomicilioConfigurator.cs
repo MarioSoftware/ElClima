@@ -54,10 +54,10 @@ namespace ElClima.DataAccess.DataMapping.Social.Sujetos
                     .HasOne(c => c.ubicacionActual);
 
             modelBuilder.Entity<Domicilio>()
-            .Property<int>("departamentoId")
+            .Property<int>("localidadId")
             .IsRequired();
             modelBuilder.Entity<Domicilio>()
-                    .HasOne(c => c.departamento);
+                    .HasOne(c => c.localidad);
 
             modelBuilder.Entity<Domicilio>()
             .Property<int>("provinciaId")

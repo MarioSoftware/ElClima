@@ -1,8 +1,5 @@
 ﻿using ElClima.Domain.Model.Models.Comun;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ElClima.DataAccess.DataMapping.Comun
 {
@@ -25,10 +22,10 @@ namespace ElClima.DataAccess.DataMapping.Comun
             });
              
             modelBuilder.Entity<Barrio>()
-                .Property<int>("departamentoId")
+                .Property<int>("localidadId")
                 .IsRequired(); 
             modelBuilder.Entity<Barrio>()
-                .HasOne(u => u.departamento);
+                .HasOne(u => u.localidad);
         }
     }
 }

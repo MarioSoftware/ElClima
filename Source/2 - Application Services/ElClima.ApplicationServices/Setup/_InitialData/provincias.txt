@@ -1,0 +1,94 @@
+[
+	{
+		"provinciaId": "1",
+		"nombre": "Buenos Aires" 
+	},
+	{
+		"provinciaId": "2",
+		"nombre": "Catamarca" 
+	},
+	{
+		"provinciaId": "3",
+		"nombre": "Cordoba" 
+	},
+	{
+		"provinciaId": "4",
+		"nombre": "Corrientes" 
+	},
+	{
+		"provinciaId": "5",
+		"nombre": "Chaco" 
+	},
+	{
+		"provinciaId": "6",
+		"nombre": "Chubut" 
+	},
+	{
+		"provinciaId": "7",
+		"nombre": "Entre Rios" 
+	},
+	{
+		"provinciaId": "8",
+		"nombre": "Formosa" 
+	},
+	{
+		"provinciaId": "9",
+		"nombre": "Jujuy" 
+	},
+	{
+		"provinciaId": "10",
+		"nombre": "La Pampa" 
+	},
+	{
+		"provinciaId": "11",
+		"nombre": "La Rioja" 
+	},
+	{
+		"provinciaId": "12",
+		"nombre": "Mendoza" 
+	},
+	{
+		"provinciaId": "13",
+		"nombre": "Misiones" 
+	},
+	{
+		"provinciaId": "14",
+		"nombre": "Neuquen" 
+	},
+	{
+		"provinciaId": "15",
+		"nombre": "Rio Negro" 
+	},
+	{
+		"provinciaId": "16",
+		"nombre": "Salta" 
+	},
+	{
+		"provinciaId": "17",
+		"nombre": "San Juan" 
+	},
+	{
+		"provinciaId": "18",
+		"nombre": "San Luis" 
+	},
+	{
+		"provinciaId": "19",
+		"nombre": "Santa Cruz" 
+	},
+	{
+		"provinciaId": "20",
+		"nombre": "Santa Fe" 
+	},
+	{
+		"provinciaId": "21",
+		"nombre": "Santiago Del Estero" 
+	},
+	{
+		"provinciaId": "22",
+		"nombre": "Tierra Del Fuego" 
+	},
+	{
+		"provinciaId": "23",
+		"nombre": "Tucuman" 
+	}
+]

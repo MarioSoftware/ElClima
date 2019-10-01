@@ -24,14 +24,14 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
                      .ForMember(dest => dest.idSexo, opt => opt.MapFrom(org => org.sexo == null ? 0 : org.sexo.id))
                      .ForMember(dest => dest.fechaNacimiento, opt => opt.MapFrom(org => org.fechaNacimiento == DateTime.MinValue ? "" : org.fechaNacimiento.ToShortDateString()))
                      .ForMember(dest => dest.domicilio, opt => opt.Ignore())
-                     .ForMember(dest => dest.ubicacion, opt => opt.MapFrom(org=> org.ubicacionActual==null ? null : org.ubicacionActual))
+                     .ForMember(dest => dest.ubicacion, opt => opt.Ignore())
                      .ReverseMap();
 
                     cfg.CreateMap<Ubicacion, UbicacionDto>().ReverseMap();
 
                     cfg.CreateMap<Domicilio, DomicilioDto>()
                     .ForMember(dest => dest.Idbarrio, opt => opt.MapFrom(org => org.barrio == null ? 0 : org.barrio.id))
-                    .ForMember(dest => dest.IdDepartamento, opt => opt.MapFrom(org => org.departamento == null ? 0 : org.departamento.id))
+                    .ForMember(dest => dest.IdLocalidad, opt => opt.MapFrom(org => org.localidad == null ? 0 : org.localidad.id))
                     .ForMember(dest => dest.Idprovincia, opt => opt.MapFrom(org => org.provincia == null ? 0 : org.provincia.id))
                     .ForMember(dest => dest.IdUbicacionActual, opt => opt.MapFrom(org => org.ubicacionActual == null ? 0 : org.ubicacionActual.id))
                     .ReverseMap();
@@ -80,7 +80,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
                 persona.domicilios = new Service<Domicilio>(UnitOfWork).GetByFilterIncluding(
                     f => f.persona.id == persona.id,
                     b => b.barrio,
-                    d => d.departamento,
+                    d => d.localidad,
                     p => p.provincia,
                     u => u.ubicacionActual
                     );

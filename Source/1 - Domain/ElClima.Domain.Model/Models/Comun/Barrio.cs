@@ -9,11 +9,11 @@ namespace ElClima.Domain.Model.Models.Comun
     {
         public Barrio()
         {
-            departamento = new Departamento();
+            localidad = new Localidad();
         }
 
         public string nombre { get; set; }
-        public Departamento departamento { get; set; }
+        public Localidad localidad { get; set; }
 
         public override string ToString()
         {

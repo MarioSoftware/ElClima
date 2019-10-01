@@ -1,33 +1,33 @@
 ﻿using ElClima.Domain.Model.Models.Comun;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ElClima.DataAccess.DataMapping.Comun
 {
-    internal static class DepartamentoConfigurator
+    internal static class LocalidadConfigurator
     {
         public static void Configure(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Departamento>(e =>
+            modelBuilder.Entity<Localidad>(l =>
             {
-                e.ToTable("Departamento", "Comun");
+                l.ToTable("Localidad", "Comun");
 
-                e.Property<int>("id")
+                l.Property<int>("id")
                     .IsRequired()
                     .UseSqlServerIdentityColumn()
                     .ValueGeneratedOnAdd();
 
-                e.Property<string>("nombre")
+                l.Property<string>("nombre")
                     .IsRequired()
                     .HasColumnType("varchar(30)");
+
+                l.Property<string>("codigoPostal")
+                   .HasColumnType("varchar(8)");
             });
              
-            modelBuilder.Entity<Departamento>()
+            modelBuilder.Entity<Localidad>()
                 .Property<int>("provinciaId")
                 .IsRequired(); 
-            modelBuilder.Entity<Departamento>()
+            modelBuilder.Entity<Localidad>()
                 .HasOne(u => u.provincia);
         }
     }

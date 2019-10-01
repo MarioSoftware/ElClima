@@ -2,10 +2,6 @@
 using ElClima.Domain.Model.Models.Comun;
 using ElClima.Domain.Model.Models.Posicionamiento;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ElClima.Domain.Model.Models.Social.Sujetos
 {
@@ -23,7 +19,7 @@ namespace ElClima.Domain.Model.Models.Social.Sujetos
 
         public Provincia provincia{ get; set; }
 
-        public Departamento departamento{ get; set; }
+        public Localidad localidad { get; set; }
 
         public Barrio barrio{ get; set; }
         
