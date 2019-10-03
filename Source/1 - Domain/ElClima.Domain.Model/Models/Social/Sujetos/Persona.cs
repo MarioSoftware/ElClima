@@ -13,8 +13,7 @@ namespace ElClima.Domain.Model.Models.Social.Sujetos
     public class Persona : BaseEntity
     {
         public Persona()
-        {
-            //ubicacionActual = new Ubicacion();
+        { 
             sexo = new Sexo(SexoEnum.Masculino);
             fechaNacimiento = new DateTime(); 
         }
@@ -32,6 +31,8 @@ namespace ElClima.Domain.Model.Models.Social.Sujetos
 
         public Sexo sexo { get; set; }
 
-        public ICollection<Domicilio> domicilios{ get; set; } 
+        public Domicilio domicilio { get; set; }
+
+        //public ICollection<Domicilio> domicilios{ get; set; } 
     }
 }

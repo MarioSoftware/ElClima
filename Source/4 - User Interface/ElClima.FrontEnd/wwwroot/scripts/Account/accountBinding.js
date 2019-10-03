@@ -9,7 +9,19 @@ var vm = new Vue({
         dni: "",
         fechaNacimiento:"",
         idSexo: 1,
-        domicilio:[],
+        domicilio: {
+            Idprovincia: 0,
+            idLocalidad:0,
+            calle: "",
+            numero: 0,
+            piso: 0,
+            numeroDepartamento: "",
+            barrio: "",
+            ubicacion: {}
+        },
+         
+        comboProvincia: [],
+        comboLocalidad: [],
 
         p_ErrorMessage: "",
         p_SuccessMessage: ""
