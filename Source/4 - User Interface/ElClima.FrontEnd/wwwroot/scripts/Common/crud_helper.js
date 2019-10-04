@@ -21,7 +21,7 @@ function FormBinding(id, queryRelatedEntityId) {
               
             HydrateFields(data); 
         })
-        .error()
+        .fail(ExceptionCatcher)
         .always();
 }
 
