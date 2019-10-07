@@ -38,20 +38,20 @@ var vm = new Vue({
     },
     methods: {
         GetLocalities: function () { 
-            vm.$data.loadingLocalities = true;
-            $.getJSON(WebApiBaseUrl + "/GetLocalities/" + vm.$data.domicilio.idProvincia, { __: new Date().getTime() })
-                .done(function (data) {
-                    if (data !== null) {
-                        this.p_comboLocalidad = [];
-                        this.p_comboLocalidad = data;
-                    }
-                })
-                .fail(function () {
-                })
-                .always(function () {
-                    vm.$data.loadingLocalities = false;
-                });
-
+            vm.$data.loadingLocalities = true; 
+            $.ajax({
+                url: WebApiBaseUrl + "/GetLocalities/" + vm.$data.domicilio.idProvincia,
+                type: "GET",
+                contentType: "application/json;chartset=utf-8"
+            }).done(function (data) {
+                if (data !== null) {
+                    this.p_comboLocalidad = [];
+                    this.p_comboLocalidad = data;
+                }
+            }).fail(function (err) {
+            }).always(function () {
+                vm.$data.loadingLocalities = false;
+            }); 
 
         }
     }
