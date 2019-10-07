@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElClima.DataAccess.Migrations
 {
     [DbContext(typeof(ElClimaDbContext))]
-    [Migration("20191001223454_InitialMigration")]
+    [Migration("20191007191157_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -944,6 +944,9 @@ namespace ElClima.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
+                    b.Property<string>("departamento")
+                        .HasColumnType("varchar(8)");
+
                     b.Property<DateTime>("fechaHoraCreacion")
                         .HasColumnType("Date");
 
@@ -954,9 +957,6 @@ namespace ElClima.DataAccess.Migrations
 
                     b.Property<int>("numero")
                         .HasMaxLength(5);
-
-                    b.Property<string>("numeroDepartamento")
-                        .HasColumnType("varchar(8)");
 
                     b.Property<int>("personaId");
 
@@ -971,7 +971,8 @@ namespace ElClima.DataAccess.Migrations
 
                     b.HasIndex("localidadId");
 
-                    b.HasIndex("personaId");
+                    b.HasIndex("personaId")
+                        .IsUnique();
 
                     b.HasIndex("provinciaId");
 
@@ -1431,8 +1432,8 @@ namespace ElClima.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("ElClima.Domain.Model.Models.Social.Sujetos.Persona", "persona")
-                        .WithMany("domicilios")
-                        .HasForeignKey("personaId")
+                        .WithOne("domicilio")
+                        .HasForeignKey("ElClima.Domain.Model.Models.Social.Sujetos.Domicilio", "personaId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("ElClima.Domain.Model.Models.Comun.Provincia", "provincia")

@@ -33,7 +33,7 @@ namespace ElClima.DataAccess.DataMapping.Social.Sujetos
                 d.Property<int>("piso")
                   .HasMaxLength(3);
 
-                d.Property<string>("numeroDepartamento") 
+                d.Property<string>("departamento") 
                           .HasColumnType("varchar(8)"); 
 
                 d.Property<DateTime>("fechaHoraCreacion")

@@ -489,7 +489,7 @@ namespace ElClima.DataAccess.Migrations
                     calle = table.Column<string>(type: "varchar(100)", nullable: false),
                     numero = table.Column<int>(maxLength: 5, nullable: false),
                     piso = table.Column<int>(maxLength: 3, nullable: false),
-                    numeroDepartamento = table.Column<string>(type: "varchar(8)", nullable: true),
+                    departamento = table.Column<string>(type: "varchar(8)", nullable: true),
                     provinciaId = table.Column<int>(nullable: false),
                     localidadId = table.Column<int>(nullable: false),
                     barrio = table.Column<string>(type: "varchar(85)", nullable: false),
@@ -1454,7 +1454,8 @@ namespace ElClima.DataAccess.Migrations
                 name: "IX_Domicilio_personaId",
                 schema: "Sujeto",
                 table: "Domicilio",
-                column: "personaId");
+                column: "personaId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Domicilio_provinciaId",
