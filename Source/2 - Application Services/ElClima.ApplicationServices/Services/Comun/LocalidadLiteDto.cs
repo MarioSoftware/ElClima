@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ElClima.ApplicationServices.Services.Comun
 {
-    public class LocaliadLiteDto : BaseLiteDto
+    public class LocalidadLiteDto : BaseLiteDto
     {
         
     }

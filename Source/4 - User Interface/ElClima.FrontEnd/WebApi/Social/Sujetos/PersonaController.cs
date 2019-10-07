@@ -30,7 +30,7 @@ namespace ElClima.FrontEnd.WebApi.Social.Sujetos
         }
 
         [HttpGet("/api/Persons/GetLocalities/{idProvince}")]
-        public List<LocaliadLiteDto> GetComboLocalities(int idProvince)
+        public List<LocalidadLiteDto> GetComboLocalities(int idProvince)
         {
             return _personaService.GetComboLocalities(idProvince);
         }

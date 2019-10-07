@@ -78,16 +78,19 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
 
             var ret = _mapper.Map<PersonaDto>(persona);
 
-            ret.domicilio.comboProvincia = new Service<Provincia>(UnitOfWork).GetAll();
+            if(ret.domicilio == null)
+            {
+                ret.domicilio = new DomicilioDto { comboProvincia = new Service<Provincia>(UnitOfWork).GetAll()};
+            } 
 
             return ret;
 
         }
 
-        public List<LocaliadLiteDto> GetComboLocalities(int idProvince)
+        public List<LocalidadLiteDto> GetComboLocalities(int idProvince)
         {
             var result = new Service<Localidad>(UnitOfWork).GetAllBySelector(
-                 l => new LocaliadLiteDto
+                 l => new LocalidadLiteDto
                  {
                      id = l.id,
                      nombre = l.nombre

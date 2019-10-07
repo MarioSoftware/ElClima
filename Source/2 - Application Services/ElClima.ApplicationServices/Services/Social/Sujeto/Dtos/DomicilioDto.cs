@@ -29,6 +29,6 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto.Dtos
 
         public List<Provincia> comboProvincia { get; set; }
 
-        public List<Localidad> comboLocalidad { get; set; } 
+        public List<LocalidadLiteDto> comboLocalidad { get; set; } 
     }
 }
