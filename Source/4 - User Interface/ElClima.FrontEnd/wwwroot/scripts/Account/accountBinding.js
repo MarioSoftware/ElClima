@@ -11,7 +11,7 @@ var vm = new Vue({
         fechaNacimiento:"",
         idSexo: 1,
         domicilio: {
-            idprovincia: 0,
+            idProvincia: 0,
             idLocalidad:0,
             calle: "",
             numero: "",

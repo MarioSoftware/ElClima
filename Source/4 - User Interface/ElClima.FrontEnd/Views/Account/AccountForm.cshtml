@@ -94,9 +94,20 @@
                                     <div class="md-form">
                                         <label for="provincia" class="active">Provincia</label>
                                         <i class="fas fa-user prefix white-text active"></i>
-                                        <select name="Prefijo" v-model="domicilio.idprovincia" class="form-control">
+                                        <select name="provincia" v-model="domicilio.idprovincia" class="form-control">
                                             <option id="provincia" v-for="provincia in p_comboProvincia" v-bind:value="provincia.id">
                                                 {{provincia.nombre}}
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+                                    <div class="md-form">
+                                        <label for="provincia" class="active">Localidad</label>
+                                        <i class="fas fa-user prefix white-text active"></i>
+                                        <select name="localidad" v-model="domicilio.idLocalidad" class="form-control">
+                                            <option id="localidad" v-for="localidad in p_comboLocalidad" v-bind:value="localidad.id">
+                                                {{localidad.nombre}}
                                             </option>
                                         </select>
 
@@ -131,7 +142,7 @@
                                     <br />
 
                                     <div class="text-center mt-4">
-                                        <button class="btn btn-danger" v-on:click="addAddress = false" >Volver</button>
+                                        <button class="btn btn-danger" v-on:click="addAddress = false">Volver</button>
                                         <button class="btn btn-success">Guardar</button>
                                     </div>
                                 </div>

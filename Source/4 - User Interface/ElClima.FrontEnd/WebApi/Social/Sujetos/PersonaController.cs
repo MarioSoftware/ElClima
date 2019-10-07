@@ -1,4 +1,5 @@
-﻿using ElClima.ApplicationServices.Services.Social.Sujeto;
+﻿using ElClima.ApplicationServices.Services.Comun;
+using ElClima.ApplicationServices.Services.Social.Sujeto;
 using ElClima.ApplicationServices.Services.Social.Sujeto.Dtos;
 using ElClima.FrontEnd.WebApi.BaseController;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +27,12 @@ namespace ElClima.FrontEnd.WebApi.Social.Sujetos
         public PersonaDto Get(int id)
         {
             return _personaService.GetDto(id);
+        }
+
+        [HttpGet("/api/Persons/GetLocalities/{idProvince}")]
+        public List<LocaliadLiteDto> GetComboLocalities(int idProvince)
+        {
+            return _personaService.GetComboLocalities(idProvince);
         }
 
         [HttpPost("/api/Persons/Add")]

@@ -29,9 +29,9 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
 
                     cfg.CreateMap<Ubicacion, UbicacionDto>().ReverseMap();
 
-                    cfg.CreateMap<Domicilio, DomicilioDto>() 
+                    cfg.CreateMap<Domicilio, DomicilioDto>()
                     .ForMember(dest => dest.idLocalidad, opt => opt.MapFrom(org => org.localidad == null ? 0 : org.localidad.id))
-                    .ForMember(dest => dest.idprovincia, opt => opt.MapFrom(org => org.provincia == null ? 0 : org.provincia.id)) 
+                    .ForMember(dest => dest.idprovincia, opt => opt.MapFrom(org => org.provincia == null ? 0 : org.provincia.id))
                     .ReverseMap();
 
                 }).CreateMapper();
@@ -56,33 +56,47 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
         }
 
         public void InsertDto(PersonaDto dto)
-        { 
+        {
 
             dto.id = 0;
             var item = GetEntityFromDto(dto);
-             
-             
+
+
             UnitOfWork.SetAsAdded(item);
             Insert(item);
         }
 
         public PersonaDto GetDto(int id)
         {
-            var persona = id == -1 ? new Persona() 
+            var persona = id == -1 ? new Persona()
                 : GetOneIncluding(id,
-                i=> i.ubicacionActual,
-                i=> i.sexo,
-                i=> i.domicilio);
+                i => i.ubicacionActual,
+                i => i.sexo,
+                i => i.domicilio);
 
-           
 
-                var ret = _mapper.Map<PersonaDto>(persona);
-                 
-                 
-                return ret;
-              
+
+            var ret = _mapper.Map<PersonaDto>(persona);
+
+            ret.domicilio.comboProvincia = new Service<Provincia>(UnitOfWork).GetAll();
+
+            return ret;
+
         }
 
+        public List<LocaliadLiteDto> GetComboLocalities(int idProvince)
+        {
+            var result = new Service<Localidad>(UnitOfWork).GetAllBySelector(
+                 l => new LocaliadLiteDto
+                 {
+                     id = l.id,
+                     nombre = l.nombre
+                 },
+                 f=> f.provincia.id == idProvince, 
+                 Domain.Core.Repository.OrderDirection.Ascending 
+                );
 
+            return result;
+        }
     }
 }
