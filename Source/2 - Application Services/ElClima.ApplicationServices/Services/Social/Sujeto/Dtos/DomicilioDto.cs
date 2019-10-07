@@ -1,15 +1,12 @@
 ﻿using ElClima.ApplicationServices.Services.Comun;
 using ElClima.Domain.Model.Models.Comun;
-using ElClima.Domain.Model.Models.Posicionamiento;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ElClima.ApplicationServices.Services.Social.Sujeto.Dtos
 {
     public class DomicilioDto
     {
-        public int idPersona { get; set; }
+        public int id { get; set; }
 
         public string calle { get; set; }
 
@@ -17,15 +14,15 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto.Dtos
 
         public int piso { get; set; }
 
-        public string numeroDepartamento { get; set; } 
+        public string departamento { get; set; }
 
-        public int idprovincia { get; set; }
+        public string barrio { get; set; }
+
+        public int idProvincia { get; set; }
 
         public int idLocalidad { get; set; }
 
-        public UbicacionDto ubicacionActual { get; set; }
-
-        public string barrio { get; set; }
+        public UbicacionDto ubicacionActual { get; set; } 
 
         public List<Provincia> comboProvincia { get; set; }
 

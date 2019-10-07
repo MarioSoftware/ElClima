@@ -31,7 +31,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
 
                     cfg.CreateMap<Domicilio, DomicilioDto>()
                     .ForMember(dest => dest.idLocalidad, opt => opt.MapFrom(org => org.localidad == null ? 0 : org.localidad.id))
-                    .ForMember(dest => dest.idprovincia, opt => opt.MapFrom(org => org.provincia == null ? 0 : org.provincia.id))
+                    .ForMember(dest => dest.idProvincia, opt => opt.MapFrom(org => org.provincia == null ? 0 : org.provincia.id))
                     .ReverseMap();
 
                 }).CreateMapper();
@@ -59,8 +59,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
         {
 
             dto.id = 0;
-            var item = GetEntityFromDto(dto);
-
+            var item = GetEntityFromDto(dto); 
 
             UnitOfWork.SetAsAdded(item);
             Insert(item);

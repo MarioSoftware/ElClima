@@ -3,10 +3,6 @@ using ElClima.Domain.Model.Enums.Common;
 using ElClima.Domain.Model.Models.Comun;
 using ElClima.Domain.Model.Models.Posicionamiento;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ElClima.Domain.Model.Models.Social.Sujetos
 {

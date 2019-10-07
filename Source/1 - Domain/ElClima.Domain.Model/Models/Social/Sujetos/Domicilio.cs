@@ -15,7 +15,7 @@ namespace ElClima.Domain.Model.Models.Social.Sujetos
 
         public int piso { get; set; }
 
-        public string numeroDepartamento { get; set; }
+        public string departamento { get; set; }
 
         public Provincia provincia{ get; set; }
 
