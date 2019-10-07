@@ -16,9 +16,8 @@
     MasterLayoutHelper.AddLineToDocumentReadyFunction(string.Format("FormBinding({0});", ViewBag.Id), Context);
 }
 <head>
-    @*CSS Style sheet*@
-    @*<link rel="stylesheet" type="text/css" href="~/assets/css/Account/AccountForm.css" />*@
-    <link rel="stylesheet" type="text/css" href="~/assets/css/Account/ejemplo.css" />
+    @*CSS Style sheet*@ 
+    <link rel="stylesheet" type="text/css" href="~/assets/css/Account/accountForm.css" />
     <link rel="stylesheet" type="text/css" href="~/assets/plugins/bootstrap/css/bootstrap-datetimepicker.css" />
 </head>
 
@@ -33,69 +32,113 @@
             <div class="mask rgba-gradient align-items-center">
                 
                 <div class="container">
-                   
-                    <div class="row mt-5">
-                       
-                       
-                        
-                        <div class="col-md-6 col-xl-5 mb-4">
-                    
+
+                    @*Persnal Data*@
+                    <div v-show="!addAddress" class="row mt-5">
+                        <div class="col-md-6 col-xl-5 mb-4"> 
                             <div class="card wow fadeInRight" data-wow-delay="0.3s">
                                 <div class="card-body">
-                                   
+
                                     <div class="text-center">
                                         <h3 class="white-text">
                                             <i class="fas fa-user white-text"></i> Mis datos
                                         </h3>
                                         <hr class="hr-light">
                                     </div>
-                                  
+
                                     <div class="md-form">
                                         <i class="fas fa-user prefix white-text active"></i>
-                                        <input type="text" id="apellido"  v-model="apellido" class="white-text form-control">
+                                        <input type="text" id="apellido" v-model="apellido" class="white-text form-control">
                                         <label for="apellido" class="active">Apellido</label>
                                     </div>
                                     <div class="md-form">
                                         <i class="fas fa-envelope prefix white-text active"></i>
                                         <input type="text" id="nombre" v-model="nombre" class="white-text form-control">
                                         <label for="nombre" class="active">Nombre</label>
-                                    </div> 
+                                    </div>
                                     <div class="md-form">
                                         <i class="fas fa-lock prefix white-text active"></i>
                                         <input type="text" id="fechaNacimiento" v-model="fechaNacimiento" class="white-text form-control">
                                         <label for="fechaNacimiento">Fecha de nacimiento</label>
                                     </div>
                                     <div class="md-form">
-                                        <i v-show="idSexo===2" class="fas fa-lock prefix white-text active">M</i>
-                                        <i v-show="idSexo===1" class="fas fa-lock prefix white-text active">F</i>
+                                        <i class="fas fa-lock prefix white-text active"></i>
                                         <label class="switch">
                                             <input type="checkbox" v-model="idSexo" class="white-text form-control" v-bind:true-value="1" v-bind:false-value="2">
                                             <span class="slider  round"></span>
                                         </label>
                                     </div><br />
+                                    <div class="text-center mt-4">
+                                        <button class="btn btn-danger">Cancelar</button>
+                                        <button class="btn btn-success" v-on:click="addAddress = true" >Guardar</button>
+
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+
+                    @*Address*@
+                    <div v-show="addAddress" class="row mt-5">
+                        <div class="col-md-6 col-xl-5 mb-4"> 
+                            <div class="card wow fadeInRight" data-wow-delay="0.3s">
+                                <div class="card-body">
+
+                                    <div class="text-center">
+                                        <h3 class="white-text">
+                                            <i class="fas fa-user white-text"></i> My Direccion
+                                        </h3>
+                                        <hr class="hr-light">
+                                    </div>
+
+                                    <div class="md-form">
+                                        <label for="provincia" class="active">Provincia</label>
+                                        <i class="fas fa-user prefix white-text active"></i>
+                                        <select name="Prefijo" v-model="domicilio.idprovincia" class="form-control">
+                                            <option id="provincia" v-for="provincia in p_comboProvincia" v-bind:value="provincia.id">
+                                                {{provincia.nombre}}
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+                                    <div class="md-form">
+                                        <i class="fas fa-user prefix white-text active"></i>
+                                        <input type="text" id="barrio" v-model="domicilio.barrio" class="white-text form-control">
+                                        <label for="barrio" class="active">Barrio</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="fas fa-user prefix white-text active"></i>
+                                        <input type="text" id="calle" v-model="domicilio.calle" class="white-text form-control">
+                                        <label for="calle" class="active">Calle</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="fas fa-envelope prefix white-text active"></i>
+                                        <input type="text" id="numero" v-model="domicilio.numero" class="white-text form-control">
+                                        <label for="numero" class="active">Numero</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="fas fa-lock prefix white-text active"></i>
+                                        <input type="text" id="piso" v-model="domicilio.piso" class="white-text form-control">
+                                        <label for="piso">Piso</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="fas fa-user prefix white-text active"></i>
+                                        <input type="text" id="numeroDepartamento" v-model="domicilio.numeroDepartamento" class="white-text form-control">
+                                        <label for="numeroDepartamento" class="active">Numero de partamento</label>
+                                    </div>
+
+                                    <br />
 
                                     <div class="text-center mt-4">
-                                        <button class="btn btn-indigo">Sign up</button>
-                                        <hr class="hr-light mb-3 mt-4">
-                                        <div class="inline-ul text-center">
-                                            <a class="p-2 m-2 tw-ic">
-                                                <i class="fab fa-twitter white-text"></i>
-                                            </a>
-                                            <a class="p-2 m-2 li-ic">
-                                                <i class="fab fa-linkedin-in white-text"> </i>
-                                            </a>
-                                            <a class="p-2 m-2 ins-ic">
-                                                <i class="fas fa-instagram white-text"> </i>
-                                            </a>
-                                        </div>
+                                        <button class="btn btn-danger" v-on:click="addAddress = false" >Volver</button>
+                                        <button class="btn btn-success">Guardar</button>
                                     </div>
                                 </div>
                             </div>
-                        
+
                         </div>
-                       
                     </div>
-                  
                 </div>
               
             </div>

@@ -14,74 +14,74 @@ namespace ElClima.ApplicationServices.Setup.Common
         public static void Initialize(IUnitOfWork unitOfWork)
         {
 
-            var provinciasJson =  Resources.ResourceManager.GetString("provinciasa_json");
-            var localidadesJson = Properties.Resources.ResourceManager.GetString("localidades_json");
+            //var provinciasJson =  Resources.ResourceManager.GetString("provinciasa_json");
+            //var localidadesJson = Properties.Resources.ResourceManager.GetString("localidades_json");
 
-            var provinciasPredeterminadas = JsonConvert.DeserializeObject<List<ProvinciaArgentinaJson>>(provinciasJson);
-            var localidadesPredeterminadas = JsonConvert.DeserializeObject<List<LocalidadArgentinaJson>>(localidadesJson);
+            //var provinciasPredeterminadas = JsonConvert.DeserializeObject<List<ProvinciaArgentinaJson>>(provinciasJson);
+            //var localidadesPredeterminadas = JsonConvert.DeserializeObject<List<LocalidadArgentinaJson>>(localidadesJson);
 
-            // Creamos una lista de localidades con su provincia
-            var localidadesProvinciasJoin = (from localidad in localidadesPredeterminadas
-                                             join provincia in provinciasPredeterminadas
-                                                 on localidad.IdProvincia equals provincia.ProvinciaId
-                                                 into grouping
-                                             from provincia in grouping.DefaultIfEmpty()
-                                             select new { localidad, provincia }).ToList();
+            //// Creamos una lista de localidades con su provincia
+            //var localidadesProvinciasJoin = (from localidad in localidadesPredeterminadas
+            //                                 join provincia in provinciasPredeterminadas
+            //                                     on localidad.IdProvincia equals provincia.ProvinciaId
+            //                                     into grouping
+            //                                 from provincia in grouping.DefaultIfEmpty()
+            //                                 select new { localidad, provincia }).ToList();
 
-            //Inicializamos provincias primero
-            var provinciaService = new Service<Provincia>(unitOfWork);
-            var provincias = provinciaService.GetAll();
-            //var paisService = new Service<Pais>(unitOfWork);
-            //var argentina = paisService.GetOne((int)PaisEnum.Argentina);
+            ////Inicializamos provincias primero
+            //var provinciaService = new Service<Provincia>(unitOfWork);
+            //var provincias = provinciaService.GetAll();
+            ////var paisService = new Service<Pais>(unitOfWork);
+            ////var argentina = paisService.GetOne((int)PaisEnum.Argentina);
 
-            var provinciasAInsertar = new List<Provincia>();
-            foreach (var item in provinciasPredeterminadas)
-            {
-                if (provincias.All(exist => item.Detalle != exist.nombre))
-                {
-                    var provincia = new Provincia
-                    {
-                        id = item.ProvinciaId,
-                        nombre = item.Detalle, 
-                    };
+            //var provinciasAInsertar = new List<Provincia>();
+            //foreach (var item in provinciasPredeterminadas)
+            //{
+            //    if (provincias.All(exist => item.Detalle != exist.nombre))
+            //    {
+            //        var provincia = new Provincia
+            //        {
+            //            id = item.ProvinciaId,
+            //            nombre = item.Detalle, 
+            //        };
 
-                    provinciasAInsertar.Add(provincia);
-                }
-            }
+            //        provinciasAInsertar.Add(provincia);
+            //    }
+            //}
 
-            provinciaService.BulkInsertOrUpdate(provinciasAInsertar);
+            //provinciaService.BulkInsertOrUpdate(provinciasAInsertar);
 
 
-            //Luego las localidades
-            var localidadService = new Service<Localidad>(unitOfWork);
-            var localidades = localidadService.GetAll();
-            //provincias = provinciaService.GetByFilter(f => f.Pais == argentina);
+            ////Luego las localidades
+            //var localidadService = new Service<Localidad>(unitOfWork);
+            //var localidades = localidadService.GetAll();
+            ////provincias = provinciaService.GetByFilter(f => f.Pais == argentina);
      
 
-            var localidadesAInsertar = new List<Localidad>();
-            foreach (var item in localidadesProvinciasJoin)
-            {
-                if (localidades.All(exist => item.localidad.Detalle != exist.nombre))
-                {
-                    var localidadAInsertar = new Localidad
-                    {
-                        nombre = item.localidad.Detalle,
-                        provincia = provincias.SingleOrDefault(f => f.nombre == item.provincia.Detalle), 
-                        codigoPostal = item.localidad.CodigoPostal
-                    };
+            //var localidadesAInsertar = new List<Localidad>();
+            //foreach (var item in localidadesProvinciasJoin)
+            //{
+            //    if (localidades.All(exist => item.localidad.Detalle != exist.nombre))
+            //    {
+            //        var localidadAInsertar = new Localidad
+            //        {
+            //            nombre = item.localidad.Detalle,
+            //            provincia = provincias.SingleOrDefault(f => f.nombre == item.provincia.Detalle), 
+            //            codigoPostal = item.localidad.CodigoPostal
+            //        };
 
             
 
-                    // Lo marcamos para dar de alta pero no lo damos de alta aqui.
-                    localidadesAInsertar.Add(localidadAInsertar);
+            //        // Lo marcamos para dar de alta pero no lo damos de alta aqui.
+            //        localidadesAInsertar.Add(localidadAInsertar);
                    
-                }
-            }
+            //    }
+            //}
 
-            localidadService.BulkInsertOrUpdate(localidadesAInsertar);
+            //localidadService.BulkInsertOrUpdate(localidadesAInsertar);
 
-            // Aqui se dan todas las altas.
-            //unitOfWork.SaveChanges();
+            //// Aqui se dan todas las altas.
+            ////unitOfWork.SaveChanges();
 
         }
 

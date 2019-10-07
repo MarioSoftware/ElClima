@@ -82,5 +82,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
                 return ret;
               
         }
+
+
     }
 }

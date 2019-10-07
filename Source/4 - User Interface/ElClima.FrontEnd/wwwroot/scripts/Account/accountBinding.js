@@ -3,6 +3,7 @@
 var vm = new Vue({
     el: "#accountForm",
     data: {
+        addAddress:false,
         id: 0,
         apellido: "",
         nombre: "",
@@ -10,18 +11,18 @@ var vm = new Vue({
         fechaNacimiento:"",
         idSexo: 1,
         domicilio: {
-            Idprovincia: 0,
+            idprovincia: 0,
             idLocalidad:0,
             calle: "",
-            numero: 0,
-            piso: 0,
+            numero: "",
+            piso: "",
             numeroDepartamento: "",
             barrio: "",
             ubicacion: {}
         },
          
-        comboProvincia: [],
-        comboLocalidad: [],
+        p_comboProvincia: [{ id: 1, nombre: "Cordoba" }, { id: 2, nombre: "Bs As" }, { id: 3, nombre: "Salta" }],
+        p_comboLocalidad: [],
 
         p_ErrorMessage: "",
         p_SuccessMessage: ""
