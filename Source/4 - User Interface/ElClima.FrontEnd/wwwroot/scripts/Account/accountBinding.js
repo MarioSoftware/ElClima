@@ -19,12 +19,12 @@ var vm = new Vue({
             piso: "",
             departamento: "",
             barrio: "",
-            ubicacion: {}
+            ubicacion: {
+                latitud: 0,
+                longitud:0
+            }
         },
-
-        Latitud: 0,
-        Longitud:0,
-
+         
         loadingLocalities:false,
 
         p_comboProvincia: [{ id: 1, nombre: "Cordoba" }, { id: 2, nombre: "Bs As" }, { id: 3, nombre: "Salta" }],

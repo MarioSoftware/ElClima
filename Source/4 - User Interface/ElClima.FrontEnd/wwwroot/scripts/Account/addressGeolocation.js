@@ -4,8 +4,8 @@ var placeSearch, autocomplete;
 var map = null;
 
 function DrawMap() {
-    if (vm.$data.Longitud !== 0 || vm.$data.Latitud !== 0) {
-        defaultCenter = { lat: vm.$data.Latitud, lng: vm.$data.Longitud };
+    if (vm.$data.domicilio.ubicacion.longitud !== 0 || vm.$data.domicilio.ubicacion.latitud !== 0) {
+        defaultCenter = { lat: vm.$data.domicilio.ubicacion.latitud, lng: vm.$data.Longitud };
     } else {
         if (!defaultCenter) {
             defaultCenter = { lng: -64.1943410221038, lat: -31.399427685778598 };//Cordoba  
@@ -14,17 +14,44 @@ function DrawMap() {
 
     map = new google.maps.Map(document.getElementById('map'), {
         center: defaultCenter,
-        zoom: 19,
+        zoom: 20,
         mapTypeId: 'satellite'
     });
 
     addMarker(defaultCenter);
-
-    //Click Listener
+      
     map.addListener('click', function (event) {
         addMarker(event.latLng);
     });
 
+
+    //Autocomplete configs
+    var input = document.getElementById('pac-input');
+    $("#pac-input").attr("placeholder", "");
+    var searchBox = new google.maps.places.SearchBox(input);
+    
+    map.addListener('bounds_changed', function () {
+        searchBox.setBounds(map.getBounds());
+    });
+    
+    autocomplete = new google.maps.places.Autocomplete(document.getElementById('pac-input'), { types: ['geocode'] });
+
+    autocomplete.addListener('place_changed', actualizarMapa);
+}
+
+function actualizarMapa() { 
+
+    var place = autocomplete.getPlace();
+
+    var bounds = new google.maps.LatLngBounds(); 
+
+    if (place.geometry.viewport) {
+        bounds.union(place.geometry.viewport);
+    } else {
+        bounds.extend(place.geometry.location);
+    } 
+    map.fitBounds(bounds); 
+    addMarker(bounds.getCenter());
 }
 
 function addMarker(location) {
@@ -36,8 +63,10 @@ function addMarker(location) {
         map: map
     });
 
-    vm.$data.Latitud = typeof location.lat === 'function' ? location.lat() : location.lat;
-    vm.$data.Longitud = typeof location.lng === 'function' ? location.lng() : location.lng;
+    vm.$data.domicilio.ubicacion.latitud = typeof location.lat === 'function' ? location.lat() : location.lat;
+    vm.$data.domicilio.ubicacion.longitud = typeof location.lng === 'function' ? location.lng() : location.lng;
 
-    defaultCenter = { lat: vm.$data.Latitud, lng: vm.$data.Longitud };
+    defaultCenter = { lat: vm.$data.domicilio.ubicacion.latitud, lng: vm.$data.domicilio.ubicacion.longitud };
+     
 } 
+
