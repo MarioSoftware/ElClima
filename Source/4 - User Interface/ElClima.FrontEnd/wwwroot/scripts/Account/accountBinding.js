@@ -3,7 +3,8 @@
 var vm = new Vue({
     el: "#accountForm",
     data: {
-        addAddress:false,
+        addAddress: false,
+        runGeolocation: false,
         id: 0,
         apellido: "",
         nombre: "",
@@ -20,6 +21,9 @@ var vm = new Vue({
             barrio: "",
             ubicacion: {}
         },
+
+        Latitud: 0,
+        Longitud:0,
 
         loadingLocalities:false,
 
@@ -53,6 +57,10 @@ var vm = new Vue({
                 vm.$data.loadingLocalities = false;
             }); 
 
+        },
+        SetLocation: function () {
+            this.runGeolocation = true;
+            DrawMap();
         }
     }
 

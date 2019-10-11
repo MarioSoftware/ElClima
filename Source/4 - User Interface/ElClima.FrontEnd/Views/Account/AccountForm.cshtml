@@ -6,6 +6,7 @@
     <script src="~/assets/plugins/moment/moment.js" asp-append-version="true"></script>
     <script src="~/assets/plugins/bootstrap/js/bootstrap-datetimepicker.min.js" asp-append-version="true"></script>
     <script src="~/scripts/Account/accountBinding.js" asp-append-version="true"></script>
+    <script src="~/scripts/Account/addressGeolocation.js" asp-append-version="true"></script>
 
     <script type="text/javascript">
         new WOW().init();
@@ -15,11 +16,14 @@
 @{
     MasterLayoutHelper.AddLineToDocumentReadyFunction(string.Format("FormBinding({0});", ViewBag.Id), Context);
 }
-<head>
-    @*CSS Style sheet*@ 
-    <link rel="stylesheet" type="text/css" href="~/assets/css/Account/accountForm.css" />
-    <link rel="stylesheet" type="text/css" href="~/assets/plugins/bootstrap/css/bootstrap-datetimepicker.css" />
-</head>
+    <head>
+        @*CSS Style sheet*@
+        <link rel="stylesheet" type="text/css" href="~/assets/css/Account/accountForm.css" />
+        <link rel="stylesheet" type="text/css" href="~/assets/plugins/bootstrap/css/bootstrap-datetimepicker.css" />
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpGwfqc1p6G8ydP1AXaNYtOavIx_dcYvU&libraries=places"
+                async defer></script>
+    </head>
 
  
 
@@ -32,10 +36,9 @@
             <div class="mask rgba-gradient align-items-center">
                 
                 <div class="container">
-
                     @*Persnal Data*@
-                    <div v-show="!addAddress" class="row mt-5">
-                        <div class="col-md-6 col-xl-5 mb-4"> 
+                    <div v-show="!addAddress && !runGeolocation" class="row mt-5">
+                        <div class="col-md-6 col-xl-5 mb-4">
                             <div class="card wow fadeInRight" data-wow-delay="0.3s">
                                 <div class="card-body">
 
@@ -70,17 +73,16 @@
                                     </div><br />
                                     <div class="text-center mt-4">
                                         <button class="btn btn-danger">Cancelar</button>
-                                        <button class="btn btn-success" v-on:click="addAddress = true" >Guardar</button>
+                                        <button class="btn btn-success" v-on:click="addAddress = true">Guardar</button>
 
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
-
                     @*Address*@
-                    <div v-show="addAddress" class="row mt-5">
-                        <div class="col-md-6 col-xl-5 mb-4"> 
+                    <div v-show="addAddress && !runGeolocation" class="row mt-5">
+                        <div class="col-md-6 col-xl-5 mb-4">
                             <div class="card wow fadeInRight" data-wow-delay="0.3s">
                                 <div class="card-body">
 
@@ -89,7 +91,7 @@
                                             <i class="fas fa-user white-text"></i> My Direccion
                                         </h3>
                                         <hr class="hr-light">
-                                    </div> 
+                                    </div>
                                     <div class="md-form">
                                         <label for="provincia" class="active">Provincia</label>
                                         <i class="fas fa-user prefix white-text active"></i>
@@ -101,14 +103,14 @@
 
                                     </div>
 
-                                    <div class="md-form"> 
+                                    <div class="md-form">
                                         <label for="localidad" class="active">Localidad<span v-show="loadingLocalities" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span></label>
                                         <i class="fas fa-user prefix white-text active"></i>
                                         <select name="localidad" v-model="domicilio.idLocalidad" class="form-control">
                                             <option id="localidad" v-for="localidad in p_comboLocalidad" v-bind:value="localidad.id">
                                                 {{localidad.nombre}}
                                             </option>
-                                        </select> 
+                                        </select>
                                     </div>
 
                                     <div class="md-form">
@@ -141,7 +143,33 @@
 
                                     <div class="text-center mt-4">
                                         <button class="btn btn-danger" v-on:click="addAddress = false">Volver</button>
-                                        <button class="btn btn-success">Guardar</button>
+                                        <button class="btn btn-success" v-on:click="SetLocation()">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    @*Location*@
+                    <div v-show="addAddress && runGeolocation" class="row mt-5">
+                        <div class="col-md-6 col-xl-5 mb-4">
+                            <div class="card wow fadeInRight" data-wow-delay="0.3s">
+                                <div class="card-body">
+
+                                    <div class="text-center">
+                                        <h3 class="white-text">
+                                            <i class="fas fa-user white-text"></i>Esta es mi ubicacion
+                                        </h3>
+                                        <hr class="hr-light">
+                                    </div>
+                                  
+                                        <div id="map" class="form-control"  style="height:600px; width: 100%;"></div> 
+                                     
+                                    <br />
+
+                                    <div class="text-center mt-4">
+                                        <button class="btn btn-danger" v-on:click="runGeolocation = false">Volver</button>
+                                        <button class="btn btn-success">Listo!</button>
                                     </div>
                                 </div>
                             </div>
