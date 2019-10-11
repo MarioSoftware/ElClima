@@ -5,7 +5,7 @@ var map = null;
 
 function DrawMap() {
     if (vm.$data.domicilio.ubicacion.longitud !== 0 || vm.$data.domicilio.ubicacion.latitud !== 0) {
-        defaultCenter = { lat: vm.$data.domicilio.ubicacion.latitud, lng: vm.$data.Longitud };
+        defaultCenter = { lat: vm.$data.domicilio.ubicacion.latitud, lng: vm.$data.domicilio.ubicacion.longitud };
     } else {
         if (!defaultCenter) {
             defaultCenter = { lng: -64.1943410221038, lat: -31.399427685778598 };//Cordoba  
