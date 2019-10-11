@@ -61,8 +61,10 @@ var vm = new Vue({
         },
         SetLocation: function () {
             this.runGeolocation = true;
-            DrawMap();
-            this.domicilio.ubicacion.direccion = this.domicilio.calle + " " + this.domicilio.numero;
+            if (!map) {
+                DrawMap();
+                this.domicilio.ubicacion.direccion = this.domicilio.calle + " " + this.domicilio.numero;
+            }            
         }
     }
 
