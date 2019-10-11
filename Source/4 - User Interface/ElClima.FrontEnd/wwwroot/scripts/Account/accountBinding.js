@@ -21,7 +21,8 @@ var vm = new Vue({
             barrio: "",
             ubicacion: {
                 latitud: 0,
-                longitud:0
+                longitud: 0,
+                direccion:""
             }
         },
          
@@ -61,6 +62,7 @@ var vm = new Vue({
         SetLocation: function () {
             this.runGeolocation = true;
             DrawMap();
+            this.domicilio.ubicacion.direccion = this.domicilio.calle + " " + this.domicilio.numero;
         }
     }
 
