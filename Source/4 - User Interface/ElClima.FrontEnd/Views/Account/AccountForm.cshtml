@@ -31,13 +31,13 @@
     <header>
        
       
-        <div id="accountForm" class="view">
+        <div id="accountForm" class="view" v-cloak>
            
             <div class="mask rgba-gradient align-items-center">
                 
                 <div class="container">
                     @*Persnal Data*@
-                    <div v-show="!addAddress && !runGeolocation" class="row mt-5">
+                    <div v-show="!p_addAddress && !p_runGeolocation" class="row mt-5">
                         <div class="col-md-6 col-xl-5 mb-4">
                             <div class="card wow fadeInRight" data-wow-delay="0.3s">
                                 <div class="card-body">
@@ -73,7 +73,7 @@
                                     </div><br />
                                     <div class="text-center mt-4">
                                         <button class="btn btn-danger">Cancelar</button>
-                                        <button class="btn btn-success" v-on:click="addAddress = true">Guardar</button>
+                                        <button class="btn btn-success" v-on:click="p_addAddress = true">Guardar</button>
 
                                     </div>
                                 </div>
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     @*Address*@
-                    <div v-show="addAddress && !runGeolocation" class="row mt-5">
+                    <div v-show="p_addAddress && !p_runGeolocation" class="row mt-5">
                         <div class="col-md-6 col-xl-5 mb-4">
                             <div class="card wow fadeInRight" data-wow-delay="0.3s">
                                 <div class="card-body">
@@ -104,7 +104,7 @@
                                     </div>
 
                                     <div class="md-form">
-                                        <label for="localidad" class="active">Localidad<span v-show="loadingLocalities" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span></label>
+                                        <label for="localidad" class="active">Localidad<span v-show="p_loadingLocalities" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span></label>
                                         <i class="fas fa-user prefix white-text active"></i>
                                         <select name="localidad" v-model="domicilio.idLocalidad" class="form-control">
                                             <option id="localidad" v-for="localidad in p_comboLocalidad" v-bind:value="localidad.id">
@@ -142,7 +142,7 @@
                                     <br />
 
                                     <div class="text-center mt-4">
-                                        <button class="btn btn-danger" v-on:click="addAddress = false">Volver</button>
+                                        <button class="btn btn-danger" v-on:click="p_addAddress = false">Volver</button>
                                         <button class="btn btn-success" v-on:click="SetLocation()">Guardar</button>
                                     </div>
                                 </div>
@@ -151,7 +151,7 @@
                         </div>
                     </div>
                     @*Location*@
-                    <div v-show="addAddress && runGeolocation" class="row mt-5">
+                    <div v-show="p_addAddress && p_runGeolocation" class="row mt-5">
                         <div class="col-md-6 col-xl-5 mb-4">
                             <div class="card wow fadeInRight" data-wow-delay="0.3s">
                                 <div class="card-body">
@@ -174,8 +174,8 @@
 
                                     <br /> 
                                     <div class="text-center mt-4">
-                                        <button class="btn btn-danger" v-on:click="runGeolocation = false">Volver</button>
-                                        <button class="btn btn-success">Listo!</button>
+                                        <button class="btn btn-danger" v-on:click="p_runGeolocation = false">Volver</button>
+                                        <button class="btn btn-success" v-on:click="SavePerson()" >Listo!</button>
                                     </div>
                                 </div>
                             </div>

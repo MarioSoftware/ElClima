@@ -28,18 +28,20 @@
 </head>
 <body>
     <!-- WRAPPER -->
-   
+
     @RenderBody()
 
     <!--JAVASCRIPT FILES-->
-     
+
     <script src="~/assets/plugins/vuejs/dev/vue.js"></script>
     <script type="text/javascript" src="/assets/plugins/jquery/development/jquery-3.4.1.js"></script>
-    <script src="~/assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+    <script src="~/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
     @*---mdb---*@
     <script src="~/assets/plugins/mdb/js/mdb.min.js" asp-append-version="true"></script>
     <script src="~/assets/plugins/mdb/js/popper.min.js" asp-append-version="true"></script>
+
+    <script src="~/scripts/Common/utils.js"></script>
 
     @RenderSection("DelayedScripts", false)
 

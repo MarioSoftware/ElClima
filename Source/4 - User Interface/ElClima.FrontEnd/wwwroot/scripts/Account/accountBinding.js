@@ -3,8 +3,8 @@
 var vm = new Vue({
     el: "#accountForm",
     data: {
-        addAddress: false,
-        runGeolocation: false,
+        p_addAddress: false,
+        p_runGeolocation: false,
         id: 0,
         apellido: "",
         nombre: "",
@@ -20,13 +20,14 @@ var vm = new Vue({
             departamento: "",
             barrio: "",
             ubicacion: {
+                id:0,
                 latitud: 0,
                 longitud: 0,
                 direccion:""
             }
         },
          
-        loadingLocalities:false,
+        p_loadingLocalities:false,
 
         p_comboProvincia: [{ id: 1, nombre: "Cordoba" }, { id: 2, nombre: "Bs As" }, { id: 3, nombre: "Salta" }],
         p_comboLocalidad: [],
@@ -60,11 +61,27 @@ var vm = new Vue({
 
         },
         SetLocation: function () {
-            this.runGeolocation = true;
+            this.p_runGeolocation = true;
             if (!map) {
                 DrawMap();
                 this.domicilio.ubicacion.direccion = this.domicilio.calle + " " + this.domicilio.numero;
             }            
+        },
+        SavePerson: function () {
+
+            var entityJson = JSON.stringify(vm.$data, ExcludePrivateFields);
+
+            $.ajax({
+                url: WebApiBaseUrl + "/Add",
+                type: "POST",
+                data: entityJson,
+                contentType: "application/json;chartset=utf-8",
+                processData:true
+            }).done(function (data) {
+            }).fail(function (err) {
+            }).always(function () {
+            });
+
         }
     }
 
