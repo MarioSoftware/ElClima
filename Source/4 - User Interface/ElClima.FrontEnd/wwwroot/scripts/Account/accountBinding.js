@@ -10,7 +10,7 @@ var vm = new Vue({
         nombre: "",
         dni: "",
         fechaNacimiento:"",
-        idSexo: 1,
+        idSexo: 1, 
         domicilio: {
             idProvincia: 0,
             idLocalidad:0,
@@ -44,7 +44,7 @@ var vm = new Vue({
     },
     methods: {
         GetLocalities: function () { 
-            vm.$data.loadingLocalities = true; 
+            vm.$data.p_loadingLocalities = true; 
             $.ajax({
                 url: WebApiBaseUrl + "/GetLocalities/" + vm.$data.domicilio.idProvincia,
                 type: "GET",
@@ -56,7 +56,7 @@ var vm = new Vue({
                 }
             }).fail(function (err) {
             }).always(function () {
-                vm.$data.loadingLocalities = false;
+                vm.$data.p_loadingLocalities = false;
             }); 
 
         },
