@@ -6,147 +6,138 @@
     <script src="~/assets/plugins/moment/moment.js" asp-append-version="true"></script>
     <script src="~/assets/plugins/bootstrap/js/bootstrap-datetimepicker.min.js" asp-append-version="true"></script>
     <script src="~/scripts/Account/accountBinding.js" asp-append-version="true"></script>
-    <script src="~/scripts/Account/addressGeolocation.js" asp-append-version="true"></script> 
+    <script src="~/scripts/Account/addressGeolocation.js" asp-append-version="true"></script>
 }
 
 @{
     MasterLayoutHelper.AddLineToDocumentReadyFunction(string.Format("FormBinding({0});", ViewBag.Id), Context);
 }
-    <head>
-        @*CSS Style sheet*@
-        @*<link rel="stylesheet" type="text/css" href="~/assets/css/Account/accountForm.css" />*@ 
+<head>
+    @*CSS Style sheet*@ 
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpGwfqc1p6G8ydP1AXaNYtOavIx_dcYvU&libraries=places"
-                async defer></script>
-    </head> 
-   
-    <form id="accountForm" class="" v-cloak>  
-                    @*Persnal Data*@
-                    <div v-show="!p_addAddress && !p_runGeolocation"> 
-                                    <div class="text-center">
-                                        <h3 class="white-text">
-                                            <i class="fas fa-user white-text"></i> Mis datos
-                                        </h3>
-                                        <hr class="hr-light">
-                                    </div>
-                                    <div class="md-form">
-                                        <i class="fas fa-user prefix white-text active"></i>
-                                        <input type="text" id="dni" v-model="dni" class="white-text form-control">
-                                        <label for="dni" class="active">Dni</label>
-                                    </div>
-                                    <div class="md-form">
-                                        <i class="fas fa-user prefix white-text active"></i>
-                                        <input type="text" id="apellido" v-model="apellido" class="white-text form-control">
-                                        <label for="apellido" class="active">Apellido</label>
-                                    </div>
-                                    <div class="md-form">
-                                        <i class="fas fa-envelope prefix white-text active"></i>
-                                        <input type="text" id="nombre" v-model="nombre" class="white-text form-control">
-                                        <label for="nombre" class="active">Nombre</label>
-                                    </div>
-                                    <div class="md-form">
-                                        <i class="fas fa-lock prefix white-text active"></i>
-                                        <input type="text" id="fechaNacimiento" v-model="fechaNacimiento" class="white-text form-control">
-                                        <label for="fechaNacimiento">Fecha de nacimiento</label>
-                                    </div>
-                                    <div class="md-form">
-                                        <i class="fas fa-lock prefix white-text active"></i>
-                                        <label class="switch">
-                                            <input type="checkbox" v-model="idSexo" class="white-text form-control" v-bind:true-value="1" v-bind:false-value="2">
-                                            <span class="slider  round"></span>
-                                        </label>
-                                    </div><br />
-                                    <div class="text-center mt-4">
-                                        <button class="btn btn-danger">Cancelar</button>
-                                        <button class="btn btn-success" v-on:click="p_addAddress = true">Guardar</button>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpGwfqc1p6G8ydP1AXaNYtOavIx_dcYvU&libraries=places"
+            async defer></script>
+</head>
 
-                                    </div>   
-                    </div>
-                    @*Address*@
-                    <div v-show="p_addAddress && !p_runGeolocation" > 
-                                    <div class="text-center">
-                                        <h3 class="white-text">
-                                            <i class="fas fa-user white-text"></i> My Direccion
-                                        </h3>
-                                        <hr class="hr-light">
-                                    </div>
-                                    <div class="md-form">
-                                        <label for="provincia" class="active">Provincia</label>
-                                        <i class="fas fa-user prefix white-text active"></i>
-                                        <select name="provincia" v-model="domicilio.idProvincia" class="form-control">
-                                            <option id="provincia" v-for="provincia in p_comboProvincia" v-bind:value="provincia.id">
-                                                {{provincia.nombre}}
-                                            </option>
-                                        </select>
+<form id="accountForm" class="" v-cloak>
+    @*Persnal Data*@
+    <div v-show="!p_addAddress && !p_runGeolocation">
+        <div class="text-center">
+            <h3>
+                <i class="fas fa-user"></i> Mis datos
+            </h3>
+            <hr class="hr-light">
+        </div>
+        <div class="md-form">
+            <i class="fas fa-user prefix active"></i>
+            <input type="text" id="dni" v-model="dni" class="form-control">
+            <label for="dni" class="active">Dni</label>
+        </div>
+        <div class="md-form">
+            <i class="fas fa-user prefix active"></i>
+            <input type="text" id="apellido" v-model="apellido" class="form-control">
+            <label for="apellido" class="active">Apellido</label>
+        </div>
+        <div class="md-form">
+            <i class="fas fa-envelope prefix active"></i>
+            <input type="text" id="nombre" v-model="nombre" class="form-control">
+            <label for="nombre" class="active">Nombre</label>
+        </div>
+        <div class="md-form">
+            <i class="fas fa-lock prefix active"></i>
+            <input type="text" id="fechaNacimiento" v-model="fechaNacimiento" class="form-control">
+            <label for="fechaNacimiento">Fecha de nacimiento</label>
+        </div>
 
-                                    </div>
+        <div class="text-center mt-4">
+            <button type="button" class="btn btn-danger">Cancelar</button>
+            <button type="button" class="btn btn-success" v-on:click="p_addAddress = true">Guardar</button>
+        </div>
+    </div>
+    @*Address*@
+    <div v-show="p_addAddress && !p_runGeolocation">
+        <div class="text-center">
+            <h3>
+                <i class="fas fa-user"></i> My Direccion
+            </h3>
+            <hr class="hr-light">
+        </div>
+        <div class="md-form">
+            <label for="provincia" class="active">Provincia</label>
+            <i class="fas fa-user prefix active"></i>
+            <select name="provincia" v-model="domicilio.idProvincia" class="form-control">
+                <option id="provincia" v-for="provincia in p_comboProvincia" v-bind:value="provincia.id">
+                    {{provincia.nombre}}
+                </option>
+            </select>
 
-                                    <div class="md-form">
-                                        <label for="localidad" class="active">Localidad<span v-show="p_loadingLocalities" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span></label>
-                                        <i class="fas fa-user prefix white-text active"></i>
-                                        <select name="localidad" v-model="domicilio.idLocalidad" class="form-control">
-                                            <option id="localidad" v-for="localidad in p_comboLocalidad" v-bind:value="localidad.id">
-                                                {{localidad.nombre}}
-                                            </option>
-                                        </select>
-                                    </div>
+        </div>
 
-                                    <div class="md-form">
-                                        <i class="fas fa-user prefix white-text active"></i>
-                                        <input type="text" id="barrio" v-model="domicilio.barrio" class="white-text form-control">
-                                        <label for="barrio" class="active">Barrio</label>
-                                    </div>
-                                    <div class="md-form">
-                                        <i class="fas fa-user prefix white-text active"></i>
-                                        <input type="text" id="calle" v-model="domicilio.calle" class="white-text form-control">
-                                        <label for="calle" class="active">Calle</label>
-                                    </div>
-                                    <div class="md-form">
-                                        <i class="fas fa-envelope prefix white-text active"></i>
-                                        <input type="text" id="numero" v-model="domicilio.numero" class="white-text form-control">
-                                        <label for="numero" class="active">Número</label>
-                                    </div>
-                                    <div class="md-form">
-                                        <i class="fas fa-lock prefix white-text active"></i>
-                                        <input type="text" id="piso" v-model="domicilio.piso" class="white-text form-control">
-                                        <label for="piso">Piso</label>
-                                    </div>
-                                    <div class="md-form">
-                                        <i class="fas fa-user prefix white-text active"></i>
-                                        <input type="text" id="departamento" v-model="domicilio.departamento" class="white-text form-control">
-                                        <label for="departamento" class="active">Departamento</label>
-                                    </div>
+        <div class="md-form">
+            <label for="localidad" class="active">Localidad<span v-show="p_loadingLocalities" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span></label>
+            <i class="fas fa-user prefix  active"></i>
+            <select name="localidad" v-model="domicilio.idLocalidad" class="form-control">
+                <option id="localidad" v-for="localidad in p_comboLocalidad" v-bind:value="localidad.id">
+                    {{localidad.nombre}}
+                </option>
+            </select>
+        </div>
 
-                                    <br />
+        <div class="md-form">
+            <i class="fas fa-user prefix active"></i>
+            <input type="text" id="barrio" v-model="domicilio.barrio" class="form-control">
+            <label for="barrio" class="active">Barrio</label>
+        </div>
+        <div class="md-form">
+            <i class="fas fa-user prefix active"></i>
+            <input type="text" id="calle" v-model="domicilio.calle" class="form-control">
+            <label for="calle" class="active">Calle</label>
+        </div>
+        <div class="md-form">
+            <i class="fas fa-envelope prefix active"></i>
+            <input type="text" id="numero" v-model="domicilio.numero" class="form-control">
+            <label for="numero" class="active">Número</label>
+        </div>
+        <div class="md-form">
+            <i class="fas fa-lock prefix active"></i>
+            <input type="text" id="piso" v-model="domicilio.piso" class="form-control">
+            <label for="piso">Piso</label>
+        </div>
+        <div class="md-form">
+            <i class="fas fa-user prefix active"></i>
+            <input type="text" id="departamento" v-model="domicilio.departamento" class=" form-control">
+            <label for="departamento" class="active">Departamento</label>
+        </div>
 
-                                    <div class="text-center mt-4">
-                                        <button class="btn btn-danger" v-on:click="p_addAddress = false">Volver</button>
-                                        <button class="btn btn-success" v-on:click="SetLocation()">Guardar</button>
-                                    </div>   
-                    </div>
-                    @*Location*@
-                    <div v-show="p_addAddress && p_runGeolocation" > 
-                                    <div class="text-center">
-                                        <h3 class="white-text">
-                                            <i class="fas fa-user white-text"></i>Esta es mi ubicacion
-                                        </h3>
-                                        <hr class="hr-light">
-                                    </div>
-                                    <div class="md-form">
-                                        <div id="map"  style="height:600px; width: 100%;"></div>
-                                    </div>
-                                  
-                                    <div class="md-form">
-                                        <i class="fas fa-user prefix white-text active"></i>
-                                        <input type="text" id="pac-input" v-model="domicilio.ubicacion.direccion" class="white-text form-control">
-                                        <label for="barrio" class="active">Buscar . . .</label>
-                                    </div>
+        <br />
 
-                                    <br /> 
-                                    <div class="text-center mt-4">
-                                        <button class="btn btn-danger" v-on:click="p_runGeolocation = false">Volver</button>
-                                        <button class="btn btn-success" v-on:click="SavePerson()" >Listo!</button>
-                                    </div>  
-                    </div> 
-    </form> 
-   
+        <div class="text-center mt-4">
+            <button type="button" class="btn btn-danger" v-on:click="p_addAddress = false">Volver</button>
+            <button type="button" class="btn btn-success" v-on:click="SetLocation()">Guardar</button>
+        </div>
+    </div>
+    @*Location*@
+    <div v-show="p_addAddress && p_runGeolocation">
+        <div class="text-center">
+            <h3>
+                <i class="fas fa-user"></i>Esta es mi ubicacion
+            </h3>
+            <hr class="hr-light">
+        </div>
+        <div class="md-form">
+            <div id="map" style="height:600px; width: 100%;"></div>
+        </div>
+
+        <div class="md-form">
+            <i class="fas fa-user prefix  active"></i>
+            <input type="text" id="pac-input" v-model="domicilio.ubicacion.direccion" class="form-control">
+            <label for="barrio" class="active">Buscar . . .</label>
+        </div>
+
+        <br />
+        <div class="text-center mt-4">
+            <button type="button" class="btn btn-danger" v-on:click="p_runGeolocation = false">Volver</button>
+            <button type="button" class="btn btn-success" v-on:click="SavePerson()">Listo!</button>
+        </div>
+    </div>
+</form>
