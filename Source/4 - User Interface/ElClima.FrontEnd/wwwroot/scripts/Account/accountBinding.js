@@ -26,7 +26,8 @@ var vm = new Vue({
             }
         },
          
-        p_loadingLocalities:false,
+        p_loadingLocalities: false,
+        p_geolocationMap:false,
 
         p_comboProvincia: [{ id: 1, nombre: "Cordoba" }, { id: 2, nombre: "Bs As" }, { id: 3, nombre: "Salta" }],
         p_comboLocalidad: [],
@@ -58,13 +59,7 @@ var vm = new Vue({
                 vm.$data.p_loadingLocalities = false;
             }); 
 
-        },
-        SetLocation: function () { 
-            if (!map) {
-                DrawMap();
-                this.domicilio.ubicacion.direccion = this.domicilio.calle + " " + this.domicilio.numero;
-            }            
-        },
+        }, 
         SavePerson: function () {
 
             var entityJson = JSON.stringify(vm.$data, ExcludePrivateFields);
@@ -80,6 +75,13 @@ var vm = new Vue({
             }).always(function () {
             });
 
+        },
+        OpenMap: function () { 
+            this.p_geolocationMap = true;
+            if (!map) {
+                DrawMap();
+                this.domicilio.ubicacion.direccion = this.domicilio.calle + " " + this.domicilio.numero;
+            }   
         }
     }
 
