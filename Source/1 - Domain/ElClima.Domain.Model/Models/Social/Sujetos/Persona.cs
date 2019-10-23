@@ -23,7 +23,7 @@ namespace ElClima.Domain.Model.Models.Social.Sujetos
 
         public DateTime fechaNacimiento { get; set; }
 
-        public Ubicacion ubicacionActual{ get; set; }
+        public Ubicacion ubicacion{ get; set; }
 
         public Sexo sexo { get; set; }
 

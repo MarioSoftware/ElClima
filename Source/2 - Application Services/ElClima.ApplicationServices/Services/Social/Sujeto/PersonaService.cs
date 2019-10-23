@@ -47,7 +47,8 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
                 entity = GetOneIncluding(
                     dto.id,
                     i => i.sexo,
-                    i => i.ubicacionActual);
+                    i => i.ubicacion,
+                    i =>i.domicilio);
             }
             else
                 entity = _mapper.Map<Persona>(dto);
@@ -58,10 +59,14 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
         public void InsertDto(PersonaDto dto)
         {
 
+            TrimUniqueFields(dto);
+
             dto.id = 0;
             var item = GetEntityFromDto(dto); 
 
             UnitOfWork.SetAsAdded(item);
+            UnitOfWork.SetAsAdded(item.domicilio);
+
             Insert(item);
         }
 
@@ -69,7 +74,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
         {
             var persona = id == -1 ? new Persona()
                 : GetOneIncluding(id,
-                i => i.ubicacionActual,
+                i => i.ubicacion,
                 i => i.sexo,
                 i => i.domicilio);
 
@@ -99,6 +104,12 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
                 );
 
             return result;
+        }
+
+        private static void TrimUniqueFields(PersonaDto dto)
+        {
+            if (!string.IsNullOrWhiteSpace(dto.dni))
+                dto.dni = dto.dni.Trim();
         }
     }
 }
