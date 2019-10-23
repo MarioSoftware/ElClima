@@ -6,42 +6,23 @@
     <script src="~/assets/plugins/moment/moment.js" asp-append-version="true"></script>
     <script src="~/assets/plugins/bootstrap/js/bootstrap-datetimepicker.min.js" asp-append-version="true"></script>
     <script src="~/scripts/Account/accountBinding.js" asp-append-version="true"></script>
-    <script src="~/scripts/Account/addressGeolocation.js" asp-append-version="true"></script>
-
-    <script type="text/javascript">
-        new WOW().init();
-    </script>
-    
+    <script src="~/scripts/Account/addressGeolocation.js" asp-append-version="true"></script> 
 }
+
 @{
     MasterLayoutHelper.AddLineToDocumentReadyFunction(string.Format("FormBinding({0});", ViewBag.Id), Context);
 }
     <head>
         @*CSS Style sheet*@
-        <link rel="stylesheet" type="text/css" href="~/assets/css/Account/accountForm.css" />
-        <link rel="stylesheet" type="text/css" href="~/assets/plugins/bootstrap/css/bootstrap-datetimepicker.css" />
+        @*<link rel="stylesheet" type="text/css" href="~/assets/css/Account/accountForm.css" />*@ 
 
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpGwfqc1p6G8ydP1AXaNYtOavIx_dcYvU&libraries=places"
                 async defer></script>
-    </head>
-
- 
-
-
-    <header>
-       
-      
-        <div id="accountForm" class="view" v-cloak>
-           
-            <div class="mask rgba-gradient align-items-center">
-                
-                <div class="container">
+    </head> 
+   
+    <form id="accountForm" class="" v-cloak>  
                     @*Persnal Data*@
-                    <div v-show="!p_addAddress && !p_runGeolocation" class="row mt-5">
-                        <div class="col-md-6 col-xl-5 mb-4">
-                            <div class="card wow fadeInRight" data-wow-delay="0.3s">
-                                <div class="card-body">
-
+                    <div v-show="!p_addAddress && !p_runGeolocation"> 
                                     <div class="text-center">
                                         <h3 class="white-text">
                                             <i class="fas fa-user white-text"></i> Mis datos
@@ -79,17 +60,10 @@
                                         <button class="btn btn-danger">Cancelar</button>
                                         <button class="btn btn-success" v-on:click="p_addAddress = true">Guardar</button>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                    </div>   
                     </div>
                     @*Address*@
-                    <div v-show="p_addAddress && !p_runGeolocation" class="row mt-5">
-                        <div class="col-md-6 col-xl-5 mb-4">
-                            <div class="card wow fadeInRight" data-wow-delay="0.3s">
-                                <div class="card-body">
-
+                    <div v-show="p_addAddress && !p_runGeolocation" > 
                                     <div class="text-center">
                                         <h3 class="white-text">
                                             <i class="fas fa-user white-text"></i> My Direccion
@@ -148,18 +122,10 @@
                                     <div class="text-center mt-4">
                                         <button class="btn btn-danger" v-on:click="p_addAddress = false">Volver</button>
                                         <button class="btn btn-success" v-on:click="SetLocation()">Guardar</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                                    </div>   
                     </div>
                     @*Location*@
-                    <div v-show="p_addAddress && p_runGeolocation" class="row mt-5">
-                        <div class="col-md-6 col-xl-5 mb-4">
-                            <div class="card wow fadeInRight" data-wow-delay="0.3s">
-                                <div class="card-body">
-
+                    <div v-show="p_addAddress && p_runGeolocation" > 
                                     <div class="text-center">
                                         <h3 class="white-text">
                                             <i class="fas fa-user white-text"></i>Esta es mi ubicacion
@@ -180,18 +146,7 @@
                                     <div class="text-center mt-4">
                                         <button class="btn btn-danger" v-on:click="p_runGeolocation = false">Volver</button>
                                         <button class="btn btn-success" v-on:click="SavePerson()" >Listo!</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-              
-            </div>
-          
-        </div>
-    
-    </header>
- 
- 
+                                    </div>  
+                    </div> 
+    </form> 
+   
