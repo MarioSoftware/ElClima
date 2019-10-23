@@ -3,8 +3,7 @@
 var vm = new Vue({
     el: "#accountForm",
     data: {
-        p_addAddress: false,
-        p_runGeolocation: false,
+        p_addAddress: false, 
         id: 0,
         apellido: "",
         nombre: "",
@@ -60,8 +59,7 @@ var vm = new Vue({
             }); 
 
         },
-        SetLocation: function () {
-            this.p_runGeolocation = true;
+        SetLocation: function () { 
             if (!map) {
                 DrawMap();
                 this.domicilio.ubicacion.direccion = this.domicilio.calle + " " + this.domicilio.numero;
