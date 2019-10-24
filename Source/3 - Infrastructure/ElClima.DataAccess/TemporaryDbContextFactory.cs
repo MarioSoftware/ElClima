@@ -20,7 +20,7 @@ namespace ElClima.DataAccess
                 .Build();
 
             //this is enduro connection string  
-            //var connectionString = "Data Source=HYAMPEDERNERANB\\SQLEXPRESS; Initial Catalog=OperationalData; Integrated Security=True; Application Name=Sinie;MultipleActiveResultSets=true;";
+            //var connectionString = "Data Source=myEngineName\\SQLEXPRESS; Initial Catalog=OperationalData; Integrated Security=True; Application Name=Sinie;MultipleActiveResultSets=true;";
 
             var connectionString = connStringConfig.GetConnectionString("DefaultConnection");
 

@@ -182,6 +182,10 @@ namespace ElClima.DataAccess
                 //Sujeto 
                 PersonaConfigurator.Configure(modelBuilder);
                 DomicilioConfigurator.Configure(modelBuilder);
+                RolPersonaConfigurator.Configure(modelBuilder);
+                RolConfigurator.Configure(modelBuilder); 
+                OperacionConfigurator.Configure(modelBuilder);
+                OperacionRolConfigurator.Configure(modelBuilder);
 
                 //Perdida
                 ComentarioPerdidaConfigurator.Configure(modelBuilder);

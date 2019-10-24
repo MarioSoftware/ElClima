@@ -3,6 +3,7 @@ using ElClima.Domain.Model.Enums.Common;
 using ElClima.Domain.Model.Models.Comun;
 using ElClima.Domain.Model.Models.Posicionamiento;
 using System;
+using System.Collections.Generic;
 
 namespace ElClima.Domain.Model.Models.Social.Sujetos
 {
@@ -28,6 +29,8 @@ namespace ElClima.Domain.Model.Models.Social.Sujetos
         public Sexo sexo { get; set; }
 
         public Domicilio domicilio { get; set; }
+
+        public ICollection<RolPersona> rolPersona{ get; set; }
 
         //public ICollection<Domicilio> domicilios{ get; set; } 
     }

@@ -4,6 +4,7 @@ using ElClima.Domain.Core.DependencyInjection;
 using ElClima.ApplicationServices.Setup.Common;
 using ElClima.ApplicationServices.Setup.Social.Entidad;
 using ElClima.ApplicationServices.Setup.Social.Reporte.Robo;
+using ElClima.ApplicationServices.Setup.Social.Sujeto;
 
 namespace ElClima.ApplicationServices.Setup
 {
@@ -36,6 +37,11 @@ namespace ElClima.ApplicationServices.Setup
             MedioAsaltanteInitializator.Initialize(_uow);
             TipoInvolucradoRobInitializator.Initialize(_uow);
             ObjetoRobadoInitializator.Initialize(_uow);
+
+            //Sujeto
+            RolInitializator.Initialize(_uow);
+            OperacionInitializator.Initialize(_uow); 
+
         }
 
     }
