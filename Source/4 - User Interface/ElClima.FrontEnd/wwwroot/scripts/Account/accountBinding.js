@@ -87,8 +87,17 @@ var vm = new Vue({
                 this.domicilio.ubicacion.direccion = this.domicilio.calle + " " + this.domicilio.numero;
             }   
         },
-        CheckPersonExist: function () { 
-            this.p_credentialsShowView = false; 
+        CheckPersonExist: function () {  
+            $.ajax({
+                url: WebApiBaseUrl + "/Exist/"+this.dni,
+                type: "GET",
+                async: false, 
+            }).done(function (data) {
+                vm.$data.p_credentialsShowView = data;
+            }).fail(function (err) {
+            }).always(function () {
+            }); 
+
         }
     }
 

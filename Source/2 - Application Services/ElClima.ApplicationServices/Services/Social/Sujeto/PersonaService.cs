@@ -111,5 +111,17 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
             if (!string.IsNullOrWhiteSpace(dto.dni))
                 dto.dni = dto.dni.Trim();
         }
+
+        public bool ExistPerson(string dni)
+        {
+            var exist = false;
+            if (!string.IsNullOrWhiteSpace(dni))
+            {
+                var personas = GetByFilter(f => f.dni == dni);
+
+                exist = personas.Count != 0;
+            }
+            return exist;
+        }
     }
 }

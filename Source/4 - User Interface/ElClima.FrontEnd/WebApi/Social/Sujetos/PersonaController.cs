@@ -40,5 +40,11 @@ namespace ElClima.FrontEnd.WebApi.Social.Sujetos
         { 
             _personaService.InsertDto(entity);
         }
+
+        [HttpGet("/api/Persons/Exist/{dni}")]
+        public bool CheckPersonExist(string dni)
+        {
+            return _personaService.ExistPerson(dni);
+        }
     }
 }
