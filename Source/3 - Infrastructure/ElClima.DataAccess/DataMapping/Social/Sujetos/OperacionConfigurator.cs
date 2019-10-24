@@ -13,8 +13,8 @@ namespace ElClima.DataAccess.DataMapping.Social.Sujetos
 
                 r.Property<int>("id")
                 .IsRequired()
-                .UseSqlServerIdentityColumn()
-                .ValueGeneratedOnAdd();
+                .IsRequired()
+                .ValueGeneratedNever();
 
                 r.Property<string>("nombre")
                 .IsRequired()

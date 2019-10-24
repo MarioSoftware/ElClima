@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ElClima.DataAccess.Migrations
 {
-    public partial class addmigrationInitialMigration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,6 +25,9 @@ namespace ElClima.DataAccess.Migrations
 
             migrationBuilder.EnsureSchema(
                 name: "Sujeto");
+
+            migrationBuilder.EnsureSchema(
+                name: "Personas");
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
@@ -170,6 +173,34 @@ namespace ElClima.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TipoServicio", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Operacion",
+                schema: "Personas",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false),
+                    nombre = table.Column<string>(type: "Varchar(70)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Operacion", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Rol",
+                schema: "Personas",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    detalle = table.Column<string>(type: "Varchar(30)", nullable: false),
+                    esSuperUsuario = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rol", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -374,6 +405,35 @@ namespace ElClima.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OperacionRol",
+                schema: "Personas",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    operacionId = table.Column<int>(nullable: false),
+                    rolId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OperacionRol", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_OperacionRol_Operacion_operacionId",
+                        column: x => x.operacionId,
+                        principalSchema: "Personas",
+                        principalTable: "Operacion",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OperacionRol_Rol_rolId",
+                        column: x => x.rolId,
+                        principalSchema: "Personas",
+                        principalTable: "Rol",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Entidad",
                 schema: "Entidad",
                 columns: table => new
@@ -417,6 +477,35 @@ namespace ElClima.DataAccess.Migrations
                         name: "FK_Entidad_Ubicacion_ubicacionId",
                         column: x => x.ubicacionId,
                         principalTable: "Ubicacion",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RolPersona",
+                schema: "Personas",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    personaId = table.Column<int>(nullable: false),
+                    rolId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RolPersona", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_RolPersona_Persona_personaId",
+                        column: x => x.personaId,
+                        principalSchema: "Sujeto",
+                        principalTable: "Persona",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_RolPersona_Rol_rolId",
+                        column: x => x.rolId,
+                        principalSchema: "Personas",
+                        principalTable: "Rol",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -1319,6 +1408,31 @@ namespace ElClima.DataAccess.Migrations
                 column: "servicioId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OperacionRol_rolId",
+                schema: "Personas",
+                table: "OperacionRol",
+                column: "rolId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OperacionRol_operacionId_rolId",
+                schema: "Personas",
+                table: "OperacionRol",
+                columns: new[] { "operacionId", "rolId" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RolPersona_personaId",
+                schema: "Personas",
+                table: "RolPersona",
+                column: "personaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RolPersona_rolId",
+                schema: "Personas",
+                table: "RolPersona",
+                column: "rolId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Comentario_historiaId",
                 schema: "Reporte.Historia",
                 table: "Comentario",
@@ -1531,6 +1645,14 @@ namespace ElClima.DataAccess.Migrations
                 schema: "Entidad");
 
             migrationBuilder.DropTable(
+                name: "OperacionRol",
+                schema: "Personas");
+
+            migrationBuilder.DropTable(
+                name: "RolPersona",
+                schema: "Personas");
+
+            migrationBuilder.DropTable(
                 name: "ComentarioImagen",
                 schema: "Reporte.Historia");
 
@@ -1587,6 +1709,14 @@ namespace ElClima.DataAccess.Migrations
             migrationBuilder.DropTable(
                 name: "DiaSemana",
                 schema: "Entidad");
+
+            migrationBuilder.DropTable(
+                name: "Operacion",
+                schema: "Personas");
+
+            migrationBuilder.DropTable(
+                name: "Rol",
+                schema: "Personas");
 
             migrationBuilder.DropTable(
                 name: "ImagenHistoria",

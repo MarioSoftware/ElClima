@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElClima.DataAccess.Migrations
 {
     [DbContext(typeof(ElClimaDbContext))]
-    [Migration("20191023194606_add-migration InitialMigration")]
-    partial class addmigrationInitialMigration
+    [Migration("20191024002153_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -981,6 +981,39 @@ namespace ElClima.DataAccess.Migrations
                     b.ToTable("Domicilio","Sujeto");
                 });
 
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Sujetos.Operacion", b =>
+                {
+                    b.Property<int>("id");
+
+                    b.Property<string>("nombre")
+                        .IsRequired()
+                        .HasColumnType("Varchar(70)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Operacion","Personas");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Sujetos.OperacionRol", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("operacionId");
+
+                    b.Property<int>("rolId");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("rolId");
+
+                    b.HasIndex("operacionId", "rolId")
+                        .IsUnique();
+
+                    b.ToTable("OperacionRol","Personas");
+                });
+
             modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Sujetos.Persona", b =>
                 {
                     b.Property<int>("id")
@@ -1020,6 +1053,42 @@ namespace ElClima.DataAccess.Migrations
                     b.HasIndex("ubicacionId");
 
                     b.ToTable("Persona","Sujeto");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Sujetos.Rol", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("detalle")
+                        .IsRequired()
+                        .HasColumnType("Varchar(30)");
+
+                    b.Property<bool>("esSuperUsuario");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Rol","Personas");
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Sujetos.RolPersona", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("personaId");
+
+                    b.Property<int>("rolId");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("personaId");
+
+                    b.HasIndex("rolId");
+
+                    b.ToTable("RolPersona","Personas");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -1447,6 +1516,19 @@ namespace ElClima.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Sujetos.OperacionRol", b =>
+                {
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Sujetos.Operacion", "operacion")
+                        .WithMany()
+                        .HasForeignKey("operacionId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Sujetos.Rol", "rol")
+                        .WithMany()
+                        .HasForeignKey("rolId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
             modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Sujetos.Persona", b =>
                 {
                     b.HasOne("ElClima.Domain.Model.Models.Comun.Sexo", "sexo")
@@ -1457,6 +1539,19 @@ namespace ElClima.DataAccess.Migrations
                     b.HasOne("ElClima.Domain.Model.Models.Posicionamiento.Ubicacion", "ubicacion")
                         .WithMany()
                         .HasForeignKey("ubicacionId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Sujetos.RolPersona", b =>
+                {
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Sujetos.Persona", "persona")
+                        .WithMany("rolPersona")
+                        .HasForeignKey("personaId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Sujetos.Rol", "rol")
+                        .WithMany("rolPersona")
+                        .HasForeignKey("rolId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
