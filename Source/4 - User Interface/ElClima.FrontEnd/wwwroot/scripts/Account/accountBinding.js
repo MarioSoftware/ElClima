@@ -27,6 +27,8 @@ var vm = new Vue({
         contrasenia:"",
         contraseniaRepetir:"",
 
+        p_chekingPersonExist:false,
+
         p_addressShowView: false,  
         p_geolocationMapShowView: false,
         p_credentialsShowView:true,
@@ -88,14 +90,17 @@ var vm = new Vue({
             }   
         },
         CheckPersonExist: function () {  
+            vm.$data.p_chekingPersonExist = true;
+
             $.ajax({
-                url: WebApiBaseUrl + "/Exist/"+this.dni,
+                url: WebApiBaseUrl + "/Exist/" + this.dni,
                 type: "GET",
-                async: false, 
+                async: false
             }).done(function (data) {
                 vm.$data.p_credentialsShowView = data;
             }).fail(function (err) {
             }).always(function () {
+                vm.$data.p_chekingPersonExist = false;
             }); 
 
         }
