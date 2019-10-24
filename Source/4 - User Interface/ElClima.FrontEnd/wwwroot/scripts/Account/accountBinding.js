@@ -2,8 +2,7 @@
 
 var vm = new Vue({
     el: "#accountForm",
-    data: {
-        p_addAddress: false, 
+    data: { 
         id: 0,
         apellido: "",
         nombre: "",
@@ -25,9 +24,14 @@ var vm = new Vue({
                 direccion:""
             }
         },
-         
+        contrasenia:"",
+        contraseniaRepetir:"",
+
+        p_addressShowView: false,  
+        p_geolocationMapShowView: false,
+        p_credentialsShowView:true,
+
         p_loadingLocalities: false,
-        p_geolocationMap:false,
 
         p_comboProvincia: [{ id: 1, nombre: "Cordoba" }, { id: 2, nombre: "Bs As" }, { id: 3, nombre: "Salta" }],
         p_comboLocalidad: [],
@@ -77,11 +81,14 @@ var vm = new Vue({
 
         },
         OpenMap: function () { 
-            this.p_geolocationMap = true;
+            this.p_geolocationMapShowView = true;
             if (!map) {
                 DrawMap();
                 this.domicilio.ubicacion.direccion = this.domicilio.calle + " " + this.domicilio.numero;
             }   
+        },
+        CheckPersonExist: function () { 
+            this.p_credentialsShowView = false; 
         }
     }
 

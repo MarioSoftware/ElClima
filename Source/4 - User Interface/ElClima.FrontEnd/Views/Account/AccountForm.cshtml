@@ -20,11 +20,11 @@
     </head>
 
     <form id="accountForm" class="" v-cloak>
-        @*Persnal Data*@
-        <div v-show="!p_addAddress">
+        @*Credentials*@
+        <div v-show="p_credentialsShowView">
             <div class="text-center">
                 <h3>
-                    <i class="fas fa-user"></i> Mis datos
+                    <i class="fas fa-user"></i> Mis credenciales de Acceso
                 </h3>
                 <hr class="hr-light">
             </div>
@@ -33,6 +33,30 @@
                 <input type="text" id="dni" v-model="dni" class="form-control">
                 <label for="dni" class="active">Dni</label>
             </div>
+            <div class="md-form">
+                <i class="fas fa-user prefix active"></i>
+                <input type="password" id="password" v-model="contrasenia" class="form-control">
+                <label for="password" class="active">Contraseña</label>
+            </div>
+            <div class="md-form">
+                <i class="fas fa-user prefix active"></i>
+                <input type="password" id="passwordRepit" v-model="contraseniaRepetir" class="form-control">
+                <label for="passwordRepit" class="active">Repetir contraseña</label>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="button" class="btn btn-danger" v-on:click="alert('Volver a la pagina anterior')" >Cancelar</button>
+                <button type="button" class="btn btn-success" v-on:click="CheckPersonExist()" >Guardar</button>
+            </div>
+        </div>
+        @*Persnal Data*@
+        <div v-show="!p_credentialsShowView && !p_addressShowView">
+            <div class="text-center">
+                <h3>
+                    <i class="fas fa-user"></i> Mis datos
+                </h3>
+                <hr class="hr-light">
+            </div> 
             <div class="md-form">
                 <i class="fas fa-user prefix active"></i>
                 <input type="text" id="apellido" v-model="apellido" class="form-control">
@@ -51,11 +75,11 @@
 
             <div class="text-center mt-4">
                 <button type="button" class="btn btn-danger">Cancelar</button>
-                <button type="button" class="btn btn-success" v-on:click="p_addAddress = true">Guardar</button>
+                <button type="button" class="btn btn-success" v-on:click="p_addressShowView = true">Guardar</button>
             </div>
         </div>
         @*Address*@
-        <div v-show="p_addAddress && !p_geolocationMap">
+        <div v-show="p_addressShowView">
             <div class="text-center">
                 <h3>
                     <i class="fas fa-user"></i> My Direccion
@@ -106,17 +130,17 @@
                 <input type="text" id="departamento" v-model="domicilio.departamento" class="form-control">
                 <label for="departamento" class="active">Departamento</label>
             </div>
-            <div class="md-form"> 
+            <div class="md-form">
                 <button type="button" class="btn btn-info" v-on:click="OpenMap()">Ubicar en el mapa</button>
             </div>
-            <br /> 
+            <br />
             <div class="text-center">
-                <button type="button" class="btn btn-danger" v-on:click="p_addAddress = false">Volver</button>
-                <button type="button" class="btn btn-success">Guardar</button>
-            </div> 
+                <button type="button" class="btn btn-danger" v-on:click="p_addressShowView = false">Volver</button>
+                <button type="button" class="btn btn-success" v-on:click="SavePerson()" >Guardar</button>
+            </div>
         </div>
         @*Location*@
-        <div v-show="p_addAddress && p_geolocationMap">
+        <div v-show="p_addressShowView && p_geolocationMapShowView">
             <div class="text-center">
                 <h3>
                     <i class="fas fa-user"></i>Esta es mi ubicacion
@@ -131,11 +155,11 @@
                 <i class="fas fa-user prefix  active"></i>
                 <input type="text" id="pac-input" v-model="domicilio.ubicacion.direccion" class="form-control">
                 <label for="barrio" class="active">Buscar . . .</label>
-            </div> 
-            <br />
-            <div class="text-center"> 
-                    <button type="button" class="btn btn-block btn-success" v-on:click="p_geolocationMap = false">Listo!</button> 
             </div>
-           
-        </div> 
+            <br />
+            <div class="text-center">
+                <button type="button" class="btn btn-block btn-success" v-on:click="p_geolocationMapShowView = false">Listo!</button>
+            </div>
+
+        </div>
     </form>
