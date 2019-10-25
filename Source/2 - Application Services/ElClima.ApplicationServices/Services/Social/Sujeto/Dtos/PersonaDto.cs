@@ -22,6 +22,10 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto.Dtos
 
         public int idSexo { get; set; }
 
+        public string contrasenia { get; set; }
+
+        public string contraseniaRepetir { get; set; }
+
         public UbicacionDto ubicacion { get; set; }
 
         public DomicilioDto domicilio { get; set; } 
