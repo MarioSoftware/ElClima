@@ -3,3 +3,11 @@
         return undefined;
     return value;
 }
+
+function BlockButtons(block) { 
+    if (block) {
+        $("button").attr("disabled", true); 
+    } else {
+        $("button").attr("disabled", false); 
+    } 
+}

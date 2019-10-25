@@ -91,16 +91,22 @@ var vm = new Vue({
         },
         CheckPersonExist: function () {  
             vm.$data.p_chekingPersonExist = true;
-
+            BlockButtons(true); 
             $.ajax({
                 url: WebApiBaseUrl + "/Exist/" + this.dni,
                 type: "GET",
                 async: false
             }).done(function (data) {
-                vm.$data.p_credentialsShowView = data;
+                if (data) {
+                    vm.$data.p_credentialsShowView = data;
+                } else {
+                    vm.$data.p_credentialsShowView = data; 
+                }
+                
             }).fail(function (err) {
             }).always(function () {
                 vm.$data.p_chekingPersonExist = false;
+                BlockButtons(false);
             }); 
 
         }
