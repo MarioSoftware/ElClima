@@ -80,7 +80,7 @@ namespace ElClima.ApplicationServices.Setup.Common
             localidadService.BulkInsertOrUpdate(localidadesAInsertar);
 
             // Aqui se dan todas las altas.
-            unitOfWork.SaveChanges();
+            //unitOfWork.SaveChanges();
 
         }
 
