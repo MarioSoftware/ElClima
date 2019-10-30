@@ -18,10 +18,10 @@ namespace ElClima.DataAccess.DataMapping.Comun
 
                 l.Property<string>("nombre")
                     .IsRequired()
-                    .HasColumnType("varchar(30)");
+                    .HasColumnType("varchar(70)");
 
                 l.Property<string>("codigoPostal")
-                   .HasColumnType("varchar(8)");
+                   .HasColumnType("varchar(10)");
             });
              
             modelBuilder.Entity<Localidad>()

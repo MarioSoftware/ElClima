@@ -15,8 +15,8 @@ namespace ElClima.ApplicationServices.Setup.Common
         public static void Initialize(IUnitOfWork unitOfWork)
         {
 
-            var provinciasJson = Resources.ResourceManager.GetString("provincias_json");
-            var localidadesJson = Properties.Resources.ResourceManager.GetString("localidades_json");
+            var provinciasJson = Properties.Resources.ResourceManager.GetString("provincias_argentina_json");
+            var localidadesJson = Properties.Resources.ResourceManager.GetString("localidades_argentina_json");
 
             var provinciasPredeterminadas = JsonConvert.DeserializeObject<List<ProvinciaArgentinaJson>>(provinciasJson);
             var localidadesPredeterminadas = JsonConvert.DeserializeObject<List<LocalidadArgentinaJson>>(localidadesJson);
@@ -24,26 +24,24 @@ namespace ElClima.ApplicationServices.Setup.Common
             // Creamos una lista de localidades con su provincia
             var localidadesProvinciasJoin = (from localidad in localidadesPredeterminadas
                                              join provincia in provinciasPredeterminadas
-                                                 on localidad.provinciaId equals provincia.provinciaId
+                                                 on localidad.IdProvincia equals provincia.ProvinciaId
                                                  into grouping
                                              from provincia in grouping.DefaultIfEmpty()
                                              select new { localidad, provincia }).ToList();
 
             //Inicializamos provincias primero
             var provinciaService = new Service<Provincia>(unitOfWork);
-            var provincias = provinciaService.GetAll();
-            //var paisService = new Service<Pais>(unitOfWork);
-            //var argentina = paisService.GetOne((int)PaisEnum.Argentina);
+            var provincias = provinciaService.GetAll();  
 
             var provinciasAInsertar = new List<Provincia>();
             foreach (var item in provinciasPredeterminadas)
             {
-                if (provincias.All(exist => item.nombre != exist.nombre))
+                if (provincias.All(exist => item.Detalle != exist.nombre))
                 {
                     var provincia = new Provincia
                     {
-                        id = item.provinciaId,
-                        nombre = item.nombre,
+                        id = item.ProvinciaId,
+                        nombre = item.Detalle 
                     };
 
                     provinciasAInsertar.Add(provincia);
@@ -55,25 +53,23 @@ namespace ElClima.ApplicationServices.Setup.Common
 
             //Luego las localidades
             var localidadService = new Service<Localidad>(unitOfWork);
-            var localidades = localidadService.GetAll();
-            //provincias = provinciaService.GetByFilter(f => f.Pais == argentina);
-
+            var localidades = localidadService.GetAll(); 
 
             var localidadesAInsertar = new List<Localidad>();
             foreach (var item in localidadesProvinciasJoin)
             {
-                if (localidades.All(exist => item.localidad.nombre != exist.nombre))
+                if (localidades.All(exist => item.localidad.Detalle != exist.nombre))
                 {
                     var localidadAInsertar = new Localidad
                     {
-                        nombre = item.localidad.nombre,
-                        provincia = provincias.SingleOrDefault(f => f.nombre == item.provincia.nombre),
-                        codigoPostal = item.localidad.codigoPostal
-                    }; 
+                        nombre = item.localidad.Detalle,
+                        provincia = provincias.SingleOrDefault(f => f.nombre == item.provincia.Detalle), 
+                        codigoPostal = item.localidad.CodigoPostal
+                    };                     
 
                     // Lo marcamos para dar de alta pero no lo damos de alta aqui.
                     localidadesAInsertar.Add(localidadAInsertar);
-
+                    //unitOfWork.SetAsAdded(localidadAInsertar);
                 }
             }
 
@@ -87,16 +83,16 @@ namespace ElClima.ApplicationServices.Setup.Common
 
         private class ProvinciaArgentinaJson
         {
-            public int provinciaId { get; set; }
-            public string nombre { get; set; } 
+            public int ProvinciaId { get; set; }
+            public string Detalle { get; set; } 
         }
 
         private class LocalidadArgentinaJson
         {
-            public int localidadId { get; set; }
-            public string nombre { get; set; }
-            public int provinciaId { get; set; }
-            public string codigoPostal { get; set; }
-        }               
+            public int LocalidadId { get; set; }
+            public string Detalle { get; set; }
+            public int IdProvincia { get; set; }
+            public string CodigoPostal { get; set; }
+        }
     }
 }

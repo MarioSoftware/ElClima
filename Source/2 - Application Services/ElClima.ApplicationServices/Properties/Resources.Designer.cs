@@ -64,88 +64,86 @@ namespace ElClima.ApplicationServices.Properties {
         ///   Looks up a localized string similar to [
         ///	{
         ///		&quot;LocalidadId&quot;: &quot;1&quot;,
-        ///		&quot;nombre&quot;: &quot;A. A. Fernandez&quot;,
+        ///		&quot;Detalle&quot;: &quot;A. A. Fernandez&quot;,
         ///		&quot;IdProvincia&quot;: &quot;1&quot;,
-        ///		&quot;codigoPostal&quot;: &quot;1825&quot;
+        ///		&quot;CodigoPostal&quot;: &quot;1825&quot;
         ///	},
         ///	{
         ///		&quot;LocalidadId&quot;: &quot;2&quot;,
-        ///		&quot;nombre&quot;: &quot;Abasto&quot;,
+        ///		&quot;Detalle&quot;: &quot;Abasto&quot;,
         ///		&quot;IdProvincia&quot;: &quot;1&quot;,
-        ///		&quot;codigoPostal&quot;: &quot;1903&quot;
+        ///		&quot;CodigoPostal&quot;: &quot;1903&quot;
         ///	},
         ///	{
         ///		&quot;LocalidadId&quot;: &quot;3&quot;,
-        ///		&quot;nombre&quot;: &quot;Abbott&quot;,
+        ///		&quot;Detalle&quot;: &quot;Abbott&quot;,
         ///		&quot;IdProvincia&quot;: &quot;1&quot;,
-        ///		&quot;codigoPostal&quot;: &quot;7228&quot;
+        ///		&quot;CodigoPostal&quot;: &quot;7228&quot;
         ///	},
         ///	{
         ///		&quot;LocalidadId&quot;: &quot;4&quot;,
-        ///		&quot;nombre&quot;: &quot;Abel&quot;,
+        ///		&quot;Detalle&quot;: &quot;Abel&quot;,
         ///		&quot;IdProvincia&quot;: &quot;1&quot;,
-        ///		&quot;codigoPostal&quot;: &quot;6450&quot;
+        ///		&quot;CodigoPostal&quot;: &quot;6450&quot;
         ///	},
         ///	{
         ///		&quot;LocalidadId&quot;: &quot;5&quot;,
-        ///		&quot;nombre&quot;: &quot;Acassuso&quot;,
+        ///		&quot;Detalle&quot;: &quot;Acassuso&quot;,
         ///		&quot;IdProvincia&quot;: &quot;1&quot;,
-        ///		&quot;codigoPostal&quot;: &quot;1640&quot;
+        ///		&quot;CodigoPostal&quot;: &quot;1640&quot;
         ///	},
         ///	{
-        ///		&quot;Local [rest of string was truncated]&quot;;.
+        ///		&quot; [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string localidades_json {
+        internal static string localidades_argentina_json {
             get {
-                return ResourceManager.GetString("localidades_json", resourceCulture);
+                return ResourceManager.GetString("localidades_argentina_json", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to [
         ///	{
-        ///		&quot;provinciaId&quot;: &quot;1&quot;,
-        ///		&quot;nombre&quot;: &quot;Buenos Aires&quot; 
+        ///		&quot;ProvinciaId&quot;: &quot;1&quot;,
+        ///		&quot;Detalle&quot;: &quot;Buenos Aires&quot;,
+        ///		&quot;IdPais&quot;: &quot;1&quot;
         ///	},
         ///	{
-        ///		&quot;provinciaId&quot;: &quot;2&quot;,
-        ///		&quot;nombre&quot;: &quot;Catamarca&quot; 
+        ///		&quot;ProvinciaId&quot;: &quot;2&quot;,
+        ///		&quot;Detalle&quot;: &quot;Catamarca&quot;,
+        ///		&quot;IdPais&quot;: &quot;1&quot;
         ///	},
         ///	{
-        ///		&quot;provinciaId&quot;: &quot;3&quot;,
-        ///		&quot;nombre&quot;: &quot;Cordoba&quot; 
+        ///		&quot;ProvinciaId&quot;: &quot;3&quot;,
+        ///		&quot;Detalle&quot;: &quot;Cordoba&quot;,
+        ///		&quot;IdPais&quot;: &quot;1&quot;
         ///	},
         ///	{
-        ///		&quot;provinciaId&quot;: &quot;4&quot;,
-        ///		&quot;nombre&quot;: &quot;Corrientes&quot; 
+        ///		&quot;ProvinciaId&quot;: &quot;4&quot;,
+        ///		&quot;Detalle&quot;: &quot;Corrientes&quot;,
+        ///		&quot;IdPais&quot;: &quot;1&quot;
         ///	},
         ///	{
-        ///		&quot;provinciaId&quot;: &quot;5&quot;,
-        ///		&quot;nombre&quot;: &quot;Chaco&quot; 
+        ///		&quot;ProvinciaId&quot;: &quot;5&quot;,
+        ///		&quot;Detalle&quot;: &quot;Chaco&quot;,
+        ///		&quot;IdPais&quot;: &quot;1&quot;
         ///	},
         ///	{
-        ///		&quot;provinciaId&quot;: &quot;6&quot;,
-        ///		&quot;nombre&quot;: &quot;Chubut&quot; 
+        ///		&quot;ProvinciaId&quot;: &quot;6&quot;,
+        ///		&quot;Detalle&quot;: &quot;Chubut&quot;,
+        ///		&quot;IdPais&quot;: &quot;1&quot;
         ///	},
         ///	{
-        ///		&quot;provinciaId&quot;: &quot;7&quot;,
-        ///		&quot;nombre&quot;: &quot;Entre Rios&quot; 
+        ///		&quot;ProvinciaId&quot;: &quot;7&quot;,
+        ///		&quot;Detalle&quot;: &quot;Entre Rios&quot;,
+        ///		&quot;IdPais&quot;: &quot;1&quot;
         ///	},
         ///	{
-        ///		&quot;provinciaId&quot;: &quot;8&quot;,
-        ///		&quot;nombre&quot;: &quot;Formosa&quot; 
-        ///	},
-        ///	{
-        ///		&quot;provinciaId&quot;: &quot;9&quot;,
-        ///		&quot;nombre&quot;: &quot;Jujuy&quot; 
-        ///	},
-        ///	{
-        ///		&quot;provinciaId&quot;: &quot;10&quot;,
-        ///		&quot;nombr [rest of string was truncated]&quot;;.
+        ///		&quot;ProvinciaId [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string provincias_json {
+        internal static string provincias_argentina_json {
             get {
-                return ResourceManager.GetString("provincias_json", resourceCulture);
+                return ResourceManager.GetString("provincias_argentina_json", resourceCulture);
             }
         }
     }

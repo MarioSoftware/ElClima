@@ -1,0 +1,117 @@
+[
+	{
+		"ProvinciaId": "1",
+		"Detalle": "Buenos Aires",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "2",
+		"Detalle": "Catamarca",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "3",
+		"Detalle": "Cordoba",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "4",
+		"Detalle": "Corrientes",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "5",
+		"Detalle": "Chaco",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "6",
+		"Detalle": "Chubut",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "7",
+		"Detalle": "Entre Rios",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "8",
+		"Detalle": "Formosa",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "9",
+		"Detalle": "Jujuy",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "10",
+		"Detalle": "La Pampa",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "11",
+		"Detalle": "La Rioja",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "12",
+		"Detalle": "Mendoza",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "13",
+		"Detalle": "Misiones",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "14",
+		"Detalle": "Neuquen",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "15",
+		"Detalle": "Rio Negro",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "16",
+		"Detalle": "Salta",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "17",
+		"Detalle": "San Juan",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "18",
+		"Detalle": "San Luis",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "19",
+		"Detalle": "Santa Cruz",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "20",
+		"Detalle": "Santa Fe",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "21",
+		"Detalle": "Santiago Del Estero",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "22",
+		"Detalle": "Tierra Del Fuego",
+		"IdPais": "1"
+	},
+	{
+		"ProvinciaId": "23",
+		"Detalle": "Tucuman",
+		"IdPais": "1"
+	}
+]
