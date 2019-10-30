@@ -26,6 +26,7 @@ namespace ElClima.ApplicationServices.Setup
             //Common
             SexoInitializator.Initialize(_uow);
             TipoVehiculoInitializator.Initialize(_uow);
+            ProvinciasLocalidadesInitializator.Initialize(_uow);
 
             //Entidad
             DiaSemanaInitializator.Initialize(_uow);
