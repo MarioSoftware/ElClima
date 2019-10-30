@@ -84,7 +84,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
 
             if(ret.domicilio == null)
             {
-                ret.domicilio = new DomicilioDto { comboProvincia = new Service<Provincia>(UnitOfWork).GetAll()};
+                ret.domicilio = new DomicilioDto { comboProvincia = new Service<Provincia>(UnitOfWork).GetAll()}; 
             } 
 
             return ret;
@@ -93,14 +93,13 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
 
         public List<LocalidadLiteDto> GetComboLocalities(int idProvince)
         {
-            var result = new Service<Localidad>(UnitOfWork).GetAllBySelector(
+            var result = new Service<Localidad>(UnitOfWork).GetByFilterBySelector(
                  l => new LocalidadLiteDto
                  {
                      id = l.id,
                      nombre = l.nombre
                  },
-                 f=> f.provincia.id == idProvince, 
-                 Domain.Core.Repository.OrderDirection.Ascending 
+                 f=> f.provincia.id == idProvince                 
                 );
 
             return result;

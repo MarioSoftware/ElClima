@@ -35,7 +35,7 @@ var vm = new Vue({
 
         p_loadingLocalities: false,
 
-        p_comboProvincia: [{ id: 1, nombre: "Cordoba" }, { id: 2, nombre: "Bs As" }, { id: 3, nombre: "Salta" }],
+        p_comboProvincia: [],
         p_comboLocalidad: [],
 
         p_ErrorMessage: "",
@@ -120,5 +120,18 @@ function HydrateFields(data) {
     vm.$data.dni = data.dni;
     vm.$data.idSexo = data.idSexo;
     vm.$data.fechaNacimiento = data.fechaNacimiento;
+
+    vm.$data.domicilio.idProvincia = data.domicilio.idProvincia;
+    vm.$data.domicilio.idLocalidad = data.domicilio.idLocalidad;
+    vm.$data.domicilio.calle = data.domicilio.calle;
+    vm.$data.domicilio.numero= data.domicilio.numero;
+    vm.$data.domicilio.piso= data.domicilio.piso;
+    vm.$data.domicilio.departamento= data.domicilio.departamento;
+    vm.$data.domicilio.barrio = data.domicilio.barrio;
+    vm.$data.p_comboProvincia = data.domicilio.comboProvincia; 
+
+    if (data.domicilio.ubicacion !== null && data.domicilio.ubicacion !== undefined) {
+        vm.$data.domicilio.ubicacion = data.domicilio.ubicacion;
+    }
 
 }
