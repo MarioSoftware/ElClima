@@ -25,8 +25,7 @@ var vm = new Vue({
             }
         },
         contrasenia:"",
-        contraseniaRepetir:"",
-
+        contraseniaRepetir:"", 
         p_chekingPersonExist:false,
 
         p_addressShowView: false,  
@@ -66,6 +65,7 @@ var vm = new Vue({
             }); 
 
         }, 
+
         SavePerson: function () {
 
             var entityJson = JSON.stringify(vm.$data, ExcludePrivateFields);
@@ -82,6 +82,7 @@ var vm = new Vue({
             });
 
         },
+
         OpenMap: function () { 
             this.p_geolocationMapShowView = true;
             if (!map) {
@@ -89,6 +90,7 @@ var vm = new Vue({
                 this.domicilio.ubicacion.direccion = this.domicilio.calle + " " + this.domicilio.numero;
             }   
         },
+
         CheckPersonExist: function () {  
             vm.$data.p_chekingPersonExist = true;
             BlockButtons(true); 
@@ -109,6 +111,10 @@ var vm = new Vue({
                 BlockButtons(false);
             }); 
 
+        },
+
+        UpdateSuggestionsBox: function (entity, query) {
+            window.UpdateSuggestionBox(entity, query);
         }
     }
 
@@ -135,3 +141,4 @@ function HydrateFields(data) {
     }
 
 }
+ 
