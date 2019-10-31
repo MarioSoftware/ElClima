@@ -95,6 +95,9 @@ var vm = new Vue({
         },
 
         CheckPersonExist: function () {  
+
+            $("#accountForm").valid();
+
             vm.$data.p_chekingPersonExist = true;
             BlockButtons(true); 
             $.ajax({
