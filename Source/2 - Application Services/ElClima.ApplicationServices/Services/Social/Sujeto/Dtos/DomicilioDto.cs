@@ -20,7 +20,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto.Dtos
 
         public int idProvincia { get; set; }
 
-        public int idLocalidad { get; set; }
+        public LocalidadLiteDto localidad { get; set; }
 
         public UbicacionDto ubicacion { get; set; } 
 

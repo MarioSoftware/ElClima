@@ -11,7 +11,7 @@ var vm = new Vue({
         idSexo: 1, 
         domicilio: {
             idProvincia: 0,
-            idLocalidad:0,
+            localidad: { id:0,nombre:""},
             calle: "",
             numero: "",
             piso: "",
@@ -22,7 +22,10 @@ var vm = new Vue({
                 latitud: 0,
                 longitud: 0,
                 direccion:""
-            }
+            },
+            p_SuggestionsBoxEstado: 1,
+            p_LocalidadesSuggestions: [],
+            p_SuggestionsBoxTimer: 0
         },
         contrasenia:"",
         contraseniaRepetir:"", 
@@ -115,7 +118,11 @@ var vm = new Vue({
 
         UpdateSuggestionsBox: function (entity, query) {
             window.UpdateSuggestionBox(entity, query);
-        }
+        },
+
+        FillLocalidadFields: function (entity, localidadSuggestion) {
+            window.FillLocalidadFields(entity, localidadSuggestion);
+        },
     }
 
 }); 
@@ -127,8 +134,7 @@ function HydrateFields(data) {
     vm.$data.idSexo = data.idSexo;
     vm.$data.fechaNacimiento = data.fechaNacimiento;
 
-    vm.$data.domicilio.idProvincia = data.domicilio.idProvincia;
-    vm.$data.domicilio.idLocalidad = data.domicilio.idLocalidad;
+    vm.$data.domicilio.idProvincia = data.domicilio.idProvincia; 
     vm.$data.domicilio.calle = data.domicilio.calle;
     vm.$data.domicilio.numero= data.domicilio.numero;
     vm.$data.domicilio.piso= data.domicilio.piso;
@@ -136,9 +142,10 @@ function HydrateFields(data) {
     vm.$data.domicilio.barrio = data.domicilio.barrio;
     vm.$data.p_comboProvincia = data.domicilio.comboProvincia; 
 
-    if (data.domicilio.ubicacion !== null && data.domicilio.ubicacion !== undefined) {
+    if (data.domicilio.localidad !== null)
+        vm.$data.domicilio.localidad = data.domicilio.localidad;
+    if (data.domicilio.ubicacion !== null && data.domicilio.ubicacion)
         vm.$data.domicilio.ubicacion = data.domicilio.ubicacion;
-    }
-
+    
 }
  

@@ -30,7 +30,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
                     cfg.CreateMap<Ubicacion, UbicacionDto>().ReverseMap();
 
                     cfg.CreateMap<Domicilio, DomicilioDto>()
-                    .ForMember(dest => dest.idLocalidad, opt => opt.MapFrom(org => org.localidad == null ? 0 : org.localidad.id))
+                    .ForMember(dest => dest.localidad, opt => opt.MapFrom(org => org.localidad == null ? 0 : org.localidad.id))
                     .ForMember(dest => dest.idProvincia, opt => opt.MapFrom(org => org.provincia == null ? 0 : org.provincia.id))
                     .ReverseMap();
 
@@ -91,7 +91,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
 
         }
 
-        public List<LocalidadLiteDto> GetComboLocalities(int idProvince)
+        public List<LocalidadLiteDto> GetComboLocalities(int idProvince, string text)
         {
             var result = new Service<Localidad>(UnitOfWork).GetByFilterBySelector(
                  l => new LocalidadLiteDto
@@ -99,7 +99,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
                      id = l.id,
                      nombre = l.nombre
                  },
-                 f=> f.provincia.id == idProvince                 
+                 f=> f.nombre.StartsWith(text) &&  f.provincia.id == idProvince                 
                 );
 
             return result;

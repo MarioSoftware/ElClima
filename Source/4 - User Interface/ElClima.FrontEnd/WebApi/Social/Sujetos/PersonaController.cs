@@ -29,10 +29,10 @@ namespace ElClima.FrontEnd.WebApi.Social.Sujetos
             return _personaService.GetDto(id);
         }
 
-        [HttpGet("/api/Persons/GetLocalities/{idProvince}")]
-        public List<LocalidadLiteDto> GetComboLocalities(int idProvince)
+        [HttpGet("/api/Persons/GetLocalities/{idProvince}/{text}")]
+        public List<LocalidadLiteDto> GetComboLocalities(int idProvince, string text)
         {
-            return _personaService.GetComboLocalities(idProvince);
+            return _personaService.GetComboLocalities(idProvince, text);
         }
 
         [HttpPost("/api/Persons/Add")]

@@ -39,3 +39,8 @@ function UpdateSuggestionBox(entity, query) {
         }, 1000);
     }
 }
+
+function FillLocalidadFields(entity, localidadSuggestion) {
+    entity.p_SuggestionsBoxEstado = 1;
+    entity.localidad = localidadSuggestion.nombre; 
+}
