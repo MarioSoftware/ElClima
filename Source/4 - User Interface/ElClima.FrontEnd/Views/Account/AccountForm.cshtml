@@ -20,7 +20,7 @@
             async defer></script>
 </head>
 
-<form id="accountForm" v-cloak="">
+<div id="accountForm" v-cloak="">
     <div v-show="p_credentialsShowView" class="credentials" >
         @await Html.PartialAsync("_Credentials")
     </div>
@@ -36,4 +36,4 @@
     <div v-show="p_addressShowView && p_geolocationMapShowView">
         @await Html.PartialAsync("_GeoLocation")
     </div>
-</form>
+</div>
