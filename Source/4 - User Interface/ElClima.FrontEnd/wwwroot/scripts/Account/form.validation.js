@@ -15,6 +15,9 @@
             maxlength: 16,
             required: true,
             equalTo:"#contrasenia"
+        },
+        departamento: {
+            required:true
         }
     },
 
@@ -33,6 +36,9 @@
             minlength: "La contraseña debe ser mayor a 8 digitos",
             maxlength: "La contraseña debe ser menor a 16 digitos",
             equalTo: "Las contraseñas no coinciden"
+        },
+        departamento: {
+            required:"Ingresa un departamento"
         }
     },
 
