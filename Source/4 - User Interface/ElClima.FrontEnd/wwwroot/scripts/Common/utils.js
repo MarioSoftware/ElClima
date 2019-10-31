@@ -42,5 +42,5 @@ function UpdateSuggestionBox(entity, query) {
 
 function FillLocalidadFields(entity, localidadSuggestion) {
     entity.p_SuggestionsBoxEstado = 1;
-    entity.localidad = localidadSuggestion.nombre; 
+    entity.localidad = localidadSuggestion; 
 }

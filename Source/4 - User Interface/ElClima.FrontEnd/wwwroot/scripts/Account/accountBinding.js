@@ -11,7 +11,7 @@ var vm = new Vue({
         idSexo: 1, 
         domicilio: {
             idProvincia: 0,
-            localidad: { id:0,nombre:""},
+            localidad: {},
             calle: "",
             numero: "",
             piso: "",
@@ -45,29 +45,29 @@ var vm = new Vue({
         
     },
     watch: {
-        'domicilio.idProvincia': function (newVal,oldVal) {
+        'domicilio.idProvincia': function (newVal, oldVal) {
             if (newVal !== 0)
-                this.GetLocalities();
+                this.domicilio.localidad = {};
         } 
     },
     methods: {
-        GetLocalities: function () { 
-            vm.$data.p_loadingLocalities = true; 
-            $.ajax({
-                url: WebApiBaseUrl + "/GetLocalities/" + vm.$data.domicilio.idProvincia,
-                type: "GET",
-                contentType: "application/json;chartset=utf-8"
-            }).done(function (data) {
-                if (data !== null) {
-                    this.p_comboLocalidad = [];
-                    this.p_comboLocalidad = data;
-                }
-            }).fail(function (err) {
-            }).always(function () {
-                vm.$data.p_loadingLocalities = false;
-            }); 
+        //GetLocalities: function () { 
+        //    vm.$data.p_loadingLocalities = true; 
+        //    $.ajax({
+        //        url: WebApiBaseUrl + "/GetLocalities/" + vm.$data.domicilio.idProvincia,
+        //        type: "GET",
+        //        contentType: "application/json;chartset=utf-8"
+        //    }).done(function (data) {
+        //        if (data !== null) {
+        //            this.p_comboLocalidad = [];
+        //            this.p_comboLocalidad = data;
+        //        }
+        //    }).fail(function (err) {
+        //    }).always(function () {
+        //        vm.$data.p_loadingLocalities = false;
+        //    }); 
 
-        }, 
+        //}, 
 
         SavePerson: function () {
 
@@ -122,7 +122,15 @@ var vm = new Vue({
 
         FillLocalidadFields: function (entity, localidadSuggestion) {
             window.FillLocalidadFields(entity, localidadSuggestion);
-        },
+        }
+    },
+    computed: {
+        validDni: function () {
+            if (this.dni !== null)
+                return this.dni.length !== 8;
+
+                return true;
+        }
     }
 
 }); 

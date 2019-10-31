@@ -30,7 +30,7 @@
         <div v-show="!p_chekingPersonExist">
             <div class="md-form">
                 <i class="fas fa-user prefix active"></i>
-                <input type="text" id="dni" v-model="dni" class="form-control">
+                <input type="text" id="dni" maxlength="8" pattern="[0-9]{1,8}" v-model="dni" class="form-control">
                 <label for="dni" class="active">Dni</label>
             </div>
             <div class="md-form">
@@ -50,7 +50,7 @@
         <span class="glyphicon glyphicon-remove"></span>
         <div class="text-center mt-4">
             <button type="button" class="btn btn-danger" v-on:click="alert('Volver a la pagina anterior')">Cancelar</button>
-            <button type="button" class="btn btn-success" v-on:click="CheckPersonExist()">Guardar</button>
+            <button type="button" class="btn btn-success" v-bind:disabled="validDni" v-on:click="CheckPersonExist()">Guardar</button>
         </div>
     </div>
     @*Persnal Data*@
@@ -102,8 +102,8 @@
         <div class="md-form">
             <label>Localidad</label>
             <i class="fa fa-globe"></i>  
-                <input type="text" name="Domicilio_Localidad" maxlength="40" v-model="domicilio.localidad" class="form-control"
-                       v-on:keyup="UpdateSuggestionsBox(domicilio, domicilio.localidad)"
+                <input type="text" name="Domicilio_Localidad" maxlength="40" v-model="domicilio.localidad.nombre" class="form-control"
+                       v-on:keyup="UpdateSuggestionsBox(domicilio, domicilio.localidad.nombre)"
                        v-bind:readonly="domicilio.idProvincia === 0">
                 <div class="suggestions-box" v-show="domicilio.p_SuggestionsBoxEstado !== 1">
                     <ul>
