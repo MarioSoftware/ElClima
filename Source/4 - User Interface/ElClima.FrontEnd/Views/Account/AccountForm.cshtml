@@ -2,45 +2,48 @@
 
 @section DelayedScripts
     {
+    <script src="~/assets/plugins/jquery/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="~/scripts/Account/form.validation.js" asp-append-version="true"></script>
     <script src="~/scripts/Common/crud_helper.js" asp-append-version="true"></script>
     <script src="~/assets/plugins/moment/moment.js" asp-append-version="true"></script>
     <script src="~/assets/plugins/bootstrap/js/bootstrap-datetimepicker.min.js" asp-append-version="true"></script>
     <script src="~/scripts/Account/accountBinding.js" asp-append-version="true"></script>
     <script src="~/scripts/Account/addressGeolocation.js" asp-append-version="true"></script>
+
 }
 
 @{
     MasterLayoutHelper.AddLineToDocumentReadyFunction(string.Format("FormBinding({0});", ViewBag.Id), Context);
 }
 <head>
-    @*CSS Style sheet*@ 
+    @*CSS Style sheet*@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpGwfqc1p6G8ydP1AXaNYtOavIx_dcYvU&libraries=places"
             async defer></script>
 </head>
 
-<form id="accountForm" class="" v-cloak>
+<form id="accountForm" v-cloak="">
     @*Credentials*@
     <div v-show="p_credentialsShowView">
         <div class="text-center">
             <h3>
-                <i class="fas fa-user"></i> Mis credenciales de Acceso
+                <i class="fas fa-user"></i> CREDENCIALES
             </h3>
             <hr class="hr-light">
         </div>
         <div v-show="!p_chekingPersonExist">
             <div class="md-form">
                 <i class="fas fa-user prefix active"></i>
-                <input type="text" id="dni" maxlength="8" pattern="[0-9]{1,8}" v-model="dni" class="form-control">
+                <input type="text" id="dni" maxlength="8" pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" v-model="dni" name="dni" class="form-control">
                 <label for="dni" class="active">Dni</label>
             </div>
             <div class="md-form">
                 <i class="fas fa-user prefix active"></i>
-                <input type="password" id="password" v-model="contrasenia" class="form-control">
+                <input type="password" id="contrasenia" v-model="contrasenia" name="contrasenia" maxlength="20" class="form-control">
                 <label for="password" class="active">Contraseña</label>
             </div>
             <div class="md-form">
                 <i class="fas fa-user prefix active"></i>
-                <input type="password" id="passwordRepit" v-model="contraseniaRepetir" class="form-control">
+                <input type="password" id="contraseniaRepetir" v-model="contraseniaRepetir" name="contraseniaRepetir" maxlength="20" class="form-control">
                 <label for="passwordRepit" class="active">Repetir contraseña</label>
             </div>
         </div>
@@ -101,22 +104,22 @@
         </div>
         <div class="md-form">
             <label>Localidad</label>
-            <i class="fa fa-globe"></i>  
-                <input type="text" name="Domicilio_Localidad" maxlength="40" v-model="domicilio.localidad.nombre" class="form-control"
-                       v-on:keyup="UpdateSuggestionsBox(domicilio, domicilio.localidad.nombre)"
-                       v-bind:readonly="domicilio.idProvincia === 0">
-                <div class="suggestions-box" v-show="domicilio.p_SuggestionsBoxEstado !== 1">
-                    <ul>
-                        <li v-show="domicilio.p_SuggestionsBoxEstado === 2">
-                           Buscando...
-                        </li> 
-                        <li v-for="localidad in domicilio.p_LocalidadesSuggestions">
-                            <a @@click="FillLocalidadFields(domicilio, localidad)">
-                                {{localidad.nombre}}
-                            </a>
-                        </li>
-                    </ul>
-                </div> 
+            <i class="fa fa-globe"></i>
+            <input type="text" name="Domicilio_Localidad" maxlength="40" v-model="domicilio.localidad.nombre" class="form-control"
+                   v-on:keyup="UpdateSuggestionsBox(domicilio, domicilio.localidad.nombre)"
+                   v-bind:readonly="domicilio.idProvincia === 0">
+            <div class="suggestions-box" v-show="domicilio.p_SuggestionsBoxEstado !== 1">
+                <ul>
+                    <li v-show="domicilio.p_SuggestionsBoxEstado === 2">
+                        Buscando...
+                    </li>
+                    <li v-for="localidad in domicilio.p_LocalidadesSuggestions">
+                        <a @@click="FillLocalidadFields(domicilio, localidad)">
+                            {{localidad.nombre}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="md-form">
             <i class="fas fa-user prefix active"></i>
