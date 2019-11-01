@@ -18,9 +18,8 @@
     <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1.0, user-scalable=0" />
     <title>El Clima - Córdoba</title>
 
-    <!-- CORE CSS -->
-    <link href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    @*<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet" />*@
+    <!-- BOOSTRAP CSS -->
+    <link href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> 
 
     <!-- MDB CSS -->
     <link href="~/assets/plugins/mdb/css/mdb.min.css" rel="stylesheet" type="text/css" />
@@ -34,17 +33,19 @@
     <!-- WRAPPER -->
     <div class="container">
         @RenderBody()
-    </div> 
+    </div>
 
     <!--JAVASCRIPT FILES-->
 
-    <script src="~/assets/plugins/vuejs/dev/vue.js"></script>
-    <script type="text/javascript" src="/assets/plugins/jquery/development/jquery-3.4.1.js"></script>
-    <script src="~/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
-    @*---mdb---*@
-    <script src="~/assets/plugins/mdb/js/mdb.min.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="/assets/plugins/jquery/development/jquery-3.4.1.js"></script>
+    <script src="~/assets/plugins/vuejs/dev/vue.js"></script>
+
+    @*---mdb---*@ 
     <script src="~/assets/plugins/mdb/js/popper.min.js" asp-append-version="true"></script>
+    <script src="~/assets/plugins/mdb/js/mdb.min.js" asp-append-version="true"></script>
+
+    <script src="~/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
     <script src="~/scripts/Common/utils.js"></script>
 
