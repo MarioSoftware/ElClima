@@ -19,8 +19,7 @@
         <i class="fas fa-lock prefix active"></i>
         <input type="text" id="fechaNacimiento" name="fechaNacimiento" class="form-control datepicker" onchange="vm.$data.fechaNacimiento = this.value" v-model="fechaNacimiento" data-format="dd/mm/yyyy" autocomplete="off">
         <label for="fechaNacimiento">Fecha de nacimiento</label>
-    </div>
-
+    </div> 
     <div class="text-center mt-4">
         <button type="button" class="btn btn-danger" v-on:click="p_credentialsShowView = true">Cancelar</button>
         <button type="button" class="btn btn-success" v-on:click="PersonalDataValidate()">Guardar</button>
