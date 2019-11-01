@@ -15,8 +15,9 @@
         <input type="text" id="nombre" name="nombre" v-model="nombre" class="form-control">
         <label for="nombre" class="active">Nombre</label>
     </div>
-    <div class="md-form"> 
-        <input  type="text" id="fechaNacimiento" name="fechaNacimiento" class="form-control" onchange="vm.$data.fechaNacimiento = this.value" v-model="fechaNacimiento" data-format="dd/mm/yyyy" autocomplete="off">
+    <div class="md-form">
+        <i class="fas fa-envelope prefix active"></i>
+        <input type="text" id="fechaNacimiento" name="fechaNacimiento" class="form-control" onchange="vm.$data.fechaNacimiento = this.value" v-model="fechaNacimiento" data-format="dd/mm/yyyy">
         <label for="fechaNacimiento">Fecha de nacimiento</label>
     </div>  
     <div class="text-center mt-4">

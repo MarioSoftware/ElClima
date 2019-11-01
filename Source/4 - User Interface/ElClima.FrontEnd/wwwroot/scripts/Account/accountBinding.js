@@ -101,12 +101,10 @@ var vm = new Vue({
                 $.ajax({
                     url: WebApiBaseUrl + "/Exist/" + this.dni,
                     type: "GET",
-                    async: false
+                    async: true
                 }).done(function (data) {
-                    if (data) {
-                        vm.$data.p_credentialsShowView = data;
-                    } else {
-                        vm.$data.p_credentialsShowView = data;
+                    if (data !== null) {
+                        vm.$data.p_credentialsShowView = data;  
                     }
 
                 }).fail(function (err) {
