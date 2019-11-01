@@ -94,7 +94,7 @@ var vm = new Vue({
             }   
         },
 
-        CheckPersonExist: function () {  
+        CheckPersonExist: async function () {  
             //if ($("#credentialsForm").valid()) {
                 vm.$data.p_chekingPersonExist = true;
                 BlockButtons(true);
@@ -112,6 +112,14 @@ var vm = new Vue({
                     vm.$data.p_chekingPersonExist = false;
                     BlockButtons(false);
                 }); 
+
+            //var promisse = await Promise.resolve( 
+            //    $.ajax({
+            //        url: WebApiBaseUrl + "/Exist/" + this.dni,
+            //       type: "GET"
+            //    }).fail(function () {
+            //    })
+            //); 
 
             //} 
         },
