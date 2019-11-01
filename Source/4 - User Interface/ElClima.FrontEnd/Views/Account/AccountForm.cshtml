@@ -3,16 +3,18 @@
 @section DelayedScripts
     {
     <script src="~/assets/plugins/jquery/jquery.validate.min.js" asp-append-version="true"></script>
-    <script src="~/scripts/Common/crud_helper.js" asp-append-version="true"></script>
     <script src="~/assets/plugins/moment/moment.js" asp-append-version="true"></script>
-    <script src="~/assets/plugins/bootstrap/js/bootstrap-datetimepicker.min.js" asp-append-version="true"></script>
+    <script src="~/scripts/Common/crud_helper.js" asp-append-version="true"></script> 
     <script src="~/scripts/Account/accountBinding.js" asp-append-version="true"></script>
     <script src="~/scripts/Account/addressGeolocation.js" asp-append-version="true"></script>
+    <script src="~/scripts/Common/validationCustom.js" asp-append-version="true"></script>
     <script src="~/scripts/Account/form.validation.js" asp-append-version="true"></script>
+    @*<script src="~/assets/plugins/bootstrap/js/bootstrap-datetimepicker.min.js" asp-append-version="true"></script>*@
 }
 
 @{
     MasterLayoutHelper.AddLineToDocumentReadyFunction(string.Format("FormBinding({0});", ViewBag.Id), Context);
+    MasterLayoutHelper.AddLineToDocumentReadyFunction("$('input').attr('autocomplete','off')", Context);
 }
 <head>
     @*CSS Style sheet*@
@@ -21,7 +23,7 @@
 </head>
 
 <div id="accountForm" v-cloak="">
-    <div v-show="p_credentialsShowView" class="credentials" >
+    <div v-show="p_credentialsShowView" class="credentials">
         @await Html.PartialAsync("_Credentials")
     </div>
 

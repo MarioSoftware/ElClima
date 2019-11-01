@@ -17,7 +17,7 @@
     </div>
     <div class="md-form">
         <i class="fas fa-lock prefix active"></i>
-        <input type="text" id="fechaNacimiento" name="fechaNacimiento" v-model="fechaNacimiento" class="form-control">
+        <input type="text" id="fechaNacimiento" name="fechaNacimiento" class="form-control datepicker" onchange="vm.$data.fechaNacimiento = this.value" v-model="fechaNacimiento" data-format="dd/mm/yyyy" autocomplete="off">
         <label for="fechaNacimiento">Fecha de nacimiento</label>
     </div>
 

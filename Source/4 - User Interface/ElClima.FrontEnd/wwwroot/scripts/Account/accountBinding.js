@@ -1,5 +1,5 @@
 ﻿var WebApiBaseUrl = "/api/Persons";
-
+var momentDateFormat = "D/M/YYYY";
 var vm = new Vue({
     el: "#accountForm",
     data: { 
@@ -95,7 +95,7 @@ var vm = new Vue({
         },
 
         CheckPersonExist: function () {  
-            if ($("#credentialsForm").valid()) {
+            //if ($("#credentialsForm").valid()) {
                 vm.$data.p_chekingPersonExist = true;
                 BlockButtons(true);
                 $.ajax({
@@ -115,7 +115,7 @@ var vm = new Vue({
                     BlockButtons(false);
                 }); 
 
-            } 
+            //} 
         },
 
         PersonalDataValidate: function () { 
