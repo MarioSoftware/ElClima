@@ -6,6 +6,7 @@ using ElClima.Domain.Model.Models.Posicionamiento;
 using ElClima.Domain.Model.Models.Social.Sujetos;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ElClima.ApplicationServices.Services.Social.Sujeto
@@ -73,7 +74,13 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
         {
             if (roles != null && roles.Count != 0)
             {
-                foreach (var item in roles)
+                var currentItems = new Service<RolPersona>(UnitOfWork).GetByFilterIncluding(f => f.persona == person, i => i.rol);
+                
+                var news = roles.Where(j => currentItems.All(i => i.rol.id != j.id));
+
+                var toDelete = currentItems.Where(i => roles.All(j => j.id != i.rol.id));
+
+                foreach (var item in news)
                 {
                     var rolPerson = new RolPersona()
                     {
