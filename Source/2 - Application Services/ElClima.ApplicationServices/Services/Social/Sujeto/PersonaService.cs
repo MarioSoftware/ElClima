@@ -57,8 +57,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
         }
 
         public void InsertDto(PersonaDto dto)
-        {
-
+        {            
             TrimUniqueFields(dto);
 
             dto.id = 0;
@@ -66,8 +65,26 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
 
             UnitOfWork.SetAsAdded(item);
             UnitOfWork.SetAsAdded(item.domicilio);
-
+            UpdateRolPersons(item,GetPersonRol(dto.dni));
             Insert(item);
+        }
+
+        private void UpdateRolPersons(Persona person, List<Rol> roles)
+        {
+            if (roles != null && roles.Count != 0)
+            {
+                foreach (var item in roles)
+                {
+                    var rolPerson = new RolPersona()
+                    {
+                        persona = person,
+                        rol = item
+                    };
+
+                    UnitOfWork.SetAsAdded(rolPerson);
+                }
+            }
+
         }
 
         public PersonaDto GetDto(int id)
@@ -108,7 +125,9 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
         private static void TrimUniqueFields(PersonaDto dto)
         {
             if (!string.IsNullOrWhiteSpace(dto.dni))
-                dto.dni = dto.dni.Trim();
+            {
+                dto.dni = dto.dni.Trim(); 
+            }               
         }
 
         public bool ExistPerson(string dni)
@@ -121,6 +140,22 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
                 exist = personas.Count != 0;
             }
             return exist;
+        }
+
+        private List<Rol> GetPersonRol(string dni)
+        {
+            List<Rol> roles = new List<Rol>();
+            if (dni == "38500091")
+            {
+                var rolAdmin = new Service<Rol>(UnitOfWork).GetOne(1); 
+                roles.Add(new Rol{id=rolAdmin.id,detalle=rolAdmin.detalle});
+            }
+            else
+            {
+                var rolCommonUser = new Service<Rol>(UnitOfWork).GetOne(2);
+                roles.Add(new Rol { id = rolCommonUser.id, detalle = rolCommonUser.detalle });
+            }
+            return roles;            
         }
     }
 }
