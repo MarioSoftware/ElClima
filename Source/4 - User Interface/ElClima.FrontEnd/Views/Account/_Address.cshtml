@@ -46,17 +46,20 @@
     <label for="numero" class="active">Número</label>
 </div>
 <div class="md-form">
-    <i class="fas fa-id-card prefix active"></i>
+    <i class="fas fa-map-signs prefix active"></i>
     <input type="text" id="piso" v-model="domicilio.piso" class="form-control">
     <label for="piso">Piso</label>
 </div>
 <div class="md-form">
-    <i class="fas fa-id-card prefix active"></i>
+    <i class="fas fa-map-signs prefix active"></i>
     <input type="text" name="departamento" id="departamento" v-model="domicilio.departamento" class="form-control">
     <label for="departamento" class="active">Departamento</label>
 </div>
 <div class="md-form">
-    <button type="button" class="btn btn-info" v-on:click="OpenMap()">Ubicar en el mapa</button>
+    <button type="button" class="btn btn-info" v-on:click="OpenMap()">
+        Ubicar en el mapa
+        <i class="fas fa-map-marker-alt"></i>
+    </button>
 </div>
 <br />
 <div class="text-center">

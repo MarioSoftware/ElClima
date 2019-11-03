@@ -148,9 +148,9 @@ function HydrateFields(data) {
     vm.$data.fechaNacimiento = data.fechaNacimiento;
 
     vm.$data.domicilio.idProvincia = data.domicilio.idProvincia; 
-    vm.$data.domicilio.calle = data.domicilio.calle;
-    vm.$data.domicilio.numero= data.domicilio.numero;
-    vm.$data.domicilio.piso= data.domicilio.piso;
+    vm.$data.domicilio.calle = !data.domicilio.calle ? "" : data.domicilio.calle;
+    vm.$data.domicilio.numero = !data.domicilio.numero ? "" : data.domicilio.numero;
+    vm.$data.domicilio.piso = data.domicilio.piso == 0 ? "" : data.domicilio.piso;
     vm.$data.domicilio.departamento= data.domicilio.departamento;
     vm.$data.domicilio.barrio = data.domicilio.barrio;
     vm.$data.p_comboProvincia = data.domicilio.comboProvincia; 
