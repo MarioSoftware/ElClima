@@ -111,23 +111,14 @@ var vm = new Vue({
                 }).always(function () {
                     vm.$data.p_chekingPersonExist = false;
                     BlockButtons(false);
-                }); 
-
-            //var promisse = await Promise.resolve( 
-            //    $.ajax({
-            //        url: WebApiBaseUrl + "/Exist/" + this.dni,
-            //       type: "GET"
-            //    }).fail(function () {
-            //    })
-            //); 
-
+                });  
             //} 
         },
 
         PersonalDataValidate: function () { 
-            if ($("#personalDataForm").valid()) {
+            //if ($("#personalDataForm").valid()) {
                 vm.$data.p_addressShowView = true;
-            }
+            //}
         },
 
         UpdateSuggestionsBox: function (entity, query) {
