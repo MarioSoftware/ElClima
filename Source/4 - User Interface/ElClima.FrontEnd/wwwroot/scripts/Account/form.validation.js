@@ -10,7 +10,7 @@ var validator = $("#credentialsForm").validate({
             maxlength: 16,
             required: true
         },
-        contraseniaRepetir: {
+        p_contraseniaRepetir: {
             required: true,
             equalTo: "#contrasenia"
         }
@@ -25,7 +25,7 @@ var validator = $("#credentialsForm").validate({
             minlength: "La contraseña debe ser mayor a 8 digitos",
             maxlength: "La contraseña debe ser menor a 16 digitos"
         },
-        contraseniaRepetir: {
+        p_contraseniaRepetir: {
             required: "Confirma la contraseña",
             equalTo: "Las contraseñas no coinciden"
         }
