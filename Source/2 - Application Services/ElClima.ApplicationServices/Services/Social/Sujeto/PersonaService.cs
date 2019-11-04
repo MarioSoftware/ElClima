@@ -26,9 +26,15 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
                      .ForMember(dest => dest.fechaNacimiento, opt => opt.MapFrom(org => org.fechaNacimiento == DateTime.MinValue ? "" : org.fechaNacimiento.ToShortDateString()))
                      .ForMember(dest => dest.domicilio, opt => opt.Ignore())
                      .ForMember(dest => dest.ubicacion, opt => opt.Ignore())
+                     .ForMember(dest => dest.contactos, opt => opt.Ignore())                     
                      .ReverseMap();
 
                     cfg.CreateMap<Ubicacion, UbicacionDto>().ReverseMap();
+
+                    cfg.CreateMap<Contacto, ContactoDto>()
+                     .ForMember(dest => dest.idContactoTipo, opt => opt.MapFrom(org => org.contactoTipo.id))
+                     .ForMember(dest => dest.idPersona, opt => opt.MapFrom(org => org.persona.id)) 
+                     .ReverseMap();
 
                     cfg.CreateMap<Domicilio, DomicilioDto>()
                     .ForMember(dest => dest.localidad, opt => opt.MapFrom(org => org.localidad == null ? 0 : org.localidad.id))
@@ -103,15 +109,25 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
                 i => i.domicilio);
 
 
-
-            var ret = _mapper.Map<PersonaDto>(persona);
-
-            if(ret.domicilio == null)
+            if (persona != null)
             {
-                ret.domicilio = new DomicilioDto { comboProvincia = new Service<Provincia>(UnitOfWork).GetAll()}; 
-            } 
+                var ret = _mapper.Map<PersonaDto>(persona);
 
-            return ret;
+                persona.contactos = new Service<Contacto>(UnitOfWork).GetByFilterIncluding(
+                    f=> f.persona.id == persona.id,
+                    i=> i.contactoTipo
+                    );
+
+
+                if (ret.domicilio == null)
+                {
+                    ret.domicilio = new DomicilioDto { comboProvincia = new Service<Provincia>(UnitOfWork).GetAll() };
+                }
+
+                return ret;
+            }
+
+            return null;
 
         }
 

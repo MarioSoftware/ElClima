@@ -1,8 +1,9 @@
-﻿using ElClima.Domain.Model.Models.Comun;
+﻿using ElClima.Domain.Core.Entities;
+using ElClima.Domain.Model.Models.Comun;
 
 namespace ElClima.Domain.Model.Models.Social.Sujetos
 {
-    public class Contacto
+    public class Contacto : BaseEntity
     {
         public ContactoTipo contactoTipo { get; set; }
 

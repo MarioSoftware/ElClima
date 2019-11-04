@@ -28,6 +28,8 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto.Dtos
 
         public UbicacionDto ubicacion { get; set; }
 
-        public DomicilioDto domicilio { get; set; } 
+        public DomicilioDto domicilio { get; set; }
+
+        public List<ContactoDto> contactos { get; set; }
     }
 }
