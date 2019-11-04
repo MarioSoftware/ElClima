@@ -11,6 +11,7 @@ using ElClima.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using ElClima.Domain.Core.DependencyInjection;
 using ElClima.DataAccess.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
 
 namespace ElClima.FrontEnd
 {
@@ -65,6 +66,13 @@ namespace ElClima.FrontEnd
                 .EnableSensitiveDataLogging();
             }
             );
+
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ElClimaDbContext>()
+                .AddDefaultTokenProviders();
+
+
 
             // Registramos el UoW factory para usar en nuestro dominio
             services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();

@@ -3,18 +3,18 @@ using ElClima.Domain.Model.Enums.Common;
 
 namespace ElClima.Domain.Model.Models.Comun
 {
-    public class Sexo : BaseEntity
+    public class ContactoTipo : BaseEntity
     {
         public string nombre { get; set; }
 
-        public Sexo()
+        public ContactoTipo()
         {
         }
 
-        public Sexo(SexoEnum sexo)
+        public ContactoTipo(ContactoTipoEnum contactoTipo)
         {
-            id = (int)sexo;
-            nombre = sexo.GetDescription();
+            id = (int)contactoTipo;
+            nombre = contactoTipo.GetDescription();
         }
 
         public override string ToString()

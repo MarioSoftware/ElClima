@@ -171,6 +171,7 @@ namespace ElClima.DataAccess
                 SexoConfigurator.Configure(modelBuilder);
                 TipoVehiculoConfigurator.Configure(modelBuilder);
                 LocalidadConfigurator.Configure(modelBuilder);
+                ContactoTipoConfigurator.Configure(modelBuilder);
                  
                 //Historia
                 HistoriaConfigurator.Configure(modelBuilder);
