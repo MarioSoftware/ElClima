@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Caching.Memory;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ElClima.Authorization
 {
@@ -13,7 +11,7 @@ namespace ElClima.Authorization
         internal static bool CheckForPermission(bool isDevelopment, AuthorizationHandlerContext context, string operationName)
         {
 
-            var email = context.User.Identity.Name;
+            var email = context.User.Identity.Name; /*TODO: Find out dni property from Context*/
             var permissionKey = email + "|" + operationName;
             Dictionary<string, bool> authorizationDictionary;
 
@@ -42,8 +40,8 @@ namespace ElClima.Authorization
 
 
             // Obtenemos el usuario actual
-            var usuarioService = new ApplicationServices.Services.Social.Sujeto.PersonaService();
-            var resultado = usuarioService.CheckForPermission(email, operationName);
+            var personService = new ApplicationServices.Services.Social.Sujeto.PersonaService();
+            var resultado = personService.CheckForPermission(email, operationName);
 
 
             lock (PermissionLockObject)
