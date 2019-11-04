@@ -15,7 +15,7 @@ namespace ElClima.DataAccess.DataMapping.Comun
                     .IsRequired() 
                     .ValueGeneratedNever();
 
-                s.Property<string>("contacto")
+                s.Property<string>("nombre")
                     .IsRequired()
                     .HasColumnType("varchar(20)");
             });  

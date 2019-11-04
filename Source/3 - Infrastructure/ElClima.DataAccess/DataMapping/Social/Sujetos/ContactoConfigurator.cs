@@ -18,7 +18,7 @@ namespace ElClima.DataAccess.DataMapping.Social.Sujetos
 
                 r.Property<string>("contacto")
                 .IsRequired()
-                .HasColumnType("Varchar(30)"); 
+                .HasColumnType("Varchar(70)"); 
             });
 
             modelBuilder.Entity<Contacto>()
