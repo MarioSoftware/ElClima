@@ -187,6 +187,7 @@ namespace ElClima.DataAccess
                 RolConfigurator.Configure(modelBuilder); 
                 OperacionConfigurator.Configure(modelBuilder);
                 OperacionRolConfigurator.Configure(modelBuilder);
+                ContactoConfigurator.Configure(modelBuilder);
 
                 //Perdida
                 ComentarioPerdidaConfigurator.Configure(modelBuilder);
