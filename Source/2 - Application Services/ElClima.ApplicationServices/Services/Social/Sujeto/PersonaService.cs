@@ -180,5 +180,59 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
             }
             return roles;            
         }
+
+        public bool CheckForPermission(string dni, string operationName)
+        {
+            var persons = GetByFilter(f => f.dni == dni);
+            if (persons.Count == 0)
+            {
+                // No hay usuarios, hay una inconsistencia, porque no deberia de haber ni iniciado sesion.
+                return false;
+            }
+
+            return CheckForPermission(persons[0], operationName);
+        }
+
+        public bool CheckForPermission(Persona person, string operationName)
+        {
+            // Por el nombre de la opracion, obtengo la operacion.
+            var operacionService = new Service<Operacion>(GetCurrentUnitOfWork());
+            var operaciones = operacionService.GetByFilter(f =>
+                string.Equals(f.nombre, operationName, StringComparison.CurrentCultureIgnoreCase));
+            if (operaciones.Count == 0)
+            {
+                // Hay una inconsistencia porque no deberia de haber tomado la policy
+                return false;
+            }
+
+            // Ahora con esta operacion, traigo todos los roles que tienen acceso a esta operacion
+            var operacionPorRolService = new Service<OperacionRol>(GetCurrentUnitOfWork());
+            var operacionesPorRol =
+                operacionPorRolService.GetByFilterIncluding(f => f.operacion == operaciones[0], i => i.rol);
+
+            // y traigo todos los roles a los que pertenece este usuario
+            var rolUsuarioService = new Service<RolPersona>(GetCurrentUnitOfWork());
+            var roles = rolUsuarioService.GetByFilterIncluding(f => f.persona == person, i => i.rol);
+
+            // Finalmente, recorro las dos colecciones a ver si encuentra el permiso o no
+            foreach (var rolUsuario in roles)
+            {
+                if (rolUsuario.rol.esSuperUsuario)
+                {
+                    return true;
+                }
+
+                foreach (var operacionRol in operacionesPorRol)
+                {
+                    if (operacionRol.rol == rolUsuario.rol)
+                    {
+                        // Este usuario existe en este rol, que tiene esta operacion, por lo tanto tiene acceso.
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
     }
 }
