@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\2 - Application Services\ElClima.ApplicationServices\ElClima.ApplicationServices.csproj" />
-    <ProjectReference Include="..\..\3 - Infrastructure\ElClima.Authorization\ElClima.Authorization.csproj" />
     <ProjectReference Include="..\..\3 - Infrastructure\ElClima.DataAccess\ElClima.DataAccess.csproj" />
   </ItemGroup>
 
