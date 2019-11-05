@@ -22,7 +22,7 @@ namespace ElClima.DataAccess.DependencyInjection
             // Con esto se hace que si no se pasa la uow en el contructor del service se cree un nuevo context en cada instancia             
 
 
-            //var context = provider.GetService<SimonMipsDbContext>();
+            //var context = provider.GetService<ElClimaDbContext>();
 
             return new UnitOfWork(context);
         }
