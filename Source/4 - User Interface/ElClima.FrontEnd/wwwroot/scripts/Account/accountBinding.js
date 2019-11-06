@@ -51,23 +51,24 @@ var vm = new Vue({
         } 
     },
     methods: {
-        //GetLocalities: function () { 
-        //    vm.$data.p_loadingLocalities = true; 
-        //    $.ajax({
-        //        url: WebApiBaseUrl + "/GetLocalities/" + vm.$data.domicilio.idProvincia,
-        //        type: "GET",
-        //        contentType: "application/json;chartset=utf-8"
-        //    }).done(function (data) {
-        //        if (data !== null) {
-        //            this.p_comboLocalidad = [];
-        //            this.p_comboLocalidad = data;
-        //        }
-        //    }).fail(function (err) {
-        //    }).always(function () {
-        //        vm.$data.p_loadingLocalities = false;
-        //    }); 
+        RegisterUser: function () {
 
-        //}, 
+            var dataJson = JSON.stringify(data={ dni:this.dni, apellido:this.apellido, nombre: this.nombre, password: this.contrasenia });
+
+            $.ajax({
+                url: "/api/Account/Register" + vm.$data.domicilio.idProvincia,
+                type: "PUT",
+                data: dataJson,
+                processData: true,
+                contentType: "application/json;chartset=utf-8"
+            }).done(function (data) { 
+
+            }).fail(function (err) {
+            }).always(function () {
+                
+            }); 
+
+        }, 
 
         SavePerson: function () {
 
@@ -80,6 +81,9 @@ var vm = new Vue({
                 contentType: "application/json;chartset=utf-8",
                 processData:true
             }).done(function (data) {
+
+                this.RegisterUser();
+
             }).fail(function (err) {
             }).always(function () {
             });

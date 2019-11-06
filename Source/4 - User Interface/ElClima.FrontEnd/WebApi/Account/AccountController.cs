@@ -8,7 +8,7 @@ namespace ElClima.FrontEnd.WebApi.Account
     public class AccountController : BaseWebApiController
     {
         [HttpPut]
-        [Route("/api/AccountController/Register")]
+        [Route("/api/Account/Register")]
         public void Register([FromBody] RegisterDataDto data)
         {
 
