@@ -27,7 +27,7 @@ namespace ElClima.Authorization
         {
             ServiceCollection = services;
 
-            services.AddAuthorizationCore(options =>
+            services.AddAuthorization(options =>
             {
                 AddPolicy(isDevelopment, options, OperacionEnum.CommonFunctionsTodo.GetDescription());
                 AddPolicy(isDevelopment, options, OperacionEnum.SpecialFunctionsEspecial.GetDescription());
