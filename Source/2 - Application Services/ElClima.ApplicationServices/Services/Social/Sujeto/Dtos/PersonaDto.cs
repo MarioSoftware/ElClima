@@ -24,7 +24,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto.Dtos
 
         public string contrasenia { get; set; } 
 
-        //public UbicacionDto ubicacion { get; set; }
+        public UbicacionDto ubicacion { get; set; }
 
         public DomicilioDto domicilio { get; set; }
 
