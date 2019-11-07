@@ -22,23 +22,23 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
                 _mapper = new MapperConfiguration(cfg =>
                 {
                     cfg.CreateMap<Persona, PersonaDto>()
-                     .ForMember(dest => dest.idSexo, opt => opt.MapFrom(org => org.sexo == null ? 0 : org.sexo.id))
-                     .ForMember(dest => dest.fechaNacimiento, opt => opt.MapFrom(org => org.fechaNacimiento == DateTime.MinValue ? "" : org.fechaNacimiento.ToShortDateString()))
-                     .ForMember(dest => dest.domicilio, opt => opt.Ignore())
-                     .ForMember(dest => dest.ubicacion, opt => opt.Ignore())
-                     .ForMember(dest => dest.contactos, opt => opt.Ignore())                     
+                     .ForMember(dest => dest.idSexo, opt => opt.MapFrom(src => src.sexo == null ? 0 : src.sexo.id))
+                     .ForMember(dest => dest.fechaNacimiento, opt => opt.MapFrom(src => src.fechaNacimiento == DateTime.MinValue ? "" : src.fechaNacimiento.ToShortDateString()))
+                     //.ForMember(dest => dest.domicilio, opt => opt.Ignore())
+                     //.ForMember(dest => dest.ubicacion, opt => opt.Ignore())
+                     //.ForMember(dest => dest.contactos, opt => opt.Ignore())                     
                      .ReverseMap();
 
-                    cfg.CreateMap<Ubicacion, UbicacionDto>().ReverseMap();
+                    //cfg.CreateMap<Ubicacion, UbicacionDto>().ReverseMap();
 
-                    cfg.CreateMap<Contacto, ContactoDto>()
-                     .ForMember(dest => dest.idContactoTipo, opt => opt.MapFrom(org => org.contactoTipo.id))
-                     .ForMember(dest => dest.idPersona, opt => opt.MapFrom(org => org.persona.id)) 
-                     .ReverseMap();
+                    //cfg.CreateMap<Contacto, ContactoDto>()
+                    // .ForMember(dest => dest.idContactoTipo, opt => opt.MapFrom(org => org.contactoTipo.id))
+                    // .ForMember(dest => dest.idPersona, opt => opt.MapFrom(org => org.persona.id)) 
+                    // .ReverseMap();
 
                     cfg.CreateMap<Domicilio, DomicilioDto>()
-                    .ForMember(dest => dest.localidad, opt => opt.MapFrom(org => org.localidad == null ? 0 : org.localidad.id))
-                    .ForMember(dest => dest.idProvincia, opt => opt.MapFrom(org => org.provincia == null ? 0 : org.provincia.id))
+                    .ForMember(dest => dest.localidad, opt => opt.MapFrom(src => src.localidad == null ? null : src.localidad))
+                    .ForMember(dest => dest.idProvincia, opt => opt.MapFrom(src => src.provincia == null ? 0 : src.provincia.id)) 
                     .ReverseMap();
 
                 }).CreateMapper();
@@ -111,13 +111,14 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
 
             if (persona != null)
             {
-                var ret = _mapper.Map<PersonaDto>(persona);
 
                 persona.contactos = new Service<Contacto>(UnitOfWork).GetByFilterIncluding(
-                    f=> f.persona.id == persona.id,
-                    i=> i.contactoTipo
-                    );
+                  f => f.persona.id == persona.id,
+                  i => i.contactoTipo
+                  );
 
+                var ret = _mapper.Map<PersonaDto>(persona);
+                
 
                 if (ret.domicilio == null)
                 {

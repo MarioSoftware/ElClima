@@ -27,6 +27,6 @@ namespace ElClima.Domain.Model.Models.Social.Sujetos
 
         public DateTime fechaHoraUltimaActualizacion { get; set; }
 
-        public Ubicacion ubicacionActual { get; set; }
+        public Ubicacion ubicacion { get; set; }
     }
 }

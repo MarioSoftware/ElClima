@@ -24,10 +24,10 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto.Dtos
 
         public string contrasenia { get; set; } 
 
-        public UbicacionDto ubicacion { get; set; }
+        //public UbicacionDto ubicacion { get; set; }
 
         public DomicilioDto domicilio { get; set; }
 
-        public List<ContactoDto> contactos { get; set; }
+        //public List<ContactoDto> contactos { get; set; }
     }
 }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElClima.DataAccess.Migrations
 {
     [DbContext(typeof(ElClimaDbContext))]
-    [Migration("20191107120604_InitialMigrationAgain")]
-    partial class InitialMigrationAgain
+    [Migration("20191107132521_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1563,7 +1563,7 @@ namespace ElClima.DataAccess.Migrations
                         .HasForeignKey("provinciaId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("ElClima.Domain.Model.Models.Posicionamiento.Ubicacion", "ubicacionActual")
+                    b.HasOne("ElClima.Domain.Model.Models.Posicionamiento.Ubicacion", "ubicacion")
                         .WithMany()
                         .HasForeignKey("ubicacionId")
                         .OnDelete(DeleteBehavior.Restrict);

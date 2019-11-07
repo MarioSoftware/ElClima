@@ -57,7 +57,7 @@ namespace ElClima.DataAccess.DataMapping.Social.Sujetos
               .Property<int>("ubicacionId")
               .IsRequired();
             modelBuilder.Entity<Domicilio>()
-                    .HasOne(c => c.ubicacionActual);
+                    .HasOne(c => c.ubicacion);
 
             modelBuilder.Entity<Domicilio>()
             .Property<int>("localidadId")

@@ -1561,7 +1561,7 @@ namespace ElClima.DataAccess.Migrations
                         .HasForeignKey("provinciaId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("ElClima.Domain.Model.Models.Posicionamiento.Ubicacion", "ubicacionActual")
+                    b.HasOne("ElClima.Domain.Model.Models.Posicionamiento.Ubicacion", "ubicacion")
                         .WithMany()
                         .HasForeignKey("ubicacionId")
                         .OnDelete(DeleteBehavior.Restrict);

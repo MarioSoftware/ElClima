@@ -10,6 +10,7 @@ var vm = new Vue({
         fechaNacimiento:"",
         idSexo: 1, 
         domicilio: {
+            id:0,
             idProvincia: 0,
             localidad: {},
             calle: "",
@@ -28,8 +29,8 @@ var vm = new Vue({
             p_SuggestionsBoxTimer: 0
         },
         contrasenia: "",
-        contactos: [],
-        ubicacion:{},
+        //contactos: [],
+        //ubicacion:{},
 
         p_contraseniaRepetir:"", 
         p_chekingPersonExist:false,
