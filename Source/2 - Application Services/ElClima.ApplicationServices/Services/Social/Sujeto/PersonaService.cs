@@ -33,8 +33,8 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
                     .ForMember(dest => dest.localidad, opt => opt.MapFrom(src => src.localidad == null ? null : src.localidad))
                     .ForMember(dest => dest.idProvincia, opt => opt.MapFrom(src => src.provincia == null ? 0 : src.provincia.id))
                     .ReverseMap()
-                    //.ForMember(dest => dest.provincia, opt => opt.Ignore())
-                    .ForMember(dest => dest.localidad, opt => opt.Ignore());
+                    .ForMember(dest => dest.provincia, opt => opt.MapFrom(src=> src.idProvincia != 0 ? new Provincia { id=src.idProvincia} : new Provincia { id = 0 }))
+                    .ForMember(dest => dest.localidad, opt => opt.MapFrom(src => src.localidad != null ? new Localidad { id = src.id} : new Localidad { id = 0 }));
 
                     //cfg.CreateMap<Ubicacion, UbicacionDto>().ReverseMap();
 
