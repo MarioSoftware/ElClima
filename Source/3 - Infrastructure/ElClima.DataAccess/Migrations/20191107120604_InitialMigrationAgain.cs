@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ElClima.DataAccess.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialMigrationAgain : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -621,8 +621,8 @@ namespace ElClima.DataAccess.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     personaId = table.Column<int>(nullable: false),
                     calle = table.Column<string>(type: "varchar(100)", nullable: false),
-                    numero = table.Column<int>(maxLength: 5, nullable: false),
-                    piso = table.Column<int>(maxLength: 3, nullable: false),
+                    numero = table.Column<int>(maxLength: 5, nullable: true),
+                    piso = table.Column<int>(maxLength: 3, nullable: true),
                     departamento = table.Column<string>(type: "varchar(8)", nullable: true),
                     provinciaId = table.Column<int>(nullable: false),
                     localidadId = table.Column<int>(nullable: false),

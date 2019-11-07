@@ -23,14 +23,16 @@ namespace ElClima.DataAccess.DataMapping.Social.Sujetos
                            .IsRequired()
                            .HasColumnType("varchar(100)");
 
-                d.Property<int>("numero")
+                d.Property<int?>("numero")
+                .IsRequired(false)
                   .HasMaxLength(5);
 
                 d.Property<string>("barrio")
                            .IsRequired()
                            .HasColumnType("varchar(85)");
 
-                d.Property<int>("piso")
+                d.Property<int?>("piso")
+                .IsRequired(false)
                   .HasMaxLength(3);
 
                 d.Property<string>("departamento") 

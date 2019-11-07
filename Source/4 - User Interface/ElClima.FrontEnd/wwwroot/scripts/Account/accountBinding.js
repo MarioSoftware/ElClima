@@ -27,7 +27,10 @@ var vm = new Vue({
             p_LocalidadesSuggestions: [],
             p_SuggestionsBoxTimer: 0
         },
-        contrasenia:"",
+        contrasenia: "",
+        contactos: [],
+        ubicacion:{},
+
         p_contraseniaRepetir:"", 
         p_chekingPersonExist:false,
 
@@ -73,7 +76,7 @@ var vm = new Vue({
         SavePerson: function () {
 
             var entityJson = JSON.stringify(vm.$data, ExcludePrivateFields);
-
+            console.log(entityJson);
             $.ajax({
                 url: WebApiBaseUrl + "/Add",
                 type: "POST",
@@ -82,7 +85,7 @@ var vm = new Vue({
                 processData:true
             }).done(function (data) {
 
-                this.RegisterUser();
+                //this.RegisterUser();
 
             }).fail(function (err) {
             }).always(function () {
@@ -154,7 +157,7 @@ function HydrateFields(data) {
     vm.$data.domicilio.idProvincia = data.domicilio.idProvincia; 
     vm.$data.domicilio.calle = !data.domicilio.calle ? "" : data.domicilio.calle;
     vm.$data.domicilio.numero = !data.domicilio.numero ? "" : data.domicilio.numero;
-    vm.$data.domicilio.piso = data.domicilio.piso === 0 ? "" : data.domicilio.piso;
+    vm.$data.domicilio.piso = data.domicilio.piso;
     vm.$data.domicilio.departamento= data.domicilio.departamento;
     vm.$data.domicilio.barrio = data.domicilio.barrio;
     vm.$data.p_comboProvincia = data.domicilio.comboProvincia; 

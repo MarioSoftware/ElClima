@@ -11,9 +11,9 @@ namespace ElClima.Domain.Model.Models.Social.Sujetos
 
         public string calle { get; set; }
 
-        public int numero { get; set; }
+        public int? numero { get; set; }
 
-        public int piso { get; set; }
+        public int? piso { get; set; }
 
         public string departamento { get; set; }
 

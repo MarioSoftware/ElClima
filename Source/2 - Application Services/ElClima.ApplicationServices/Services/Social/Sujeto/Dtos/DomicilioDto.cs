@@ -10,9 +10,9 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto.Dtos
 
         public string calle { get; set; }
 
-        public string numero { get; set; }
+        public int? numero { get; set; }
 
-        public int piso { get; set; }
+        public int? piso { get; set; }
 
         public string departamento { get; set; }
 
