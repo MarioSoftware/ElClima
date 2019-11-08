@@ -24,17 +24,17 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
                     cfg.CreateMap<Persona, PersonaDto>()
                      .ForMember(dest => dest.idSexo, opt => opt.MapFrom(src => src.sexo == null ? 0 : src.sexo.id))
                      .ForMember(dest => dest.fechaNacimiento, opt => opt.MapFrom(src => src.fechaNacimiento == DateTime.MinValue ? "" : src.fechaNacimiento.ToShortDateString()))
-                     .ReverseMap();
-
+                     .ReverseMap()
+                    .ForMember(dest => dest.ubicacion, opt => opt.MapFrom(src => src.ubicacion != null ? new Ubicacion { id = 0, direccion = src.ubicacion.direccion, latitud = src.ubicacion.latitud, longitud = src.ubicacion.longitud } : new Ubicacion { id = 0, direccion = src.domicilio.ubicacion.direccion, latitud = src.domicilio.ubicacion.latitud, longitud = src.domicilio.ubicacion.longitud }));
+                    
                     cfg.CreateMap<Ubicacion, UbicacionDto>().ReverseMap();
-
-
+                    
                     cfg.CreateMap<Domicilio, DomicilioDto>()
                     .ForMember(dest => dest.localidad, opt => opt.MapFrom(src => src.localidad == null ? null : src.localidad))
                     .ForMember(dest => dest.idProvincia, opt => opt.MapFrom(src => src.provincia == null ? 0 : src.provincia.id))
                     .ReverseMap()
-                    .ForMember(dest => dest.provincia, opt => opt.MapFrom(src=> src.idProvincia != 0 ? new Provincia { id=src.idProvincia} : new Provincia { id = 0 }))
-                    .ForMember(dest => dest.localidad, opt => opt.MapFrom(src => src.localidad != null ? new Localidad { id = src.id} : new Localidad { id = 0 }));
+                    .ForMember(dest => dest.provincia, opt => opt.MapFrom(src => src.idProvincia != 0 ? new Provincia { id = src.idProvincia } : new Provincia { id = 0 }))
+                    .ForMember(dest => dest.localidad, opt => opt.MapFrom(src => src.localidad != null ? new Localidad { id = src.localidad.id } : new Localidad { id = 0 }));
 
                     //cfg.CreateMap<Ubicacion, UbicacionDto>().ReverseMap();
 
