@@ -8,7 +8,7 @@ namespace ElClima.DataAccess.DataMapping.Social.Entidades
     {
         public static void Configure(ModelBuilder modelBuilder)
         { 
-            modelBuilder.Entity<Servicio>(l =>
+            modelBuilder.Entity<LineaProducto>(l =>
             {
                 l.ToTable("LineaProducto", "Entidad");
 

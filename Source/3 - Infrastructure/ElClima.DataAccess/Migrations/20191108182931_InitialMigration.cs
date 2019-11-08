@@ -12,6 +12,9 @@ namespace ElClima.DataAccess.Migrations
                 name: "Comun");
 
             migrationBuilder.EnsureSchema(
+                name: "Posicionamiento");
+
+            migrationBuilder.EnsureSchema(
                 name: "Entidad");
 
             migrationBuilder.EnsureSchema(
@@ -68,21 +71,6 @@ namespace ElClima.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Ubicacion",
-                columns: table => new
-                {
-                    id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    longitud = table.Column<string>(nullable: true),
-                    latitud = table.Column<string>(nullable: true),
-                    direccion = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Ubicacion", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -216,6 +204,22 @@ namespace ElClima.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Rol", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Ubicacion",
+                schema: "Posicionamiento",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    longitud = table.Column<string>(type: "varchar(30)", nullable: false),
+                    latitud = table.Column<string>(type: "varchar(30)", nullable: false),
+                    direccion = table.Column<string>(type: "varchar(150)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ubicacion", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -387,39 +391,6 @@ namespace ElClima.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Persona",
-                schema: "Sujeto",
-                columns: table => new
-                {
-                    id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    apellido = table.Column<string>(type: "varchar(60)", nullable: false),
-                    nombre = table.Column<string>(type: "varchar(60)", nullable: false),
-                    dni = table.Column<string>(type: "varchar(15)", nullable: false),
-                    alias = table.Column<string>(type: "varchar(45)", nullable: false),
-                    fechaNacimiento = table.Column<DateTime>(type: "Date", nullable: false),
-                    ubicacionId = table.Column<int>(nullable: false),
-                    sexoId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Persona", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_Persona_Sexo_sexoId",
-                        column: x => x.sexoId,
-                        principalSchema: "Comun",
-                        principalTable: "Sexo",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Persona_Ubicacion_ubicacionId",
-                        column: x => x.ubicacionId,
-                        principalTable: "Ubicacion",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "OperacionRol",
                 schema: "Personas",
                 columns: table => new
@@ -444,6 +415,39 @@ namespace ElClima.DataAccess.Migrations
                         column: x => x.rolId,
                         principalSchema: "Personas",
                         principalTable: "Rol",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Persona",
+                schema: "Sujeto",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    apellido = table.Column<string>(type: "varchar(60)", nullable: false),
+                    nombre = table.Column<string>(type: "varchar(60)", nullable: false),
+                    dni = table.Column<string>(type: "varchar(15)", nullable: false),
+                    fechaNacimiento = table.Column<DateTime>(type: "Date", nullable: false),
+                    ubicacionId = table.Column<int>(nullable: false),
+                    sexoId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Persona", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Persona_Sexo_sexoId",
+                        column: x => x.sexoId,
+                        principalSchema: "Comun",
+                        principalTable: "Sexo",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Persona_Ubicacion_ubicacionId",
+                        column: x => x.ubicacionId,
+                        principalSchema: "Posicionamiento",
+                        principalTable: "Ubicacion",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -491,6 +495,7 @@ namespace ElClima.DataAccess.Migrations
                     table.ForeignKey(
                         name: "FK_Entidad_Ubicacion_ubicacionId",
                         column: x => x.ubicacionId,
+                        principalSchema: "Posicionamiento",
                         principalTable: "Ubicacion",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
@@ -551,6 +556,7 @@ namespace ElClima.DataAccess.Migrations
                     table.ForeignKey(
                         name: "FK_Historia_Ubicacion_ubicacionId",
                         column: x => x.ubicacionId,
+                        principalSchema: "Posicionamiento",
                         principalTable: "Ubicacion",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
@@ -658,6 +664,7 @@ namespace ElClima.DataAccess.Migrations
                     table.ForeignKey(
                         name: "FK_Domicilio_Ubicacion_ubicacionId",
                         column: x => x.ubicacionId,
+                        principalSchema: "Posicionamiento",
                         principalTable: "Ubicacion",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
@@ -697,7 +704,7 @@ namespace ElClima.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "LineaProducto",
+                name: "Servicio",
                 schema: "Entidad",
                 columns: table => new
                 {
@@ -707,22 +714,20 @@ namespace ElClima.DataAccess.Migrations
                     tipoServicioId = table.Column<int>(nullable: false),
                     descripcion = table.Column<string>(type: "varchar(80)", nullable: false),
                     observacion = table.Column<string>(type: "varchar(400)", nullable: true),
-                    foto = table.Column<string>(type: "varchar(max)", nullable: true),
-                    fechaHoraCreacion = table.Column<DateTime>(type: "Date", nullable: false),
-                    fechaHoraUltimaActualizacion = table.Column<DateTime>(type: "Date", nullable: false)
+                    foto = table.Column<string>(type: "varchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LineaProducto", x => x.id);
+                    table.PrimaryKey("PK_Servicio", x => x.id);
                     table.ForeignKey(
-                        name: "FK_LineaProducto_Entidad_entidadId",
+                        name: "FK_Servicio_Entidad_entidadId",
                         column: x => x.entidadId,
                         principalSchema: "Entidad",
                         principalTable: "Entidad",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_LineaProducto_TipoServicio_tipoServicioId",
+                        name: "FK_Servicio_TipoServicio_tipoServicioId",
                         column: x => x.tipoServicioId,
                         principalSchema: "Entidad",
                         principalTable: "TipoServicio",
@@ -827,6 +832,7 @@ namespace ElClima.DataAccess.Migrations
                     table.ForeignKey(
                         name: "FK_Comentario_Ubicacion_ubicacionId",
                         column: x => x.ubicacionId,
+                        principalSchema: "Posicionamiento",
                         principalTable: "Ubicacion",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
@@ -882,31 +888,8 @@ namespace ElClima.DataAccess.Migrations
                     table.ForeignKey(
                         name: "FK_UbicacionPerdida_Ubicacion_ubicacionPerdidaId",
                         column: x => x.ubicacionPerdidaId,
+                        principalSchema: "Posicionamiento",
                         principalTable: "Ubicacion",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "LineaProducto",
-                columns: table => new
-                {
-                    id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    servicioId = table.Column<int>(nullable: false),
-                    descripcion = table.Column<string>(nullable: true),
-                    fechaHoraCreacion = table.Column<DateTime>(nullable: false),
-                    observacion = table.Column<string>(nullable: true),
-                    fechaHoraUltimaActualizacion = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LineaProducto", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_LineaProducto_LineaProducto_servicioId",
-                        column: x => x.servicioId,
-                        principalSchema: "Entidad",
-                        principalTable: "LineaProducto",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -938,10 +921,10 @@ namespace ElClima.DataAccess.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ComentarioServicio_LineaProducto_servicioId",
+                        name: "FK_ComentarioServicio_Servicio_servicioId",
                         column: x => x.servicioId,
                         principalSchema: "Entidad",
-                        principalTable: "LineaProducto",
+                        principalTable: "Servicio",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -949,6 +932,31 @@ namespace ElClima.DataAccess.Migrations
                         column: x => x.tipoComentarioId,
                         principalSchema: "Entidad",
                         principalTable: "TipoComentario",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LineaProducto",
+                schema: "Entidad",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    servicioId = table.Column<int>(nullable: false),
+                    descripcion = table.Column<string>(type: "varchar(80)", nullable: false),
+                    fechaHoraCreacion = table.Column<DateTime>(type: "Date", nullable: false),
+                    observacion = table.Column<string>(type: "varchar(400)", nullable: true),
+                    fechaHoraUltimaActualizacion = table.Column<DateTime>(type: "Date", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LineaProducto", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_LineaProducto_Servicio_servicioId",
+                        column: x => x.servicioId,
+                        principalSchema: "Entidad",
+                        principalTable: "Servicio",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -969,10 +977,10 @@ namespace ElClima.DataAccess.Migrations
                 {
                     table.PrimaryKey("PK_ServicioImagen", x => x.id);
                     table.ForeignKey(
-                        name: "FK_ServicioImagen_LineaProducto_servicioId",
+                        name: "FK_ServicioImagen_Servicio_servicioId",
                         column: x => x.servicioId,
                         principalSchema: "Entidad",
-                        principalTable: "LineaProducto",
+                        principalTable: "Servicio",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -1095,31 +1103,6 @@ namespace ElClima.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Producto",
-                schema: "Entidad",
-                columns: table => new
-                {
-                    id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    lineaProductoId = table.Column<int>(nullable: false),
-                    descripcion = table.Column<string>(type: "varchar(80)", nullable: false),
-                    fechaHoraCrecion = table.Column<DateTime>(type: "Date", nullable: false),
-                    precio = table.Column<decimal>(type: "money", nullable: false),
-                    disponible = table.Column<bool>(nullable: false),
-                    fechaHoraUltimaActualizacion = table.Column<DateTime>(type: "Date", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Producto", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_Producto_LineaProducto_lineaProductoId",
-                        column: x => x.lineaProductoId,
-                        principalTable: "LineaProducto",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ConversacionComentarioServicio",
                 schema: "Entidad",
                 columns: table => new
@@ -1149,6 +1132,32 @@ namespace ElClima.DataAccess.Migrations
                         column: x => x.personaId,
                         principalSchema: "Sujeto",
                         principalTable: "Persona",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Producto",
+                schema: "Entidad",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    lineaProductoId = table.Column<int>(nullable: false),
+                    descripcion = table.Column<string>(type: "varchar(80)", nullable: false),
+                    fechaHoraCrecion = table.Column<DateTime>(type: "Date", nullable: false),
+                    precio = table.Column<decimal>(type: "money", nullable: false),
+                    disponible = table.Column<bool>(nullable: false),
+                    fechaHoraUltimaActualizacion = table.Column<DateTime>(type: "Date", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Producto", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Producto_LineaProducto_lineaProductoId",
+                        column: x => x.lineaProductoId,
+                        principalSchema: "Entidad",
+                        principalTable: "LineaProducto",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -1316,11 +1325,6 @@ namespace ElClima.DataAccess.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LineaProducto_servicioId",
-                table: "LineaProducto",
-                column: "servicioId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Localidad_provinciaId",
                 schema: "Comun",
                 table: "Localidad",
@@ -1423,16 +1427,10 @@ namespace ElClima.DataAccess.Migrations
                 column: "ubicacionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LineaProducto_entidadId",
+                name: "IX_LineaProducto_servicioId",
                 schema: "Entidad",
                 table: "LineaProducto",
-                column: "entidadId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LineaProducto_tipoServicioId",
-                schema: "Entidad",
-                table: "LineaProducto",
-                column: "tipoServicioId");
+                column: "servicioId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Producto_lineaProductoId",
@@ -1445,6 +1443,18 @@ namespace ElClima.DataAccess.Migrations
                 schema: "Entidad",
                 table: "ProductoImagen",
                 column: "productoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Servicio_entidadId",
+                schema: "Entidad",
+                table: "Servicio",
+                column: "entidadId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Servicio_tipoServicioId",
+                schema: "Entidad",
+                table: "Servicio",
+                column: "tipoServicioId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServicioImagen_servicioId",
@@ -1820,14 +1830,15 @@ namespace ElClima.DataAccess.Migrations
                 schema: "Comun");
 
             migrationBuilder.DropTable(
-                name: "LineaProducto");
+                name: "LineaProducto",
+                schema: "Entidad");
 
             migrationBuilder.DropTable(
                 name: "Perdida",
                 schema: "Reporte.Perdida");
 
             migrationBuilder.DropTable(
-                name: "LineaProducto",
+                name: "Servicio",
                 schema: "Entidad");
 
             migrationBuilder.DropTable(
@@ -1851,7 +1862,8 @@ namespace ElClima.DataAccess.Migrations
                 schema: "Comun");
 
             migrationBuilder.DropTable(
-                name: "Ubicacion");
+                name: "Ubicacion",
+                schema: "Posicionamiento");
         }
     }
 }

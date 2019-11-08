@@ -13,6 +13,7 @@ namespace ElClima.ApplicationServices.Setup.Social.Sujeto
             var predeterminados = new List<Rol>
             {
                 new Rol {detalle="Administrador", esSuperUsuario=true},
+                new Rol {detalle="Usuario", esSuperUsuario=false}
             };
 
             var services = new Service<Rol>(unitOfWork);

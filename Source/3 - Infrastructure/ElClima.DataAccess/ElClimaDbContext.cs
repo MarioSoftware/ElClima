@@ -1,5 +1,6 @@
 ﻿using ElClima.DataAccess.ConcreteRepository;
 using ElClima.DataAccess.DataMapping.Comun;
+using ElClima.DataAccess.DataMapping.Posicionamiento;
 using ElClima.DataAccess.DataMapping.Social.Entidades;
 using ElClima.DataAccess.DataMapping.Social.Reporte.Historias;
 using ElClima.DataAccess.DataMapping.Social.Reporte.Perdidas;
@@ -172,7 +173,10 @@ namespace ElClima.DataAccess
                 TipoVehiculoConfigurator.Configure(modelBuilder);
                 LocalidadConfigurator.Configure(modelBuilder);
                 ContactoTipoConfigurator.Configure(modelBuilder);
-                 
+
+                //Posicionamiento
+                UbicacionConfigurator.Configure(modelBuilder);
+
                 //Historia
                 HistoriaConfigurator.Configure(modelBuilder);
                 ComentarioConfigurator.Configure(modelBuilder);

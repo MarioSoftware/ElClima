@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElClima.DataAccess.Migrations
 {
     [DbContext(typeof(ElClimaDbContext))]
-    [Migration("20191107132521_InitialMigration")]
+    [Migration("20191108182931_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -158,15 +158,21 @@ namespace ElClima.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("direccion");
+                    b.Property<string>("direccion")
+                        .IsRequired()
+                        .HasColumnType("varchar(150)");
 
-                    b.Property<string>("latitud");
+                    b.Property<string>("latitud")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)");
 
-                    b.Property<string>("longitud");
+                    b.Property<string>("longitud")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)");
 
                     b.HasKey("id");
 
-                    b.ToTable("Ubicacion");
+                    b.ToTable("Ubicacion","Posicionamiento");
                 });
 
             modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Entidades.ComentarioProducto", b =>
@@ -411,13 +417,18 @@ namespace ElClima.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("descripcion");
+                    b.Property<string>("descripcion")
+                        .IsRequired()
+                        .HasColumnType("varchar(80)");
 
-                    b.Property<DateTime>("fechaHoraCreacion");
+                    b.Property<DateTime>("fechaHoraCreacion")
+                        .HasColumnType("Date");
 
-                    b.Property<DateTime>("fechaHoraUltimaActualizacion");
+                    b.Property<DateTime>("fechaHoraUltimaActualizacion")
+                        .HasColumnType("Date");
 
-                    b.Property<string>("observacion");
+                    b.Property<string>("observacion")
+                        .HasColumnType("varchar(400)");
 
                     b.Property<int>("servicioId");
 
@@ -425,7 +436,7 @@ namespace ElClima.DataAccess.Migrations
 
                     b.HasIndex("servicioId");
 
-                    b.ToTable("LineaProducto");
+                    b.ToTable("LineaProducto","Entidad");
                 });
 
             modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Entidades.Producto", b =>
@@ -495,12 +506,6 @@ namespace ElClima.DataAccess.Migrations
 
                     b.Property<int>("entidadId");
 
-                    b.Property<DateTime>("fechaHoraCreacion")
-                        .HasColumnType("Date");
-
-                    b.Property<DateTime>("fechaHoraUltimaActualizacion")
-                        .HasColumnType("Date");
-
                     b.Property<string>("foto")
                         .HasColumnType("varchar(max)");
 
@@ -515,7 +520,7 @@ namespace ElClima.DataAccess.Migrations
 
                     b.HasIndex("tipoServicioId");
 
-                    b.ToTable("LineaProducto","Entidad");
+                    b.ToTable("Servicio","Entidad");
                 });
 
             modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Entidades.ServicioImagen", b =>
@@ -1060,10 +1065,6 @@ namespace ElClima.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("alias")
-                        .IsRequired()
-                        .HasColumnType("varchar(45)");
-
                     b.Property<string>("apellido")
                         .IsRequired()
                         .HasColumnType("varchar(60)");
@@ -1541,7 +1542,7 @@ namespace ElClima.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("ElClima.Domain.Model.Models.Social.Sujetos.Persona", "persona")
-                        .WithMany("contactos")
+                        .WithMany()
                         .HasForeignKey("personaId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });

@@ -81,10 +81,10 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
             item.domicilio.fechaHoraUltimaActualizacion = GetLocalCurrentTime();
 
             UpdateRolPersons(item, GetPersonRol(dto.dni));
-            //UnitOfWork.SetAsAdded(item);
-            //UnitOfWork.SetAsAdded(item.domicilio);
+            UnitOfWork.SetAsAdded(item);
+            UnitOfWork.SetAsAdded(item.domicilio);
 
-            //Insert(item);
+            Insert(item);
         }
 
         private DateTime GetLocalCurrentTime()
