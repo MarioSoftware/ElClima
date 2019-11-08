@@ -33,20 +33,14 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
                     .ForMember(dest => dest.localidad, opt => opt.MapFrom(src => src.localidad == null ? null : src.localidad))
                     .ForMember(dest => dest.idProvincia, opt => opt.MapFrom(src => src.provincia == null ? 0 : src.provincia.id))
                     .ReverseMap()
-                    .ForMember(dest => dest.provincia, opt => opt.MapFrom(src => src.idProvincia != 0 ? new Provincia { id = src.idProvincia } : new Provincia { id = 0 }))
-                    .ForMember(dest => dest.localidad, opt => opt.MapFrom(src => src.localidad != null ? new Localidad { id = src.localidad.id } : new Localidad { id = 0 }));
-
-                    //cfg.CreateMap<Ubicacion, UbicacionDto>().ReverseMap();
+                    .ForMember(dest => dest.provincia, opt => opt.Ignore())
+                    .ForMember(dest => dest.localidad, opt => opt.Ignore()); 
 
                     //cfg.CreateMap<Contacto, ContactoDto>()
                     // .ForMember(dest => dest.idContactoTipo, opt => opt.MapFrom(org => org.contactoTipo.id))
                     // .ForMember(dest => dest.idPersona, opt => opt.MapFrom(org => org.persona.id)) 
                     // .ReverseMap();
-
-                    //cfg.CreateMap<Domicilio, DomicilioDto>()
-                    //.ForMember(dest => dest.localidad, opt => opt.MapFrom(src => src.localidad == null ? null : src.localidad))
-                    //.ForMember(dest => dest.idProvincia, opt => opt.MapFrom(src => src.provincia == null ? 0 : src.provincia.id)) 
-                    //.ReverseMap();
+                     
 
                 }).CreateMapper();
             }
@@ -67,6 +61,11 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
             else
                 entity = _mapper.Map<Persona>(dto);
 
+            entity.domicilio.provincia = new Service<Provincia>(UnitOfWork).GetOne(dto.domicilio.idProvincia);
+            entity.domicilio.localidad = new Service<Localidad>(UnitOfWork).GetOne(dto.domicilio.localidad.id);
+
+
+
             return entity;
         }
 
@@ -75,12 +74,22 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
             TrimUniqueFields(dto);
 
             dto.id = 0;
-            var item = GetEntityFromDto(dto); 
 
+            var item = GetEntityFromDto(dto);
+
+            item.domicilio.fechaHoraCreacion = GetLocalCurrentTime();
+            item.domicilio.fechaHoraUltimaActualizacion = GetLocalCurrentTime();
+
+            UpdateRolPersons(item, GetPersonRol(dto.dni));
             //UnitOfWork.SetAsAdded(item);
             //UnitOfWork.SetAsAdded(item.domicilio);
-            //UpdateRolPersons(item,GetPersonRol(dto.dni));
+
             //Insert(item);
+        }
+
+        private DateTime GetLocalCurrentTime()
+        {
+            return DateTime.Now;
         }
 
         private void UpdateRolPersons(Persona person, List<Rol> roles)
