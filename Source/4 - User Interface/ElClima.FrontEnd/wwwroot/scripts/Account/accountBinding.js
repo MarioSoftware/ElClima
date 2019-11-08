@@ -103,8 +103,9 @@ var vm = new Vue({
         },
 
         CheckPersonExist: async function () {  
-            //if ($("#credentialsForm").valid()) {
+            if ($("#credentialsForm").valid()) {
                 vm.$data.p_chekingPersonExist = true;
+                vm.$data.p_ErrorMessage = "";
                 BlockButtons(true);
                 $.ajax({
                     url: WebApiBaseUrl + "/Exist/" + this.dni,
@@ -113,6 +114,8 @@ var vm = new Vue({
                 }).done(function (data) {
                     if (data !== null) {
                         vm.$data.p_credentialsShowView = data;  
+                        if (data)
+                            vm.$data.p_ErrorMessage = "Ya tienes un Usuario registrado !, intenta Iniciar Session";
                     }
 
                 }).fail(function (err) {
@@ -120,13 +123,13 @@ var vm = new Vue({
                     vm.$data.p_chekingPersonExist = false;
                     BlockButtons(false);
                 });  
-            //} 
+            } 
         },
 
         PersonalDataValidate: function () { 
-            //if ($("#personalDataForm").valid()) {
+            if ($("#personalDataForm").valid()) {
                 vm.$data.p_addressShowView = true;
-            //}
+            }
         },
 
         UpdateSuggestionsBox: function (entity, query) {
