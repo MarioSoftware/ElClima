@@ -5,7 +5,7 @@
     <hr class="hr-light">
 </div>
 <div class="md-form">
-    <label for="provincia" class="active">Provincia</label> 
+    <label for="provincia" class="active">Provincia</label>
     <select name="provincia" v-model="domicilio.idProvincia" class="form-control">
         <option id="provincia" v-for="provincia in p_comboProvincia" v-bind:value="provincia.id">
             {{provincia.nombre}}
@@ -13,22 +13,22 @@
     </select>
 </div>
 <div class="md-form">
-    <label>Localidad</label> 
+    <label>Localidad</label>
     <input type="text" name="Domicilio_Localidad" maxlength="40" v-model="domicilio.localidad.nombre" class="form-control"
            v-on:keyup="UpdateSuggestionsBox(domicilio, domicilio.localidad.nombre)"
-           v-bind:readonly="domicilio.idProvincia === 0">  
+           v-bind:readonly="domicilio.idProvincia === 0">
     <div class="suggestions-box input-group-append" v-show="domicilio.p_SuggestionsBoxEstado !== 1">
-            <ul>
-                <li v-show="domicilio.p_SuggestionsBoxEstado === 2">
-                    Buscando... <i class="fa fa-search"></i>
-                </li>
-                <li v-for="localidad in domicilio.p_LocalidadesSuggestions">
-                    <a @@click="FillLocalidadFields(domicilio, localidad)">
-                        {{localidad.nombre}}
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <ul>
+            <li v-show="domicilio.p_SuggestionsBoxEstado === 2">
+                Buscando... <i class="fa fa-search"></i>
+            </li>
+            <li v-for="localidad in domicilio.p_LocalidadesSuggestions">
+                <a @@click="FillLocalidadFields(domicilio, localidad)">
+                    {{localidad.nombre}}
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>
 <div class="md-form">
     <i class="fas fa-map-signs prefix active"></i>
@@ -62,6 +62,9 @@
     </button>
 </div>
 <br />
+<div v-show="p_SavePersonErrorMessage !== ''" class="alert alert-danger" role="alert">
+    <i class="fas fa-exclamation-circle"></i> <strong>{{p_SavePersonErrorMessage}}</strong>
+</div>
 <div class="text-center">
     <button type="button" class="btn btn-danger" v-on:click="p_addressShowView = false">Volver</button>
     <button type="button" class="btn btn-success" v-on:click="SavePerson()">Guardar</button>

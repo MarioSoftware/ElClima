@@ -45,6 +45,7 @@ var vm = new Vue({
         p_comboLocalidad: [],
 
         p_ErrorMessage: "",
+        p_SavePersonErrorMessage:"",
         p_SuccessMessage: ""
         
     },
@@ -68,6 +69,7 @@ var vm = new Vue({
             }).done(function (data) { 
 
             }).fail(function (err) {
+              
             }).always(function () {
                 
             }); 
@@ -75,7 +77,7 @@ var vm = new Vue({
         }, 
 
         SavePerson: function () {
-
+            vm.$data.p_SavePersonErrorMessage = "";
             var entityJson = JSON.stringify(vm.$data, ExcludePrivateFields);
             console.log(entityJson);
             $.ajax({
@@ -86,9 +88,10 @@ var vm = new Vue({
                 processData:true
             }).done(function (data) {
 
-                //this.RegisterUser();
+                vm.methods.RegisterUser();
 
             }).fail(function (err) {
+                vm.$data.p_SavePersonErrorMessage = err.statusText;
             }).always(function () {
             });
 
