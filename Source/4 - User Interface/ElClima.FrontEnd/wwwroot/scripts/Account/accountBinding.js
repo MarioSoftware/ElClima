@@ -119,6 +119,7 @@ var vm = new Vue({
                     }
 
                 }).fail(function (err) {
+                    vm.$data.p_ErrorMessage = err.statusText;
                 }).always(function () {
                     vm.$data.p_chekingPersonExist = false;
                     BlockButtons(false);
