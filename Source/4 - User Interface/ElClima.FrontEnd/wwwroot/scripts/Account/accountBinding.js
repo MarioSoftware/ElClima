@@ -40,6 +40,7 @@ var vm = new Vue({
         p_credentialsShowView:false,
 
         p_loadingLocalities: false,
+        p_personAdded:false,
 
         p_comboProvincia: [],
         p_comboLocalidad: [],
@@ -84,9 +85,13 @@ var vm = new Vue({
                         if (data) {
                             vm.$data.p_ErrorMessage = "Ya tienes un Usuario registrado !, intenta Iniciar Session";
                         } else {
-                            vm.$options.methods.SavePerson();
-                        }
-                           
+                            if (vm.$data.p_personAdded) {
+                                vm.$options.methods.RegisterUser();
+                            } else {
+                                vm.$options.methods.SavePerson();
+                            }
+                            
+                        } 
                     }
 
                 }).fail(function (err) { 
@@ -117,8 +122,8 @@ var vm = new Vue({
                 contentType: "application/json;chartset=utf-8",
                 processData: true
             }).done(function (data) {
-
-                //vm.$options.methods.RegisterUser();
+                vm.$data.p_personAdded = true;
+                vm.$options.methods.RegisterUser();
 
             }).fail(function (err) {
                 vm.$data.p_SavePersonErrorMessage = err.statusText;
@@ -139,7 +144,7 @@ var vm = new Vue({
                 contentType: "application/json;chartset=utf-8",
                 async: true
             }).done(function (data) {
-               
+                alert("Now Login Page !");
             }).fail(function (err) {
 
             }).always(function () {
