@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using ElClima.Domain.Core.DependencyInjection;
 using ElClima.DataAccess.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
+using ElClima.Authorization;
 
 namespace ElClima.FrontEnd
 {
@@ -32,6 +33,8 @@ namespace ElClima.FrontEnd
         {
 
             //services.AddAutoMapper();
+
+            services.AddElClimaPolicies(_environment);
 
             services.AddMvc(options =>
             {
@@ -54,7 +57,7 @@ namespace ElClima.FrontEnd
 
             // Agregamos la configuracion de ElClima 
             services.AddSingleton<ElClimaConfiguration, ElClimaConfiguration>();
-            services.Configure<ElClimaConfigurationOptions>(_configuration.GetSection("ElClima"));/*TODO: Search where 'ElClima' it shold be seted as Key*/
+            services.Configure<ElClimaConfigurationOptions>(_configuration.GetSection("ElClima"));/*TODO: Search where 'ElClima' it should be seted as Key*/
 
             // Agregamos dbContext para usar en el dominio
             var connectionString = connStringConfig.GetConnectionString("DefaultConnection");

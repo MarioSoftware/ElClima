@@ -58,14 +58,15 @@ var vm = new Vue({
     methods: {
         RegisterUser: function () {
 
-            var dataJson = JSON.stringify(data={ dni:this.dni, apellido:this.apellido, nombre: this.nombre, password: this.contrasenia });
+            var dataJson = JSON.stringify(data = { dni: vm.$data.dni, apellido: vm.$data.apellido, nombre: vm.$data.nombre, password: vm.$data.contrasenia });
 
             $.ajax({
-                url: "/api/Account/Register" + vm.$data.domicilio.idProvincia,
+                url: "/api/Account/Register",
                 type: "PUT",
                 data: dataJson,
                 processData: true,
-                contentType: "application/json;chartset=utf-8"
+                contentType: "application/json;chartset=utf-8",
+                async: true
             }).done(function (data) { 
 
             }).fail(function (err) {
@@ -88,7 +89,7 @@ var vm = new Vue({
                 processData:true
             }).done(function (data) {
 
-                vm.methods.RegisterUser();
+                vm.$options.methods.RegisterUser();
 
             }).fail(function (err) {
                 vm.$data.p_SavePersonErrorMessage = err.statusText;
