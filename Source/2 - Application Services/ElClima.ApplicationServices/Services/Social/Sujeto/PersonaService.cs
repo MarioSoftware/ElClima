@@ -172,7 +172,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
         }
 
         public bool ExistPerson(string dni)
-        {  
+        { 
             var exist = false;
             if (!string.IsNullOrWhiteSpace(dni))
             {

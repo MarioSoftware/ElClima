@@ -93,6 +93,8 @@ namespace ElClima.FrontEnd
                 
             }
 
+            app.UseMiddleware(typeof(ErrorHandlingMiddleware));
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
 

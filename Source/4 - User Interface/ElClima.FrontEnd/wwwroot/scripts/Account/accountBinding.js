@@ -84,6 +84,7 @@ var vm = new Vue({
                     }).done(function (data) {
                         if (data !== null) {
                             if (data) {
+                                vm.$data.p_chekingPersonExist = false;
                                 vm.$data.p_ErrorMessage = "Ya tienes un Usuario registrado !, intenta Iniciar Session";
                             } else {
                                 vm.$options.methods.SavePerson();
@@ -148,7 +149,7 @@ var vm = new Vue({
             }).done(function (data) {
                 alert("Now Login Page !");
             }).fail(function (err) {
-
+                window.ExceptionCatcher(err);
             }).always(function () {
                 vm.$data.p_chekingPersonExist = false;
             });

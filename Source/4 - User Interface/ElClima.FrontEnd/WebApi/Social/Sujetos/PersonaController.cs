@@ -43,7 +43,7 @@ namespace ElClima.FrontEnd.WebApi.Social.Sujetos
 
         [HttpGet("/api/Persons/Exist/{dni}")]
         public bool CheckPersonExist(string dni)
-        {
+        { 
             return _personaService.ExistPerson(dni);
         }
     }

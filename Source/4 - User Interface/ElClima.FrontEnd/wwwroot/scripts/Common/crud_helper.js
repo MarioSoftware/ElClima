@@ -43,17 +43,16 @@ function ExceptionCatcher(ex) {
         return;
     }
     if (ex.status === 500) {
-        //var errorObj = JSON.parse(ex.responseText);
+        var errorObj = JSON.parse(ex.responseText);
    
         //Example for custom errors
         //if (errorObj.error.indexOf("DELETE statement conflicted with the REFERENCE constraint") !== -1) {
         //    vm.$data.p_ErrorMessage = "No se puede eliminar este registro. Hay datos que dependen de él";
         //    return;
         //}
+ 
 
-        vm.$data.p_ErrorMessage = "Falla de servicio";
-
-        //vm.$data.p_ErrorMessage = errorObj.error;
+        vm.$data.p_ErrorMessage = errorObj.error;
         return;
     }
     vm.$data.p_ErrorMessage = ex;
