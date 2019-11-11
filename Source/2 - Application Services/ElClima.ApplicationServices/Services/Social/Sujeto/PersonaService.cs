@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ElClima.ApplicationServices.Services.Comun;
 using ElClima.ApplicationServices.Services.Social.Sujeto.Dtos;
+using ElClima.Domain.Core.Exceptions;
 using ElClima.Domain.Model.Models.Comun;
 using ElClima.Domain.Model.Models.Posicionamiento;
 using ElClima.Domain.Model.Models.Social.Sujetos;
@@ -171,7 +172,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
         }
 
         public bool ExistPerson(string dni)
-        { 
+        {  
             var exist = false;
             if (!string.IsNullOrWhiteSpace(dni))
             {

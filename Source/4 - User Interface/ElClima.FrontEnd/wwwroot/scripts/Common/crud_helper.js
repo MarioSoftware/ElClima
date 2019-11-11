@@ -31,31 +31,29 @@ function ExceptionCatcher(ex) {
 
     $("button[type='submit']").attr("disabled", false);
     if (ex.status === 404) { 
-            vm.$data.p_ErrorMessage = "Web api not found."; 
+            vm.$data.p_ErrorMessage = "Web Api no encontrada"; 
         return;
     }
     if (ex.status === 401) { 
-            vm.$data.p_ErrorMessage = "You have insufficient rights to access this resource."; 
+            vm.$data.p_ErrorMessage = "No tienes suficientes permisos para ingresar a este recurso."; 
         return;
     }
     if (ex.status === 403) { 
-            vm.$data.p_ErrorMessage = "You have no permission to make this operation."; 
+            vm.$data.p_ErrorMessage = "No tienes permiso para realizar esta operacion."; 
         return;
     }
     if (ex.status === 500) {
-        var errorObj = JSON.parse(ex.responseText);
+        //var errorObj = JSON.parse(ex.responseText);
+   
+        //Example for custom errors
+        //if (errorObj.error.indexOf("DELETE statement conflicted with the REFERENCE constraint") !== -1) {
+        //    vm.$data.p_ErrorMessage = "No se puede eliminar este registro. Hay datos que dependen de él";
+        //    return;
+        //}
 
-        if (errorObj.error.indexOf("DELETE statement conflicted with the REFERENCE constraint") !== -1) {
-            vm.$data.p_ErrorMessage = "No se puede eliminar este registro. Hay datos que dependen de él";
-            return;
-        }
+        vm.$data.p_ErrorMessage = "Falla de servicio";
 
-        if (errorObj.error.indexOf("String was not recognized as a valid DateTime") !== -1) {
-            vm.$data.p_ErrorMessage = "Ha ingresado una fecha/hora con formato inválido. Por favor, utilice el calendario que se despliega en cada campo.";
-            return;
-        } 
-      
-        vm.$data.p_ErrorMessage = errorObj.error;
+        //vm.$data.p_ErrorMessage = errorObj.error;
         return;
     }
     vm.$data.p_ErrorMessage = ex;

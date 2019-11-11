@@ -89,7 +89,7 @@ var vm = new Vue({
                 processData:true
             }).done(function (data) {
 
-                vm.$options.methods.RegisterUser();
+                //vm.$options.methods.RegisterUser();
 
             }).fail(function (err) {
                 vm.$data.p_SavePersonErrorMessage = err.statusText;
@@ -122,8 +122,8 @@ var vm = new Vue({
                             vm.$data.p_ErrorMessage = "Ya tienes un Usuario registrado !, intenta Iniciar Session";
                     }
 
-                }).fail(function (err) {
-                    vm.$data.p_ErrorMessage = err.statusText;
+                }).fail(function (err) { 
+                    window.ExceptionCatcher(err);
                 }).always(function () {
                     vm.$data.p_chekingPersonExist = false;
                     BlockButtons(false);
