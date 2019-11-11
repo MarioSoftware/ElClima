@@ -72,35 +72,36 @@ var vm = new Vue({
         }, 
 
         CheckPersonExist: async function () {  
-            if ($("#credentialsForm").valid()) {
-                vm.$data.p_chekingPersonExist = true;
-                vm.$data.p_ErrorMessage = "";
-                BlockButtons(true);
-                $.ajax({
-                    url: WebApiBaseUrl + "/Exist/" + this.dni,
-                    type: "GET",
-                    async: true
-                }).done(function (data) {
-                    if (data !== null) { 
-                        if (data) {
-                            vm.$data.p_ErrorMessage = "Ya tienes un Usuario registrado !, intenta Iniciar Session";
-                        } else {
-                            if (vm.$data.p_personAdded) {
-                                vm.$options.methods.RegisterUser();
+            if (!vm.$data.p_personAdded) {
+                if ($("#credentialsForm").valid()) {
+                    vm.$data.p_chekingPersonExist = true;
+                    vm.$data.p_ErrorMessage = "";
+                    BlockButtons(true);
+                    $.ajax({
+                        url: WebApiBaseUrl + "/Exist/" + this.dni,
+                        type: "GET",
+                        async: true
+                    }).done(function (data) {
+                        if (data !== null) {
+                            if (data) {
+                                vm.$data.p_ErrorMessage = "Ya tienes un Usuario registrado !, intenta Iniciar Session";
                             } else {
                                 vm.$options.methods.SavePerson();
                             }
-                            
-                        } 
-                    }
+                        }
 
-                }).fail(function (err) { 
-                    window.ExceptionCatcher(err);
-                }).always(function () {
-                    vm.$data.p_chekingPersonExist = false;
-                    BlockButtons(false);
-                });  
-            } 
+                    }).fail(function (err) {
+                        window.ExceptionCatcher(err);
+                        vm.$data.p_chekingPersonExist = false;
+                    }).always(function () {
+                       
+                        BlockButtons(false);
+                    });
+                }
+            } else {
+                this.RegisterUser();
+            }
+            
         }, 
 
         OpenMap: function () {
@@ -127,6 +128,7 @@ var vm = new Vue({
 
             }).fail(function (err) {
                 vm.$data.p_SavePersonErrorMessage = err.statusText;
+                vm.$data.p_chekingPersonExist = false;
             }).always(function () {
             });
 
@@ -148,7 +150,7 @@ var vm = new Vue({
             }).fail(function (err) {
 
             }).always(function () {
-
+                vm.$data.p_chekingPersonExist = false;
             });
 
         },  
