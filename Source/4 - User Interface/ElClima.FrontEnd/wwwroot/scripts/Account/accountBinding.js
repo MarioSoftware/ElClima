@@ -37,7 +37,7 @@ var vm = new Vue({
 
         p_addressShowView: false,  
         p_geolocationMapShowView: false,
-        p_credentialsShowView:true,
+        p_credentialsShowView:false,
 
         p_loadingLocalities: false,
 
@@ -55,56 +55,20 @@ var vm = new Vue({
                 this.domicilio.localidad = {};
         } 
     },
-    methods: {
-        RegisterUser: function () {
+    methods: { 
 
-            var dataJson = JSON.stringify(data = { dni: vm.$data.dni, apellido: vm.$data.apellido, nombre: vm.$data.nombre, password: vm.$data.contrasenia });
-
-            $.ajax({
-                url: "/api/Account/Register",
-                type: "PUT",
-                data: dataJson,
-                processData: true,
-                contentType: "application/json;chartset=utf-8",
-                async: true
-            }).done(function (data) { 
-
-            }).fail(function (err) {
-              
-            }).always(function () {
-                
-            }); 
-
+        PersonalDataValidate: function () {
+            if ($("#personalDataForm").valid()) {
+                vm.$data.p_addressShowView = true;
+            }
+        },
+        
+        ValidateAddress: function () {
+            if ($("#addressForm").valid()) {
+                vm.$data.p_credentialsShowView = true;
+                vm.$data.p_addressShowView = false;
+            }
         }, 
-
-        SavePerson: function () {
-            vm.$data.p_SavePersonErrorMessage = "";
-            var entityJson = JSON.stringify(vm.$data, ExcludePrivateFields);
-            console.log(entityJson);
-            $.ajax({
-                url: WebApiBaseUrl + "/Add",
-                type: "POST",
-                data: entityJson,
-                contentType: "application/json;chartset=utf-8",
-                processData:true
-            }).done(function (data) {
-
-                //vm.$options.methods.RegisterUser();
-
-            }).fail(function (err) {
-                vm.$data.p_SavePersonErrorMessage = err.statusText;
-            }).always(function () {
-            });
-
-        },
-
-        OpenMap: function () { 
-            this.p_geolocationMapShowView = true;
-            if (!map) {
-                DrawMap();
-                this.domicilio.ubicacion.direccion = this.domicilio.calle + " " + this.domicilio.numero;
-            }   
-        },
 
         CheckPersonExist: async function () {  
             if ($("#credentialsForm").valid()) {
@@ -116,10 +80,13 @@ var vm = new Vue({
                     type: "GET",
                     async: true
                 }).done(function (data) {
-                    if (data !== null) {
-                        vm.$data.p_credentialsShowView = data;  
-                        if (data)
+                    if (data !== null) { 
+                        if (data) {
                             vm.$data.p_ErrorMessage = "Ya tienes un Usuario registrado !, intenta Iniciar Session";
+                        } else {
+                            vm.$options.methods.SavePerson();
+                        }
+                           
                     }
 
                 }).fail(function (err) { 
@@ -129,14 +96,58 @@ var vm = new Vue({
                     BlockButtons(false);
                 });  
             } 
-        },
+        }, 
 
-        PersonalDataValidate: function () { 
-            if ($("#personalDataForm").valid()) {
-                vm.$data.p_addressShowView = true;
+        OpenMap: function () {
+            this.p_geolocationMapShowView = true;
+            if (!map) {
+                DrawMap();
+                this.domicilio.ubicacion.direccion = this.domicilio.calle + " " + this.domicilio.numero;
             }
         },
 
+        SavePerson: function () {
+            vm.$data.p_SavePersonErrorMessage = "";
+            var entityJson = JSON.stringify(vm.$data, ExcludePrivateFields);
+            console.log(entityJson);
+            $.ajax({
+                url: WebApiBaseUrl + "/Add",
+                type: "POST",
+                data: entityJson,
+                contentType: "application/json;chartset=utf-8",
+                processData: true
+            }).done(function (data) {
+
+                //vm.$options.methods.RegisterUser();
+
+            }).fail(function (err) {
+                vm.$data.p_SavePersonErrorMessage = err.statusText;
+            }).always(function () {
+            });
+
+        }, 
+
+        RegisterUser: function () {
+
+            var dataJson = JSON.stringify(data = { dni: vm.$data.dni, apellido: vm.$data.apellido, nombre: vm.$data.nombre, password: vm.$data.contrasenia });
+
+            $.ajax({
+                url: "/api/Account/Register",
+                type: "PUT",
+                data: dataJson,
+                processData: true,
+                contentType: "application/json;chartset=utf-8",
+                async: true
+            }).done(function (data) {
+               
+            }).fail(function (err) {
+
+            }).always(function () {
+
+            });
+
+        },  
+    
         UpdateSuggestionsBox: function (entity, query) {
             window.UpdateSuggestionBox(entity, query);
         },

@@ -1,5 +1,5 @@
 ﻿
-var validator = $("#credentialsForm").validate({
+var validatorCredential = $("#credentialsForm").validate({
     rules: {
         dni: {
             required: true,
@@ -39,10 +39,9 @@ var validator = $("#credentialsForm").validate({
 
     invalidHandler: function () {
     }
-}); 
+});  
 
-
-var validator2 = $("#personalDataForm").validate({
+var validatorPersonalData = $("#personalDataForm").validate({
     rules: {
         apellido: {
             required: true
@@ -66,6 +65,34 @@ var validator2 = $("#personalDataForm").validate({
             required: "Ingresa tu fecha de nacimiento",
             anyDate: "Fecha inválida"
         }
+    },
+
+    ignore: "",
+
+    submitHandler: function (form) {
+        form.submit();
+    },
+
+    invalidHandler: function () {
+    }
+});
+
+var validatorAddress = $("#addressForm").validate({
+    rules: {
+        barrio: {
+            required: true
+        },
+        calle: {
+            required: true
+        } 
+    },
+    messages: {
+        barrio: {
+            required: "Ingresa el barrio"
+        },
+        calle: {
+            required: "Ingresa la calle"
+        } 
     },
 
     ignore: "",
