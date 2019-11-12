@@ -32,7 +32,7 @@ namespace ElClima.Authorization
                 {
                     if (!string.IsNullOrWhiteSpace(Handler.GetErrorMessages(item.Code)))
                     {
-                        messages += string.Join("|", Handler.GetErrorMessages(item.Code));
+                        messages += Handler.GetErrorMessages(item.Code);
                     } 
                 }
             }

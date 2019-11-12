@@ -23,8 +23,8 @@ namespace ElClima.Authorization.IdentityHelper
                {"UserLockoutNotEnabled","El bloqueo no esta habilitado para este usuario."  },
                {"UserAlreadyInRole","El usuario ya es parte del rol."  },
                {"UserNotInRole" ,"El usuario no es parte del rol. " },
-               {"PasswordTooShort","La contraseña es demasiado corta"  },
-               {"PasswordRequiresNonAlphanumeric","La contraseña debe contener al menos un caracter alfanumérico." },
+               {"PasswordTooShort","La contraseña es demasiado corta."  },
+               {"PasswordRequiresNonAlphanumeric","La contraseña debe contener al menos un caracter no alfanumérico." },
                {"PasswordRequiresDigit","La contraseña debe incluir al menos un dígito ('0'-'9')."  },
                {"PasswordRequiresLower","La contraseña debe incluir al menos una letra minúscula ('a'-'z')." },
                {"PasswordRequiresUpper" ,"La contraseña debe incluir al menos una letra MAYÚSCULA ('A'-'Z')." }
