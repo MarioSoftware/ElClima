@@ -1,4 +1,5 @@
-﻿using ElClima.DataAccess;
+﻿using ElClima.Authorization.IdentityHelper;
+using ElClima.DataAccess;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 
@@ -6,7 +7,7 @@ namespace ElClima.Authorization
 {
     public static partial class AuthorizationHelper
     {
-        public static bool Register(string dni, string apellido, string nombre, string password)
+        public static RegisterResultDto Register(string dni, string apellido, string nombre, string password)
         {
             var signInManager = Configuration.GetService<SignInManager<ApplicationUser>>();
 
@@ -14,10 +15,29 @@ namespace ElClima.Authorization
 
             var result = Task.Run(() => signInManager.UserManager.CreateAsync(user, password)).Result;
 
-            if (result.Succeeded)
-                return true;
+            return new RegisterResultDto
+            {
+                success = result.Succeeded,
+                messages = !result.Succeeded ? GetErrorMessages(result) : ""
+            };
+             
+        }
 
-            return false;
+        private static string GetErrorMessages(IdentityResult result)
+        {
+            string messages = "";
+            if (result?.Errors != null)
+            {
+                foreach (var item in result.Errors)
+                {
+                    if (!string.IsNullOrWhiteSpace(Handler.GetErrorMessages(item.Code)))
+                    {
+                        messages += string.Join("|", Handler.GetErrorMessages(item.Code));
+                    } 
+                }
+            }
+
+            return messages;
         }
     }
 }

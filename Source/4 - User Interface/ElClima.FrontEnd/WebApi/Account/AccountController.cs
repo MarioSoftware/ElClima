@@ -11,11 +11,10 @@ namespace ElClima.FrontEnd.WebApi.Account
         [Route("/api/Account/Register")]
         public void Register([FromBody] RegisterDataDto data)
         {
+            var result = Authorization.AuthorizationHelper.Register(data.dni, data.apellido, data.nombre, data.password); 
 
-            if (!Authorization.AuthorizationHelper.Register(data.dni, data.apellido, data.nombre, data.password))
-            {
-                throw new ElClimaException("No se ha podido registrar la nueva cuenta, porfavor intente nuevamente.");
-            }
+            if(!result.success)            
+                throw new ElClimaException(result.messages);            
         }
     }
 }
