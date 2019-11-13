@@ -149,14 +149,14 @@ var vm = new Vue({
                 async: true
             }).done(function (data) { 
                 if (data.success) {
-                    vm.$data.p_ValidationCredentials: [];
+                    vm.$data.p_ValidationCredentials=[];
                     alert("Now Login Page !");
                 } else {
                     vm.$data.p_ValidationCredentials = data.messages;
                 } 
                 
             }).fail(function (err) {
-                vm.$data.p_ValidationCredentials: [];
+                vm.$data.p_ValidationCredentials=[];
                 window.ExceptionCatcher(err);
             }).always(function () {
                 vm.$data.p_chekingPersonExist = false;
