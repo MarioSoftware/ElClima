@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ElClima.FrontEnd.Controllers
@@ -18,6 +14,26 @@ namespace ElClima.FrontEnd.Controllers
 
         [AllowAnonymous]
         public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult RedirectFromLogin()
+        {
+            var returnUrl = HttpContext.Request.Query["ReturnUrl"].ToString();
+
+            var user = Authorization.AuthorizationHelper.GetCurrentLoggedUser(HttpContext);
+
+            if (user != null)
+            {
+                return Redirect("/Social");
+            }
+
+            return Redirect("/Account/AccessDenied");
+        }
+
+        [AllowAnonymous]
+        public IActionResult AccessDenied()
         {
             return View();
         }

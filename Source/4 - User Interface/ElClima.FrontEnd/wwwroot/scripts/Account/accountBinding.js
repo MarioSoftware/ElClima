@@ -59,7 +59,7 @@ var vm = new Vue({
     },
     methods: { 
 
-        PersonalDataValidate: function () {
+        PersonalDataValidate: function () { 
             if ($("#personalDataForm").valid()) {
                 vm.$data.p_addressShowView = true;
             }
@@ -150,7 +150,7 @@ var vm = new Vue({
             }).done(function (data) { 
                 if (data.success) {
                     vm.$data.p_ValidationCredentials=[];
-                    alert("Now Login Page !");
+                    window.location.href = "/Account/Login";
                 } else {
                     vm.$data.p_ValidationCredentials = data.messages;
                 } 

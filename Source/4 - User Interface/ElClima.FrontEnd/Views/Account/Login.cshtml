@@ -1,1 +1,18 @@
-﻿ 
+﻿
+<form> 
+        <div class="md-form">
+            <i class="fas fa-id-card prefix active"></i>
+            <label for="dni" class="active">Dni</label>
+            <input type="text"  id="dni" maxlength="8" pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" name="dni" class="form-control">
+        </div>
+        <div class="md-form">
+            <i class="fa fa-lock prefix active"></i>
+            <input type="password" id="p_contraseniaRepetir" autocomplete="off"   name="p_contraseniaRepetir" maxlength="20" class="form-control">
+            <label for="passwordRepit" class="active">Repetir contraseña</label>
+        </div>
+        <div class="text-center mt-4">
+            <button class="btn btn-indigo">Iniciar sesion</button>
+            <hr class="hr-light mb-3 mt-4">
+
+        </div> 
+</form>
