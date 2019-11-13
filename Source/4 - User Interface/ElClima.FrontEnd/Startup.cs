@@ -100,10 +100,10 @@ namespace ElClima.FrontEnd
 
             app.UseMvc(routes =>
             {
-                // Base page
-                routes.MapRoute("default", "{controller=Base}/{action=Index}");
+                // Home page
+                routes.MapRoute("default", "{controller=Home}/{action=Index}");
                 
-                routes.MapRoute("areas", "{area:exists}/{controller=Base}/{action=Index}/{id?}");
+                routes.MapRoute("areas", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
             });
 
         }

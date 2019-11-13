@@ -8,10 +8,9 @@
     <script src="~/scripts/Account/accountBinding.js" asp-append-version="true"></script>
     <script src="~/scripts/Account/addressGeolocation.js" asp-append-version="true"></script>
     <script src="~/scripts/Common/validationCustom.js" asp-append-version="true"></script>
-    <script src="~/scripts/Account/form.validation.js" asp-append-version="true"></script>
+    <script src="~/scripts/Account/form.validation.js" asp-append-version="true"></script> 
 
-    <script src="~/scripts/Account/form.validation.js" asp-append-version="true"></script>
-
+        @*-------DatePicker--------*@
     <script src="~/assets/plugins/gijgo/js/gijgo.min.js" type="text/javascript"></script>
          
     <script>
@@ -22,8 +21,7 @@
 }
 
 @{
-    MasterLayoutHelper.AddLineToDocumentReadyFunction(string.Format("FormBinding({0});", ViewBag.Id), Context);
-    MasterLayoutHelper.AddLineToDocumentReadyFunction("$('input').attr('autocomplete','off')", Context);
+    MasterLayoutHelper.AddLineToDocumentReadyFunction(string.Format("FormBinding({0});", ViewBag.Id), Context); 
 }
 <head>
     @*CSS Style sheet*@

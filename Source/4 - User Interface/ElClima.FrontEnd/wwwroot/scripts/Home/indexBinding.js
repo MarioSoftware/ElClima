@@ -1,5 +1,5 @@
 ﻿var vmCreateAccount = new Vue({
-    el: "#base",
+    el: "#index",
     data: {
         id: 0
     },
