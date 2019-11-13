@@ -44,7 +44,8 @@ var vm = new Vue({
 
         p_comboProvincia: [],
         p_comboLocalidad: [],
-
+        
+        p_ValidationCredentials:[],
         p_ErrorMessage: "",
         p_SavePersonErrorMessage:"",
         p_SuccessMessage: ""
@@ -146,9 +147,16 @@ var vm = new Vue({
                 processData: true,
                 contentType: "application/json;chartset=utf-8",
                 async: true
-            }).done(function (data) {
-                alert("Now Login Page !");
+            }).done(function (data) { 
+                if (data.success) {
+                    vm.$data.p_ValidationCredentials: [];
+                    alert("Now Login Page !");
+                } else {
+                    vm.$data.p_ValidationCredentials = data.messages;
+                } 
+                
             }).fail(function (err) {
+                vm.$data.p_ValidationCredentials: [];
                 window.ExceptionCatcher(err);
             }).always(function () {
                 vm.$data.p_chekingPersonExist = false;

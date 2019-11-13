@@ -1,6 +1,7 @@
 ﻿using ElClima.Authorization.IdentityHelper;
 using ElClima.DataAccess;
 using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ElClima.Authorization
@@ -18,21 +19,21 @@ namespace ElClima.Authorization
             return new RegisterResultDto
             {
                 success = result.Succeeded,
-                messages = !result.Succeeded ? GetErrorMessages(result) : ""
+                messages = GetErrorMessages(result)
             };
              
         }
 
-        private static string GetErrorMessages(IdentityResult result)
+        private static List<string> GetErrorMessages(IdentityResult result)
         {
-            string messages = "";
+            List<string> messages= new List<string>();
             if (result?.Errors != null)
             {
                 foreach (var item in result.Errors)
                 {
                     if (!string.IsNullOrWhiteSpace(Handler.GetErrorMessages(item.Code)))
                     {
-                        messages += Handler.GetErrorMessages(item.Code);
+                        messages.Add(Handler.GetErrorMessages(item.Code));
                     } 
                 }
             }
