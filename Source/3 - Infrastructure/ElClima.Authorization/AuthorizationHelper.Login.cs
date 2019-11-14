@@ -1,5 +1,6 @@
 ﻿using ElClima.ApplicationServices.Services.Social.Sujeto;
 using ElClima.DataAccess;
+using ElClima.Domain.Core.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace ElClima.Authorization
 
             if(user == null)
             {
-                return false;
+                throw new ElClimaException("No existe un Usuario con este DNI y este Email"); 
             }
 
             var loginResult = Task.Run(() => signInManager.PasswordSignInAsync(email, password, true, lockoutOnFailure: false)).Result;
