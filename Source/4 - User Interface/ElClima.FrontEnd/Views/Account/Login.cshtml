@@ -23,14 +23,14 @@
         </div>
         <div class="md-form">
             <i class="fa fa-lock prefix active"></i>
-            <input type="password" id="contrasenia" autocomplete="off" v-model="contrasenia" name="contrasenia" maxlength="20" class="form-control">
+            <input type="password" id="password" autocomplete="off" v-model="password" name="password" maxlength="20" class="form-control">
             <label for="password" class="active">Contraseña</label>
         </div>
         <div v-show="p_ErrorMessage !== ''" class="alert alert-danger" role="alert">
             <i class="fas fa-exclamation-circle"></i> <strong>{{p_ErrorMessage}}</strong>
         </div>
         <div class="text-center mt-4">
-            <button class="btn btn-indigo" v-on:click="Login('@returnUrl')">Iniciar sesion</button>
+            <button class="btn btn-indigo" v-on:click="SignIn('@returnUrl')">Iniciar sesion</button>
             <hr class="hr-light mb-3 mt-4"> 
         </div>
     </form>

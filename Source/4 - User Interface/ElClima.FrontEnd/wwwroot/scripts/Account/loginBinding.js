@@ -5,6 +5,11 @@
         password: "",
 
         p_ErrorMessage:""
+    },
+    methods: {
+        SignIn: function (returnUrl) {
+            window.Login(returnUrl);
+        }
     }
 
 });

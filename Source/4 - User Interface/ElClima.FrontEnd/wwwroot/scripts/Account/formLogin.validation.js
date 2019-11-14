@@ -4,7 +4,7 @@ var validator = $("#loginForm").validate({
         dni: {
             required: true 
         },
-        contrasenia: {  
+        password: {  
             required: true
         } 
     },
@@ -12,7 +12,7 @@ var validator = $("#loginForm").validate({
         dni: {
             required: "Ingresa tu DNI"
         },
-        contrasenia: {
+        password: {
             required: "Ingresa la contraseña"
         } 
     },
