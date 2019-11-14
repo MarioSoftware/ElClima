@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace ElClima.FrontEnd.WebApi.Account
 {
@@ -44,6 +45,54 @@ namespace ElClima.FrontEnd.WebApi.Account
             };
 
             return r;
+        }
+
+
+        [HttpGet]
+        [Route("/api/Account/Login")]
+        public void Login([FromBody] LoginDataDto data)
+        {
+            string password;
+            string dni;
+
+            try
+            {
+                var context = HttpContext;
+                var userIpAndHost = GetUserIpAddress();
+
+                var encriptedData = EncodeHelper.DecodeFromBase64String(data.data);
+
+                if (!encriptedData.Contains("[---0---]"))
+                {
+                    //Here I should log the IpAndHost from the possible attacker
+                    throw new ElClimaException("No se ha podido validar correctamente al Usuario");
+                }
+
+                var dataArray = Regex.Split(encriptedData, @"(\[---0---])");
+                
+                var myCookie = context.Request.Cookies["5klewj23oi4uy5234sdfgkew23d"];
+
+                if (string.IsNullOrWhiteSpace(myCookie))
+                {
+                    throw new ElClimaException("No se ha podido validar correctamente al usuario, error de cookie");
+                }
+
+                var encriptationPassword = EncriptionHelper.Decrypt(myCookie);
+
+                var secondPassword = encriptationPassword + userIpAndHost;
+
+                dni = EncriptionHelper.OpenSslDecrypt(dataArray[0],secondPassword);
+
+                password = EncriptionHelper.OpenSslDecrypt(dataArray[1], secondPassword); 
+
+            }
+            catch (Exception)
+            {
+
+                throw new ElClimaException("Datos incorrectos. Intente nuevamente.");
+            }
+
+
         }
 
         public string GetUserIpAddress()

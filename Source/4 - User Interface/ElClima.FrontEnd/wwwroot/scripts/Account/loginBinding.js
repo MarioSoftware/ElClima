@@ -76,7 +76,7 @@ function Login(returnUrl) {
 
                 var data3 = JSON.stringify(
                     {
-                        'Data': Base64.encode(idType + "[---0---]" + idNumber + "[---0---]" + email + "[---0---]" + password)
+                        'data': Base64.encode(dni + "[---0---]" + password)
                     });
 
                 $.ajax({

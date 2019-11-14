@@ -252,5 +252,14 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
 
             return false;
         }
+
+        public Persona GetOneByDni(string dni)
+        {
+            var person = GetByFilter(f => f.dni == dni);
+            if (person?.Count == 0)
+                return null;
+
+            return person[0];
+        }
     }
 }
