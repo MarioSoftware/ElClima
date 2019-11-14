@@ -3,6 +3,7 @@
     data: {
         dni: "",
         password: "",
+        email:"",
 
         p_ErrorMessage:""
     },
@@ -36,7 +37,7 @@ function Login(returnUrl) {
                         return;
                     }
 
-                    var plaintextArray = CryptoJS.AES.decrypt(data.Key,
+                    var plaintextArray = CryptoJS.AES.decrypt(data.key,
                         e235f242a46d67eeb74aabc37d5e5d05,
                         ikj123h4k12j3h412343lk45j,
                         {

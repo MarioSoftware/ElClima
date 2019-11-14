@@ -20,7 +20,7 @@ namespace ElClima.Authorization
             }
 
             var loginResult = Task.Run(() => signInManager.PasswordSignInAsync(email, password, true, lockoutOnFailure: false)).Result;
- 
+
             return loginResult.Succeeded;
         } 
     }

@@ -84,9 +84,9 @@ namespace ElClima.FrontEnd.WebApi.Account
 
                 dni = EncriptionHelper.OpenSslDecrypt(dataArray[0],secondPassword);
 
-                email = EncriptionHelper.OpenSslDecrypt(dataArray[1], secondPassword);
+                email = EncriptionHelper.OpenSslDecrypt(dataArray[2], secondPassword);
 
-                password = EncriptionHelper.OpenSslDecrypt(dataArray[2], secondPassword);
+                password = EncriptionHelper.OpenSslDecrypt(dataArray[4], secondPassword);
 
             }
             catch (Exception)

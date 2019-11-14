@@ -6,7 +6,11 @@ var validator = $("#loginForm").validate({
         },
         password: {  
             required: true
-        } 
+        },
+        email: {
+            required: true,
+            isEmail: true
+        }
     },
     messages: {
         dni: {
@@ -14,7 +18,11 @@ var validator = $("#loginForm").validate({
         },
         password: {
             required: "Ingresa la contraseña"
-        } 
+        },
+        email: {
+            required: "Ingresa el Email",
+            isEmail: "Email inválido"
+        }
     },
 
     ignore: "",
