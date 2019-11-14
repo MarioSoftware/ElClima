@@ -139,7 +139,7 @@ var vm = new Vue({
 
         RegisterUser: function () {
 
-            var dataJson = JSON.stringify(data = { dni: vm.$data.dni, apellido: vm.$data.apellido, nombre: vm.$data.nombre, password: vm.$data.contrasenia, vm.$data.email });
+            var dataJson = JSON.stringify(data = { dni: vm.$data.dni, apellido: vm.$data.apellido, nombre: vm.$data.nombre, password: vm.$data.contrasenia, email: vm.$data.email });
 
             $.ajax({
                 url: "/api/Account/Register",

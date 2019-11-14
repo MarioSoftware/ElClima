@@ -1,26 +1,38 @@
 ﻿@using ElClima.FrontEnd.Helpers
 
-@section DelayedScripts
-    {
-     
-    <script src="~/scripts/Account/loginBinding.js" asp-append-version="true"></script>  
-   
+@{ 
+    var returnUrl = Context.Request.Query["ReturnUrl"].ToString();
 }
 
-    <form>
+
+@section DelayedScripts
+    {
+
+    <script src="~/assets/plugins/jquery/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="~/scripts/Account/loginBinding.js" asp-append-version="true"></script>
+    <script src="~/scripts/Common/validationCustom.js" asp-append-version="true"></script>
+    <script src="~/scripts/Account/formLogin.validation.js" asp-append-version="true"></script>
+
+}
+<div id="login" v-cloak="">
+    <form id="loginForm">
         <div class="md-form">
             <i class="fas fa-id-card prefix active"></i>
             <label for="dni" class="active">Dni</label>
-            <input type="text"  id="dni" maxlength="8" pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" v-model="dni" name="dni" class="form-control">
+            <input type="text" id="dni" maxlength="8" pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" v-model="dni" name="dni" class="form-control">
         </div>
         <div class="md-form">
             <i class="fa fa-lock prefix active"></i>
             <input type="password" id="contrasenia" autocomplete="off" v-model="contrasenia" name="contrasenia" maxlength="20" class="form-control">
             <label for="password" class="active">Contraseña</label>
         </div>
+        <div v-show="p_ErrorMessage !== ''" class="alert alert-danger" role="alert">
+            <i class="fas fa-exclamation-circle"></i> <strong>{{p_ErrorMessage}}</strong>
+        </div>
         <div class="text-center mt-4">
-            <button class="btn btn-indigo">Iniciar sesion</button>
-            <hr class="hr-light mb-3 mt-4">
-
+            <button class="btn btn-indigo" v-on:click="Login('@returnUrl')">Iniciar sesion</button>
+            <hr class="hr-light mb-3 mt-4"> 
         </div>
     </form>
+</div>
+

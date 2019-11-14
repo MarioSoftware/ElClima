@@ -46,7 +46,7 @@ namespace ElClima.Authorization
                 return null;
             }
 
-            var usuarioService = new ApplicationServices.Services.Social.Sujeto.PersonaService();
+            var usuarioService = new PersonaService();
 
             //var uow = usuarioService.GetCurrentUnitOfWork();
             var usuarios = usuarioService.GetByFilter(f => f.dni == applicationUser.dni && f.email == applicationUser.Email);

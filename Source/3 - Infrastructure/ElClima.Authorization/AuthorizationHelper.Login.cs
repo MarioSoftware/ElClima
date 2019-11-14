@@ -12,7 +12,7 @@ namespace ElClima.Authorization
             var signInManager = Configuration.GetService<SignInManager<ApplicationUser>>();
             var personService = new PersonaService();
 
-            var user = personService.GetOneByDni(dni);
+            var user = personService.GetOneByDniAndEmail(dni, email);
 
             if(user == null)
             {

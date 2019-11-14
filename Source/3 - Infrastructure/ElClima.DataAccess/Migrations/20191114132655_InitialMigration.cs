@@ -431,7 +431,8 @@ namespace ElClima.DataAccess.Migrations
                     dni = table.Column<string>(type: "varchar(15)", nullable: false),
                     fechaNacimiento = table.Column<DateTime>(type: "Date", nullable: false),
                     ubicacionId = table.Column<int>(nullable: false),
-                    sexoId = table.Column<int>(nullable: false)
+                    sexoId = table.Column<int>(nullable: false),
+                    email = table.Column<string>(type: "varchar(70)", nullable: false)
                 },
                 constraints: table =>
                 {

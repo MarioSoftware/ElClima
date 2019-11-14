@@ -71,9 +71,10 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
         }
 
         public void InsertDto(PersonaDto dto)
-        {            
+        {
+            ImportantValidations(dto);
             TrimUniqueFields(dto);
-
+            
             dto.id = 0;
 
             var item = GetEntityFromDto(dto);
@@ -86,6 +87,19 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
             UnitOfWork.SetAsAdded(item.domicilio);
 
             Insert(item);
+        }
+
+        private void ImportantValidations(PersonaDto dto)
+        {
+            if(string.IsNullOrWhiteSpace(dto.apellido))
+                throw new ElClimaException("El Apellido es un campo requerido para crear tu Cuenta.");
+
+            if(string.IsNullOrWhiteSpace(dto.nombre))
+                throw new ElClimaException("El Nombre es un campo requerido para crear tu Cuenta.");
+
+
+            if (string.IsNullOrWhiteSpace(dto.email))
+                throw new ElClimaException("El Email es un campo requerido para crear tu Cuenta.");
         }
 
         private DateTime GetLocalCurrentTime()
@@ -164,11 +178,9 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
         }
 
         private static void TrimUniqueFields(PersonaDto dto)
-        {
-            if (!string.IsNullOrWhiteSpace(dto.dni))
-            {
-                dto.dni = dto.dni.Trim(); 
-            }               
+        { 
+                dto.dni = dto.dni.Trim();
+                dto.email = dto.email.Trim(); 
         }
 
         public bool ExistPerson(string dni)
@@ -253,9 +265,9 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
             return false;
         }
 
-        public Persona GetOneByDni(string dni)
+        public Persona GetOneByDniAndEmail(string dni, string email)
         {
-            var person = GetByFilter(f => f.dni == dni);
+            var person = GetByFilter(f => f.dni == dni && f.email == email);
             if (person?.Count == 0)
                 return null;
 

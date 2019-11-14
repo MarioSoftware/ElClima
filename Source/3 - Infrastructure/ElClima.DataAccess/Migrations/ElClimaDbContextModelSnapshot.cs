@@ -1071,6 +1071,10 @@ namespace ElClima.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(15)");
 
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("varchar(70)");
+
                     b.Property<DateTime>("fechaNacimiento")
                         .HasColumnType("Date");
 

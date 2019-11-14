@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElClima.DataAccess.Migrations
 {
     [DbContext(typeof(ElClimaDbContext))]
-    [Migration("20191108182931_InitialMigration")]
+    [Migration("20191114132655_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1072,6 +1072,10 @@ namespace ElClima.DataAccess.Migrations
                     b.Property<string>("dni")
                         .IsRequired()
                         .HasColumnType("varchar(15)");
+
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("varchar(70)");
 
                     b.Property<DateTime>("fechaNacimiento")
                         .HasColumnType("Date");
