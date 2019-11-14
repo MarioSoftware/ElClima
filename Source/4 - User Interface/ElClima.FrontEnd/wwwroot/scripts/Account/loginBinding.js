@@ -6,10 +6,7 @@
 
         p_ErrorMessage:""
     },
-    methods: {
-        SignIn: function (returnUrl) {
-            window.Login(returnUrl);
-        }
+    methods: { 
     }
 
 });
@@ -32,8 +29,7 @@ function Login(returnUrl) {
         var url = "/api/Account/GetKey/" + Base64.encode(token2);
 
         $.getJSON(url, { __: new Date().getTime() })
-            .done(
-                function (data) {
+            .done(function (data) {
 
                     if (data === null) {
                         vm.$data.p_ErrorMessage = "Imposible contactar con el servidor.";
@@ -107,8 +103,8 @@ function Login(returnUrl) {
                         function () {
                             window.location.assign("/Account/RedirectFromLogin?ReturnUrl=" + returnUrl);
                         });
-                })
-            .error(LoginExceptionCatcher)
+             })
+            .fail(LoginExceptionCatcher)
             .always();
     }   
 }
