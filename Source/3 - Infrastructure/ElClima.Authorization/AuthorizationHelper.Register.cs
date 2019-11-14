@@ -8,11 +8,11 @@ namespace ElClima.Authorization
 {
     public static partial class AuthorizationHelper
     {
-        public static RegisterResultDto Register(string dni, string apellido, string nombre, string password)
+        public static RegisterResultDto Register(string dni, string apellido, string nombre, string password, string email)
         {
             var signInManager = Configuration.GetService<SignInManager<ApplicationUser>>();
 
-            var user = new ApplicationUser { dni = dni, apellido = apellido, UserName = nombre };
+            var user = new ApplicationUser { dni = dni, apellido = apellido, UserName = nombre, Email= email};
 
             var result = Task.Run(() => signInManager.UserManager.CreateAsync(user, password)).Result;
 

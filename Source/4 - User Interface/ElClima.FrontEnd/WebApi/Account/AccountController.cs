@@ -18,7 +18,7 @@ namespace ElClima.FrontEnd.WebApi.Account
         [Route("/api/Account/Register")]
         public RegisterResultDto Register([FromBody] RegisterDataDto data)
         {
-            return Authorization.AuthorizationHelper.Register(data.dni, data.apellido, data.nombre, data.password);  
+            return Authorization.AuthorizationHelper.Register(data.dni, data.apellido, data.nombre, data.password, data.email);  
         }
 
         [HttpGet]
@@ -54,6 +54,7 @@ namespace ElClima.FrontEnd.WebApi.Account
         {
             string password;
             string dni;
+            string email;
 
             try
             {
@@ -83,7 +84,9 @@ namespace ElClima.FrontEnd.WebApi.Account
 
                 dni = EncriptionHelper.OpenSslDecrypt(dataArray[0],secondPassword);
 
-                password = EncriptionHelper.OpenSslDecrypt(dataArray[1], secondPassword); 
+                email = EncriptionHelper.OpenSslDecrypt(dataArray[1], secondPassword);
+
+                password = EncriptionHelper.OpenSslDecrypt(dataArray[2], secondPassword);
 
             }
             catch (Exception)
@@ -92,7 +95,10 @@ namespace ElClima.FrontEnd.WebApi.Account
                 throw new ElClimaException("Datos incorrectos. Intente nuevamente.");
             }
 
-
+            if (!Authorization.AuthorizationHelper.Login(dni, password, email))
+            {
+                throw new ElClimaException("Datos incorrectos. Intente nuevamente.");
+            }
         }
 
         public string GetUserIpAddress()

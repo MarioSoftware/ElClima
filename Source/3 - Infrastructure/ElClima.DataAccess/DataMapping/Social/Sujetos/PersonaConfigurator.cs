@@ -34,6 +34,10 @@ namespace ElClima.DataAccess.DataMapping.Social.Sujetos
                 p.Property<string>("dni")
                           .IsRequired()
                           .HasColumnType("varchar(15)");
+
+                p.Property<string>("email")
+                    .IsRequired()
+                    .HasColumnType("varchar(70)"); ;
             });
 
             modelBuilder.Entity<Persona>()

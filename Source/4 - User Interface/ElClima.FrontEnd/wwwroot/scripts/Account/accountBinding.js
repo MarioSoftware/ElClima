@@ -29,6 +29,7 @@ var vm = new Vue({
             p_SuggestionsBoxTimer: 0
         },
         contrasenia: "",
+        email:"",
         //contactos: [],
         //ubicacion:{},
 
@@ -138,7 +139,7 @@ var vm = new Vue({
 
         RegisterUser: function () {
 
-            var dataJson = JSON.stringify(data = { dni: vm.$data.dni, apellido: vm.$data.apellido, nombre: vm.$data.nombre, password: vm.$data.contrasenia });
+            var dataJson = JSON.stringify(data = { dni: vm.$data.dni, apellido: vm.$data.apellido, nombre: vm.$data.nombre, password: vm.$data.contrasenia, vm.$data.email });
 
             $.ajax({
                 url: "/api/Account/Register",
@@ -189,6 +190,7 @@ function HydrateFields(data) {
     vm.$data.dni = data.dni;
     vm.$data.idSexo = data.idSexo;
     vm.$data.fechaNacimiento = data.fechaNacimiento;
+    vm.$data.email = data.email;
 
     vm.$data.domicilio.idProvincia = data.domicilio.idProvincia; 
     vm.$data.domicilio.calle = !data.domicilio.calle ? "" : data.domicilio.calle;

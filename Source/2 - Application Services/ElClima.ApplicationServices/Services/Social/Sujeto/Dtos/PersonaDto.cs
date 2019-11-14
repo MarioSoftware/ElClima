@@ -1,8 +1,4 @@
 ﻿using ElClima.ApplicationServices.Services.Comun;
-using ElClima.Domain.Model.Models.Comun;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ElClima.ApplicationServices.Services.Social.Sujeto.Dtos
 {
@@ -27,6 +23,8 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto.Dtos
         public UbicacionDto ubicacion { get; set; }
 
         public DomicilioDto domicilio { get; set; }
+
+        public string email { get; set; }
 
         //public List<ContactoDto> contactos { get; set; }
     }

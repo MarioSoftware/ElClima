@@ -1,15 +1,16 @@
-﻿using ElClima.DataAccess;
+﻿using ElClima.ApplicationServices.Services.Social.Sujeto;
+using ElClima.Authorization.Session;
+using ElClima.DataAccess;
 using ElClima.Domain.Model.Models.Social.Sujetos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using ElClima.Authorization.Session;
+using System.Threading.Tasks;
 
 namespace ElClima.Authorization
 {
     public static partial class AuthorizationHelper
     {
         private static readonly object CurrentLoggerUsserLockObject = new object();
-
 
         public static Persona GetCurrentLoggedUser(HttpContext context)
         {
@@ -31,7 +32,7 @@ namespace ElClima.Authorization
 
                 // We save it in Session , serialized
                 context.Session.SetObjectAsJson(currentUserKey, currentLoggedUser);
-                 
+
                 return currentLoggedUser;
             }
         }
@@ -48,7 +49,7 @@ namespace ElClima.Authorization
             var usuarioService = new ApplicationServices.Services.Social.Sujeto.PersonaService();
 
             //var uow = usuarioService.GetCurrentUnitOfWork();
-            var usuarios = usuarioService.GetByFilter(f => f.dni == applicationUser.dni);
+            var usuarios = usuarioService.GetByFilter(f => f.dni == applicationUser.dni && f.email == applicationUser.Email);
             if (usuarios.Count == 0)
             {
                 //There is not User, should had not started Session

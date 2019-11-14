@@ -1,15 +1,13 @@
 ﻿using ElClima.ApplicationServices.Services.Social.Sujeto;
-using ElClima.Authorization.IdentityHelper;
 using ElClima.DataAccess;
 using Microsoft.AspNetCore.Identity;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ElClima.Authorization
 {
     public static partial class AuthorizationHelper
     {
-        public static bool Login(string dni, string password)
+        public static bool Login(string dni, string password, string email)
         {
             var signInManager = Configuration.GetService<SignInManager<ApplicationUser>>();
             var personService = new PersonaService();
@@ -21,10 +19,9 @@ namespace ElClima.Authorization
                 return false;
             }
 
-            //signInManager.PasswordSignInAsync
-
-                return false;
-        }
-      
+            var loginResult = Task.Run(() => signInManager.PasswordSignInAsync(email, password, true, lockoutOnFailure: false)).Result;
+ 
+            return loginResult.Succeeded;
+        } 
     }
 }

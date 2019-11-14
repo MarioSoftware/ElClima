@@ -28,9 +28,11 @@ namespace ElClima.Domain.Model.Models.Social.Sujetos
 
         public Domicilio domicilio { get; set; }
 
-        public ICollection<RolPersona> rolPersona{ get; set; } 
+        public ICollection<RolPersona> rolPersona{ get; set; }
+
+        public string email { get; set; }
 
         //public ICollection<Contacto> contactos{ get; set; }
-           
+
     }
 }

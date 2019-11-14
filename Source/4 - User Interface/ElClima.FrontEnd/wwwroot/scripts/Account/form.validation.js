@@ -13,6 +13,19 @@ var validatorCredential = $("#credentialsForm").validate({
         p_contraseniaRepetir: {
             required: true,
             equalTo: "#contrasenia"
+        },
+        email: {
+            required: {
+                depends: function () {
+                    if ($(this).val() !== null && $(this).val()[0] === ' ') {
+                        $(this).val($.trim($(this).val()));
+                        return true;
+                    }
+                    return true;
+                }
+            },
+            maxlength: 70,
+            isEmail: true
         }
     },
     messages: {
@@ -28,6 +41,11 @@ var validatorCredential = $("#credentialsForm").validate({
         p_contraseniaRepetir: {
             required: "Confirma la contraseña",
             equalTo: "Las contraseñas no coinciden"
+        },
+        email: {
+            required: "Ingresa tu correo electronico",
+            maxlength: "El email debe tener menos de 70 caracteres",
+            isEmail: "Email inválido"
         }
     },
 
@@ -93,7 +111,7 @@ var validatorAddress = $("#addressForm").validate({
         calle: {
             required: "Ingresa la calle"
         } 
-    },
+    }, 
 
     ignore: "",
 
