@@ -7,8 +7,10 @@
 function BlockButtons(block) { 
     if (block) {
         $("button").attr("disabled", true); 
+        $("input").attr("disabled", true); 
     } else {
         $("button").attr("disabled", false); 
+        $("input").attr("disabled", false); 
     } 
 }
 

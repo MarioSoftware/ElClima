@@ -88,6 +88,7 @@ var vm = new Vue({
                             if (data) {
                                 vm.$data.p_chekingPersonExist = false;
                                 vm.$data.p_ErrorMessage = "Ya tienes un Usuario registrado !, intenta Iniciar Session";
+                                BlockButtons(false);
                             } else {
                                 vm.$options.methods.SavePerson();
                             }
@@ -96,9 +97,9 @@ var vm = new Vue({
                     }).fail(function (err) {
                         window.ExceptionCatcher(err);
                         vm.$data.p_chekingPersonExist = false;
-                    }).always(function () {
-                       
                         BlockButtons(false);
+                    }).always(function () {                       
+                      
                     });
                 }
             } else {
@@ -132,6 +133,7 @@ var vm = new Vue({
             }).fail(function (err) {
                 vm.$data.p_SavePersonErrorMessage = err.statusText;
                 vm.$data.p_chekingPersonExist = false;
+                BlockButtons(false);
             }).always(function () {
             });
 
@@ -161,6 +163,7 @@ var vm = new Vue({
                 window.ExceptionCatcher(err);
             }).always(function () {
                 vm.$data.p_chekingPersonExist = false;
+                BlockButtons(false);
             });
 
         },  
