@@ -4,7 +4,7 @@
     return value;
 }
 
-function BlockButtons(block) { 
+function BlockElements(block) { 
     if (block) {
         $("button").attr("disabled", true); 
         $("input").attr("disabled", true); 

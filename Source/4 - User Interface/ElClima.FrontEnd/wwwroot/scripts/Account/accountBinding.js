@@ -78,7 +78,7 @@ var vm = new Vue({
                 if ($("#credentialsForm").valid()) {
                     vm.$data.p_chekingPersonExist = true;
                     vm.$data.p_ErrorMessage = "";
-                    BlockButtons(true);
+                    BlockElements(true);
                     $.ajax({
                         url: WebApiBaseUrl + "/Exist/" + this.dni,
                         type: "GET",
@@ -88,7 +88,7 @@ var vm = new Vue({
                             if (data) {
                                 vm.$data.p_chekingPersonExist = false;
                                 vm.$data.p_ErrorMessage = "Ya tienes un Usuario registrado !, intenta Iniciar Session";
-                                BlockButtons(false);
+                                BlockElements(false);
                             } else {
                                 vm.$options.methods.SavePerson();
                             }
@@ -97,7 +97,7 @@ var vm = new Vue({
                     }).fail(function (err) {
                         window.ExceptionCatcher(err);
                         vm.$data.p_chekingPersonExist = false;
-                        BlockButtons(false);
+                        BlockElements(false);
                     }).always(function () {                       
                       
                     });
@@ -133,7 +133,7 @@ var vm = new Vue({
             }).fail(function (err) {
                 vm.$data.p_SavePersonErrorMessage = err.statusText;
                 vm.$data.p_chekingPersonExist = false;
-                BlockButtons(false);
+                BlockElements(false);
             }).always(function () {
             });
 
@@ -163,7 +163,7 @@ var vm = new Vue({
                 window.ExceptionCatcher(err);
             }).always(function () {
                 vm.$data.p_chekingPersonExist = false;
-                BlockButtons(false);
+                BlockElements(false);
             });
 
         },  

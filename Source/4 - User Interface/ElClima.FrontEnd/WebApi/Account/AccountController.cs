@@ -51,7 +51,7 @@ namespace ElClima.FrontEnd.WebApi.Account
         [HttpPut]
         [Route("/api/Account/Login")]
         public void Login([FromBody] LoginDataDto data)
-        {
+        { 
             string password;
             string dni;
             string email;

@@ -5,6 +5,7 @@
         password: "",
         email:"",
 
+        p_SigningIn:false,
         p_ErrorMessage:""
     },
     methods: { 
@@ -15,7 +16,8 @@
 function Login(returnUrl) {
     if ($("#loginForm").valid()) {
         vm.$data.p_ErrorMessage = "";
-
+        vm.$data.p_SigningIn = true;
+        BlockElements(true);
         var token = window.GenerateToken();
         var token2 = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(token),
             r2345ij2k345234jh234i2u3423iu4,
@@ -103,6 +105,9 @@ function Login(returnUrl) {
                     }).done(
                         function () {
                             window.location.assign("/Account/RedirectFromLogin?ReturnUrl=" + returnUrl);
+                        }).always(function () {
+                            BlockElements(false);
+                            vm.$data.p_SigningIn = false;
                         });
              })
             .fail(LoginExceptionCatcher)
@@ -111,7 +116,9 @@ function Login(returnUrl) {
 }
 
 function LoginExceptionCatcher(ex) {
-
+    BlockElements(false);
+    vm.$data.p_SigningIn = false;
+    vm.$data.p_ErrorMessage = ex;
     if (ex.status === 404) { 
             vm.$data.p_ErrorMessage = "Web Api no encontrada."; 
         return;
@@ -125,7 +132,5 @@ function LoginExceptionCatcher(ex) {
         var errorObj = JSON.parse(ex.responseText);
         vm.$data.p_ErrorMessage = errorObj.error;
         return;
-    }
-
-    vm.$data.p_ErrorMessage = ex;
+    } 
 }
