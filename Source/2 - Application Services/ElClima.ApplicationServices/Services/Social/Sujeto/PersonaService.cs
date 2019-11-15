@@ -71,7 +71,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
         }
 
         public void InsertDto(PersonaDto dto)
-        {
+        { 
             ImportantValidations(dto);
             TrimUniqueFields(dto);
             

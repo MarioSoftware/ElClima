@@ -34,7 +34,7 @@ var vm = new Vue({
         //ubicacion:{},
 
         p_contraseniaRepetir:"", 
-        p_chekingPersonExist:false,
+        p_checkSaveRegisterProccecing:false,
 
         p_addressShowView: false,  
         p_geolocationMapShowView: false,
@@ -47,8 +47,7 @@ var vm = new Vue({
         p_comboLocalidad: [],
         
         p_ValidationCredentials:[],
-        p_ErrorMessage: "",
-        p_SavePersonErrorMessage:"",
+        p_ErrorMessage: "", 
         p_SuccessMessage: "",
         p_ValidationMessage:""
         
@@ -90,7 +89,7 @@ var vm = new Vue({
         CheckPersonExist: async function () {  
             if (!vm.$data.p_personAdded) {
                 if ($("#credentialsForm").valid()) {
-                    vm.$data.p_chekingPersonExist = true;
+                    vm.$data.p_checkSaveRegisterProccecing = true;
                     vm.$data.p_ErrorMessage = "";
                     BlockElements(true);
                     $.ajax({
@@ -100,7 +99,7 @@ var vm = new Vue({
                     }).done(function (data) {
                         if (data !== null) {
                             if (data) {
-                                vm.$data.p_chekingPersonExist = false;
+                                vm.$data.p_checkSaveRegisterProccecing = false;
                                 vm.$data.p_ErrorMessage = "Ya tienes un Usuario registrado !, intenta Iniciar Session";
                                 BlockElements(false);
                             } else {
@@ -110,7 +109,7 @@ var vm = new Vue({
 
                     }).fail(function (err) {
                         window.ExceptionCatcher(err);
-                        vm.$data.p_chekingPersonExist = false;
+                        vm.$data.p_checkSaveRegisterProccecing = false;
                         BlockElements(false);
                     }).always(function () {                       
                       
@@ -130,7 +129,7 @@ var vm = new Vue({
         },
 
         SavePerson: function () {
-            vm.$data.p_SavePersonErrorMessage = "";
+            vm.$data.p_ErrorMessage = "";
             var entityJson = JSON.stringify(vm.$data, ExcludePrivateFields);
             console.log(entityJson);
             $.ajax({
@@ -143,9 +142,9 @@ var vm = new Vue({
                 vm.$data.p_personAdded = true;
                 vm.$options.methods.RegisterUser();
 
-            }).fail(function (err) {
-                vm.$data.p_SavePersonErrorMessage = err.statusText;
-                vm.$data.p_chekingPersonExist = false;
+            }).fail(function (err) { 
+                window.ExceptionCatcher(err);
+                vm.$data.p_checkSaveRegisterProccecing = false;
                 BlockElements(false);
             }).always(function () {
             });
@@ -153,7 +152,8 @@ var vm = new Vue({
         }, 
 
         RegisterUser: function () {
-
+            vm.$data.p_ErrorMessage = "";
+            vm.$data.p_ValidationCredentials = [];
             var dataJson = JSON.stringify(data = { dni: vm.$data.dni, apellido: vm.$data.apellido, nombre: vm.$data.nombre, password: vm.$data.contrasenia, email: vm.$data.email });
 
             $.ajax({
@@ -164,18 +164,16 @@ var vm = new Vue({
                 contentType: "application/json;chartset=utf-8",
                 async: true
             }).done(function (data) { 
-                if (data.success) {
-                    vm.$data.p_ValidationCredentials=[];
+                if (data.success) { 
                     window.location.href = "/Account/Login";
                 } else {
                     vm.$data.p_ValidationCredentials = data.messages;
                 } 
                 
-            }).fail(function (err) {
-                vm.$data.p_ValidationCredentials=[];
+            }).fail(function (err) { 
                 window.ExceptionCatcher(err);
             }).always(function () {
-                vm.$data.p_chekingPersonExist = false;
+                vm.$data.p_checkSaveRegisterProccecing = false;
                 BlockElements(false);
             });
 

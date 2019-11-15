@@ -14,33 +14,36 @@
     <script src="~/scripts/Account/formLogin.validation.js" asp-append-version="true"></script>
 
 }
-<div id="login" v-cloak="">
-    <form id="loginForm" action="javascript:Login('@returnUrl')">
-        <div class="md-form">
-            <i class="fas fa-id-card prefix active"></i>
-            <label for="dni" class="active">Dni</label>
-            <input type="text" id="dni" maxlength="8" pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" v-model="dni" name="dni" class="form-control">
-        </div>
-        @*<div class="md-form">
-            <i class="fa fa-mail-bulk prefix active"></i>
-            <input type="email" id="email" autocomplete="off" v-model="email" name="email" maxlength="70" class="form-control">
-            <label for="email" class="active">Email</label>
-        </div>*@
-        <div class="md-form">
-            <i class="fa fa-lock prefix active"></i>
-            <input type="password" id="password" autocomplete="off" v-model="password" name="password" maxlength="20" class="form-control">
-            <label for="password" class="active">Contraseña</label>
-        </div>
-        <div v-show="p_ErrorMessage !== ''" class="alert alert-danger" role="alert">
-            <i class="fas fa-exclamation-circle"></i> <strong>{{p_ErrorMessage}}</strong>
-        </div>
-        <div class="text-center mt-4">
-            <button type="submit" class="btn btn-indigo">
-                Iniciar sesion
-                <span v-show="p_SigningIn" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-            </button>
-            <hr class="hr-light mb-3 mt-4">
-        </div>
-    </form>
-</div>
+    <div id="login" v-cloak="">
+        <div class="card p-4 bg-success grow"> 
+            <span><i class="fas fa-check"></i> <strong>Te has registrado con Exito!</strong></span> 
+        </div> 
+        <form id="loginForm" action="javascript:Login('@returnUrl')">
+            <div class="md-form">
+                <i class="fas fa-id-card prefix active"></i>
+                <label for="dni" class="active">Dni</label>
+                <input type="text" id="dni" maxlength="8" pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" v-model="dni" name="dni" class="form-control">
+            </div>
+            @*<div class="md-form">
+                <i class="fa fa-mail-bulk prefix active"></i>
+                <input type="email" id="email" autocomplete="off" v-model="email" name="email" maxlength="70" class="form-control">
+                <label for="email" class="active">Email</label>
+            </div>*@
+            <div class="md-form">
+                <i class="fa fa-lock prefix active"></i>
+                <input type="password" id="password" autocomplete="off" v-model="password" name="password" maxlength="20" class="form-control">
+                <label for="password" class="active">Contraseña</label>
+            </div>
+            <div v-show="p_ErrorMessage !== ''" class="alert alert-danger" role="alert">
+                <i class="fas fa-exclamation-circle"></i> <strong>{{p_ErrorMessage}}</strong>
+            </div>
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-indigo">
+                    Iniciar sesion
+                    <span v-show="p_SigningIn" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                </button>
+                <hr class="hr-light mb-3 mt-4">
+            </div>
+        </form>
+    </div>
 

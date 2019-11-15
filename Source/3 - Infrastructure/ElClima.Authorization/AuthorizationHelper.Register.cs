@@ -10,7 +10,7 @@ namespace ElClima.Authorization
     public static partial class AuthorizationHelper
     {
         public static RegisterResultDto Register(string dni, string apellido, string nombre, string password, string email)
-        {
+        { 
             var nameValid="";
             if (!string.IsNullOrWhiteSpace(nombre) && !string.IsNullOrWhiteSpace(apellido))
             {
