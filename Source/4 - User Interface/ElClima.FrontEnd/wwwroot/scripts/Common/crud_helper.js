@@ -1,6 +1,6 @@
 ﻿ 
 function FormBinding(id, queryRelatedEntityId) {
-
+    BlockElements(true);
     vm.$data.p_ErrorMessage = "";
     vm.$data.p_SuccessMessage = "";
  
@@ -11,18 +11,16 @@ function FormBinding(id, queryRelatedEntityId) {
     $.getJSON(url, { __: new Date().getTime() }) // con el getTime() evitamos que IE cachee la web api
         .done(function (data) {
             if (data === null) {
-                vm.$data.p_ErrorMessage = "Entity not found";
-                $("input").attr("disabled", "true");
-                $("textarea").attr("disabled", "true");
-                $("select").attr("disabled", "true");
-                $("button").attr("disabled", "true");
+                vm.$data.p_ErrorMessage = "Entity not found"; 
                 return;
             }
               
             HydrateFields(data); 
         })
         .fail(ExceptionCatcher)
-        .always();
+        .always(function () {
+            BlockElements(false);
+        });
 }
 
 

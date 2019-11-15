@@ -8,9 +8,13 @@ function BlockElements(block) {
     if (block) {
         $("button").attr("disabled", true); 
         $("input").attr("disabled", true); 
+        $("textarea").attr("disabled", true);
+        $("select").attr("disabled", true);
     } else {
         $("button").attr("disabled", false); 
         $("input").attr("disabled", false); 
+        $("textarea").attr("disabled", false);
+        $("select").attr("disabled", false);
     } 
 }
 

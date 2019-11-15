@@ -49,7 +49,8 @@ var vm = new Vue({
         p_ValidationCredentials:[],
         p_ErrorMessage: "",
         p_SavePersonErrorMessage:"",
-        p_SuccessMessage: ""
+        p_SuccessMessage: "",
+        p_ValidationMessage:""
         
     },
     watch: {
@@ -60,14 +61,27 @@ var vm = new Vue({
     },
     methods: { 
 
-        PersonalDataValidate: function () { 
-            if ($("#personalDataForm").valid()) {
+        PersonalDataValidate: function () {  
+            if ($("#personalDataForm").valid()) { 
                 vm.$data.p_addressShowView = true;
             }
         },
         
         ValidateAddress: function () {
+
+            vm.$data.p_ValidationMessage = "";
+
             if ($("#addressForm").valid()) {
+
+                if (!vm.$data.domicilio.localidad.id) {
+                    vm.$data.p_ValidationMessage = "Selecciona una Localidad";
+                    return;
+                }  
+                if (!map) {
+                    vm.$data.p_ValidationMessage = "Ubicá tu direccion en el Mapa!";
+                    return;
+                }
+
                 vm.$data.p_credentialsShowView = true;
                 vm.$data.p_addressShowView = false;
             }
@@ -112,7 +126,6 @@ var vm = new Vue({
             this.p_geolocationMapShowView = true;
             if (!map) {
                 DrawMap();
-                this.domicilio.ubicacion.direccion = this.domicilio.calle + " " + this.domicilio.numero;
             }
         },
 

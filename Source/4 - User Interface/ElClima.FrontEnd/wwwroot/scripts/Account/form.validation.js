@@ -115,7 +115,7 @@ var validatorAddress = $("#addressForm").validate({
 
     ignore: "",
 
-    submitHandler: function (form) {
+    submitHandler: function (form) { 
         form.submit();
     },
 
