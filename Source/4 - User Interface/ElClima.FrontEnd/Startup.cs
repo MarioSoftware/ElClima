@@ -32,7 +32,11 @@ namespace ElClima.FrontEnd
         public void ConfigureServices(IServiceCollection services)
         {
 
-            //services.AddAutoMapper();
+            services.AddMemoryCache();
+             
+
+            services.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(40));
+             
 
             services.AddElClimaPolicies(_environment);
 
@@ -93,10 +97,13 @@ namespace ElClima.FrontEnd
                 
             }
 
+            app.UseSession();
+
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

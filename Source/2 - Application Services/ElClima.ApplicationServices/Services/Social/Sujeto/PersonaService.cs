@@ -265,9 +265,9 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
             return false;
         }
 
-        public Persona GetOneByDniAndEmail(string dni, string email)
+        public Persona GetOneByDni(string dni)
         {
-            var person = GetByFilter(f => f.dni == dni && f.email == email);
+            var person = GetByFilter(f => f.dni == dni);
             if (person?.Count == 0)
                 return null;
 

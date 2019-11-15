@@ -3,7 +3,7 @@
     data: {
         dni: "",
         password: "",
-        email:"",
+        //email:"",
 
         p_SigningIn:false,
         p_ErrorMessage:""
@@ -54,7 +54,7 @@ function Login(returnUrl) {
                     // I take the data            
                     var password = vm.$data.password;
                     var dni = vm.$data.dni;
-                    var email = vm.$data.email;
+                    //var email = vm.$data.email;
 
                     // I encript the data 
                     dni = CryptoJS.AES.encrypt(
@@ -68,16 +68,16 @@ function Login(returnUrl) {
                             padding: CryptoJS.pad.Pkcs7
                         }).toString();
 
-                    email = CryptoJS.AES.encrypt(
-                        CryptoJS.enc.Utf8.parse(email),
-                        data2,
-                        ikj123h4k12j3h412343lk45j,
-                        {
-                            keySize: 128,
-                            iv: jhg2345iu23y4df52345jh234k56jh,
-                            mode: CryptoJS.mode.CBC,
-                            padding: CryptoJS.pad.Pkcs7
-                        }).toString();
+                    //email = CryptoJS.AES.encrypt(
+                    //    CryptoJS.enc.Utf8.parse(email),
+                    //    data2,
+                    //    ikj123h4k12j3h412343lk45j,
+                    //    {
+                    //        keySize: 128,
+                    //        iv: jhg2345iu23y4df52345jh234k56jh,
+                    //        mode: CryptoJS.mode.CBC,
+                    //        padding: CryptoJS.pad.Pkcs7
+                    //    }).toString();
 
                     password = CryptoJS.AES.encrypt(
                         CryptoJS.enc.Utf8.parse(password),
@@ -92,7 +92,7 @@ function Login(returnUrl) {
 
                     var data3 = JSON.stringify(
                         {
-                            'data': Base64.encode(dni + "[---0---]" + email + "[---0---]" + password)
+                            'data': Base64.encode(dni + "[---0---]" /*+ email + "[---0---]"*/ + password)
                         });
 
                     $.ajax({
