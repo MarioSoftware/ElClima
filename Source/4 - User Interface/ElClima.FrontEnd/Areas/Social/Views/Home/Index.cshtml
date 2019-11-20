@@ -1,8 +1,20 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+} 
+
+@section DelayedScripts
+    {
+    <script src="~/scripts/Shared/menu/menuBinding.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        new WOW().init();
+    </script>
 }
+<head>
+    @*CSS Style sheet*@
+</head>
+<!--MENU HOME--->
+@await Html.PartialAsync("MenuHome/_Menu")
 
 <h1>Base</h1>
 

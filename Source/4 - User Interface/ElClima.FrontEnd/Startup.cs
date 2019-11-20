@@ -35,7 +35,7 @@ namespace ElClima.FrontEnd
             services.AddMemoryCache();
              
 
-            services.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(40));
+            services.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(5));
              
 
             services.AddElClimaPolicies(_environment);

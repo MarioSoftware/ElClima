@@ -2,12 +2,10 @@
 using ElClima.ApplicationServices.Services.Social.Sujeto;
 using ElClima.ApplicationServices.Services.Social.Sujeto.Dtos;
 using ElClima.FrontEnd.WebApi.BaseController;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ElClima.FrontEnd.WebApi.Social.Sujetos
 {
@@ -24,6 +22,7 @@ namespace ElClima.FrontEnd.WebApi.Social.Sujetos
         }
 
         [HttpGet("/api/Persons/Edit/{id}")]
+        [Authorize]
         public PersonaDto Get(int id)
         {
             return _personaService.GetDto(id);

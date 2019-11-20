@@ -22,10 +22,13 @@ namespace ElClima.FrontEnd.Controllers
         {
             var returnUrl = HttpContext.Request.Query["ReturnUrl"].ToString();
 
-            var user = Authorization.AuthorizationHelper.GetCurrentLoggedUser(HttpContext);
+            var userPerson = Authorization.AuthorizationHelper.GetCurrentLoggedUser(HttpContext);
 
-            if (user != null)
+            if (userPerson != null)
             {
+                if (!string.IsNullOrWhiteSpace(returnUrl))
+                    return Redirect(returnUrl);
+
                 return Redirect("/Social");
             }
 
