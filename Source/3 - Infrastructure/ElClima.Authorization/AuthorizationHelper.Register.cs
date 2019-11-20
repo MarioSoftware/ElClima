@@ -1,6 +1,5 @@
 ﻿using ElClima.Authorization.IdentityHelper;
 using ElClima.DataAccess;
-using ElClima.Domain.Core.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,15 +9,8 @@ namespace ElClima.Authorization
     public static partial class AuthorizationHelper
     {
         public static RegisterResultDto Register(string dni, string apellido, string nombre, string password, string email)
-        { 
-            var nameValid="";
-            if (!string.IsNullOrWhiteSpace(nombre) && !string.IsNullOrWhiteSpace(apellido))
-            {
-                nombre = nombre.Trim();
-                apellido = apellido.Trim();
-
-                nameValid = string.Concat(nombre.Replace(" ", string.Empty) + apellido.Replace(" ", string.Empty)); 
-            } 
+        {
+            var nameValid = GetUserName(nombre, apellido);
 
             var signInManager = Configuration.GetService<SignInManager<ApplicationUser>>();
 

@@ -16,7 +16,7 @@
         <input type="text" id="nombre" name="nombre" v-model="nombre" class="form-control">
         <label for="nombre" class="active">Nombre</label>
     </div>
-    <div class="">
+    <div class="md-form">
         <label for="fechaNacimiento">Fecha de nacimiento</label>
         @*<i class="fas fa-calendar-alt prefix active"></i>*@
         <input type="text" id="fechaNacimiento" readonly="readonly" name="fechaNacimiento" class="form-control" onchange="vm.$data.fechaNacimiento = this.value" v-model="fechaNacimiento" data-format="dd/mm/yyyy">

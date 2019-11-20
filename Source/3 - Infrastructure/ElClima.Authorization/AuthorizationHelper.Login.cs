@@ -8,19 +8,20 @@ namespace ElClima.Authorization
 {
     public static partial class AuthorizationHelper
     {
-        public static bool Login(string dni, string password/*, string email*/)
+        public static bool Login(string dni, string password)
         {
             var signInManager = Configuration.GetService<SignInManager<ApplicationUser>>();
             var personService = new PersonaService();
 
-            var user = personService.GetOneByDni(dni);
+            var person = personService.GetOneByDni(dni);
 
-            if(user == null)
+            if(person == null)
             {
                 throw new ElClimaException("No existe un Usuario con este DNI"); 
             }
+            
 
-            var loginResult = Task.Run(() => signInManager.PasswordSignInAsync(user.email, password, true, lockoutOnFailure: false)).Result;
+            var loginResult = Task.Run(() => signInManager.PasswordSignInAsync(GetUserName(person.nombre,person.apellido), password, true, lockoutOnFailure: false)).Result;
 
             return loginResult.Succeeded;
         } 
