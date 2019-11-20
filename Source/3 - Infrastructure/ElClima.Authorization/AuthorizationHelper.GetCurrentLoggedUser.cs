@@ -46,10 +46,10 @@ namespace ElClima.Authorization
                 return null;
             }
 
-            var usuarioService = new PersonaService();
+            var personService = new PersonaService();
 
             //var uow = usuarioService.GetCurrentUnitOfWork();
-            var usuarios = usuarioService.GetByFilter(f => f.dni == applicationUser.dni && f.email == applicationUser.Email);
+            var usuarios = personService.GetByFilter(f => f.dni == applicationUser.dni && f.email == applicationUser.Email);
             if (usuarios.Count == 0)
             {
                 //There is not User, should had not started Session

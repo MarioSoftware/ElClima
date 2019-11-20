@@ -53,8 +53,7 @@ namespace ElClima.FrontEnd.WebApi.Account
         public void Login([FromBody] LoginDataDto data)
         { 
             string password;
-            string dni;
-            //string email;
+            string dni; 
 
             try
             {
@@ -85,8 +84,7 @@ namespace ElClima.FrontEnd.WebApi.Account
                 dni = EncriptionHelper.OpenSslDecrypt(dataArray[0],secondPassword);
 
                 password = EncriptionHelper.OpenSslDecrypt(dataArray[2], secondPassword);
-
-                //email = EncriptionHelper.OpenSslDecrypt(dataArray[4], secondPassword);
+                 
 
             }
             catch (Exception)
@@ -95,7 +93,7 @@ namespace ElClima.FrontEnd.WebApi.Account
                 throw new ElClimaException("Datos incorrectos. Intente nuevamente.");
             }
 
-            if (!Authorization.AuthorizationHelper.Login(dni, password/*, email*/))
+            if (!Authorization.AuthorizationHelper.Login(dni, password))
             {
                 throw new ElClimaException("Datos incorrectos. Intente nuevamente.");
             }
