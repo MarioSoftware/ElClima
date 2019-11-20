@@ -4,6 +4,6 @@
 }
 
 label.error {
-    color: red;
+    color: red!important;
     margin-top:25px;
 }
