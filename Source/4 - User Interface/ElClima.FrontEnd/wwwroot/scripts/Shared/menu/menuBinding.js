@@ -3,7 +3,11 @@ var vmNavMenu = new Vue({
     el: "#Menu",
     data: {
         id: 0,
-        emergencyReports: false        
+        emergencyReports: false,
+
+        //Login
+        paswword: "",
+        dni:""
     },
     directives: {
 

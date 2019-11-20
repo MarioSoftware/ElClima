@@ -2,3 +2,8 @@
     width: 150px;
     height: 150px;
 }
+
+label.error {
+    color: red;
+    margin-top:25px;
+}

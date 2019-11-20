@@ -3,43 +3,45 @@
         <div class="modal-dialog">
             <div class="modal-content modalContentNavMenu shadow-lg p-3 mb-5 rounded">
                 <div class="modal-header text-center border-0">
-                    <h5 class="modal-title modalTitleNavMenu w-100">YO</h5>
+                    <h5 class="modal-title modalTitleNavMenu w-100"><strong>Ingresar</strong></h5>
 
-                    <button type="button" class="btn-lg" onclick="location.href = '/Account/Add'">
-                        <span class="icon icon-user"></span> 
+                  
+                    <button type="button" class="close grow">
+                        <span aria-hidden="true">  <i class="fas fa-user-plus grow" onclick="location.href = '/Account/Add'"></i></span>
                     </button>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close grow" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body modalBodyNavMenu justify-content-center">
                     <form action="">
-                        @*<div class="imgcontainer">
-                           <img src="img_avatar2.png" alt="Avatar" class="avatar">
-                          </div>*@
+                         
+                        <div class="container"> 
 
-                        <div class="container">
-                            <div class="form-group">
-                                <input type="number" placeholder="Dni" class="form-control formControlNavMenu">
+                            <div class="md-form">
+                                <i class="fas fa-id-card prefix active"></i>
+                                <label for="dni" class="active text-white">Dni</label>
+                                <input type="text" id="dni" maxlength="8" pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" v-model="dni" name="dni" class="form-control text-white">
                             </div>
-
-                            <div class="form-group">
-                                <input type="password" placeholder="Clave" class="form-control formControlNavMenu">
+                            <div class="md-form">
+                                <i class="fa fa-lock prefix active"></i>
+                                <input type="password"  id="password" autocomplete="off" v-model="password" name="password" maxlength="20" class="form-control text-white">
+                                <label for="password" class="active text-white">Contraseña</label>
                             </div>
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 <label>
                                     <span class="text-white">Forgot <a href="#">password?</a></span>
                                 </label>
-                            </div>
+                            </div>*@
 
                             <div class="form-group">
                                 <button class="btn btn-success btn-block grow">Ingresar</button>
-                            </div> 
-                            <div class="form-group">
+                            </div>
+                            @*<div class="form-group">
                                 <label class="text-white">
                                     <input type="checkbox" checked="checked" name="remember"> Remember me
                                 </label>
-                            </div>
+                            </div>*@
                         </div>
 
                     </form>
