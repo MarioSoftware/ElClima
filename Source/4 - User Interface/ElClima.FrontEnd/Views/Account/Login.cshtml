@@ -20,14 +20,12 @@
         </div> 
         <form id="loginForm" action="javascript:Login('@returnUrl')">
             <div class="md-form">
-                <i class="fas fa-id-card prefix active"></i>
-                <label for="dni" class="active">Dni</label>
-                <input type="text" id="dni" maxlength="8" pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" v-model="dni" name="dni" class="form-control">
+                <i class="fas fa-id-card prefix active"></i> 
+                <input type="text" id="dni" placeholder="D.N.I" maxlength="8" pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" v-model="dni" name="dni" class="form-control">
             </div> 
             <div class="md-form">
                 <i class="fa fa-lock prefix active"></i>
-                <input type="password" id="password" autocomplete="off" v-model="password" name="password" maxlength="20" class="form-control">
-                <label for="password" class="active">Contraseña</label>
+                <input type="password" id="password" placeholder="Contraseña" autocomplete="off" v-model="password" name="password" maxlength="20" class="form-control">
             </div>
             <div v-show="p_ErrorMessage !== ''" class="alert alert-danger" role="alert">
                 <i class="fas fa-exclamation-circle"></i> <strong>{{p_ErrorMessage}}</strong>
