@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ElClima.ApplicationServices.Services.Comun;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,11 +9,15 @@ namespace ElClima.ApplicationServices.Services.Social.Reporte.Historias.Dtos
     {
         public int id { get; set; }
 
-        public int idUbicacion { get; set; }
+        public  UbicacionDto ubicacion{ get; set; }
 
-        public string fechHoraCreada { get; set; }
+        public string descripcion  { get; set; }
+
+        public string fechaHoraCreada { get; set; }
 
         public int idPersona { get; set; }
+
+        string observacion { get; set; }
 
         public bool aportarImagen { get; set; }
 

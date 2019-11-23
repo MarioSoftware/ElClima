@@ -123,9 +123,8 @@ var vm = new Vue({
 
         OpenMap: function () {
             this.p_geolocationMapShowView = true;
-            if (!map) {
-                DrawMap();
-            }
+            window.OpenMap();
+
         },
 
         SavePerson: function () {

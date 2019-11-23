@@ -18,7 +18,11 @@ namespace ElClima.DataAccess.DataMapping.Social.Reporte.Historias
 
                 h.Property<string>("descripcion")
                     .IsRequired()
-                    .HasColumnType("varchar(300)"); 
+                    .HasColumnType("varchar(300)");
+
+                h.Property<string>("observacion")
+                   .IsRequired()
+                   .HasColumnType("varchar(1000)");
 
                 h.Property<DateTime>("fechHoraCreada")
                    .IsRequired()

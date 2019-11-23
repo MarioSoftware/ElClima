@@ -6,7 +6,7 @@
     <script src="~/assets/plugins/moment/moment.js" asp-append-version="true"></script>
     <script src="~/scripts/Common/crud_helper.js" asp-append-version="true"></script>
     <script src="~/scripts/Account/accountBinding.js" asp-append-version="true"></script>
-    <script src="~/scripts/Account/addressGeolocation.js" asp-append-version="true"></script>
+    <script src="~/scripts/Common/geolocation/OneTargetGeolocation.js" asp-append-version="true"></script>
     <script src="~/scripts/Common/validationCustom.js" asp-append-version="true"></script>
     <script src="~/scripts/Account/form.validation.js" asp-append-version="true"></script> 
 
@@ -43,7 +43,7 @@
     </div>
 
     <div v-show="p_addressShowView && p_geolocationMapShowView">
-        @await Html.PartialAsync("_GeoLocation")
+        @await Html.PartialAsync("Common/Geolocation/_OneTargetGeolocation")
     </div>
 
     <div v-show="p_credentialsShowView" class="credentials">

@@ -6,7 +6,7 @@ var vmNavMenu = new Vue({
         emergencyReports: false,
 
         //Login
-        paswword: "",
+        password: "",
         dni:""
     },
     directives: {

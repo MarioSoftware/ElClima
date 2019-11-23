@@ -13,9 +13,11 @@ namespace ElClima.Domain.Model.Models.Social.Reporte.Historia
 
         public Ubicacion ubicacion { get; set; }
 
-        public DateTime fechHoraCreada { get; set; }
+        public DateTime fechaHoraCreada { get; set; }
 
         public Persona persona { get; set; }
+
+        string  observacion { get; set; }
 
         public bool aportarImagen { get; set; }
 

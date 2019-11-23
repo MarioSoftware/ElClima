@@ -36,11 +36,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
                     .ReverseMap()
                     .ForMember(dest => dest.provincia, opt => opt.Ignore())
                     .ForMember(dest => dest.localidad, opt => opt.Ignore()); 
-
-                    //cfg.CreateMap<Contacto, ContactoDto>()
-                    // .ForMember(dest => dest.idContactoTipo, opt => opt.MapFrom(org => org.contactoTipo.id))
-                    // .ForMember(dest => dest.idPersona, opt => opt.MapFrom(org => org.persona.id)) 
-                    // .ReverseMap();
+ 
                      
 
                 }).CreateMapper();
@@ -142,12 +138,7 @@ namespace ElClima.ApplicationServices.Services.Social.Sujeto
 
             if (persona != null)
             {
-
-                //persona.contactos = new Service<Contacto>(UnitOfWork).GetByFilterIncluding(
-                //  f => f.persona.id == persona.id,
-                //  i => i.contactoTipo
-                //  );
-
+ 
                 var ret = _mapper.Map<PersonaDto>(persona);
                 
 
