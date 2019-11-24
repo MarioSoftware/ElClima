@@ -32,9 +32,47 @@
 </head>
 <body>
     <!-- WRAPPER -->
-    <div class="container">
+    <div id="wrap" class="container clear-top">
         @RenderBody()
     </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Your Website 2019</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li class="list-inline-item">
+                            <a href="#">Privacy Policy</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!--JAVASCRIPT FILES-->
 
@@ -42,7 +80,7 @@
     <script type="text/javascript" src="/assets/plugins/jquery/development/jquery-3.4.1.js"></script>
     <script src="~/assets/plugins/vuejs/dev/vue.js"></script>
 
-    @*---mdb---*@ 
+    @*---mdb---*@
     <script src="~/assets/plugins/mdb/js/popper.min.js" asp-append-version="true"></script>
     <script src="~/assets/plugins/mdb/js/mdb.min.js" asp-append-version="true"></script>
 
