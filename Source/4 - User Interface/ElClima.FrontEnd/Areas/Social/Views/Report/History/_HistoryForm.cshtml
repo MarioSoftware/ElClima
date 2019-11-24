@@ -13,12 +13,14 @@
     <div class="history">
         <form id="historyForm">
             <div class="row justify-content-center">
-                <div class="col-7 sm-12">
+                <div class="col-4 col-lg-4">
                     <div class="md-form">
                         @*<i class="fas fa-user prefix active" aria-hidden="true"></i>*@
-                        <input type="text" id="descripcion" name="descripcion" v-model="descripcion" class="form-control">
+                        <input type="text" id="descripcion" name="descripcion" v-model="descripcion" class="form-control">.
+                        <i class="fas fa-images  fa-2x"></i>
                         <label for="descripcion" class="active">Descripcion</label>
-                    </div>
+
+                    </div> 
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -41,18 +43,18 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-5">
+                <div class="col-12 col-lg-8">
                     <div class="form-group">
 
                         <textarea class="form-control" id="observacion" v-model="observacion" rows="3"></textarea>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col sm-12 md-6 lg-6">
+            <div class="row justify-content-center">
+                <div class="col-6 col-lg-3">
                     <button type="button" class="btn btn-danger" v-on:click="">Cancelar</button> 
                 </div>
-                <div class="col sm-12 md-6 lg-6"> 
+                <div class=" col-6 col-lg-3"> 
                     <button type="button" class="btn btn-success" v-on:click="">Guardar</button>
                 </div>
             </div>
