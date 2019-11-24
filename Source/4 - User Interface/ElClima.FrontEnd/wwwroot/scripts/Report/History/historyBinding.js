@@ -16,6 +16,8 @@ var vm = new Vue({
             direccion: ""
         },
 
+        p_ObserbationLength:false,
+
         p_ValidationCredentials:[],
         p_ErrorMessage: "", 
         p_SuccessMessage: "",
