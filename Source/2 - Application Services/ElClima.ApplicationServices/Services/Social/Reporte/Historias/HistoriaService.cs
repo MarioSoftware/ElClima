@@ -47,6 +47,15 @@ namespace ElClima.ApplicationServices.Services.Social.Reporte.Historias
             return entity;
         }
 
+        public HistoriaDto GetDto(int id)
+        {
+            //if (id != 0)
+            //{
+
+            //}
+            return new HistoriaDto();
+        }
+
         public void InsertDto(HistoriaDto dto)
         {
             dto.id = 0;

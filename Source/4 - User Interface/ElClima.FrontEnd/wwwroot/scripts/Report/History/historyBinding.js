@@ -1,7 +1,7 @@
 ﻿var WebApiBaseUrl = "/api/History";
 var momentDateFormat = "D/M/YYYY";
 var vm = new Vue({
-    el: "#accountForm",
+    el: "#history",
     data: { 
         id: 0, 
         descripcion: "",  

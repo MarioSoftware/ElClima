@@ -15,7 +15,7 @@ namespace ElClima.FrontEnd.Controllers
         [AllowAnonymous]
         public IActionResult Login()
         {
-            return View();
+            return View("Login/Login");
         }
 
         public IActionResult RedirectFromLogin()
