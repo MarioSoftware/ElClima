@@ -22,7 +22,7 @@ namespace ElClima.FrontEnd.WebApi.Social.Sujetos
         }
 
         [HttpGet("/api/Persons/Edit/{id}")]
-        [Authorize]
+        [AllowAnonymous]
         public PersonaDto Get(int id)
         {
             return _personaService.GetDto(id);

@@ -4,33 +4,39 @@
 
 @section DelayedScripts
     {
+    <script src="~/assets/plugins/jquery/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="~/scripts/Common/crud_helper.js" asp-append-version="true"></script>
     <script src="~/scripts/Report/History/historyBinding.js" asp-append-version="true"></script>
+    <script src="~/scripts/Common/geolocation/OneTargetGeolocation.js" asp-append-version="true"></script>
+    <script src="~/scripts/Common/validationCustom.js" asp-append-version="true"></script>
+
+    
+
     <script type="text/javascript">
         new WOW().init();
     </script>
 }
+    <head>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpGwfqc1p6G8ydP1AXaNYtOavIx_dcYvU&libraries=places"
+                async defer></script>
 
+    </head>
 <div id="history">
     <form id="historyForm">
 
-
         <div class="row justify-content-center">
-
-
-            <div class="col-sm-12">
-                <div class="row justify-content-center">
-                    <h3><strong>Historia</strong></h3>
-                </div>
-                <div class="row justify-content-center">
+            <div class="col-sm-12"> 
+                <div class="row justify-content-center  ">
                     <div class="md-form">
+                        <div class="row justify-content-center ">
+                            <h3><strong>Historia</strong></h3>
+                        </div>
                         <input type="text" id="descripcion" name="descripcion" v-model="descripcion" class="">
                     </div>
                 </div>
             </div>
-
         </div>
-
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mt-5">
             <div class="col-sm-12">
                 <div class="row justify-content-center">
                     <i class="fas fa-images  fa-2x"></i>
@@ -40,18 +46,20 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center mx-auto">
+        <div class="row justify-content-center mt-5 ">
             <div class="col-4">
-                <div class="row justify-content-center">
-                    <i class="fas fa-map-marker-alt fa-4x "></i>
+                <a data-toggle="modal" v-on:click="OpenMap()" data-target="#MapModal">
+                    <div class="row justify-content-center">
+                        <i class="fas fa-map-marker-alt fa-4x "></i>
+                    </div>
+                    <div class="row justify-content-center">
+                        <h3 class="text-center">¿Donde?</h3>
+                    </div>
+                </a>
 
-                </div>
-                <div class="row justify-content-center">
-                    <p class="text-center">¿Donde?</p>
-                </div>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mt-5">
             <div class="col-12 col-lg-8">
                 <div class="row justify-content-center">
                     <i class="fas fa-align-center  fa-2x"></i>
@@ -61,7 +69,7 @@
                 </div>
             </div>
         </div>
-        <div v-show="p_ObserbationLength" class="row justify-content-center">
+        <div v-show="p_ObserbationLength" class="row justify-content-center mt-5">
             <div class="col-12 col-lg-8">
                 <div class="form-group">
 
@@ -69,7 +77,7 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mt-5">
             <div class="col-6 col-lg-2">
                 <button type="button" class="btn btn-danger" v-on:click="">Cancelar</button>
             </div>
@@ -77,7 +85,15 @@
                 <button type="button" class="btn btn-success" v-on:click="">Guardar</button>
             </div>
         </div>
-
-
     </form>
+    @*<div class="modal fade" id="MapModal" tabindex="-1" role="dialog" aria-labelledby="ModalModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modalContentNavMenu shadow-lg p-3 mb-5 rounded">
+
+                <div class="modal-body modalBodyNavMenu justify-content-center">
+                    @await Html.PartialAsync("../Common/Geolocation/_OneTargetGeolocation")
+                </div>
+            </div>
+        </div>
+    </div>*@
 </div>

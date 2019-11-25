@@ -123,7 +123,7 @@ var vm = new Vue({
 
         OpenMap: function () {
             this.p_geolocationMapShowView = true;
-            window.OpenMap();
+            window.DrawMap();
 
         },
 

@@ -9,11 +9,13 @@ var vm = new Vue({
         fechaHoraCreada:"",
         idPersona: 0,
         aportarImagen:false,
+        domicilio:{
         ubicacion: {
             id: 0,
             latitud: 0,
             longitud: 0,
             direccion: ""
+        }
         },
 
         p_ObserbationLength:false,
@@ -21,13 +23,14 @@ var vm = new Vue({
         p_ValidationCredentials:[],
         p_ErrorMessage: "", 
         p_SuccessMessage: "",
-        p_ValidationMessage:""
-        
+        p_ValidationMessage:"",
+        p_geolocationMapShowView:false
     },
     
     methods: { 
 
         OpenMap: function () {  
+            
             window.DrawMap();
         }
         
