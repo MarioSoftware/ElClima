@@ -30,7 +30,7 @@ var vm = new Vue({
     methods: { 
 
         OpenMap: function () {  
-            
+            vm.$data.p_geolocationMapShowView = true;
             window.DrawMap();
         }
         

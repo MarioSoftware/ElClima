@@ -45,7 +45,14 @@ var vm = new Vue({
 
         p_comboProvincia: [],
         p_comboLocalidad: [],
-        
+
+        p_selectedLocation: {
+            id: 0,
+            latitud: 0,
+            longitud: 0,
+            direccion: ""
+        },
+
         p_ValidationCredentials:[],
         p_ErrorMessage: "", 
         p_SuccessMessage: "",
@@ -129,8 +136,9 @@ var vm = new Vue({
 
         SavePerson: function () {
             vm.$data.p_ErrorMessage = "";
-            var entityJson = JSON.stringify(vm.$data, ExcludePrivateFields);
-            console.log(entityJson);
+            vm.$data.domicilio.ubicacion = vm.$data.p_selectedLocation;
+
+            var entityJson = JSON.stringify(vm.$data, ExcludePrivateFields); 
             $.ajax({
                 url: WebApiBaseUrl + "/Add",
                 type: "POST",

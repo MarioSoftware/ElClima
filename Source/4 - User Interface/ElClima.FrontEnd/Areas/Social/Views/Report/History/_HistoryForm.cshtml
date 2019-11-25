@@ -22,7 +22,7 @@
 
     </head>
 <div id="history">
-    <form id="historyForm">
+    <form v-show="!p_geolocationMapShowView" id="historyForm">
 
         <div class="row justify-content-center">
             <div class="col-sm-12"> 
@@ -86,14 +86,9 @@
             </div>
         </div>
     </form>
-    @*<div class="modal fade" id="MapModal" tabindex="-1" role="dialog" aria-labelledby="ModalModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content modalContentNavMenu shadow-lg p-3 mb-5 rounded">
-
-                <div class="modal-body modalBodyNavMenu justify-content-center">
-                    @await Html.PartialAsync("../Common/Geolocation/_OneTargetGeolocation")
-                </div>
-            </div>
-        </div>
-    </div>*@
+    <div v-show="p_geolocationMapShowView" class="" > 
+       <div class="modal-body modalBodyNavMenu justify-content-center">
+           @await Html.PartialAsync("../Common/Geolocation/_OneTargetGeolocation")
+       </div> 
+    </div>
 </div>

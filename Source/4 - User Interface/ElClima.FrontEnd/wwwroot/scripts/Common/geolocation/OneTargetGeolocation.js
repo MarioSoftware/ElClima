@@ -5,8 +5,8 @@ var map = null;
 
 function DrawMap() {
     if (!map) {
-        if (vm.$data.domicilio.ubicacion.longitud !== 0 || vm.$data.domicilio.ubicacion.latitud !== 0) {
-            defaultCenter = { lat: vm.$data.domicilio.ubicacion.latitud, lng: vm.$data.domicilio.ubicacion.longitud };
+        if (vm.$data.p_selectedLocation.longitud !== 0 || vm.$data.p_selectedLocation.latitud !== 0) {
+            defaultCenter = { lat: vm.$data.p_selectedLocation.latitud, lng: vm.$data.p_selectedLocation.longitud };
         } else {
             if (!defaultCenter) {
                 defaultCenter = { lng: -64.1943410221038, lat: -31.399427685778598 };//Cordoba  
@@ -66,10 +66,10 @@ function addMarker(location) {
         map: map
     });
 
-    vm.$data.domicilio.ubicacion.latitud = typeof location.lat === 'function' ? location.lat() : location.lat;
-    vm.$data.domicilio.ubicacion.longitud = typeof location.lng === 'function' ? location.lng() : location.lng;
+    vm.$data.p_selectedLocation.latitud = typeof location.lat === 'function' ? location.lat() : location.lat;
+    vm.$data.p_selectedLocation.longitud = typeof location.lng === 'function' ? location.lng() : location.lng;
 
-    defaultCenter = { lat: vm.$data.domicilio.ubicacion.latitud, lng: vm.$data.domicilio.ubicacion.longitud };
+    defaultCenter = { lat: vm.$data.p_selectedLocation.latitud, lng: vm.$data.p_selectedLocation.longitud };
      
 } 
 
