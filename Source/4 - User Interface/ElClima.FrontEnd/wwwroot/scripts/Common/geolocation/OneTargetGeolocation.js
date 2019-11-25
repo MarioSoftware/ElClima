@@ -15,7 +15,7 @@ function DrawMap() {
 
         map = new google.maps.Map(document.getElementById('map'), {
             center: defaultCenter,
-            zoom: 20,
+            zoom: 18,
             mapTypeId: 'satellite'
         });
 

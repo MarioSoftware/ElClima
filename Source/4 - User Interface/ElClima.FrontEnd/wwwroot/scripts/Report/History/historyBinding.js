@@ -9,16 +9,21 @@ var vm = new Vue({
         fechaHoraCreada:"",
         idPersona: 0,
         aportarImagen:false,
-        domicilio:{
         ubicacion: {
             id: 0,
             latitud: 0,
             longitud: 0,
             direccion: ""
-        }
         },
 
-        p_ObserbationLength:false,
+        p_ObservationContent:false,
+
+        p_selectedLocation: {
+            id: 0,
+            latitud: -31.40939075600147,
+            longitud: -64.19578217022752,
+            direccion: ""
+        },
 
         p_ValidationCredentials:[],
         p_ErrorMessage: "", 
@@ -36,6 +41,12 @@ var vm = new Vue({
         
        
         
+    },
+    watch: {
+        observacion: function (newVal, oldVal) {
+            if (vm.$data.p_ObservationContent && !newVal.length)
+                vm.$data.p_ObservationContent = false;
+        }
     },
     computed: {
         

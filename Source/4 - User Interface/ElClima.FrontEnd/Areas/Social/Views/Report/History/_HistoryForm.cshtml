@@ -24,7 +24,7 @@
 <div id="history">
     <form v-show="!p_geolocationMapShowView" id="historyForm">
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mb-2">
             <div class="col-sm-12"> 
                 <div class="row justify-content-center  ">
                     <div class="md-form">
@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center mt-5">
+        <div class="row justify-content-center mb-5">
             <div class="col-sm-12">
                 <div class="row justify-content-center">
                     <i class="fas fa-images  fa-2x"></i>
@@ -46,7 +46,7 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center mt-5 ">
+        <div class="row justify-content-center mb-5 ">
             <div class="col-4">
                 <a data-toggle="modal" v-on:click="OpenMap()" data-target="#MapModal">
                     <div class="row justify-content-center">
@@ -59,24 +59,24 @@
 
             </div>
         </div>
-        <div class="row justify-content-center mt-5">
-            <div class="col-12 col-lg-8">
-                <div class="row justify-content-center">
-                    <i class="fas fa-align-center  fa-2x"></i>
+        <div class="row justify-content-center mb-5">
+            <div class="col-12 col-lg-8 justify-content-center">
+                <a data-toggle="modal" v-show="!p_ObservationContent" v-on:click="p_ObservationContent = true" data-target="#MapModal">
+                    <div class="row justify-content-center">
+                        <i class="fas fa-align-center  fa-2x"></i>
+                    </div>
+                    <div class="row justify-content-center">
+                        <h3 class="text-center">¿Observación?</h3>
+                    </div>
+                </a> 
+                <div v-show="p_ObservationContent" class="col-12 col-lg-12">
+                    <div class="form-group">
+                        <textarea class="form-control" id="observacion" v-model="observacion" rows="3"></textarea>
+                    </div>
                 </div>
-                <div class="row justify-content-center">
-                    <h3 class="text-center">Observacion?</h3>
-                </div>
-            </div>
-        </div>
-        <div v-show="p_ObserbationLength" class="row justify-content-center mt-5">
-            <div class="col-12 col-lg-8">
-                <div class="form-group">
 
-                    <textarea class="form-control" id="observacion" v-model="observacion" rows="3"></textarea>
-                </div>
             </div>
-        </div>
+        </div>  
         <div class="row justify-content-center mt-5">
             <div class="col-6 col-lg-2">
                 <button type="button" class="btn btn-danger" v-on:click="">Cancelar</button>
