@@ -49,10 +49,10 @@
           
                 <ul>
                     <li style="list-style: none; text-align: center;" class="col-xs-12 col-sm-6 col-md-2 margin-bottom-10 col-md-offset-1">
-                        <h5>Frente</h5>
+                        <h5>Description</h5>
                         <div style="display:flex; flex-direction: column; justify-content: center; padding: 5% ;  min-height: 350px;">
-                            <a :href="Foto1" rel="prettyPhoto[gallery2]" title="Vista Frontal">
-                                <img style="max-height: 300px;" id="ImgFoto1" class="img-responsive" :src="Foto1" alt="Frente" />
+                            <a :href="image" rel="prettyPhoto[gallery2]" title="Vista Frontal">
+                                <img style="max-height: 300px;" id="image" class="img-responsive" :src="image" alt="Frente" />
                             </a>
                         </div>
                         <a style="display: none" href="#">
@@ -64,7 +64,7 @@
                             </label>
                         </a>
 
-                        <button v-if="p_SubirImagen1Estado==3" style="display: none" type="button" class="btn btn-sm btn-primary btn-block " onclick="javascript: UploadFile('UploadImage1','UpLoadButton1', '#ImgFoto1', 'Imagen1Unidad', 1024,true); vm.$data.p_SubirImagen1Estado = 1;" v-click-on-insert>
+                        <button v-if="p_SubirImagen1Estado ===3" style="display: none" type="button" class="btn btn-sm btn-primary btn-block " onclick="javascript: UploadFile('UploadImage1','UpLoadButton1', '#image', 'Imagen1Unidad', 1024,true); vm.$data.p_SubirImagen1Estado = 1;"v-click-on-insert >
                             subir
                         </button>
                         <button type="button" class="btn btn-sm btn-3d btn-success btn-block " id="UpLoadButton1" onclick="$('#UploadImage1').click();">

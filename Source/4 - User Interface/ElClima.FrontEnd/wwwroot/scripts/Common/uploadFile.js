@@ -88,7 +88,7 @@
             //Habilito el boton UpLoadFile
             enableUploadButton();
             // Y mandamos a actualizar la interface de usuario 
-            UpdateFile(entityName, filePath);
+            UpdateFile(filePath, entityName);
 
         },
 

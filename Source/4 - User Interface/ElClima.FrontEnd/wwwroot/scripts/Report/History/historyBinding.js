@@ -16,7 +16,8 @@ var vm = new Vue({
             direccion: ""
         },
 
-        historyImages:[],
+        historyImages: [],
+        image:"/assets/images/defaultImages/HistoryImage.jpg?width=1024&rsampler=lanczos3",
 
         p_ObservationContent:false,
 
@@ -80,10 +81,11 @@ function UpdateFile(filePath, description) {
      // Dejamos en estado 1 nuevamente y actualizamos la imagen
     vm.$data.p_SubirImagen1Estado = 1; 
 
-    vm.$data.historyImages.push({
-        imagen : filePath,
-        aportada : false,
-        descripcion : description
-    });
+    vm.$data.image = filePath;
+    //vm.$data.historyImages.push({
+    //    imagen : filePath,
+    //    aportada : false,
+    //    descripcion : description
+    //});
      
 }
