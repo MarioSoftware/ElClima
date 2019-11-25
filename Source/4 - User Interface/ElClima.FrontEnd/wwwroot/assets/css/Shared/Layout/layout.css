@@ -1,8 +1,4 @@
-﻿#spinnerBiger {
-    width: 150px;
-    height: 150px;
-}
-
+﻿
 label.error {
     color: red!important;
     margin-top:25px;
@@ -17,8 +13,7 @@ html, body {
 }
 
 #main {
-    /*overflow: auto;
-    padding-bottom: 150px;*/ /* this needs to be bigger than footer height*/
+    overflow: auto;   
 }
 
 .footer {
