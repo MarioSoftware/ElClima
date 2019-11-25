@@ -6,11 +6,13 @@
     {
     <script src="~/assets/plugins/jquery/jquery.validate.min.js" asp-append-version="true"></script>
     <script src="~/scripts/Common/crud_helper.js" asp-append-version="true"></script>
+    <script src="~/scripts/Common/uploadFile.js"></script>
+    <script src="~/assets/plugins/PrettyPhoto/jquery.prettyPhoto.js"></script>
     <script src="~/scripts/Report/History/historyBinding.js" asp-append-version="true"></script>
     <script src="~/scripts/Common/geolocation/OneTargetGeolocation.js" asp-append-version="true"></script>
     <script src="~/scripts/Common/validationCustom.js" asp-append-version="true"></script>
 
-    
+
 
     <script type="text/javascript">
         new WOW().init();
@@ -19,13 +21,13 @@
     <head>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpGwfqc1p6G8ydP1AXaNYtOavIx_dcYvU&libraries=places"
                 async defer></script>
-
+        <link rel="stylesheet" type="text/css" href="~/assets/css/prettyPhoto/prettyPhoto.css" />
     </head>
 <div id="history">
     <form v-show="!p_geolocationMapShowView" id="historyForm">
 
         <div class="row justify-content-center mb-2">
-            <div class="col-sm-12"> 
+            <div class="col-sm-12">
                 <div class="row justify-content-center  ">
                     <div class="md-form">
                         <div class="row justify-content-center ">
@@ -38,12 +40,39 @@
         </div>
         <div class="row justify-content-center mb-5">
             <div class="col-sm-12">
-                <div class="row justify-content-center">
-                    <i class="fas fa-images  fa-2x"></i>
-                </div>
-                <div class="row justify-content-center">
-                    <h3 class="text-center text-muted">Sin Imagenes</h3>
-                </div>
+                @*<div class="row justify-content-center">
+            <i class="fas fa-images  fa-2x"></i>
+        </div>
+        <div class="row justify-content-center">
+            <h3 class="text-center text-muted">Sin Imagenes</h3>
+        </div>*@
+          
+                <ul>
+                    <li style="list-style: none; text-align: center;" class="col-xs-12 col-sm-6 col-md-2 margin-bottom-10 col-md-offset-1">
+                        <h5>Frente</h5>
+                        <div style="display:flex; flex-direction: column; justify-content: center; padding: 5% ;  min-height: 350px;">
+                            <a :href="Foto1" rel="prettyPhoto[gallery2]" title="Vista Frontal">
+                                <img style="max-height: 300px;" id="ImgFoto1" class="img-responsive" :src="Foto1" alt="Frente" />
+                            </a>
+                        </div>
+                        <a style="display: none" href="#">
+                            <label class="text-center">
+                                <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+                                &nbsp;&nbsp; Seleccionar archivo
+                                <input type="file" id="UploadImage1" onchange="javascript: { vm.$data.p_SubirImagen1Estado = ($('#UploadImage1').val() === '') ? 2 : 3; }">
+                                <br />
+                            </label>
+                        </a>
+
+                        <button v-if="p_SubirImagen1Estado==3" style="display: none" type="button" class="btn btn-sm btn-primary btn-block " onclick="javascript: UploadFile('UploadImage1','UpLoadButton1', '#ImgFoto1', 'Imagen1Unidad', 1024,true); vm.$data.p_SubirImagen1Estado = 1;" v-click-on-insert>
+                            subir
+                        </button>
+                        <button type="button" class="btn btn-sm btn-3d btn-success btn-block " id="UpLoadButton1" onclick="$('#UploadImage1').click();">
+                            cambiar Imagen
+                        </button>
+                    </li>
+                </ul>
+
             </div>
         </div>
         <div class="row justify-content-center mb-5 ">
@@ -68,7 +97,7 @@
                     <div class="row justify-content-center">
                         <h3 class="text-center">¿Observación?</h3>
                     </div>
-                </a> 
+                </a>
                 <div v-show="p_ObservationContent" class="col-12 col-lg-12">
                     <div class="form-group">
                         <textarea class="form-control" id="observacion" v-model="observacion" rows="3"></textarea>
@@ -79,7 +108,7 @@
                 </div>
 
             </div>
-        </div>  
+        </div>
         <div class="row justify-content-center mt-5">
             <div class="col-6 col-lg-2">
                 <button type="button" class="btn btn-danger" v-on:click="">Cancelar</button>
@@ -89,9 +118,9 @@
             </div>
         </div>
     </form>
-    <div v-show="p_geolocationMapShowView" class="" > 
-       <div class="modal-body modalBodyNavMenu justify-content-center">
-           @await Html.PartialAsync("../Common/Geolocation/_OneTargetGeolocation")
-       </div> 
+    <div v-show="p_geolocationMapShowView" class="">
+        <div class="modal-body modalBodyNavMenu justify-content-center">
+            @await Html.PartialAsync("../Common/Geolocation/_OneTargetGeolocation")
+        </div>
     </div>
 </div>
