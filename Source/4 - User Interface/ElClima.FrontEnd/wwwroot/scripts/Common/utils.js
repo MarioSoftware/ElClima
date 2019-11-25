@@ -17,7 +17,19 @@ function BlockElements(block) {
         $("select").attr("disabled", false);
     } 
 }
+function EndsWith(str, suffix) {
+    return str.slice(-suffix.length) === suffix;
+}
 
+//---------------------------------------
+//-------------- Like Guid --------------
+//---------------------------------------
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
 function UpdateSuggestionBox(entity, query) {
     if (!query || query.length < 3) {
         //clearTimeout(entity.p_SuggestionsBoxTimer);     TODO:   WHAT THE FUCK IS THIS ? !!!!!!

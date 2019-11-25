@@ -61,9 +61,9 @@
     formData.append("name", name);
     formData.append("file", file);
     //Mostramos el loader hasta que se complete el AJAX
-    if (photoImgId) {
-        $(photoImgId).attr("src", "/assets/images/Rolling.gif");
-    }
+    //if (photoImgId) { 
+    //TODO: ADD LOADER
+    //}
     $.ajax({
         url: "/api/UploadFile/Add",
         type: "POST",

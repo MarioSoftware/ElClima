@@ -28,7 +28,7 @@ var vm = new Vue({
             direccion: ""
         },
 
-        p_SubirImagen1Estado:1,
+        p_uploadImageState:1,
         p_ValidationCredentials:[],
         p_ErrorMessage: "", 
         p_SuccessMessage: "",
@@ -79,7 +79,7 @@ function HydrateFields(data) {
 
 function UpdateFile(filePath, description) { 
      // Dejamos en estado 1 nuevamente y actualizamos la imagen
-    vm.$data.p_SubirImagen1Estado = 1; 
+    vm.$data.p_uploadImageState = 1; 
 
     vm.$data.image = filePath;
     //vm.$data.historyImages.push({

@@ -59,15 +59,15 @@
                             <label class="text-center">
                                 <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
                                 &nbsp;&nbsp; Seleccionar archivo
-                                <input type="file" id="UploadImage1" onchange="javascript: { vm.$data.p_SubirImagen1Estado = ($('#UploadImage1').val() === '') ? 2 : 3; }">
+                                <input type="file" id="imageUploading" onchange="javascript: { p_uploadImageState = ($('#imageUploading').val() === '') ? 2 : 3; }">
                                 <br />
                             </label>
                         </a>
 
-                        <button v-if="p_SubirImagen1Estado ===3" style="display: none" type="button" class="btn btn-sm btn-primary btn-block " onclick="javascript: UploadFile('UploadImage1','UpLoadButton1', '#image', 'Imagen1Unidad', 1024,true); vm.$data.p_SubirImagen1Estado = 1;"v-click-on-insert >
+                        <button     type="button" class="btn btn-sm btn-primary btn-block " onclick="javascript: UploadFile('imageUploading','UpLoadButton1', '#image', 'Imagen1Unidad', 1024,true); p_uploadImageState = 1;"v-click-on-insert >
                             subir
                         </button>
-                        <button type="button" class="btn btn-sm btn-3d btn-success btn-block " id="UpLoadButton1" onclick="$('#UploadImage1').click();">
+                        <button type="button" class="btn btn-sm btn-3d btn-success btn-block " id="UpLoadButton1" onclick="$('#imageUploading').click();">
                             cambiar Imagen
                         </button>
                     </li>
