@@ -14,7 +14,7 @@
         </select>
     </div>
     <div class="md-form">
-        <label>Localidad</label>
+        <label>Localidad</label> 
         <input type="text" name="Domicilio_Localidad" maxlength="40" v-model="domicilio.localidad.nombre" class="form-control"
                v-on:keyup="UpdateSuggestionsBox(domicilio, domicilio.localidad.nombre)"
                v-bind:readonly="domicilio.idProvincia === 0">
