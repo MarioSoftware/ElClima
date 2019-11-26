@@ -28,6 +28,7 @@ var vm = new Vue({
             direccion: ""
         },
 
+        imageDescription:"",
         p_uploadImageState:1,
         p_ValidationCredentials:[],
         p_ErrorMessage: "", 
@@ -40,6 +41,11 @@ var vm = new Vue({
         OpenMap: function () {  
             vm.$data.p_geolocationMapShowView = true;
             window.DrawMap();
+        } ,
+
+        UploadFile: function () {  
+            UploadFile('imageUploading', 'UpLoadButton1', '#image', vm.$data.imageDescription, 1024, true);
+            vm.$data.p_uploadImageState = 1;
         } 
     },
     watch: {

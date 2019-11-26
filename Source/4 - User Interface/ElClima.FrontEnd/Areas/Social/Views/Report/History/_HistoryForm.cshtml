@@ -50,23 +50,19 @@
                 <ul>
                     <li style="list-style: none; text-align: center;" class="col-xs-12 col-sm-6 col-md-2 margin-bottom-10 col-md-offset-1">
                         <h5>Description</h5>
-                        <div style="display:flex; flex-direction: column; justify-content: center; padding: 5% ;  min-height: 350px;">
+                        <div style="display:flex; flex-direction: column; justify-content: center; padding: 5% ;  min-height: 128px;">
                             <a :href="image" rel="prettyPhoto[gallery2]" title="Vista Frontal">
-                                <img style="max-height: 300px;" id="image" class="img-responsive" :src="image" alt="Frente" />
+                                <img style="max-height: 150px;" id="image" class="img-responsive" :src="image" alt="Frente" />
                             </a>
                         </div>
                         <a style="display: none" href="#">
                             <label class="text-center">
                                 <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
                                 &nbsp;&nbsp; Seleccionar archivo
-                                <input type="file" id="imageUploading" onchange="javascript: { p_uploadImageState = ($('#imageUploading').val() === '') ? 2 : 3; }">
+                                <input type="file" id="imageUploading" onchange="javascript: { p_uploadImageState = ($('#imageUploading').val() === '') ? 2 : 3; vm.$options.methods.UploadFile()}">
                                 <br />
                             </label>
-                        </a>
-
-                        <button     type="button" class="btn btn-sm btn-primary btn-block " onclick="javascript: UploadFile('imageUploading','UpLoadButton1', '#image', 'Imagen1Unidad', 1024,true); p_uploadImageState = 1;"v-click-on-insert >
-                            subir
-                        </button>
+                        </a>  
                         <button type="button" class="btn btn-sm btn-3d btn-success btn-block " id="UpLoadButton1" onclick="$('#imageUploading').click();">
                             cambiar Imagen
                         </button>
