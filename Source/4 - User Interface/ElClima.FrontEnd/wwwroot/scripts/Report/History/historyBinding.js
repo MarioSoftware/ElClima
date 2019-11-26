@@ -46,7 +46,11 @@ var vm = new Vue({
         UploadFile: function () {  
             UploadFile('imageUploading', 'UpLoadButton1', '#image', vm.$data.imageDescription, 1024, true);
             vm.$data.p_uploadImageState = 1;
-        } 
+        },
+
+        OpenImageUpload: function () {
+            $('#imageUploading').click();
+        }
     },
     watch: {
         observacion: function (newVal, oldVal) {

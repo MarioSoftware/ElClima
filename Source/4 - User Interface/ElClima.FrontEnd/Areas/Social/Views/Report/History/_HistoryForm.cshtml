@@ -18,11 +18,11 @@
         new WOW().init();
     </script>
 }
-    <head>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpGwfqc1p6G8ydP1AXaNYtOavIx_dcYvU&libraries=places"
-                async defer></script>
-        <link rel="stylesheet" type="text/css" href="~/assets/css/prettyPhoto/prettyPhoto.css" />
-    </head>
+<head>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpGwfqc1p6G8ydP1AXaNYtOavIx_dcYvU&libraries=places"
+            async defer></script>
+    <link rel="stylesheet" type="text/css" href="~/assets/css/prettyPhoto/prettyPhoto.css" />
+</head>
 <div id="history">
     <form v-show="!p_geolocationMapShowView" id="historyForm">
 
@@ -40,35 +40,21 @@
         </div>
         <div class="row justify-content-center mb-5">
             <div class="col-sm-12">
-                @*<div class="row justify-content-center">
-            <i class="fas fa-images  fa-2x"></i>
-        </div>
-        <div class="row justify-content-center">
-            <h3 class="text-center text-muted">Sin Imagenes</h3>
-        </div>*@
-          
-                <ul>
-                    <li style="list-style: none; text-align: center;" class="col-xs-12 col-sm-6 col-md-2 margin-bottom-10 col-md-offset-1">
-                        <h5>Description</h5>
-                        <div style="display:flex; flex-direction: column; justify-content: center; padding: 5% ;  min-height: 128px;">
-                            <a :href="image" rel="prettyPhoto[gallery2]" title="Vista Frontal">
-                                <img style="max-height: 150px;" id="image" class="img-responsive" :src="image" alt="Frente" />
-                            </a>
-                        </div>
-                        <a style="display: none" href="#">
-                            <label class="text-center">
-                                <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
-                                &nbsp;&nbsp; Seleccionar archivo
-                                <input type="file" id="imageUploading" onchange="javascript: { p_uploadImageState = ($('#imageUploading').val() === '') ? 2 : 3; vm.$options.methods.UploadFile()}">
-                                <br />
-                            </label>
-                        </a>  
-                        <button type="button" class="btn btn-sm btn-3d btn-success btn-block " id="UpLoadButton1" onclick="$('#imageUploading').click();">
-                            cambiar Imagen
-                        </button>
-                    </li>
-                </ul>
+                <a id="UpLoadButton1" v-on:click="OpenImageUpload()">
+                    <div class="row justify-content-center">
+                        <i class="fas fa-images  fa-2x"></i>
+                    </div>
+                    <div class="row justify-content-center">
+                        <h3 class="text-center text-muted">Sin Imagenes</h3>
+                    </div>
+                </a>
 
+                <div style="display:flex; flex-direction: column; justify-content: center;  min-height: 200px;">
+                    <a :href="image" rel="prettyPhoto[gallery2]" title="Vista Frontal">
+                        <img style="max-height: 200px;" id="image" class="img-responsive" :src="image" alt="Frente" />
+                    </a>
+                    <input hidden type="file" id="imageUploading" onchange="javascript: { p_uploadImageState = ($('#imageUploading').val() === '') ? 2 : 3; vm.$options.methods.UploadFile()}">
+                </div> 
             </div>
         </div>
         <div class="row justify-content-center mb-5 ">

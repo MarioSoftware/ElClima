@@ -35,9 +35,14 @@ function DrawMap() {
             searchBox.setBounds(map.getBounds());
         });
 
+
+
         autocomplete = new google.maps.places.Autocomplete(document.getElementById('pac-input'), { types: ['geocode'] });
 
-        autocomplete.addListener('place_changed', actualizarMapa);
+        autocomplete.addListener('place_changed', function () {
+            actualizarMapa(); 
+        });
+        autocomplete.addListener('click', actualizarMapa);
     }
     
 }
