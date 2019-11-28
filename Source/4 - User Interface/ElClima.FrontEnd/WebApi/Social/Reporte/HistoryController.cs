@@ -15,7 +15,7 @@ namespace ElClima.FrontEnd.WebApi.Social.Sujetos
     public class HistoryController : BaseWebApiController
     {
         private readonly HistoriaService _historyService;
-        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IHostingEnvironment _hostingEnvironment; 
 
         public HistoryController(IHostingEnvironment hostingEnvironment)
         {

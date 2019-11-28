@@ -14,8 +14,7 @@ namespace ElClima.ApplicationServices.Services.Social.Reporte.Historias.Dtos
         public string descripcion  { get; set; }
 
         public string fechaHoraCreada { get; set; }
-
-        public int idPersona { get; set; }
+        
 
         string observacion { get; set; }
 

@@ -2,10 +2,15 @@
 using AutoMapper;
 using ElClima.ApplicationServices.Services.Comun;
 using ElClima.ApplicationServices.Services.Social.Reporte.Historias.Dtos;
+using ElClima.DataAccess;
 using ElClima.Domain.Model.Models.Posicionamiento;
 using ElClima.Domain.Model.Models.Social.Reporte.Historia;
 using ElClima.Domain.Model.Models.Social.Sujetos;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using System;
+using System.Security.Claims;
+using System.Threading;
 
 namespace ElClima.ApplicationServices.Services.Social.Reporte.Historias
 {
@@ -14,7 +19,8 @@ namespace ElClima.ApplicationServices.Services.Social.Reporte.Historias
         private static IMapper _mapper;
 
         public HistoriaService() : base()
-        {
+        { 
+
             if (_mapper == null)
             {
                 _mapper = new MapperConfiguration(cfg =>
@@ -22,7 +28,7 @@ namespace ElClima.ApplicationServices.Services.Social.Reporte.Historias
                     cfg.CreateMap<Ubicacion, UbicacionDto>().ReverseMap();
 
                     cfg.CreateMap<Historia, HistoriaDto>()
-                     .ForMember(dest => dest.idPersona, opt => opt.MapFrom(org => org.persona == null ? 0 : org.persona.id))
+                     //.ForMember(dest => dest.idPersona, opt => opt.MapFrom(org => org.persona == null ? 0 : org.persona.id)) TODO:Check for idperson importance
                      .ForMember(dest => dest.fechaHoraCreada, opt => opt.MapFrom(org => org.fechaHoraCreada == DateTime.MinValue ? "" : org.fechaHoraCreada.ToShortDateString()))
                      .ForMember(dest => dest.ubicacion, opt => opt.MapFrom(org => org.ubicacion == null ? new Ubicacion() : org.ubicacion))
                      .ReverseMap()
@@ -33,19 +39,19 @@ namespace ElClima.ApplicationServices.Services.Social.Reporte.Historias
             }
         }
         public Historia GetEntityFromDto(HistoriaDto dto)
-        {
+        { 
             var entity = _mapper.Map<Historia>(dto);
-
             entity.ubicacion = new Ubicacion {
                 id =dto.ubicacion.id,
                 latitud =dto.ubicacion.latitud,
                 longitud =dto.ubicacion.longitud,
                 direccion = dto.ubicacion.direccion};
-
-            entity.persona = new Service<Persona>(UnitOfWork).GetOne(dto.idPersona);
+             
+            //entity.persona = new Service<Persona>(UnitOfWork).GetOne();
 
             return entity;
         }
+       
 
         public HistoriaDto GetDto(int id)
         {

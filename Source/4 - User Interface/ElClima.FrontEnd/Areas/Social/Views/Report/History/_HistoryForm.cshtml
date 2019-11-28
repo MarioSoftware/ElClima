@@ -1,4 +1,6 @@
-﻿@{
+﻿@using ElClima.FrontEnd.Helpers
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,18 +13,22 @@
     <script src="~/scripts/Report/History/historyBinding.js" asp-append-version="true"></script>
     <script src="~/scripts/Common/geolocation/OneTargetGeolocation.js" asp-append-version="true"></script>
     <script src="~/scripts/Common/validationCustom.js" asp-append-version="true"></script>
-
-
-
+         
     <script type="text/javascript">
         new WOW().init();
     </script>
+} 
+@{
+    MasterLayoutHelper.AddLineToDocumentReadyFunction("$('input').attr('autocomplete','off')", Context);
+    MasterLayoutHelper.AddLineToDocumentReadyFunction("$(\"a[rel ^= 'prettyPhoto']\").prettyPhoto({deeplinking:false, social_tools:false});", Context);
+
 }
-<head>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpGwfqc1p6G8ydP1AXaNYtOavIx_dcYvU&libraries=places"
-            async defer></script>
-    <link rel="stylesheet" type="text/css" href="~/assets/css/prettyPhoto/prettyPhoto.css" />
-</head>
+    <head>
+        <link rel="stylesheet" type="text/css" href="~/assets/css/prettyPhoto/prettyPhoto.css" />
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpGwfqc1p6G8ydP1AXaNYtOavIx_dcYvU&libraries=places"
+                async defer></script>
+
+    </head>
 <div id="history">
     <form v-show="!p_geolocationMapShowView" id="historyForm">
 
@@ -40,7 +46,7 @@
         </div>
         <div class="row justify-content-center mb-5">
             <div class="col-sm-12">
-                <a id="UpLoadButton1" v-on:click="OpenImageUpload()">
+                <a v-show="p_uploadImageState !== 3" id="UpLoadButton1" v-on:click="OpenImageUpload()">
                     <div class="row justify-content-center">
                         <i class="fas fa-images  fa-2x"></i>
                     </div>
@@ -49,12 +55,12 @@
                     </div>
                 </a>
 
-                <div style="display:flex; flex-direction: column; justify-content: center;  min-height: 200px;">
+                <div v-show="image" style="display:flex; flex-direction: column; justify-content: center;  min-height: 200px;">
                     <a :href="image" rel="prettyPhoto[gallery2]" title="Vista Frontal">
                         <img style="max-height: 200px;" id="image" class="img-responsive" :src="image" alt="Frente" />
-                    </a>
-                    <input hidden type="file" id="imageUploading" onchange="javascript: { p_uploadImageState = ($('#imageUploading').val() === '') ? 2 : 3; vm.$options.methods.UploadFile()}">
-                </div> 
+                    </a> 
+                </div>
+                <input hidden type="file" id="imageUploading" onchange="javascript: { p_uploadImageState = ($('#imageUploading').val() === '') ? 2 : 3; vm.$options.methods.UploadFile()}">
             </div>
         </div>
         <div class="row justify-content-center mb-5 ">
