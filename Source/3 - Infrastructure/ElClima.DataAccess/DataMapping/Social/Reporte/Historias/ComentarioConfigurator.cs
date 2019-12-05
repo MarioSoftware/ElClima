@@ -27,14 +27,14 @@ namespace ElClima.DataAccess.DataMapping.Social.Reporte.Historias
             });
              
             modelBuilder.Entity<Comentario>()
-                .Property<int>("historiaId")
-            .IsRequired();
+                .Property<int>("imagenId")
+                .IsRequired();
             modelBuilder.Entity<Comentario>()
-                .HasOne(h => h.historia);
+                .HasOne(h => h.imagen);
              
             modelBuilder.Entity<Comentario>()
                 .Property<int>("personaId")
-            .IsRequired();
+                .IsRequired();
             modelBuilder.Entity<Comentario>()
                 .HasOne(h => h.persona);
              

@@ -178,11 +178,10 @@ namespace ElClima.DataAccess
                 UbicacionConfigurator.Configure(modelBuilder);
 
                 //Historia
-                HistoriaConfigurator.Configure(modelBuilder);
-                ComentarioConfigurator.Configure(modelBuilder);
+                HistoriaConfigurator.Configure(modelBuilder); 
                 ConversacionConfigurator.Configure(modelBuilder);
-                ImagenHistoriaConfigurator.Configure(modelBuilder);
-                ComentarioImagenConfigurator.Configure(modelBuilder);
+                ImagenConfigurator.Configure(modelBuilder);
+                ComentarioConfigurator.Configure(modelBuilder);
 
                 //Sujeto 
                 PersonaConfigurator.Configure(modelBuilder);

@@ -4,13 +4,13 @@ using System;
 
 namespace ElClima.DataAccess.DataMapping.Social.Reporte.Historias
 {
-    internal static class ImagenHistoriaConfigurator
+    internal static class ImagenConfigurator
     {
         public static void Configure(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ImagenHistoria>(i =>
+            modelBuilder.Entity<Imagen>(i =>
             {
-                i.ToTable("ImagenHistoria", "Reporte.Historia"); 
+                i.ToTable("Imagen", "Reporte.Historia"); 
 
                 i.Property<int>("id")
                 .IsRequired()
@@ -34,16 +34,16 @@ namespace ElClima.DataAccess.DataMapping.Social.Reporte.Historias
 
             });
              
-            modelBuilder.Entity<ImagenHistoria>()
+            modelBuilder.Entity<Imagen>()
                 .Property<int>("historiaId")
                 .IsRequired();
-            modelBuilder.Entity<ImagenHistoria>()
+            modelBuilder.Entity<Imagen>()
                 .HasOne(h => h.historia);
              
-            modelBuilder.Entity<ImagenHistoria>()
+            modelBuilder.Entity<Imagen>()
                 .Property<int>("personaId")
                 .IsRequired();
-            modelBuilder.Entity<ImagenHistoria>()
+            modelBuilder.Entity<Imagen>()
                 .HasOne(h => h.persona);
         }
     }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ElClima.Domain.Model.Models.Social.Reporte.Historia
 {
-   public class ImagenHistoria : BaseEntity
+   public class Imagen : BaseEntity
     {
         public string descripcion { get; set; }
 
