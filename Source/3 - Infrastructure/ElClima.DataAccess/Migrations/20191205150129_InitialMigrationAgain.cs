@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ElClima.DataAccess.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialMigrationAgain : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -540,9 +540,11 @@ namespace ElClima.DataAccess.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     descripcion = table.Column<string>(type: "varchar(300)", nullable: false),
                     ubicacionId = table.Column<int>(nullable: false),
-                    fechHoraCreada = table.Column<DateTime>(type: "Date", nullable: false),
+                    fechaHoraCreada = table.Column<DateTime>(nullable: false),
                     personaId = table.Column<int>(nullable: false),
-                    aportarImagen = table.Column<bool>(nullable: false)
+                    observacion = table.Column<string>(type: "varchar(1000)", nullable: false),
+                    aportarImagen = table.Column<bool>(nullable: false),
+                    fechHoraCreada = table.Column<DateTime>(type: "Date", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -737,38 +739,7 @@ namespace ElClima.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comentario",
-                schema: "Reporte.Historia",
-                columns: table => new
-                {
-                    id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    historiaId = table.Column<int>(nullable: false),
-                    descripcion = table.Column<string>(type: "varchar(300)", nullable: false),
-                    fechaHoraCreado = table.Column<DateTime>(type: "Date", nullable: false),
-                    personaId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comentario", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_Comentario_Historia_historiaId",
-                        column: x => x.historiaId,
-                        principalSchema: "Reporte.Historia",
-                        principalTable: "Historia",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Comentario_Persona_personaId",
-                        column: x => x.personaId,
-                        principalSchema: "Sujeto",
-                        principalTable: "Persona",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ImagenHistoria",
+                name: "Imagen",
                 schema: "Reporte.Historia",
                 columns: table => new
                 {
@@ -783,16 +754,16 @@ namespace ElClima.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ImagenHistoria", x => x.id);
+                    table.PrimaryKey("PK_Imagen", x => x.id);
                     table.ForeignKey(
-                        name: "FK_ImagenHistoria_Historia_historiaId",
+                        name: "FK_Imagen_Historia_historiaId",
                         column: x => x.historiaId,
                         principalSchema: "Reporte.Historia",
                         principalTable: "Historia",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ImagenHistoria_Persona_personaId",
+                        name: "FK_Imagen_Persona_personaId",
                         column: x => x.personaId,
                         principalSchema: "Sujeto",
                         principalTable: "Persona",
@@ -987,38 +958,7 @@ namespace ElClima.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Conversacion",
-                schema: "Reporte.Historia",
-                columns: table => new
-                {
-                    id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    comentarioId = table.Column<int>(nullable: false),
-                    descripcion = table.Column<string>(type: "varchar(300)", nullable: false),
-                    fechaHoraCreado = table.Column<DateTime>(type: "Date", nullable: false),
-                    personaId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Conversacion", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_Conversacion_Comentario_comentarioId",
-                        column: x => x.comentarioId,
-                        principalSchema: "Reporte.Historia",
-                        principalTable: "Comentario",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Conversacion_Persona_personaId",
-                        column: x => x.personaId,
-                        principalSchema: "Sujeto",
-                        principalTable: "Persona",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ComentarioImagen",
+                name: "Comentario",
                 schema: "Reporte.Historia",
                 columns: table => new
                 {
@@ -1032,16 +972,16 @@ namespace ElClima.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ComentarioImagen", x => x.id);
+                    table.PrimaryKey("PK_Comentario", x => x.id);
                     table.ForeignKey(
-                        name: "FK_ComentarioImagen_ImagenHistoria_imagenId",
+                        name: "FK_Comentario_Imagen_imagenId",
                         column: x => x.imagenId,
                         principalSchema: "Reporte.Historia",
-                        principalTable: "ImagenHistoria",
+                        principalTable: "Imagen",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ComentarioImagen_Persona_personaId",
+                        name: "FK_Comentario_Persona_personaId",
                         column: x => x.personaId,
                         principalSchema: "Sujeto",
                         principalTable: "Persona",
@@ -1159,6 +1099,37 @@ namespace ElClima.DataAccess.Migrations
                         column: x => x.lineaProductoId,
                         principalSchema: "Entidad",
                         principalTable: "LineaProducto",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Conversacion",
+                schema: "Reporte.Historia",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    comentarioId = table.Column<int>(nullable: false),
+                    descripcion = table.Column<string>(type: "varchar(300)", nullable: false),
+                    fechaHoraCreado = table.Column<DateTime>(type: "Date", nullable: false),
+                    personaId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Conversacion", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Conversacion_Comentario_comentarioId",
+                        column: x => x.comentarioId,
+                        principalSchema: "Reporte.Historia",
+                        principalTable: "Comentario",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Conversacion_Persona_personaId",
+                        column: x => x.personaId,
+                        principalSchema: "Sujeto",
+                        principalTable: "Persona",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -1489,27 +1460,15 @@ namespace ElClima.DataAccess.Migrations
                 column: "rolId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comentario_historiaId",
+                name: "IX_Comentario_imagenId",
                 schema: "Reporte.Historia",
                 table: "Comentario",
-                column: "historiaId");
+                column: "imagenId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comentario_personaId",
                 schema: "Reporte.Historia",
                 table: "Comentario",
-                column: "personaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ComentarioImagen_imagenId",
-                schema: "Reporte.Historia",
-                table: "ComentarioImagen",
-                column: "imagenId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ComentarioImagen_personaId",
-                schema: "Reporte.Historia",
-                table: "ComentarioImagen",
                 column: "personaId");
 
             migrationBuilder.CreateIndex(
@@ -1537,15 +1496,15 @@ namespace ElClima.DataAccess.Migrations
                 column: "ubicacionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ImagenHistoria_historiaId",
+                name: "IX_Imagen_historiaId",
                 schema: "Reporte.Historia",
-                table: "ImagenHistoria",
+                table: "Imagen",
                 column: "historiaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ImagenHistoria_personaId",
+                name: "IX_Imagen_personaId",
                 schema: "Reporte.Historia",
-                table: "ImagenHistoria",
+                table: "Imagen",
                 column: "personaId");
 
             migrationBuilder.CreateIndex(
@@ -1721,10 +1680,6 @@ namespace ElClima.DataAccess.Migrations
                 schema: "Personas");
 
             migrationBuilder.DropTable(
-                name: "ComentarioImagen",
-                schema: "Reporte.Historia");
-
-            migrationBuilder.DropTable(
                 name: "Conversacion",
                 schema: "Reporte.Historia");
 
@@ -1791,10 +1746,6 @@ namespace ElClima.DataAccess.Migrations
                 schema: "Personas");
 
             migrationBuilder.DropTable(
-                name: "ImagenHistoria",
-                schema: "Reporte.Historia");
-
-            migrationBuilder.DropTable(
                 name: "Comentario",
                 schema: "Reporte.Historia");
 
@@ -1819,7 +1770,7 @@ namespace ElClima.DataAccess.Migrations
                 schema: "Entidad");
 
             migrationBuilder.DropTable(
-                name: "Historia",
+                name: "Imagen",
                 schema: "Reporte.Historia");
 
             migrationBuilder.DropTable(
@@ -1833,6 +1784,10 @@ namespace ElClima.DataAccess.Migrations
             migrationBuilder.DropTable(
                 name: "LineaProducto",
                 schema: "Entidad");
+
+            migrationBuilder.DropTable(
+                name: "Historia",
+                schema: "Reporte.Historia");
 
             migrationBuilder.DropTable(
                 name: "Perdida",

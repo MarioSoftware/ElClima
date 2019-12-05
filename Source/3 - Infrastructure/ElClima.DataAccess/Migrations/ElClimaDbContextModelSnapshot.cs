@@ -595,32 +595,6 @@ namespace ElClima.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(300)");
 
-                    b.Property<DateTime>("fechaHoraCreado")
-                        .HasColumnType("Date");
-
-                    b.Property<int>("historiaId");
-
-                    b.Property<int>("personaId");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("historiaId");
-
-                    b.HasIndex("personaId");
-
-                    b.ToTable("Comentario","Reporte.Historia");
-                });
-
-            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Historia.ComentarioImagen", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("descripcion")
-                        .IsRequired()
-                        .HasColumnType("varchar(300)");
-
                     b.Property<DateTime>("fechaHoraCreada");
 
                     b.Property<DateTime>("fechaHoraCreado")
@@ -636,7 +610,7 @@ namespace ElClima.DataAccess.Migrations
 
                     b.HasIndex("personaId");
 
-                    b.ToTable("ComentarioImagen","Reporte.Historia");
+                    b.ToTable("Comentario","Reporte.Historia");
                 });
 
             modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Historia.Conversacion", b =>
@@ -680,6 +654,12 @@ namespace ElClima.DataAccess.Migrations
                     b.Property<DateTime>("fechHoraCreada")
                         .HasColumnType("Date");
 
+                    b.Property<DateTime>("fechaHoraCreada");
+
+                    b.Property<string>("observacion")
+                        .IsRequired()
+                        .HasColumnType("varchar(1000)");
+
                     b.Property<int>("personaId");
 
                     b.Property<int>("ubicacionId");
@@ -693,7 +673,7 @@ namespace ElClima.DataAccess.Migrations
                     b.ToTable("Historia","Reporte.Historia");
                 });
 
-            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Historia.ImagenHistoria", b =>
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Historia.Imagen", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -722,7 +702,7 @@ namespace ElClima.DataAccess.Migrations
 
                     b.HasIndex("personaId");
 
-                    b.ToTable("ImagenHistoria","Reporte.Historia");
+                    b.ToTable("Imagen","Reporte.Historia");
                 });
 
             modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Perdida.Comentario", b =>
@@ -1397,20 +1377,7 @@ namespace ElClima.DataAccess.Migrations
 
             modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Historia.Comentario", b =>
                 {
-                    b.HasOne("ElClima.Domain.Model.Models.Social.Reporte.Historia.Historia", "historia")
-                        .WithMany()
-                        .HasForeignKey("historiaId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("ElClima.Domain.Model.Models.Social.Sujetos.Persona", "persona")
-                        .WithMany()
-                        .HasForeignKey("personaId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Historia.ComentarioImagen", b =>
-                {
-                    b.HasOne("ElClima.Domain.Model.Models.Social.Reporte.Historia.ImagenHistoria", "imagen")
+                    b.HasOne("ElClima.Domain.Model.Models.Social.Reporte.Historia.Imagen", "imagen")
                         .WithMany()
                         .HasForeignKey("imagenId")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1447,7 +1414,7 @@ namespace ElClima.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Historia.ImagenHistoria", b =>
+            modelBuilder.Entity("ElClima.Domain.Model.Models.Social.Reporte.Historia.Imagen", b =>
                 {
                     b.HasOne("ElClima.Domain.Model.Models.Social.Reporte.Historia.Historia", "historia")
                         .WithMany()
