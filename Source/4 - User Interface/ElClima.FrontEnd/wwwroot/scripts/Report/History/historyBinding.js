@@ -17,7 +17,7 @@ var vm = new Vue({
         },
 
         historyImages: [],
-        image:"/assets/images/defaultImages/HistoryImage.jpg?width=1024&rsampler=lanczos3",
+        image:"",
 
         p_ObservationContent:false,
 

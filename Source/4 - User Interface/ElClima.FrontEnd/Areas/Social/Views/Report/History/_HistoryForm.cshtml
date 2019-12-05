@@ -46,21 +46,21 @@
         </div>
         <div class="row justify-content-center mb-5">
             <div class="col-sm-12">
-                <a v-show="p_uploadImageState !== 3" id="UpLoadButton1" v-on:click="OpenImageUpload()">
+                <a v-show="!image" id="UpLoadButton1" v-on:click="OpenImageUpload()">
                     <div class="row justify-content-center">
                         <i class="fas fa-images  fa-2x"></i>
                     </div>
                     <div class="row justify-content-center">
                         <h3 class="text-center text-muted">Sin Imagenes</h3>
                     </div>
-                </a>
-
+                </a> 
                 <div v-show="image" style="display:flex; flex-direction: column; justify-content: center;  min-height: 200px;">
                     <a :href="image" rel="prettyPhoto[gallery2]" title="Vista Frontal">
                         <img style="max-height: 200px;" id="image" class="img-responsive" :src="image" alt="Frente" />
-                    </a> 
+                    </a>
                 </div>
                 <input hidden type="file" id="imageUploading" onchange="javascript: { p_uploadImageState = ($('#imageUploading').val() === '') ? 2 : 3; vm.$options.methods.UploadFile()}">
+                
             </div>
         </div>
         <div class="row justify-content-center mb-5 ">
