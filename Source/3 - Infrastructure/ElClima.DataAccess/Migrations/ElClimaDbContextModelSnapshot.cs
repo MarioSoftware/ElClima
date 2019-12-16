@@ -335,14 +335,8 @@ namespace ElClima.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(10)");
 
-                    b.Property<string>("horaDesdeSegundoTurno")
-                        .HasColumnType("varchar(10)");
-
                     b.Property<string>("horaHasta")
                         .IsRequired()
-                        .HasColumnType("varchar(10)");
-
-                    b.Property<string>("horaHastaSegundoTurno")
                         .HasColumnType("varchar(10)");
 
                     b.HasKey("id");

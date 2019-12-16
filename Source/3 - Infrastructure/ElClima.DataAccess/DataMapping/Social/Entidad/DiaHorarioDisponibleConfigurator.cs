@@ -24,12 +24,7 @@ namespace ElClima.DataAccess.DataMapping.Social.Entidades
                 d.Property<string>("horaHasta")
                  .IsRequired()
                  .HasColumnType("varchar(10)");
-
-                d.Property<string>("horaDesdeSegundoTurno") 
-                 .HasColumnType("varchar(10)");
-
-                d.Property<string>("horaHastaSegundoTurno") 
-                 .HasColumnType("varchar(10)");
+                
             });
              
             modelBuilder.Entity<DiaHorarioDisponible>()

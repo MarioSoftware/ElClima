@@ -14,9 +14,6 @@ namespace ElClima.Domain.Model.Models.Social.Entidades
         public string horaDesde { get; set; }
 
         public string horaHasta { get; set; }
-
-        public string horaDesdeSegundoTurno { get; set; }
-
-        public string horaHastaSegundoTurno { get; set; }
+        
     }
 }

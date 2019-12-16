@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ElClima.DataAccess.Migrations
 {
-    public partial class InitialMigrationAgain : Migration
+    public partial class NewMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -683,9 +683,7 @@ namespace ElClima.DataAccess.Migrations
                     diaId = table.Column<int>(nullable: false),
                     entidadId = table.Column<int>(nullable: false),
                     horaDesde = table.Column<string>(type: "varchar(10)", nullable: false),
-                    horaHasta = table.Column<string>(type: "varchar(10)", nullable: false),
-                    horaDesdeSegundoTurno = table.Column<string>(type: "varchar(10)", nullable: true),
-                    horaHastaSegundoTurno = table.Column<string>(type: "varchar(10)", nullable: true)
+                    horaHasta = table.Column<string>(type: "varchar(10)", nullable: false)
                 },
                 constraints: table =>
                 {
