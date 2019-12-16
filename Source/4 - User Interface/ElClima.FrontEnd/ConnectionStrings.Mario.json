@@ -1,6 +1,6 @@
 ﻿{
   "ConnectionStrings": {
-    "DefaultConnection": "Data Source=HYAMPEDERNERANB\\SQLEXPRESS; Initial Catalog=OperationalData; Integrated Security=True; Application Name=Sinie;MultipleActiveResultSets=true;",
-    "IdentityConnection": "Data Source=HYAMPEDERNERANB\\SQLEXPRESS; Initial Catalog=OperationalDataIdentity; Integrated Security=True; Application Name=Sinie;MultipleActiveResultSets=true;"
+    "DefaultConnection": "Data Source=DESKTOP-TS41299\\SQLEXPRESS; Initial Catalog=OperationalData; Integrated Security=True; Application Name=Sinie;MultipleActiveResultSets=true;",
+    "IdentityConnection": "Data Source=DESKTOP-TS41299\\SQLEXPRESS; Initial Catalog=OperationalDataIdentity; Integrated Security=True; Application Name=Sinie;MultipleActiveResultSets=true;"
   }
 }
