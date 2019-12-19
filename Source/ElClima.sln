@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElClima.Domain.Model", "1 -
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore.BulkExtensions", "3 - Infrastructure\EFCore.BulkExtensions\EFCore.BulkExtensions.csproj", "{8AE3F491-97C7-4263-81B3-FE4EA1059E13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElClima.Authorization", "3 - Infrastructure\ElClima.Authorization\ElClima.Authorization.csproj", "{E5619505-51E4-40EF-A749-E9A70B3DBFD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElClima.Authorization", "3 - Infrastructure\ElClima.Authorization\ElClima.Authorization.csproj", "{E5619505-51E4-40EF-A749-E9A70B3DBFD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
